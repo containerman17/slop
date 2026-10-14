@@ -187,3 +187,13 @@ replays and the before/after end-work and Touch measurements.
 Bulk copy/fill support removes the matcher byte-loop lowering. See
 [round 5 evidence](evidence/round5.md) for both fixtures, plain and metered controls,
 full-host replays and the comparison with round 4.
+
+`TestScratchDiagnostics` is an opt-in snapshot diagnostic. With the shared lock
+held, set `PAGERWASM_SCRATCH_DIAGNOSTICS=1` and `PAGERWASM_FIXTURE` to the original
+fixture, then run `go test -run '^TestScratchDiagnostics$' -count=1 -v -timeout=30m`.
+It checks every native hash, compares every dirty line with the pre-call snapshot,
+and observes ABI ranges and stack frames through test-only wazero listeners.
+The journal estimate removes unchanged lines and lines overlapping input/output
+ranges, while preserving existing Touch boundaries. This is a hypothetical saving,
+not proof that those bytes can be zeroed safely. The test pins the matcher hash
+because its static/heap boundary is specific to this build. See `evidence/round7.md`.
