@@ -1,0 +1,17 @@
+Type: delay
+Active filters:
+   focus=pagerdb[.][(][*]DB[)][.]Commit
+Showing nodes accounting for 1.11s, 13.56% of 8.17s total
+Dropped 57 nodes (cum <= 0.04s)
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%      1.11s 13.57%  github.com/containerman17/pagerdb.(*DB).Commit
+         0     0%     0%      1.11s 13.57%  github.com/containerman17/pagerdb.(*DB).rotate
+         0     0%     0%      1.11s 13.57%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile
+         0     0%     0%      1.11s 13.57%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile.func2
+         0     0%     0%      1.11s 13.57%  github.com/containerman17/slop/2026/02_pagerdb_wasm.commit
+         0     0%     0%      1.11s 13.57%  runtime/pprof.Do
+         0     0%     0%      1.11s 13.57%  testing.tRunner
+     1.11s 13.56% 13.56%      1.11s 13.56%  syscall.syscall
+         0     0% 13.56%      1.10s 13.43%  golang.org/x/sys/unix.Msync
+         0     0% 13.56%      0.01s  0.14%  github.com/containerman17/pagerdb.cloneState
+         0     0% 13.56%      0.01s  0.12%  golang.org/x/sys/unix.Clonefile

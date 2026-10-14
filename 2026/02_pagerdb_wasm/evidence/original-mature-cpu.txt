@@ -1,0 +1,62 @@
+File: 02_pagerdb_wasm.test
+Type: cpu
+Time: 2026-10-14 23:49:44 JST
+Duration: 11.12s, Total samples = 8.32s (74.81%)
+Active filters:
+   tagfocus=stage=commit
+Showing nodes accounting for 1.29s, 15.50% of 8.32s total
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%      0.84s 10.10%  sync.(*WaitGroup).Go.func1
+         0     0%     0%      0.73s  8.77%  github.com/containerman17/pagerdb.parallel.func1
+     0.01s  0.12%  0.12%      0.57s  6.85%  crypto/sha256.Sum256
+     0.01s  0.12%  0.24%      0.51s  6.13%  crypto/internal/fips140/sha256.(*Digest).Write
+         0     0%  0.24%      0.51s  6.13%  github.com/containerman17/pagerdb.(*DB).hashDirty.func1
+     0.01s  0.12%  0.36%      0.50s  6.01%  crypto/internal/fips140/sha256.block
+     0.49s  5.89%  6.25%      0.49s  5.89%  crypto/internal/fips140/sha256.blockSHA2
+         0     0%  6.25%      0.43s  5.17%  github.com/containerman17/pagerdb.(*DB).Commit
+         0     0%  6.25%      0.43s  5.17%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile
+         0     0%  6.25%      0.43s  5.17%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile.func2
+         0     0%  6.25%      0.43s  5.17%  github.com/containerman17/slop/2026/02_pagerdb_wasm.commit
+         0     0%  6.25%      0.43s  5.17%  runtime/pprof.Do
+         0     0%  6.25%      0.43s  5.17%  testing.tRunner
+         0     0%  6.25%      0.30s  3.61%  hash/crc32.Checksum (inline)
+         0     0%  6.25%      0.30s  3.61%  hash/crc32.Update (inline)
+         0     0%  6.25%      0.30s  3.61%  hash/crc32.archUpdateCastagnoli
+     0.30s  3.61%  9.86%      0.30s  3.61%  hash/crc32.castagnoliUpdate
+         0     0%  9.86%      0.30s  3.61%  hash/crc32.update
+     0.25s  3.00% 12.86%      0.25s  3.00%  runtime.memmove
+         0     0% 12.86%      0.22s  2.64%  github.com/containerman17/pagerdb.(*DB).fillNewBytes.func1
+     0.02s  0.24% 13.10%      0.11s  1.32%  crypto/internal/fips140/sha256.(*Digest).Sum
+     0.02s  0.24% 13.34%      0.11s  1.32%  github.com/containerman17/pagerdb.(*DB).hashBand
+         0     0% 13.34%      0.11s  1.32%  github.com/containerman17/pagerdb.(*DB).hashDirty.func2
+         0     0% 13.34%      0.11s  1.32%  github.com/containerman17/pagerdb.parallelGroups.func1
+         0     0% 13.34%      0.11s  1.32%  github.com/containerman17/pagerdb.parallelGroups.func2
+     0.01s  0.12% 13.46%      0.09s  1.08%  crypto/internal/fips140/sha256.(*Digest).checkSum
+         0     0% 13.46%      0.08s  0.96%  github.com/containerman17/pagerdb.(*DB).fillNewBytes
+         0     0% 13.46%      0.08s  0.96%  github.com/containerman17/pagerdb.(*DB).indexPending
+         0     0% 13.46%      0.06s  0.72%  github.com/containerman17/pagerdb.(*DB).index
+     0.04s  0.48% 13.94%      0.04s  0.48%  github.com/containerman17/pagerdb.(*seqBuf[go.shape.struct { github.com/containerman17/pagerdb.ver uint64; github.com/containerman17/pagerdb.loc uint64 }]).push (inline)
+         0     0% 13.94%      0.03s  0.36%  github.com/containerman17/pagerdb.(*DB).hashDirty
+         0     0% 13.94%      0.03s  0.36%  slices.Sort[go.shape.[]uint32,go.shape.uint32] (inline)
+         0     0% 13.94%      0.03s  0.36%  slices.pdqsortOrdered[go.shape.uint32]
+         0     0% 13.94%      0.02s  0.24%  crypto/internal/fips140deps/byteorder.BEPutUint32 (inline)
+     0.02s  0.24% 14.18%      0.02s  0.24%  encoding/binary.littleEndian.Uint64 (inline)
+         0     0% 14.18%      0.02s  0.24%  github.com/containerman17/pagerdb.(*DB).rotate
+     0.02s  0.24% 14.42%      0.02s  0.24%  github.com/containerman17/pagerdb.(*seqBuf[go.shape.struct { github.com/containerman17/pagerdb.entry uint32; github.com/containerman17/pagerdb.back uint32; github.com/containerman17/pagerdb.leaf uint32 }]).push (inline)
+         0     0% 14.42%      0.02s  0.24%  golang.org/x/sys/unix.Msync
+     0.02s  0.24% 14.66%      0.02s  0.24%  internal/byteorder.BEPutUint32 (inline)
+         0     0% 14.66%      0.02s  0.24%  runtime.notewakeup
+     0.02s  0.24% 14.90%      0.02s  0.24%  runtime.pthread_cond_signal
+         0     0% 14.90%      0.02s  0.24%  runtime.ready
+         0     0% 14.90%      0.02s  0.24%  runtime.readyWithTime.goready.func1
+         0     0% 14.90%      0.02s  0.24%  runtime.semawakeup
+         0     0% 14.90%      0.02s  0.24%  runtime.startm
+         0     0% 14.90%      0.02s  0.24%  runtime.systemstack
+         0     0% 14.90%      0.02s  0.24%  runtime.wakep
+     0.02s  0.24% 15.14%      0.02s  0.24%  slices.partitionOrdered[go.shape.uint32]
+     0.02s  0.24% 15.38%      0.02s  0.24%  syscall.rawsyscalln
+         0     0% 15.38%      0.02s  0.24%  syscall.syscall
+         0     0% 15.38%      0.02s  0.24%  syscall.syscalln
+         0     0% 15.38%      0.01s  0.12%  slices.choosePivotOrdered[go.shape.uint32]
+         0     0% 15.38%      0.01s  0.12%  slices.medianAdjacentOrdered[go.shape.uint32] (inline)
+     0.01s  0.12% 15.50%      0.01s  0.12%  slices.medianOrdered[go.shape.uint32]

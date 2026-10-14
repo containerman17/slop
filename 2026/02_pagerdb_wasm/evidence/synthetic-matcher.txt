@@ -1,0 +1,22 @@
+=== RUN   TestMatcher
+=== RUN   TestMatcher/0
+    matcher_test.go:135: run 0: 100/600 native hashes and roots checked
+    matcher_test.go:135: run 0: 200/600 native hashes and roots checked
+    matcher_test.go:135: run 0: 300/600 native hashes and roots checked
+    matcher_test.go:135: run 0: 400/600 native hashes and roots checked
+    matcher_test.go:135: run 0: 500/600 native hashes and roots checked
+    matcher_test.go:135: run 0: 600/600 native hashes and roots checked
+    matcher_test.go:138: single-process M3 diagnostics: 256820 msgs/s execution, 118334 msgs/s including Commit, 34743.4 dirty pages/block, 227.843 Commit ms/block
+=== RUN   TestMatcher/1
+    matcher_test.go:135: run 1: 100/600 native hashes and roots checked
+    matcher_test.go:135: run 1: 200/600 native hashes and roots checked
+    matcher_test.go:135: run 1: 300/600 native hashes and roots checked
+    matcher_test.go:135: run 1: 400/600 native hashes and roots checked
+    matcher_test.go:135: run 1: 500/600 native hashes and roots checked
+    matcher_test.go:135: run 1: 600/600 native hashes and roots checked
+    matcher_test.go:138: single-process M3 diagnostics: 251761 msgs/s execution, 117037 msgs/s including Commit, 34743.4 dirty pages/block, 228.612 Commit ms/block
+--- PASS: TestMatcher (526.40s)
+    --- PASS: TestMatcher/0 (258.06s)
+    --- PASS: TestMatcher/1 (262.79s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	526.755s

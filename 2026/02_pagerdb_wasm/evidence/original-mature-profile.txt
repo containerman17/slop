@@ -1,0 +1,31 @@
+=== RUN   TestCommitProfile
+    profile_test.go:88: warmup 100/580
+    profile_test.go:88: warmup 200/580
+    profile_test.go:88: warmup 300/580
+    profile_test.go:88: warmup 400/580
+    profile_test.go:88: warmup 500/580
+    profile_test.go:94: block 580 dirty_pages=17088 Commit_ms=4064.318
+    profile_test.go:94: block 581 dirty_pages=17041 Commit_ms=95.001
+    profile_test.go:94: block 582 dirty_pages=16760 Commit_ms=61.183
+    profile_test.go:94: block 583 dirty_pages=15765 Commit_ms=58.515
+    profile_test.go:94: block 584 dirty_pages=17088 Commit_ms=39.829
+    profile_test.go:94: block 585 dirty_pages=17948 Commit_ms=32.047
+    profile_test.go:94: block 586 dirty_pages=17037 Commit_ms=31.652
+    profile_test.go:94: block 587 dirty_pages=17079 Commit_ms=33.125
+    profile_test.go:94: block 588 dirty_pages=19892 Commit_ms=1060.850
+    profile_test.go:94: block 589 dirty_pages=19687 Commit_ms=36.741
+    profile_test.go:94: block 590 dirty_pages=19874 Commit_ms=96.219
+    profile_test.go:94: block 591 dirty_pages=21162 Commit_ms=106.837
+    profile_test.go:94: block 592 dirty_pages=19785 Commit_ms=70.150
+    profile_test.go:94: block 593 dirty_pages=20796 Commit_ms=109.069
+    profile_test.go:94: block 594 dirty_pages=18310 Commit_ms=81.914
+    profile_test.go:94: block 595 dirty_pages=16705 Commit_ms=906.890
+    profile_test.go:94: block 596 dirty_pages=18393 Commit_ms=65.761
+    profile_test.go:94: block 597 dirty_pages=17991 Commit_ms=67.623
+    profile_test.go:94: block 598 dirty_pages=17848 Commit_ms=62.976
+    profile_test.go:94: block 599 dirty_pages=17237 Commit_ms=29.861
+    profile_test.go:117: 20-block M3 diagnostic under background load: mean Commit_ms=355.528 dirty_pages=18174.3
+    profile_test.go:118: last profiled block: touched_pages=17237 changed_pages=15803 unchanged_touched_pages=1434 changed_bytes=1687676 page_bytes=70602752 dirty_pages_by_64MiB=[4930 4298 2744 2416 2326 523 0 0 0]
+--- PASS: TestCommitProfile (187.64s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	188.163s

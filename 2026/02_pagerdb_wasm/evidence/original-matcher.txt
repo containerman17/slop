@@ -1,0 +1,22 @@
+=== RUN   TestMatcher
+=== RUN   TestMatcher/0
+    matcher_test.go:108: run 0: 100/600 golden hashes and roots checked
+    matcher_test.go:108: run 0: 200/600 golden hashes and roots checked
+    matcher_test.go:108: run 0: 300/600 golden hashes and roots checked
+    matcher_test.go:108: run 0: 400/600 golden hashes and roots checked
+    matcher_test.go:108: run 0: 500/600 golden hashes and roots checked
+    matcher_test.go:108: run 0: 600/600 golden hashes and roots checked
+    matcher_test.go:111: single-process M3 diagnostics: 460700 msgs/s execution, 161739 msgs/s including Commit, 16088.4 dirty pages/block, 200.610 Commit ms/block
+=== RUN   TestMatcher/1
+    matcher_test.go:108: run 1: 100/600 golden hashes and roots checked
+    matcher_test.go:108: run 1: 200/600 golden hashes and roots checked
+    matcher_test.go:108: run 1: 300/600 golden hashes and roots checked
+    matcher_test.go:108: run 1: 400/600 golden hashes and roots checked
+    matcher_test.go:108: run 1: 500/600 golden hashes and roots checked
+    matcher_test.go:108: run 1: 600/600 golden hashes and roots checked
+    matcher_test.go:111: single-process M3 diagnostics: 441435 msgs/s execution, 168960 msgs/s including Commit, 16088.4 dirty pages/block, 182.661 Commit ms/block
+--- PASS: TestMatcher (377.03s)
+    --- PASS: TestMatcher/0 (191.59s)
+    --- PASS: TestMatcher/1 (185.43s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	377.210s

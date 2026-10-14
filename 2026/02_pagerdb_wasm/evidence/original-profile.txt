@@ -1,0 +1,26 @@
+=== RUN   TestCommitProfile
+    profile_test.go:67: block 0 dirty_pages=6372 Commit_ms=11.657
+    profile_test.go:67: block 1 dirty_pages=7769 Commit_ms=13.764
+    profile_test.go:67: block 2 dirty_pages=2854 Commit_ms=4.457
+    profile_test.go:67: block 3 dirty_pages=9139 Commit_ms=14.123
+    profile_test.go:67: block 4 dirty_pages=9796 Commit_ms=15.133
+    profile_test.go:67: block 5 dirty_pages=9971 Commit_ms=15.671
+    profile_test.go:67: block 6 dirty_pages=9770 Commit_ms=15.339
+    profile_test.go:67: block 7 dirty_pages=7985 Commit_ms=13.580
+    profile_test.go:67: block 8 dirty_pages=8186 Commit_ms=13.335
+    profile_test.go:67: block 9 dirty_pages=5571 Commit_ms=10.241
+    profile_test.go:67: block 10 dirty_pages=2871 Commit_ms=4.780
+    profile_test.go:67: block 11 dirty_pages=2811 Commit_ms=4.823
+    profile_test.go:67: block 12 dirty_pages=2771 Commit_ms=4.429
+    profile_test.go:67: block 13 dirty_pages=3032 Commit_ms=4.859
+    profile_test.go:67: block 14 dirty_pages=10645 Commit_ms=18.373
+    profile_test.go:67: block 15 dirty_pages=10190 Commit_ms=20.281
+    profile_test.go:67: block 16 dirty_pages=9797 Commit_ms=15.753
+    profile_test.go:67: block 17 dirty_pages=5505 Commit_ms=9.920
+    profile_test.go:67: block 18 dirty_pages=5285 Commit_ms=8.222
+    profile_test.go:67: block 19 dirty_pages=5639 Commit_ms=42.473
+    profile_test.go:89: 20-block M3 diagnostic under background load: mean Commit_ms=13.061 dirty_pages=6797.9
+    profile_test.go:90: block 19: touched_pages=5639 changed_pages=5072 unchanged_touched_pages=567 changed_bytes=2187321 page_bytes=23097344 dirty_pages_by_64MiB=[3853 1786 0 0 0 0 0 0 0]
+--- PASS: TestCommitProfile (6.23s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	6.409s

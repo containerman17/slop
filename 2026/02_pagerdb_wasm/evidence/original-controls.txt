@@ -1,0 +1,10 @@
+=== RUN   TestDiagnostics
+=== RUN   TestDiagnostics/matcher.wasm
+    diagnostic_test.go:104: single-process M3 diagnostics: matcher.wasm 3693288 msgs/s, 13.538 execution ms/block
+=== RUN   TestDiagnostics/metered.wasm
+    diagnostic_test.go:104: single-process M3 diagnostics: metered.wasm 1005809 msgs/s, 49.711 execution ms/block
+--- PASS: TestDiagnostics (42.36s)
+    --- PASS: TestDiagnostics/matcher.wasm (8.35s)
+    --- PASS: TestDiagnostics/metered.wasm (30.06s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	42.864s

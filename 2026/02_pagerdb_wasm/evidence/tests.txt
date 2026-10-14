@@ -1,0 +1,58 @@
+=== RUN   TestDiagnostics
+    diagnostic_test.go:23: opt-in diagnostics
+--- SKIP: TestDiagnostics (0.00s)
+=== RUN   TestBarrierAndBitmap
+--- PASS: TestBarrierAndBitmap (1.16s)
+=== RUN   TestRevert
+=== RUN   TestRevert/1
+=== RUN   TestRevert/2
+=== RUN   TestRevert/3
+--- PASS: TestRevert (0.50s)
+    --- PASS: TestRevert/1 (0.15s)
+    --- PASS: TestRevert/2 (0.15s)
+    --- PASS: TestRevert/3 (0.20s)
+=== RUN   TestDeployRejects
+=== RUN   TestDeployRejects/clock
+=== RUN   TestDeployRejects/float
+=== RUN   TestDeployRejects/simd
+=== RUN   TestDeployRejects/bulk
+=== RUN   TestDeployRejects/touch
+--- PASS: TestDeployRejects (0.71s)
+    --- PASS: TestDeployRejects/clock (0.14s)
+    --- PASS: TestDeployRejects/float (0.14s)
+    --- PASS: TestDeployRejects/simd (0.13s)
+    --- PASS: TestDeployRejects/bulk (0.13s)
+    --- PASS: TestDeployRejects/touch (0.14s)
+=== RUN   TestTrapBoundaries
+=== RUN   TestTrapBoundaries/reserved
+=== RUN   TestTrapBoundaries/overflow
+=== RUN   TestTrapBoundaries/stack
+--- PASS: TestTrapBoundaries (0.60s)
+    --- PASS: TestTrapBoundaries/reserved (0.22s)
+    --- PASS: TestTrapBoundaries/overflow (0.19s)
+    --- PASS: TestTrapBoundaries/stack (0.18s)
+=== RUN   TestCache
+--- PASS: TestCache (0.19s)
+=== RUN   TestPageGasRevertsAtCallEnd
+--- PASS: TestPageGasRevertsAtCallEnd (0.22s)
+=== RUN   TestGlobalsAreScratch
+--- PASS: TestGlobalsAreScratch (0.23s)
+=== RUN   TestABI
+--- PASS: TestABI (0.22s)
+=== RUN   TestMatcher
+=== RUN   TestMatcher/0
+    matcher_test.go:138: single-process M3 diagnostics: 473608 msgs/s execution, 258740 msgs/s including Commit, 21772.4 dirty pages/block, 87.672 Commit ms/block
+=== RUN   TestMatcher/1
+    matcher_test.go:138: single-process M3 diagnostics: 609645 msgs/s execution, 327639 msgs/s including Commit, 21772.4 dirty pages/block, 70.592 Commit ms/block
+--- PASS: TestMatcher (9.49s)
+    --- PASS: TestMatcher/0 (4.86s)
+    --- PASS: TestMatcher/1 (4.04s)
+=== RUN   TestExternalMemory
+--- PASS: TestExternalMemory (0.03s)
+=== RUN   TestCommitProfile
+    profile_test.go:20: opt-in CPU profile
+--- SKIP: TestCommitProfile (0.00s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	13.965s
+?   	github.com/containerman17/slop/2026/02_pagerdb_wasm/cmd/fixture	[no test files]
+?   	github.com/containerman17/slop/2026/02_pagerdb_wasm/internal/fixture	[no test files]

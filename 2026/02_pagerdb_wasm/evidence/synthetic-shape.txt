@@ -1,0 +1,9 @@
+messages=30000000 blocks=600 ops=[0, 15389702, 12822632, 807708, 979958] sides=[0, 15029174, 14970826]
+symbols=9812 top1_pct=1.591777 top10_pct=10.241290 top100_pct=36.365347
+distinct price levels per symbol: n=9812 mean=122.266 p50=80 p90=90 p99=470
+active levels at message: n=30000000 mean=562.548 p50=54 p90=1615 p99=3389
+absolute distance from pre-message midpoint bps (priced messages with two quotes): n=16869504 mean=1852.092 p50=96 p90=4862 p99=40000
+qty (priced messages): n=17177368 mean=758.321 p50=80 p90=1000 p99=9900
+cancel delay in messages since observed Add/Replace: n=12822632 mean=690988.691 p50=2661 p90=963278 p99=11513906
+crossing Adds=677392 crossing_Add_pct=4.401593
+qty buckets <=1,<=10,<=100,<=1000,>1000: [934952, 2627570, 6845415, 5203223, 1566208]

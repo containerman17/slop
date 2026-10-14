@@ -1,0 +1,2 @@
+original: distinct_symbols_per_block mean=2180.393 p50=2354 p90=2714 p99=3538 block599=2491
+synthetic: distinct_symbols_per_block mean=8947.035 p50=8980 p90=9027 p99=9052 block599=8992
