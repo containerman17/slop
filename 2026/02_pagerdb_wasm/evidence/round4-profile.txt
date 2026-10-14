@@ -1,0 +1,16 @@
+=== RUN   TestBarrierDiagnostics
+=== RUN   TestBarrierDiagnostics/full
+    barrier_diagnostic_test.go:187: layout: shadow stack [0,1048576), static [1048576,1051136), heap [1051136,536870912); data_end=1051112
+    barrier_diagnostic_test.go:250: 100/600 output hashes checked
+    barrier_diagnostic_test.go:250: 200/600 output hashes checked
+    barrier_diagnostic_test.go:250: 300/600 output hashes checked
+    barrier_diagnostic_test.go:250: 400/600 output hashes checked
+    barrier_diagnostic_test.go:250: 500/600 output hashes checked
+    barrier_diagnostic_test.go:250: 600/600 output hashes checked
+    barrier_diagnostic_test.go:258: single-process M3 diagnostic mode=full blocks=600 guest_ms=47.830 input_ms=1.682 end_ms=0.905 scan_ms=0.000 Run_ms=48.735 msgs/s=1025955 Commit_ms=20.421
+    barrier_diagnostic_test.go:259: dirty_lines/block=149136.893 stack_lines/block=29.863 nonstack_lines/block=149107.030 guest_touch_calls/block=117937.978 ABI_first_touches/block=31198.915 stack_top=1048576 min_dirty_stack_address=1045440 first/last_stack_lines=25/33
+    barrier_diagnostic_test.go:260: static_lines/block=8.353 heap_lines/block=149098.677 first_stack_misses_in_active_frame=17918 outside_frame=0
+--- PASS: TestBarrierDiagnostics (50.25s)
+    --- PASS: TestBarrierDiagnostics/full (46.58s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	50.468s

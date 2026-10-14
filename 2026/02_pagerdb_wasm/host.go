@@ -6,14 +6,15 @@ import (
 	"bytes"
 	"context"
 	"crypto/sha256"
+	"encoding/binary"
 	"fmt"
 	"io"
 	"math"
+	"math/bits"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
-	"sort"
 	"strconv"
 
 	"github.com/containerman17/pagerdb"
@@ -246,14 +247,25 @@ func (p *Program) touch(line uint32) {
 		return
 	}
 	p.host.db.Touch(p.Region, int(line)*lineSize, lineSize)
-	p.result.DirtyLines = append(p.result.DirtyLines, line)
 	p.memory[off] |= bit
 }
 func (p *Program) write(off uint32, b []byte) {
 	dst := p.read(off, uint32(len(b)))
 	if len(b) > 0 {
-		for line := off / lineSize; line <= uint32((uint64(off)+uint64(len(b))-1)/lineSize); line++ {
-			p.touch(line)
+		end := uint32((uint64(off)+uint64(len(b))-1)/lineSize) + 1
+		for line := off / lineSize; line < end; {
+			if p.memory[p.limit+line/8]&byte(1<<(line%8)) != 0 {
+				line++
+				continue
+			}
+			start := line
+			for line < end && p.memory[p.limit+line/8]&byte(1<<(line%8)) == 0 {
+				line++
+			}
+			p.host.db.Touch(p.Region, int(start)*lineSize, int(line-start)*lineSize)
+			for i := start; i < line; i++ {
+				p.memory[p.limit+i/8] |= byte(1 << (i % 8))
+			}
 		}
 	}
 	copy(dst, b)
@@ -280,9 +292,28 @@ func (p *Program) Run(ctx context.Context, args Call) (res Result) {
 	defer func() {
 		p.host.active = nil
 		// A crash mid-call can leave bitmap bytes on disk; recovery detects the root mismatch and the node resyncs, as with PagerDB power loss.
-		for _, line := range p.result.DirtyLines {
-			p.memory[p.limit+line/8] &= ^byte(1 << (line % 8))
+		bitmap := p.memory[p.limit : p.limit+bitmapBytes]
+		for off := 0; off < len(bitmap); off += 8 {
+			word := binary.LittleEndian.Uint64(bitmap[off:])
+			if word == 0 {
+				continue
+			}
+			binary.LittleEndian.PutUint64(bitmap[off:], 0)
+			for word != 0 {
+				p.result.DirtyLines = append(p.result.DirtyLines, uint32(off*8+bits.TrailingZeros64(word)))
+				word &= word - 1
+			}
 		}
+		left := p.gas.Get()
+		cost := uint64(len(p.result.DirtyLines)) * DirtyLineGas
+		if left > math.MaxInt64 || left < cost {
+			p.result.Status = TrapStatus
+			p.result.Output = nil
+			left = 0
+		} else {
+			left -= cost
+		}
+		p.result.GasLeft = left
 		if p.result.Status != 0 {
 			p.host.db.Undo(mark)
 			for i, g := range p.globals {
@@ -290,7 +321,6 @@ func (p *Program) Run(ctx context.Context, args Call) (res Result) {
 			}
 			p.result.Logs = nil
 		}
-		sort.Slice(p.result.DirtyLines, func(i, j int) bool { return p.result.DirtyLines[i] < p.result.DirtyLines[j] })
 		res = p.result
 		p.args = Call{}
 		p.result = Result{}
@@ -310,15 +340,5 @@ func (p *Program) Run(ctx context.Context, args Call) (res Result) {
 			}
 		}
 	}
-	left := p.gas.Get()
-	cost := uint64(len(p.result.DirtyLines)) * DirtyLineGas
-	if left > math.MaxInt64 || left < cost {
-		p.result.Status = TrapStatus
-		p.result.Output = nil
-		left = 0
-	} else {
-		left -= cost
-	}
-	p.result.GasLeft = left
 	return
 }

@@ -1,0 +1,26 @@
+=== RUN   TestMatcher
+=== RUN   TestMatcher/0
+    matcher_test.go:155: run 0: 100/600 native hashes and roots checked
+    matcher_test.go:155: run 0: 200/600 native hashes and roots checked
+    matcher_test.go:155: run 0: 300/600 native hashes and roots checked
+    matcher_test.go:155: run 0: 400/600 native hashes and roots checked
+    matcher_test.go:155: run 0: 500/600 native hashes and roots checked
+    matcher_test.go:155: run 0: 600/600 native hashes and roots checked
+    matcher_test.go:168: uncoalesced log bytes/block upper bound=23861959 (ABI coalescing reduces headers), dirty 1KiB leaves/block=30675.0, Commit p99 ms=112.556
+    matcher_test.go:169: guest ms/block=50.578, end ms/block=0.912
+    matcher_test.go:170: single-process M3 diagnostics: 971062 msgs/s execution, 686727 msgs/s including Commit, 149136.9 dirty tracking units/block, 21.319 Commit ms/block
+=== RUN   TestMatcher/1
+    matcher_test.go:155: run 1: 100/600 native hashes and roots checked
+    matcher_test.go:155: run 1: 200/600 native hashes and roots checked
+    matcher_test.go:155: run 1: 300/600 native hashes and roots checked
+    matcher_test.go:155: run 1: 400/600 native hashes and roots checked
+    matcher_test.go:155: run 1: 500/600 native hashes and roots checked
+    matcher_test.go:155: run 1: 600/600 native hashes and roots checked
+    matcher_test.go:168: uncoalesced log bytes/block upper bound=23861959 (ABI coalescing reduces headers), dirty 1KiB leaves/block=30675.0, Commit p99 ms=111.325
+    matcher_test.go:169: guest ms/block=48.294, end ms/block=0.847
+    matcher_test.go:170: single-process M3 diagnostics: 1017478 msgs/s execution, 700851 msgs/s including Commit, 149136.9 dirty tracking units/block, 22.201 Commit ms/block
+--- PASS: TestMatcher (98.22s)
+    --- PASS: TestMatcher/0 (48.88s)
+    --- PASS: TestMatcher/1 (46.36s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	98.682s

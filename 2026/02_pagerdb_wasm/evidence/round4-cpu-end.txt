@@ -1,0 +1,29 @@
+File: 02_pagerdb_wasm.test
+Type: cpu
+Time: 2026-10-15 01:24:05 JST
+Duration: 42.07s, Total samples = 102.60s (243.90%)
+Active filters:
+   tagfocus=phase=run
+Showing nodes accounting for 0.41s, 0.4% of 102.60s total
+Showing top 20 nodes out of 30
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%      0.35s  0.34%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).Run
+     0.12s  0.12%  0.12%      0.35s  0.34%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).Run.func1
+         0     0%  0.12%      0.35s  0.34%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestBarrierDiagnostics.func2
+         0     0%  0.12%      0.35s  0.34%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestBarrierDiagnostics.func2.7
+         0     0%  0.12%      0.35s  0.34%  runtime/pprof.Do
+         0     0%  0.12%      0.35s  0.34%  testing.tRunner
+         0     0%  0.12%      0.19s  0.19%  runtime.growslice
+     0.10s 0.097%  0.21%      0.10s 0.097%  runtime.memclrNoHeapPointers
+         0     0%  0.21%      0.08s 0.078%  runtime.systemstack
+         0     0%  0.21%      0.07s 0.068%  runtime.(*mheap).alloc.func1
+         0     0%  0.21%      0.07s 0.068%  runtime.(*mheap).allocSpan
+     0.07s 0.068%  0.28%      0.07s 0.068%  runtime.madvise
+     0.07s 0.068%  0.35%      0.07s 0.068%  runtime.memmove
+         0     0%  0.35%      0.07s 0.068%  runtime.sysUsed (inline)
+         0     0%  0.35%      0.07s 0.068%  runtime.sysUsedOS (inline)
+     0.03s 0.029%  0.38%      0.03s 0.029%  runtime.asyncPreempt
+     0.02s 0.019%   0.4%      0.02s 0.019%  internal/runtime/atomic.(*UnsafePointer).Load (inline)
+         0     0%   0.4%      0.02s 0.019%  runtime.mProf_Malloc
+         0     0%   0.4%      0.02s 0.019%  runtime.mallocgc
+         0     0%   0.4%      0.02s 0.019%  runtime.mallocgcSmallNoscan

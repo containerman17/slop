@@ -243,3 +243,43 @@ func TestABI(t *testing.T) {
 		t.Fatal("gas_left did not account for charges")
 	}
 }
+
+func TestCoalescedABIOverlapUndo(t *testing.T) {
+	db, h := testHost(t)
+	p := deployCase(t, h, "write")
+	root := commit(t, db)
+	before := bytes.Clone(p.memory)
+	mark := db.Mark()
+	p.touch(2)
+	p.memory[2*lineSize] = 7
+	p.write(1, bytes.Repeat([]byte{9}, 400))
+	p.write(4*lineSize+5, bytes.Repeat([]byte{3}, 100))
+	if p.memory[p.limit] != 0x7f {
+		t.Fatalf("dirty bits %08b", p.memory[p.limit])
+	}
+	db.Undo(mark)
+	clear(p.memory[p.limit:])
+	if !bytes.Equal(before, p.memory) || commit(t, db) != root {
+		t.Fatal("overlapping ABI writes did not undo")
+	}
+}
+
+func TestCoalescedABIInputRevert(t *testing.T) {
+	for _, mode := range []byte{1, 2, 3} {
+		t.Run(fmt.Sprint(mode), func(t *testing.T) {
+			db, h := testHost(t)
+			p := deployCase(t, h, "write")
+			root := commit(t, db)
+			before := bytes.Clone(p.memory)
+			input := bytes.Repeat([]byte{9}, 300)
+			input[0] = mode
+			result := p.Run(context.Background(), Call{Input: input, Gas: 100000})
+			if result.Status == 0 || len(result.DirtyLines) != 10 {
+				t.Fatalf("status %d lines %v", result.Status, result.DirtyLines)
+			}
+			if !bytes.Equal(before, p.memory) || commit(t, db) != root {
+				t.Fatal("coalesced input did not revert")
+			}
+		})
+	}
+}

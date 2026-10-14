@@ -49,10 +49,13 @@ including writes that store the same bytes, rather than lines whose final bytes
 changed. It also reports touched lines for reverted calls.
 
 Each store tests the bitmap inline. Only the first store to a line calls `touch`.
-The host records old bytes with `DB.Touch`, records the line, then sets its bit.
-The bitmap is never touched in PagerDB. Every exit path clears exactly the
-recorded bits before undo or commit, so the bitmap contributes only zeros to the
-root. A crash during a call may leave unlogged bitmap bytes; PagerDB recovery can
+The host records old bytes with `DB.Touch`, then sets the bit. ABI writes coalesce
+consecutive untouched lines into one Touch range, stopping at already dirty lines.
+The bitmap is never touched in PagerDB. Every exit path scans the bitmap in
+address order to produce sorted `DirtyLines`,
+charges per-line gas, and clears the bits before undo or commit. No dirty-line
+sort is needed, and the bitmap contributes only zeros to the root. A crash during
+a call may leave unlogged bitmap bytes; PagerDB recovery can
 detect a root mismatch and require resync, consistent with its crash model.
 
 The host marks before execution and undoes on a status revert, trap or gas
@@ -159,3 +162,7 @@ Opt-in `TestBarrierDiagnostics` separates the inline barrier, miss callback and
 PagerDB Touch with unsafe diagnostic controls. Set `PAGERWASM_BARRIER_DIAGNOSTICS=1`
 and use the same fixture and Mac lock rules. See [the barrier diagnosis](evidence/round3.md)
 for control definitions, CPU profiling, stack/heap counts and proposed changes.
+
+The final barrier changes scan the bitmap instead of sorting and coalesce ABI
+Touch ranges. See [round 4 results](evidence/round4.md) for the original fixture
+replays and the before/after end-work and Touch measurements.

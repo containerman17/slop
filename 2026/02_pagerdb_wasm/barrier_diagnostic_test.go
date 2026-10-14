@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"io"
-	"math/bits"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -21,19 +20,13 @@ import (
 // Diagnostic controls deliberately bypass undo. Never use them for persisted state.
 type barrierTimedCall struct {
 	api.Function
-	guest, scan time.Duration
-	after       func()
+	guest time.Duration
 }
 
 func (f *barrierTimedCall) Call(ctx context.Context, args ...uint64) (out []uint64, err error) {
 	start := time.Now()
 	pprof.Do(ctx, pprof.Labels("phase", "guest"), func(ctx context.Context) { out, err = f.Function.Call(ctx, args...) })
 	f.guest += time.Since(start)
-	if f.after != nil {
-		start = time.Now()
-		pprof.Do(ctx, pprof.Labels("phase", "diagnostic-scan"), func(context.Context) { f.after() })
-		f.scan += time.Since(start)
-	}
 	return
 }
 func barrierTouchWithoutDB(p *Program, line uint32) {
@@ -44,7 +37,6 @@ func barrierTouchWithoutDB(p *Program, line uint32) {
 	if p.memory[off]&bit != 0 {
 		return
 	}
-	p.result.DirtyLines = append(p.result.DirtyLines, line)
 	p.memory[off] |= bit
 }
 
@@ -119,7 +111,6 @@ func TestBarrierDiagnostics(t *testing.T) {
 				if mode == "metered" {
 					copy(p.read(off, uint32(len(data))), data)
 				} else {
-					before := len(p.result.DirtyLines)
 					if mode == "full" {
 						p.write(off, data)
 					} else {
@@ -131,7 +122,6 @@ func TestBarrierDiagnostics(t *testing.T) {
 						}
 						copy(dst, data)
 					}
-					inputTouches += uint64(len(p.result.DirtyLines) - before)
 				}
 				inputTime += time.Since(start)
 			})
@@ -196,18 +186,6 @@ func TestBarrierDiagnostics(t *testing.T) {
 			}
 			t.Logf("layout: shadow stack [0,%d), static [%d,%d), heap [%d,%d); data_end=%d", stackTop, stackTop, heapBase, heapBase, p.limit, dataEnd)
 			timed := &barrierTimedCall{Function: p.call}
-			if mode == "stub" || mode == "empty" {
-				timed.after = func() {
-					p.result.DirtyLines = p.result.DirtyLines[:0]
-					for i, b := range p.memory[p.limit : p.limit+bitmapBytes] {
-						for b != 0 {
-							bit := bits.TrailingZeros8(b)
-							p.result.DirtyLines = append(p.result.DirtyLines, uint32(i*8+bit))
-							b &= b - 1
-						}
-					}
-				}
-			}
 			p.call = timed
 			profilePath := os.Getenv("PAGERWASM_BARRIER_PROFILE")
 			if profilePath != "" {
@@ -273,8 +251,11 @@ func TestBarrierDiagnostics(t *testing.T) {
 				}
 			}
 			pprof.StopCPUProfile()
+			if mode == "full" || mode == "host" || mode == "empty" {
+				inputTouches = dirty - misses
+			}
 			ms := func(d time.Duration) float64 { return d.Seconds() * 1000 / float64(blocks) }
-			t.Logf("single-process M3 diagnostic mode=%s blocks=%d guest_ms=%.3f input_ms=%.3f end_ms=%.3f scan_ms=%.3f Run_ms=%.3f msgs/s=%.0f Commit_ms=%.3f", mode, blocks, ms(timed.guest), ms(inputTime), ms(elapsed-timed.guest-timed.scan), ms(timed.scan), ms(elapsed-timed.scan), float64(per*blocks)/(elapsed-timed.scan).Seconds(), ms(commits))
+			t.Logf("single-process M3 diagnostic mode=%s blocks=%d guest_ms=%.3f input_ms=%.3f end_ms=%.3f scan_ms=%.3f Run_ms=%.3f msgs/s=%.0f Commit_ms=%.3f", mode, blocks, ms(timed.guest), ms(inputTime), ms(elapsed-timed.guest), 0.0, ms(elapsed), float64(per*blocks)/elapsed.Seconds(), ms(commits))
 			t.Logf("dirty_lines/block=%.3f stack_lines/block=%.3f nonstack_lines/block=%.3f guest_touch_calls/block=%.3f ABI_first_touches/block=%.3f stack_top=%d min_dirty_stack_address=%d first/last_stack_lines=%d/%d", float64(dirty)/float64(blocks), float64(stackLines)/float64(blocks), float64(dirty-stackLines)/float64(blocks), float64(misses)/float64(blocks), float64(inputTouches)/float64(blocks), stackTop, minStack, first, lastStack)
 			t.Logf("static_lines/block=%.3f heap_lines/block=%.3f first_stack_misses_in_active_frame=%d outside_frame=%d", float64(staticLines)/float64(blocks), float64(dirty-stackLines-staticLines)/float64(blocks), stackMisses-outsideFrame, outsideFrame)
 			if mode != "metered" && dirty == 0 {

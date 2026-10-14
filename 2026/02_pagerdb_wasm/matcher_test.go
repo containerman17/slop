@@ -104,6 +104,8 @@ func TestMatcher(t *testing.T) {
 				t.Fatal(err)
 			}
 			commit(t, db)
+			timed := &barrierTimedCall{Function: p.call}
+			p.call = timed
 			if _, err = f.Seek(16, io.SeekStart); err != nil {
 				t.Fatal(err)
 			}
@@ -160,10 +162,11 @@ func TestMatcher(t *testing.T) {
 						changed++
 					}
 				}
-				t.Logf("last block final changed bytes=%d, Touch log bytes=%d, logged old bytes=%d", changed, lastTouches*(32+2*lineSize), lastTouches*lineSize)
+				t.Logf("last block final changed bytes=%d, uncoalesced Touch log bytes upper bound=%d, logged old bytes=%d", changed, lastTouches*(32+2*lineSize), lastTouches*lineSize)
 			}
 			sort.Slice(durations, func(i, j int) bool { return durations[i] < durations[j] })
-			t.Logf("log bytes/block=%.0f (32-byte header plus old and new bytes per touch, 56-byte Commit record), dirty 1KiB leaves/block=%.1f, Commit p99 ms=%.3f", 56+float64(lines)*(32+2*lineSize)/float64(blocks), float64(leaves)/float64(blocks), float64(durations[(99*blocks+99)/100-1])/float64(time.Millisecond))
+			t.Logf("uncoalesced log bytes/block upper bound=%.0f (ABI coalescing reduces headers), dirty 1KiB leaves/block=%.1f, Commit p99 ms=%.3f", 56+float64(lines)*(32+2*lineSize)/float64(blocks), float64(leaves)/float64(blocks), float64(durations[(99*blocks+99)/100-1])/float64(time.Millisecond))
+			t.Logf("guest ms/block=%.3f, end ms/block=%.3f", timed.guest.Seconds()*1000/float64(blocks), (execution-timed.guest).Seconds()*1000/float64(blocks))
 			t.Logf("single-process M3 diagnostics: %.0f msgs/s execution, %.0f msgs/s including Commit, %.1f dirty tracking units/block, %.3f Commit ms/block", float64(per*blocks)/execution.Seconds(), float64(per*blocks)/(execution+commits).Seconds(), float64(lines)/float64(blocks), commits.Seconds()*1000/float64(blocks))
 		})
 	}
