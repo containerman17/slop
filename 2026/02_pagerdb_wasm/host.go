@@ -27,6 +27,7 @@ import (
 const (
 	InstructionGas        = 1
 	HostGas               = 10
+	BulkByteGas           = 1
 	DirtyLineGas          = 100
 	StackLimit            = 65536
 	TrapStatus     uint32 = math.MaxUint32
@@ -112,6 +113,7 @@ func New(ctx context.Context, db *pagerdb.DB) (*Host, error) {
 		p.result.Logs = append(p.result.Logs, bytes.Clone(p.read(uint32(s[0]), uint32(s[1]))))
 	})
 	add("touch", i32, nil, func(p *Program, s []uint64) { p.touch(uint32(s[0])) })
+	add("touch_range", []api.ValueType{api.ValueTypeI32, api.ValueTypeI32}, nil, func(p *Program, s []uint64) { p.touchRange(uint32(s[0]), uint32(s[1])) })
 	if _, err := b.Instantiate(ctx); err != nil {
 		h.rt.Close(ctx)
 		return nil, err
@@ -144,7 +146,7 @@ func (h *Host) compile(ctx context.Context, code []byte) (*artifact, error) {
 		cargo = filepath.Join(home, ".cargo/bin/cargo")
 	}
 	// shortcut: Rust subprocess at deploy, port to Go or cgo when the host ships
-	cmd := exec.CommandContext(ctx, cargo, "run", "--quiet", "--locked", "--release", "--manifest-path", filepath.Join(filepath.Dir(file), "instrument/Cargo.toml"), "--bin", "rust-instrument", "--", src, dst, strconv.Itoa(InstructionGas), strconv.Itoa(StackLimit))
+	cmd := exec.CommandContext(ctx, cargo, "run", "--quiet", "--locked", "--release", "--manifest-path", filepath.Join(filepath.Dir(file), "instrument/Cargo.toml"), "--bin", "rust-instrument", "--", src, dst, strconv.Itoa(InstructionGas), strconv.Itoa(StackLimit), strconv.Itoa(BulkByteGas))
 	if out, e := cmd.CombinedOutput(); e != nil {
 		return nil, fmt.Errorf("instrumentation rejected module: %w: %s", e, out)
 	}
@@ -249,10 +251,10 @@ func (p *Program) touch(line uint32) {
 	p.host.db.Touch(p.Region, int(line)*lineSize, lineSize)
 	p.memory[off] |= bit
 }
-func (p *Program) write(off uint32, b []byte) {
-	dst := p.read(off, uint32(len(b)))
-	if len(b) > 0 {
-		end := uint32((uint64(off)+uint64(len(b))-1)/lineSize) + 1
+func (p *Program) touchRange(off, n uint32) {
+	p.read(off, n)
+	if n > 0 {
+		end := uint32((uint64(off)+uint64(n)-1)/lineSize) + 1
 		for line := off / lineSize; line < end; {
 			if p.memory[p.limit+line/8]&byte(1<<(line%8)) != 0 {
 				line++
@@ -268,7 +270,11 @@ func (p *Program) write(off uint32, b []byte) {
 			}
 		}
 	}
-	copy(dst, b)
+}
+
+func (p *Program) write(off uint32, b []byte) {
+	p.touchRange(off, uint32(len(b)))
+	copy(p.read(off, uint32(len(b))), b)
 }
 
 // Run reverts bytes and globals on nonzero status, traps, or exhausted gas.

@@ -31,7 +31,7 @@ func TestDiagnostics(t *testing.T) {
 	paths := []string{"testdata/matcher.wasm"}
 	for _, mode := range []string{"legacy", "stack", "legacy-stack", "inline", "inline-stack"} {
 		path := filepath.Join(t.TempDir(), mode+".wasm")
-		cmd := exec.Command(filepath.Join(home, ".cargo/bin/cargo"), "run", "--quiet", "--locked", "--release", "--manifest-path", "instrument/Cargo.toml", "--bin", "meter-only", "--", "testdata/matcher.wasm", path, strconv.Itoa(InstructionGas), strconv.Itoa(StackLimit), mode)
+		cmd := exec.Command(filepath.Join(home, ".cargo/bin/cargo"), "run", "--quiet", "--locked", "--release", "--manifest-path", "instrument/Cargo.toml", "--bin", "meter-only", "--", "testdata/matcher.wasm", path, strconv.Itoa(InstructionGas), strconv.Itoa(StackLimit), mode, strconv.Itoa(BulkByteGas))
 		if out, err := cmd.CombinedOutput(); err != nil {
 			t.Fatalf("%v: %s", err, out)
 		}

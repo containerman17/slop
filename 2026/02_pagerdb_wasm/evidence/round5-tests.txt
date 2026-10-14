@@ -1,0 +1,137 @@
+=== RUN   TestBarrierDiagnostics
+    barrier_diagnostic_test.go:46: opt-in barrier controls
+--- SKIP: TestBarrierDiagnostics (0.00s)
+=== RUN   TestBulkBarrier
+=== RUN   TestBulkBarrier/copy-cross-line
+=== RUN   TestBulkBarrier/overlap-forward
+=== RUN   TestBulkBarrier/overlap-backward
+=== RUN   TestBulkBarrier/fill-cross-line
+=== RUN   TestBulkBarrier/zero-copy-at-end
+=== RUN   TestBulkBarrier/zero-fill-at-end
+--- PASS: TestBulkBarrier (1.57s)
+    --- PASS: TestBulkBarrier/copy-cross-line (0.75s)
+    --- PASS: TestBulkBarrier/overlap-forward (0.16s)
+    --- PASS: TestBulkBarrier/overlap-backward (0.15s)
+    --- PASS: TestBulkBarrier/fill-cross-line (0.16s)
+    --- PASS: TestBulkBarrier/zero-copy-at-end (0.18s)
+    --- PASS: TestBulkBarrier/zero-fill-at-end (0.18s)
+=== RUN   TestBulkRevertAndBounds
+=== RUN   TestBulkRevertAndBounds/copy-status
+=== RUN   TestBulkRevertAndBounds/fill-status
+=== RUN   TestBulkRevertAndBounds/copy-trap
+=== RUN   TestBulkRevertAndBounds/fill-trap
+=== RUN   TestBulkRevertAndBounds/copy-length-gas
+=== RUN   TestBulkRevertAndBounds/fill-length-gas
+=== RUN   TestBulkRevertAndBounds/copy-source-bounds
+=== RUN   TestBulkRevertAndBounds/copy-destination-bounds
+=== RUN   TestBulkRevertAndBounds/fill-destination-bounds
+=== RUN   TestBulkRevertAndBounds/copy-source-overflow
+=== RUN   TestBulkRevertAndBounds/copy-destination-overflow
+=== RUN   TestBulkRevertAndBounds/fill-length-overflow
+=== RUN   TestBulkRevertAndBounds/fill-destination-overflow
+=== RUN   TestBulkRevertAndBounds/copy-length-overflow
+=== RUN   TestBulkRevertAndBounds/zero-copy-bad-source
+=== RUN   TestBulkRevertAndBounds/zero-copy-bad-destination
+=== RUN   TestBulkRevertAndBounds/zero-fill-bad-destination
+--- PASS: TestBulkRevertAndBounds (2.44s)
+    --- PASS: TestBulkRevertAndBounds/copy-status (0.16s)
+    --- PASS: TestBulkRevertAndBounds/fill-status (0.14s)
+    --- PASS: TestBulkRevertAndBounds/copy-trap (0.15s)
+    --- PASS: TestBulkRevertAndBounds/fill-trap (0.14s)
+    --- PASS: TestBulkRevertAndBounds/copy-length-gas (0.14s)
+    --- PASS: TestBulkRevertAndBounds/fill-length-gas (0.13s)
+    --- PASS: TestBulkRevertAndBounds/copy-source-bounds (0.16s)
+    --- PASS: TestBulkRevertAndBounds/copy-destination-bounds (0.14s)
+    --- PASS: TestBulkRevertAndBounds/fill-destination-bounds (0.14s)
+    --- PASS: TestBulkRevertAndBounds/copy-source-overflow (0.14s)
+    --- PASS: TestBulkRevertAndBounds/copy-destination-overflow (0.14s)
+    --- PASS: TestBulkRevertAndBounds/fill-length-overflow (0.15s)
+    --- PASS: TestBulkRevertAndBounds/fill-destination-overflow (0.14s)
+    --- PASS: TestBulkRevertAndBounds/copy-length-overflow (0.14s)
+    --- PASS: TestBulkRevertAndBounds/zero-copy-bad-source (0.15s)
+    --- PASS: TestBulkRevertAndBounds/zero-copy-bad-destination (0.14s)
+    --- PASS: TestBulkRevertAndBounds/zero-fill-bad-destination (0.14s)
+=== RUN   TestBulkLengthGas
+=== RUN   TestBulkLengthGas/0
+=== RUN   TestBulkLengthGas/1
+--- PASS: TestBulkLengthGas (0.29s)
+    --- PASS: TestBulkLengthGas/0 (0.14s)
+    --- PASS: TestBulkLengthGas/1 (0.15s)
+=== RUN   TestDiagnostics
+    diagnostic_test.go:23: opt-in diagnostics
+--- SKIP: TestDiagnostics (0.00s)
+=== RUN   TestBarrierAndBitmap
+--- PASS: TestBarrierAndBitmap (0.18s)
+=== RUN   TestRevert
+=== RUN   TestRevert/1
+=== RUN   TestRevert/2
+=== RUN   TestRevert/3
+--- PASS: TestRevert (0.41s)
+    --- PASS: TestRevert/1 (0.13s)
+    --- PASS: TestRevert/2 (0.14s)
+    --- PASS: TestRevert/3 (0.14s)
+=== RUN   TestDeployRejects
+=== RUN   TestDeployRejects/clock
+=== RUN   TestDeployRejects/float
+=== RUN   TestDeployRejects/simd
+=== RUN   TestDeployRejects/bulk-reject
+=== RUN   TestDeployRejects/table-reject
+=== RUN   TestDeployRejects/touch
+=== RUN   TestDeployRejects/touch-range
+--- PASS: TestDeployRejects (0.78s)
+    --- PASS: TestDeployRejects/clock (0.11s)
+    --- PASS: TestDeployRejects/float (0.10s)
+    --- PASS: TestDeployRejects/simd (0.10s)
+    --- PASS: TestDeployRejects/bulk-reject (0.11s)
+    --- PASS: TestDeployRejects/table-reject (0.10s)
+    --- PASS: TestDeployRejects/touch (0.10s)
+    --- PASS: TestDeployRejects/touch-range (0.12s)
+=== RUN   TestTrapBoundaries
+=== RUN   TestTrapBoundaries/reserved
+=== RUN   TestTrapBoundaries/overflow
+=== RUN   TestTrapBoundaries/stack
+--- PASS: TestTrapBoundaries (0.46s)
+    --- PASS: TestTrapBoundaries/reserved (0.18s)
+    --- PASS: TestTrapBoundaries/overflow (0.14s)
+    --- PASS: TestTrapBoundaries/stack (0.14s)
+=== RUN   TestCache
+--- PASS: TestCache (0.14s)
+=== RUN   TestLineGasRevertsAtCallEnd
+--- PASS: TestLineGasRevertsAtCallEnd (0.14s)
+=== RUN   TestGlobalsAreScratch
+--- PASS: TestGlobalsAreScratch (0.14s)
+=== RUN   TestABI
+--- PASS: TestABI (0.15s)
+=== RUN   TestCoalescedABIOverlapUndo
+--- PASS: TestCoalescedABIOverlapUndo (0.14s)
+=== RUN   TestCoalescedABIInputRevert
+=== RUN   TestCoalescedABIInputRevert/1
+=== RUN   TestCoalescedABIInputRevert/2
+=== RUN   TestCoalescedABIInputRevert/3
+--- PASS: TestCoalescedABIInputRevert (0.43s)
+    --- PASS: TestCoalescedABIInputRevert/1 (0.14s)
+    --- PASS: TestCoalescedABIInputRevert/2 (0.15s)
+    --- PASS: TestCoalescedABIInputRevert/3 (0.14s)
+=== RUN   TestMatcher
+=== RUN   TestMatcher/0
+    matcher_test.go:168: uncoalesced log bytes/block upper bound=33847224 (ABI coalescing reduces headers), dirty 1KiB leaves/block=37581.8, Commit p99 ms=39.478
+    matcher_test.go:169: guest ms/block=22.542, end ms/block=0.746
+    matcher_test.go:170: single-process M3 diagnostics: 2147030 msgs/s execution, 1424544 msgs/s including Commit, 211544.8 dirty tracking units/block, 11.811 Commit ms/block
+=== RUN   TestMatcher/1
+    matcher_test.go:168: uncoalesced log bytes/block upper bound=33847224 (ABI coalescing reduces headers), dirty 1KiB leaves/block=37581.8, Commit p99 ms=40.317
+    matcher_test.go:169: guest ms/block=22.724, end ms/block=0.684
+    matcher_test.go:170: single-process M3 diagnostics: 2135960 msgs/s execution, 1411765 msgs/s including Commit, 211544.8 dirty tracking units/block, 12.008 Commit ms/block
+--- PASS: TestMatcher (2.80s)
+    --- PASS: TestMatcher/0 (1.15s)
+    --- PASS: TestMatcher/1 (1.17s)
+=== RUN   TestExternalMemory
+--- PASS: TestExternalMemory (0.04s)
+=== RUN   TestInlineMeterMatchesHelper
+--- PASS: TestInlineMeterMatchesHelper (0.40s)
+=== RUN   TestCommitProfile
+    profile_test.go:20: opt-in CPU profile
+--- SKIP: TestCommitProfile (0.00s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	10.856s
+?   	github.com/containerman17/slop/2026/02_pagerdb_wasm/cmd/fixture	[no test files]
+?   	github.com/containerman17/slop/2026/02_pagerdb_wasm/internal/fixture	[no test files]

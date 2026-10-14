@@ -8,6 +8,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime/pprof"
+	"strconv"
 	"strings"
 	"testing"
 	"time"
@@ -63,9 +64,9 @@ func TestBarrierDiagnostics(t *testing.T) {
 		}
 	}
 	full := filepath.Join(dir, "full.wasm")
-	rust("rust-instrument", "testdata/matcher.wasm", full, "1", "65536")
+	rust("rust-instrument", "testdata/matcher.wasm", full, "1", "65536", strconv.Itoa(BulkByteGas))
 	metered := filepath.Join(dir, "metered.wasm")
-	rust("meter-only", "testdata/matcher.wasm", metered, "1", "65536", "inline-stack")
+	rust("meter-only", "testdata/matcher.wasm", metered, "1", "65536", "inline-stack", strconv.Itoa(BulkByteGas))
 	rust("barrier-control", metered, metered, "metered")
 	paths := map[string]string{"metered": metered, "host": full, "full": full}
 	for _, mode := range []string{"stub", "empty"} {
@@ -90,7 +91,7 @@ func TestBarrierDiagnostics(t *testing.T) {
 			h := &Host{db: db, rt: wazero.NewRuntimeWithConfig(ctx, wazero.NewRuntimeConfigCompiler().WithMemoryLimitPages(8208)), cache: make(map[[32]byte]*artifact)}
 			defer h.Close(ctx)
 			var inputTime time.Duration
-			var misses, inputTouches, stackMisses, outsideFrame uint64
+			var misses, inputTouches, stackMisses, outsideFrame, bulkLines, bulkCalls uint64
 			b := h.rt.NewHostModuleBuilder("env")
 			add := func(name string, params, results []api.ValueType, fn func(*Program, []uint64)) {
 				b.NewFunctionBuilder().WithGoFunction(api.GoFunc(func(_ context.Context, s []uint64) {
@@ -143,6 +144,26 @@ func TestBarrierDiagnostics(t *testing.T) {
 				case "empty":
 				default:
 					panic("unexpected touch")
+				}
+			})
+			// Bulk calls remain enabled in scalar miss controls; they are reported separately.
+			add("touch_range", []api.ValueType{api.ValueTypeI32, api.ValueTypeI32}, nil, func(p *Program, s []uint64) {
+				off, n := uint32(s[0]), uint32(s[1])
+				p.read(off, n)
+				bulkCalls++
+				if n > 0 {
+					for line := off / lineSize; line <= uint32((uint64(off)+uint64(n)-1)/lineSize); line++ {
+						if p.memory[p.limit+line/8]&byte(1<<(line%8)) == 0 {
+							bulkLines++
+						}
+					}
+				}
+				if mode == "full" {
+					p.touchRange(off, n)
+				} else if n > 0 {
+					for line := off / lineSize; line <= uint32((uint64(off)+uint64(n)-1)/lineSize); line++ {
+						barrierTouchWithoutDB(p, line)
+					}
 				}
 			})
 			if _, err := b.Instantiate(ctx); err != nil {
@@ -252,8 +273,9 @@ func TestBarrierDiagnostics(t *testing.T) {
 			}
 			pprof.StopCPUProfile()
 			if mode == "full" || mode == "host" || mode == "empty" {
-				inputTouches = dirty - misses
+				inputTouches = dirty - misses - bulkLines
 			}
+			t.Logf("bulk_range_calls/block=%.3f bulk_first_lines/block=%.3f", float64(bulkCalls)/float64(blocks), float64(bulkLines)/float64(blocks))
 			ms := func(d time.Duration) float64 { return d.Seconds() * 1000 / float64(blocks) }
 			t.Logf("single-process M3 diagnostic mode=%s blocks=%d guest_ms=%.3f input_ms=%.3f end_ms=%.3f scan_ms=%.3f Run_ms=%.3f msgs/s=%.0f Commit_ms=%.3f", mode, blocks, ms(timed.guest), ms(inputTime), ms(elapsed-timed.guest), 0.0, ms(elapsed), float64(per*blocks)/elapsed.Seconds(), ms(commits))
 			t.Logf("dirty_lines/block=%.3f stack_lines/block=%.3f nonstack_lines/block=%.3f guest_touch_calls/block=%.3f ABI_first_touches/block=%.3f stack_top=%d min_dirty_stack_address=%d first/last_stack_lines=%d/%d", float64(dirty)/float64(blocks), float64(stackLines)/float64(blocks), float64(dirty-stackLines)/float64(blocks), float64(misses)/float64(blocks), float64(inputTouches)/float64(blocks), stackTop, minStack, first, lastStack)

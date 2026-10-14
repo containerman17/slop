@@ -26,14 +26,15 @@ Imports belong to `env`: `block_time() i64`, `block_number() i64`, `gas_left() i
 `caller(i32)` (20 bytes), `value(i32)` (32 bytes), `call_type() i32`,
 `emit_log(i32,i32)`, `input(i32)`, `input_len() i32`, and `output(i32,i32)`.
 Export `call() i32`: zero succeeds, any other value reverts. The instrumenter
-adds `touch(i32)`; source modules may not import it. Trap status is `0xffffffff`;
+adds `touch(i32)` and `touch_range(i32,i32)`; source modules may not import them. Trap status is `0xffffffff`;
 trap messages are not returned. Reverts discard logs. Explicit status reverts
 keep output; traps discard output. Returned output and logs are owned copies.
 
 `Call` contains all block and transaction values. No WASI, clock, randomness or
 other ambient host input is available. Floats (including types), SIMD, threads,
-shared memory, bulk memory and post-MVP features other than sign extension are
-rejected. Start functions and non-function imports are rejected. Guest mutable
+shared memory and post-MVP features other than sign extension and
+`memory.copy`/`memory.fill` are rejected. Other bulk operations, including
+`memory.init`, `data.drop` and table operations, remain forbidden. Start functions and non-function imports are rejected. Guest mutable
 globals must return to their entry values; a call that changes them reverts.
 Persistent guest state therefore belongs in linear memory. Globals and the
 injected stack counter are restored after every revert or trap.
@@ -59,19 +60,25 @@ a call may leave unlogged bitmap bytes; PagerDB recovery can
 detect a root mismatch and require resync, consistent with its crash model.
 
 The host marks before execution and undoes on a status revert, trap or gas
-failure. It does not commit calls. `InstructionGas`, `HostGas`, `DirtyLineGas`
-and `StackLimit` live in `host.go`. The existing wasm-instrument algorithm meters
+failure. It does not commit calls. `InstructionGas`, `HostGas`, `DirtyLineGas`,
+`BulkByteGas` and `StackLimit` live in `host.go`. The existing wasm-instrument
+algorithm meters
 blocks and locals (including its historical fixed gas-helper surcharge). The helper
 is inlined before the stack pass, so no gas function call remains. Host imports
-have a fixed charge, and dirty-line gas is charged at call end. Exhaustion at any
-of these points reverts. Prices are prototype constants, not calibrated costs.
+have a fixed charge, and dirty-line gas is charged at call end. Bulk copy/fill
+also charge `BulkByteGas` per byte through an inline unsigned length check and
+decrement. Each bulk operation calls the injected range barrier once before
+execution. The host touches consecutive unset destination lines. Copy source
+and destination bounds are checked before any destination is journaled; sums
+use 64-bit arithmetic, and zero-length operations still check their endpoints.
+Exhaustion at any of these points reverts. Prices are prototype constants, not calibrated costs.
 
 ## Deployment and build shortcuts
 
 Deployment calls a local Rust tool and caches the compiled result by the original
 code's SHA-256 hash for the lifetime of the Host. It uses wasm-instrument 0.4.0
-for gas and stack-height checks, plus an integer-store rewrite. This is one deploy
-pipeline with separate internal passes, not a fused single traversal. The source
+for gas and stack-height checks, plus integer-store and bulk-operation rewrites.
+This is one deploy pipeline with separate internal passes, not a fused single traversal. The source
 tree and Cargo must be available at deploy time. Cargo dependencies are locked.
 The subprocess boundary and source-path lookup are prototype shortcuts.
 
@@ -81,9 +88,15 @@ crate algorithm rather than rewriting it. The matcher crate under
 is unchanged; one native-only quote accessor supports shape measurement. Its
 Wasm adapter changes: one `call()` reads input, runs the matcher and returns
 output. Its fixed maximum is 512 MiB. Rust's precompiled standard library can emit
-bulk-memory instructions despite compiler flags, so the matcher build lowers
-those instructions using Binaryen before deployment. The deployed host does not
-support bulk memory. Prebuilt test Wasm files are included.
+bulk-memory instructions despite compiler flags. The matcher build now keeps
+copy/fill and uses Binaryen only to normalize padded linker immediates, with no
+lowering pass. Prebuilt test Wasm files are included.
+
+`instrument/vendor/wasm-instrument` preserves the pinned 0.4.0 source and licenses
+with a narrow bulk stack-effect patch; see its `PATCH.md`. Enabling parity-wasm
+bulk support alone otherwise fails to compile that crate. The deploy pipeline
+removes the unused DataCount section after validation because copy/fill do not
+reference data segments, avoiding the old builder's section-ordering problem.
 
 To rebuild test artifacts (Rust with `wasm32-unknown-unknown`, Binaryen required):
 
@@ -124,7 +137,8 @@ cargo run --locked --release --manifest-path testdata/matcher/Cargo.toml \
 
 Focused tests cover shared-memory pointer identity, status/trap/gas reverts,
 end-of-call line gas, line-boundary stores, address overflow, stack exhaustion,
-reserved bitmap writes, bitmap root neutrality, import/feature rejection, and
+reserved bitmap writes, bitmap root neutrality, bulk copy/fill gas and bounds,
+overlapping copies, zero length, import/feature rejection, and
 code-cache reuse. Dirty-line correctness is checked against a full byte comparison
 on the small store fixture. The matcher does not copy its whole memory each block.
 
@@ -166,3 +180,7 @@ for control definitions, CPU profiling, stack/heap counts and proposed changes.
 The final barrier changes scan the bitmap instead of sorting and coalesce ABI
 Touch ranges. See [round 4 results](evidence/round4.md) for the original fixture
 replays and the before/after end-work and Touch measurements.
+
+Bulk copy/fill support removes the matcher byte-loop lowering. See
+[round 5 evidence](evidence/round5.md) for both fixtures, plain and metered controls,
+full-host replays and the comparison with round 4.

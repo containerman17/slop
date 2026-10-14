@@ -1,0 +1,18 @@
+=== RUN   TestDiagnostics
+=== RUN   TestDiagnostics/matcher.wasm
+    diagnostic_test.go:108: single-process M3 diagnostics: matcher.wasm 7736832 msgs/s, 6.463 execution ms/block
+=== RUN   TestDiagnostics/inline-stack.wasm
+    diagnostic_test.go:108: single-process M3 diagnostics: inline-stack.wasm 7225352 msgs/s, 6.920 execution ms/block
+--- PASS: TestDiagnostics (13.17s)
+    --- PASS: TestDiagnostics/matcher.wasm (4.11s)
+    --- PASS: TestDiagnostics/inline-stack.wasm (4.37s)
+=== RUN   TestDiagnostics
+=== RUN   TestDiagnostics/matcher.wasm
+    diagnostic_test.go:108: single-process M3 diagnostics: matcher.wasm 8035341 msgs/s, 6.223 execution ms/block
+=== RUN   TestDiagnostics/inline-stack.wasm
+    diagnostic_test.go:108: single-process M3 diagnostics: inline-stack.wasm 7037772 msgs/s, 7.105 execution ms/block
+--- PASS: TestDiagnostics (11.69s)
+    --- PASS: TestDiagnostics/matcher.wasm (3.95s)
+    --- PASS: TestDiagnostics/inline-stack.wasm (4.49s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	25.142s

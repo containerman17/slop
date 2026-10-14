@@ -7,6 +7,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"reflect"
+	"strconv"
 	"testing"
 
 	"github.com/tetratelabs/wazero"
@@ -32,7 +33,7 @@ func TestInlineMeterMatchesHelper(t *testing.T) {
 	budgets = append(budgets, math.MaxInt64)
 	for _, mode := range []string{"legacy", "inline"} {
 		path := filepath.Join(t.TempDir(), "meter.wasm")
-		cmd := exec.Command(filepath.Join(home, ".cargo/bin/cargo"), "run", "--quiet", "--locked", "--release", "--manifest-path", "instrument/Cargo.toml", "--bin", "meter-only", "--", "testdata/cases/meter.wasm", path, "1", "65536", mode)
+		cmd := exec.Command(filepath.Join(home, ".cargo/bin/cargo"), "run", "--quiet", "--locked", "--release", "--manifest-path", "instrument/Cargo.toml", "--bin", "meter-only", "--", "testdata/cases/meter.wasm", path, "1", "65536", mode, strconv.Itoa(BulkByteGas))
 		if out, err := cmd.CombinedOutput(); err != nil {
 			t.Fatalf("%v: %s", err, out)
 		}

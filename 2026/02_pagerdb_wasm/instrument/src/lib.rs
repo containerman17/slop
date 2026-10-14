@@ -52,3 +52,83 @@ pub fn meter(m: Module, cost: u32) -> Module {
         .expect("gas helper signature");
     m
 }
+
+// Dynamic bulk cost is separate from the existing static instruction meter.
+pub fn meter_bulk(mut m: Module, cost: u32) -> Module {
+    use Instruction::*;
+    let gas = m
+        .export_section()
+        .unwrap()
+        .entries()
+        .iter()
+        .find_map(|e| {
+            if e.field() == "__gas" {
+                if let Internal::Global(g) = e.internal() {
+                    return Some(*g);
+                }
+            }
+            None
+        })
+        .expect("gas global");
+    let params: Vec<u32> = m
+        .function_section()
+        .unwrap()
+        .entries()
+        .iter()
+        .map(|f| {
+            let Type::Function(t) = &m.type_section().unwrap().types()[f.type_ref() as usize];
+            t.params().len() as u32
+        })
+        .collect();
+    for (i, body) in m
+        .code_section_mut()
+        .unwrap()
+        .bodies_mut()
+        .iter_mut()
+        .enumerate()
+    {
+        if !body.code().elements().iter().any(|op| {
+            matches!(
+                op,
+                Bulk(BulkInstruction::MemoryCopy | BulkInstruction::MemoryFill)
+            )
+        }) {
+            continue;
+        }
+        let len = params[i] + body.locals().iter().map(|l| l.count()).sum::<u32>();
+        body.locals_mut().push(Local::new(1, ValueType::I32));
+        let mut out = Vec::new();
+        for op in body.code().elements() {
+            if matches!(
+                op,
+                Bulk(BulkInstruction::MemoryCopy | BulkInstruction::MemoryFill)
+            ) {
+                out.extend([
+                    TeeLocal(len),
+                    GetGlobal(gas),
+                    GetLocal(len),
+                    I64ExtendUI32,
+                    I64Const(cost as i64),
+                    I64Mul,
+                    I64GeU,
+                    If(BlockType::NoResult),
+                    GetGlobal(gas),
+                    GetLocal(len),
+                    I64ExtendUI32,
+                    I64Const(cost as i64),
+                    I64Mul,
+                    I64Sub,
+                    SetGlobal(gas),
+                    Else,
+                    I64Const(-1),
+                    SetGlobal(gas),
+                    Unreachable,
+                    End,
+                ]);
+            }
+            out.push(op.clone());
+        }
+        *body.code_mut() = Instructions::new(out);
+    }
+    m
+}

@@ -27,17 +27,38 @@ fn line_barrier(out: &mut Vec<Instruction>, line: u32, bitmap: u32, touch: u32) 
         End,
     ]);
 }
-fn instrument(data: &[u8], instruction_cost: u32, stack_limit: u32) -> (Vec<u8>, String) {
-    // MVP plus sign extension; floats, SIMD, threads, reference mutation and bulk memory fail closed.
+fn instrument(
+    data: &[u8],
+    instruction_cost: u32,
+    stack_limit: u32,
+    bulk_cost: u32,
+) -> (Vec<u8>, String) {
+    // MVP plus sign extension and bulk copy/fill only.
     let mut features = wasmparser::WasmFeatures::WASM1;
     features.set(wasmparser::WasmFeatures::FLOATS, false);
     features.set(wasmparser::WasmFeatures::SIGN_EXTENSION, true);
+    features.set(wasmparser::WasmFeatures::BULK_MEMORY, true);
     wasmparser::Validator::new_with_features(features)
         .validate_all(data)
         .expect("unsupported Wasm feature");
     let mut m: Module = deserialize_buffer(data).expect("parse module");
-    m.sections_mut()
-        .retain(|s| !matches!(s, Section::Custom(_) | Section::Name(_) | Section::Reloc(_)));
+    for body in m.code_section().into_iter().flat_map(|s| s.bodies()) {
+        for op in body.code().elements() {
+            if let Bulk(b) = op {
+                assert!(
+                    matches!(b, BulkInstruction::MemoryCopy | BulkInstruction::MemoryFill),
+                    "unsupported bulk instruction"
+                );
+            }
+        }
+    }
+    // Copy/fill do not use DataCount; the old builder moves it after code/data.
+    m.sections_mut().retain(|s| {
+        !matches!(
+            s,
+            Section::Custom(_) | Section::Name(_) | Section::Reloc(_) | Section::DataCount(_)
+        )
+    });
     assert!(m.start_section().is_none(), "start function forbidden");
     for e in m.export_section().into_iter().flat_map(|s| s.entries()) {
         assert!(!e.field().starts_with("__"), "reserved export");
@@ -60,6 +81,9 @@ fn instrument(data: &[u8], instruction_cost: u32, stack_limit: u32) -> (Vec<u8>,
         assert_eq!(ft.params(), args);
         assert_eq!(ft.results(), results);
         nimp += 1;
+    }
+    for e in m.elements_section().into_iter().flat_map(|s| s.entries()) {
+        assert!(e.offset().is_some(), "active elements only");
     }
     let mems = m.memory_section().expect("memory required").entries();
     assert_eq!(mems.len(), 1);
@@ -85,7 +109,7 @@ fn instrument(data: &[u8], instruction_cost: u32, stack_limit: u32) -> (Vec<u8>,
     // One bit per 64-byte line at the 512 MiB limit needs 16 Wasm pages.
     m.memory_section_mut().unwrap().entries_mut()[0] =
         MemoryType::new(pages + 16, Some(pages + 16));
-    // Append touch to imports and shift every reference to a defined function.
+    // Append the scalar and range barriers and shift defined function references.
     for b in m
         .code_section_mut()
         .into_iter()
@@ -94,7 +118,7 @@ fn instrument(data: &[u8], instruction_cost: u32, stack_limit: u32) -> (Vec<u8>,
         for op in b.code_mut().elements_mut() {
             if let Call(i) = op {
                 if *i >= nimp {
-                    *i += 1;
+                    *i += 2;
                 }
             }
         }
@@ -106,7 +130,7 @@ fn instrument(data: &[u8], instruction_cost: u32, stack_limit: u32) -> (Vec<u8>,
     {
         if let Internal::Function(i) = e.internal_mut() {
             if *i >= nimp {
-                *i += 1;
+                *i += 2;
             }
         }
     }
@@ -117,7 +141,7 @@ fn instrument(data: &[u8], instruction_cost: u32, stack_limit: u32) -> (Vec<u8>,
     {
         for i in e.members_mut() {
             if *i >= nimp {
-                *i += 1;
+                *i += 2;
             }
         }
     }
@@ -127,6 +151,13 @@ fn instrument(data: &[u8], instruction_cost: u32, stack_limit: u32) -> (Vec<u8>,
         .types_mut()
         .push(Type::Function(FunctionType::new(
             vec![ValueType::I32],
+            vec![],
+        )));
+    m.type_section_mut()
+        .unwrap()
+        .types_mut()
+        .push(Type::Function(FunctionType::new(
+            vec![ValueType::I32, ValueType::I32],
             vec![],
         )));
     if m.import_section().is_none() {
@@ -140,6 +171,14 @@ fn instrument(data: &[u8], instruction_cost: u32, stack_limit: u32) -> (Vec<u8>,
             "touch".into(),
             External::Function(nt),
         ));
+    m.import_section_mut()
+        .unwrap()
+        .entries_mut()
+        .push(ImportEntry::new(
+            "env".into(),
+            "touch_range".into(),
+            External::Function(nt + 1),
+        ));
     if m.export_section().is_none() {
         add_section(&mut m, Section::Export(ExportSection::default()));
     }
@@ -149,6 +188,7 @@ fn instrument(data: &[u8], instruction_cost: u32, stack_limit: u32) -> (Vec<u8>,
         .push(ExportEntry::new("__memory".into(), Internal::Memory(0)));
     // 1 gas per original instruction and local, using the existing metered-block algorithm.
     m = rust_instrument::meter(m, instruction_cost);
+    m = rust_instrument::meter_bulk(m, bulk_cost);
     let params: Vec<u32> = m
         .function_section()
         .unwrap()
@@ -173,6 +213,37 @@ fn instrument(data: &[u8], instruction_cost: u32, stack_limit: u32) -> (Vec<u8>,
             .extend([Local::new(4, ValueType::I32), Local::new(2, ValueType::I64)]);
         let mut out = Vec::new();
         for op in body.code().elements() {
+            if matches!(
+                op,
+                Bulk(BulkInstruction::MemoryCopy | BulkInstruction::MemoryFill)
+            ) {
+                out.extend([SetLocal(line), SetLocal(v32), SetLocal(addr)]);
+                if matches!(op, Bulk(BulkInstruction::MemoryCopy)) {
+                    // Check the source before journaling any destination, including zero length.
+                    out.extend([
+                        GetLocal(v32),
+                        I64ExtendUI32,
+                        GetLocal(line),
+                        I64ExtendUI32,
+                        I64Add,
+                        I64Const(limit as i64),
+                        I64GtU,
+                        If(BlockType::NoResult),
+                        Unreachable,
+                        End,
+                    ]);
+                }
+                out.extend([
+                    GetLocal(addr),
+                    GetLocal(line),
+                    Call(nimp + 1),
+                    GetLocal(addr),
+                    GetLocal(v32),
+                    GetLocal(line),
+                    op.clone(),
+                ]);
+                continue;
+            }
             let store = match *op {
                 I32Store(_, o) => Some((o, 4, false)),
                 I64Store(_, o) => Some((o, 8, true)),
@@ -245,7 +316,12 @@ fn instrument(data: &[u8], instruction_cost: u32, stack_limit: u32) -> (Vec<u8>,
 fn main() {
     let args: Vec<String> = std::env::args().collect();
     let bytes = std::fs::read(&args[1]).unwrap();
-    let (out, metadata) = instrument(&bytes, args[3].parse().unwrap(), args[4].parse().unwrap());
+    let (out, metadata) = instrument(
+        &bytes,
+        args[3].parse().unwrap(),
+        args[4].parse().unwrap(),
+        args[5].parse().unwrap(),
+    );
     std::fs::write(&args[2], out).unwrap();
     std::fs::write(format!("{}.meta", args[2]), metadata).unwrap();
 }

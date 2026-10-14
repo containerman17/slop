@@ -138,7 +138,7 @@ func TestRevert(t *testing.T) {
 }
 func TestDeployRejects(t *testing.T) {
 	_, h := testHost(t)
-	for _, name := range []string{"clock", "float", "simd", "bulk", "touch"} {
+	for _, name := range []string{"clock", "float", "simd", "bulk-reject", "table-reject", "touch", "touch-range"} {
 		t.Run(name, func(t *testing.T) {
 			b, err := os.ReadFile("testdata/cases/" + name + ".wasm")
 			if err != nil {
