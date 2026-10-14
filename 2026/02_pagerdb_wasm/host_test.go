@@ -95,6 +95,10 @@ func TestBarrierAndBitmap(t *testing.T) {
 	binary.LittleEndian.PutUint64(val[:], 123456)
 	other.Write(r, 4094, val[:])
 	other.Write(r, 12300, []byte{99})
+	other.Write(r, 16, []byte{1})
+	binary.LittleEndian.PutUint64(val[:], 72623859790382856)
+	other.Write(r, 62, val[:])
+	other.Write(r, 1022, val[:])
 	if want := commit(t, other); root != want {
 		t.Fatalf("bitmap changed root: %x != %x", root, want)
 	}

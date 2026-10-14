@@ -58,7 +58,8 @@ detect a root mismatch and require resync, consistent with its crash model.
 The host marks before execution and undoes on a status revert, trap or gas
 failure. It does not commit calls. `InstructionGas`, `HostGas`, `DirtyPageGas`
 and `StackLimit` live in `host.go`. The existing wasm-instrument algorithm meters
-blocks and locals (including its own fixed gas-helper overhead); host imports
+blocks and locals (including its historical fixed gas-helper surcharge). The helper
+is inlined before the stack pass, so no gas function call remains. Host imports
 have a fixed charge, and dirty-page gas is charged at call end. Exhaustion at any
 of these points reverts. Prices are prototype constants, not calibrated costs.
 
@@ -134,7 +135,8 @@ rmdir ~/.cache/pagerdb-bench.lock
 ```
 
 The diagnostic controls run the same rebuilt matcher with ordinary anonymous
-memory, both plain and with the same gas/stack passes. They check every output hash against the native matcher. The block count follows
+memory: plain, helper gas, inline gas, stack only, and each gas mode with stack
+checks. They check every output hash against the native matcher. The block count follows
 the fixture settings above. They do not commit. Comparing metered control execution to host execution
 measures the barrier plus PagerDB Touch, page tracking and end-of-call work, not
 just the inline bit test. The historical plain wazero baseline used another

@@ -28,12 +28,16 @@ func TestDiagnostics(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	metered := filepath.Join(t.TempDir(), "metered.wasm")
-	cmd := exec.Command(filepath.Join(home, ".cargo/bin/cargo"), "run", "--quiet", "--locked", "--release", "--manifest-path", "instrument/Cargo.toml", "--bin", "meter-only", "--", "testdata/matcher.wasm", metered, strconv.Itoa(InstructionGas), strconv.Itoa(StackLimit))
-	if out, err := cmd.CombinedOutput(); err != nil {
-		t.Fatalf("%v: %s", err, out)
+	paths := []string{"testdata/matcher.wasm"}
+	for _, mode := range []string{"legacy", "stack", "legacy-stack", "inline", "inline-stack"} {
+		path := filepath.Join(t.TempDir(), mode+".wasm")
+		cmd := exec.Command(filepath.Join(home, ".cargo/bin/cargo"), "run", "--quiet", "--locked", "--release", "--manifest-path", "instrument/Cargo.toml", "--bin", "meter-only", "--", "testdata/matcher.wasm", path, strconv.Itoa(InstructionGas), strconv.Itoa(StackLimit), mode)
+		if out, err := cmd.CombinedOutput(); err != nil {
+			t.Fatalf("%v: %s", err, out)
+		}
+		paths = append(paths, path)
 	}
-	for _, path := range []string{"testdata/matcher.wasm", metered} {
+	for _, path := range paths {
 		t.Run(filepath.Base(path), func(t *testing.T) {
 			rt := wazero.NewRuntime(ctx)
 			defer rt.Close(ctx)

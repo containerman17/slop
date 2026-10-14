@@ -1,0 +1,16 @@
+=== RUN   TestBarrierAndBitmap
+--- PASS: TestBarrierAndBitmap (0.50s)
+=== RUN   TestRevert
+=== RUN   TestRevert/1
+=== RUN   TestRevert/2
+=== RUN   TestRevert/3
+--- PASS: TestRevert (0.71s)
+    --- PASS: TestRevert/1 (0.24s)
+    --- PASS: TestRevert/2 (0.22s)
+    --- PASS: TestRevert/3 (0.25s)
+=== RUN   TestPageGasRevertsAtCallEnd
+--- PASS: TestPageGasRevertsAtCallEnd (0.24s)
+=== RUN   TestInlineMeterMatchesHelper
+--- PASS: TestInlineMeterMatchesHelper (0.45s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	2.385s

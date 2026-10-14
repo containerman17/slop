@@ -1,8 +1,5 @@
 // Deploy pipeline reuses wasm-instrument 0.4.0 gas metering and stack limiting.
-use wasm_instrument::{
-    gas_metering::{self, mutable_global, ConstantCostRules},
-    parity_wasm::elements::*,
-};
+use wasm_instrument::parity_wasm::elements::*;
 use Instruction::*;
 
 fn add_section(m: &mut Module, s: Section) {
@@ -150,12 +147,7 @@ fn instrument(data: &[u8], instruction_cost: u32, stack_limit: u32) -> (Vec<u8>,
         .entries_mut()
         .push(ExportEntry::new("__memory".into(), Internal::Memory(0)));
     // 1 gas per original instruction and local, using the existing metered-block algorithm.
-    m = gas_metering::inject(
-        m,
-        mutable_global::Injector::new("__gas"),
-        &ConstantCostRules::new(instruction_cost, 0, instruction_cost),
-    )
-    .expect("gas injection");
+    m = rust_instrument::meter(m, instruction_cost);
     let params: Vec<u32> = m
         .function_section()
         .unwrap()

@@ -5,6 +5,9 @@
  (memory (export "memory") 1 1)
  (func (export "call") (result i32)
   i32.const 0 call $input
+  i32.const 16 i32.const 1 i32.store8
+  i32.const 62 i64.const 72623859790382856 i64.store
+  i32.const 1022 i64.const 72623859790382856 i64.store
   i32.const 4094 i64.const 123456 i64.store
   i32.const 12300 i32.const 99 i32.store8
   i32.const 4094 i32.const 8 call $output

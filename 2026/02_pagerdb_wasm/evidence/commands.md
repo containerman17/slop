@@ -85,3 +85,24 @@ each 40-byte record). On this little-endian Mac, reproduce with Python's
 with `struct.unpack('<II', header[8:16])`. The sorted 600 counts at indices
 299/539/593 give the reported p50/p90/p99. `symbol-density.txt` stores only these
 aggregate counts, not symbol values.
+
+## Round 2
+
+Hold the same lock and run measured commands sequentially. Controls now separate
+plain, helper-only, stack-only, helper+stack, inline-only and inline+stack modes.
+The full-host test also reports log record bytes, dirty 1 KiB leaf coverage and
+Commit p99. `PAGERWASM_DIAGNOSTICS=1` enables the last-block full-memory comparison.
+
+```sh
+PAGERWASM_DIAGNOSTICS=1 PAGERWASM_FIXTURE=~/temp-1m-clob/bench/fixture.bin \
+  go test -run '^TestDiagnostics$' -count=1 -v -timeout=30m .
+PAGERWASM_DIAGNOSTICS=1 PAGERWASM_FIXTURE=~/.cache/cx/wasmhost.synthetic600.bin \
+  go test -run '^TestDiagnostics$' -count=1 -v -timeout=30m .
+PAGERWASM_DIAGNOSTICS=1 PAGERWASM_FIXTURE=~/temp-1m-clob/bench/fixture.bin \
+  go test -run '^TestMatcher$' -count=1 -v -timeout=45m .
+PAGERWASM_DIAGNOSTICS=1 PAGERWASM_FIXTURE=~/.cache/cx/wasmhost.synthetic600.bin \
+  go test -run '^TestMatcher$' -count=1 -v -timeout=45m .
+```
+
+Each full-host command checks 600 native hashes on two fresh databases and
+compares all 600 roots. `evidence/round2.md` records the measured stages.

@@ -9,12 +9,19 @@ fn main() {
     m.sections_mut()
         .retain(|s| !matches!(s, Section::Custom(_) | Section::Name(_) | Section::Reloc(_)));
     let cost = a[3].parse().unwrap();
-    m = gas_metering::inject(
-        m,
-        mutable_global::Injector::new("__gas"),
-        &ConstantCostRules::new(cost, 0, cost),
-    )
-    .unwrap();
-    m = wasm_instrument::inject_stack_limiter(m, a[4].parse().unwrap()).unwrap();
+    let mode = a.get(5).map(String::as_str).unwrap_or("inline-stack");
+    if mode.starts_with("legacy") {
+        m = gas_metering::inject(
+            m,
+            mutable_global::Injector::new("__gas"),
+            &ConstantCostRules::new(cost, 0, cost),
+        )
+        .unwrap();
+    } else if mode.starts_with("inline") {
+        m = rust_instrument::meter(m, cost);
+    }
+    if mode.ends_with("stack") {
+        m = wasm_instrument::inject_stack_limiter(m, a[4].parse().unwrap()).unwrap();
+    }
     std::fs::write(&a[2], serialize(m).unwrap()).unwrap();
 }

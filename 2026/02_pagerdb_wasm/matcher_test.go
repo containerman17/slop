@@ -10,6 +10,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"sort"
 	"strconv"
 	"testing"
 	"time"
@@ -108,10 +109,16 @@ func TestMatcher(t *testing.T) {
 			}
 			block := make([]byte, per*40)
 			var execution, commits time.Duration
-			var pages int64
+			var pages, leaves int64
+			var lastTouches int
+			durations := make([]time.Duration, 0, blocks)
+			var before []byte
 			for i := 0; i < blocks; i++ {
 				if _, err = io.ReadFull(f, block); err != nil {
 					t.Fatal(err)
+				}
+				if i == blocks-1 && os.Getenv("PAGERWASM_DIAGNOSTICS") == "1" {
+					before = bytes.Clone(p.memory)
 				}
 				start := time.Now()
 				res := p.Run(context.Background(), Call{Input: block, BlockNumber: uint64(i), Gas: 1 << 50})
@@ -123,9 +130,24 @@ func TestMatcher(t *testing.T) {
 					t.Fatalf("block %d hash %016x want %016x", i, hash, golden[i])
 				}
 				pages += int64(len(res.DirtyPages))
+				lastTouches = len(res.DirtyPages)
+				if pageSize >= 1024 {
+					leaves += int64(len(res.DirtyPages) * pageSize / 1024)
+				} else {
+					previous := ^uint32(0)
+					for _, unit := range res.DirtyPages {
+						leaf := unit * pageSize / 1024
+						if leaf != previous {
+							leaves++
+							previous = leaf
+						}
+					}
+				}
 				start = time.Now()
 				root := commit(t, db)
-				commits += time.Since(start)
+				d := time.Since(start)
+				commits += d
+				durations = append(durations, d)
 				if run == 0 {
 					roots[i] = root
 				} else if root != roots[i] {
@@ -135,7 +157,18 @@ func TestMatcher(t *testing.T) {
 					t.Logf("run %d: %d/%d native hashes and roots checked", run, i+1, blocks)
 				}
 			}
-			t.Logf("single-process M3 diagnostics: %.0f msgs/s execution, %.0f msgs/s including Commit, %.1f dirty pages/block, %.3f Commit ms/block", float64(per*blocks)/execution.Seconds(), float64(per*blocks)/(execution+commits).Seconds(), float64(pages)/float64(blocks), commits.Seconds()*1000/float64(blocks))
+			if before != nil {
+				changed := 0
+				for j, b := range before {
+					if b != p.memory[j] {
+						changed++
+					}
+				}
+				t.Logf("last block final changed bytes=%d, Touch log bytes=%d, logged old bytes=%d", changed, lastTouches*(32+2*pageSize), lastTouches*pageSize)
+			}
+			sort.Slice(durations, func(i, j int) bool { return durations[i] < durations[j] })
+			t.Logf("log bytes/block=%.0f (32-byte header plus old and new bytes per touch, 56-byte Commit record), dirty 1KiB leaves/block=%.1f, Commit p99 ms=%.3f", 56+float64(pages)*(32+2*pageSize)/float64(blocks), float64(leaves)/float64(blocks), float64(durations[(99*blocks+99)/100-1])/float64(time.Millisecond))
+			t.Logf("single-process M3 diagnostics: %.0f msgs/s execution, %.0f msgs/s including Commit, %.1f dirty tracking units/block, %.3f Commit ms/block", float64(per*blocks)/execution.Seconds(), float64(per*blocks)/(execution+commits).Seconds(), float64(pages)/float64(blocks), commits.Seconds()*1000/float64(blocks))
 		})
 	}
 }
