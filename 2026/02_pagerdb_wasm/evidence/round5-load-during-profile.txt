@@ -1,0 +1,74 @@
+2026-10-15 08:33:30 JST
+8
+17179869184
+Processes: 776 total, 3 running, 773 sleeping, 3846 threads
+2026/10/15 08:33:31
+Load Avg: 3.38, 3.01, 3.15
+CPU usage: 49.80% user, 18.63% sys, 31.55% idle
+SharedLibs: 394M resident, 22M data, 25M linkedit.
+MemRegions: 332498 total, 5728M resident, 41M private, 948M shared.
+PhysMem: 15G used (1956M wired, 4751M compressor), 744M unused.
+VM: 375T vsize, 57G framework vsize, 7673601(0) swapins, 8451285(0) swapouts.
+Networks: packets: 199601319/100G in, 172911510/50G out.
+Disks: 185992349/5538G read, 124095435/10T written.
+
+PID    COMMAND          %CPU MEM
+99983  SetStoreUpdateSe 0.0  2976K
+99973  CallHistoryPlugi 0.0  5408K
+99584  facetimemessages 0.0  9968K
+99581  keychainsharingm 0.0  3120K
+99576  UARPUpdaterServi 0.0  2848K
+99564  IMAutomaticHisto 0.0  4624K
+99563  localizationswit 0.0  3120K
+99556  AuthenticationSe 0.0  7280K
+99502  CallHistorySyncH 0.0  9488K
+99499  EscrowSecurityAl 0.0  3888K
+99429  zsh              0.0  2480K
+99320  tznotify         0.0  3952K
+Processes: 776 total, 3 running, 1 stuck, 772 sleeping, 3843 threads
+2026/10/15 08:33:32
+Load Avg: 3.43, 3.02, 3.16
+CPU usage: 37.58% user, 14.59% sys, 47.81% idle
+SharedLibs: 394M resident, 22M data, 25M linkedit.
+MemRegions: 0 total, 0B resident, 41M private, 948M shared.
+PhysMem: 15G used (1957M wired, 5115M compressor), 117M unused.
+VM: 375T vsize, 57G framework vsize, 7673601(0) swapins, 8451285(0) swapouts.
+Networks: packets: 199601705/100G in, 172911910/50G out.
+Disks: 185999684/5538G read, 124097486/10T written.
+
+PID    COMMAND          %CPU  MEM
+32073  02_pagerdb_wasm. 239.4 374M+
+0      kernel_task      32.2  363M-
+86704  signpost_reporte 13.0  18M-
+32467  top              5.6   4928K+
+98938  main             3.0   1934M
+15613  Google Chrome He 2.6   269M+
+98939  main             2.5   1996M
+829    JamfDaemon       2.0   72M
+98937  main             1.8   2092M
+6555   trustd           1.7   9488K+
+7392   Google Chrome He 1.5   273M+
+65514  2.1.299          0.8   303M
+Mach Virtual Memory Statistics: (page size of 16384 bytes)
+Pages free:                                     4571.
+Pages active:                                 277660.
+Pages inactive:                               273977.
+Pages speculative:                              2492.
+Pages throttled:                                   0.
+Pages wired down:                             125213.
+Pages purgeable:                                  28.
+"Translation faults":                    11821696008.
+Pages copy-on-write:                      1315175915.
+Pages zero filled:                        2270840803.
+Pages reactivated:                        1372194045.
+Pages purged:                               19315260.
+File-backed pages:                            457642.
+Anonymous pages:                               96487.
+Pages stored in compressor:                   707974.
+Pages occupied by compressor:                 327234.
+Decompressions:                           1265789772.
+Compressions:                             1340770027.
+Pageins:                                   575009051.
+Pageouts:                                    3925268.
+Swapins:                                     7673601.
+Swapouts:                                    8451285.

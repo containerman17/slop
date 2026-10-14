@@ -131,15 +131,24 @@ func TestMatcher(t *testing.T) {
 				if hash := fnv(res.Output); hash != golden[i] {
 					t.Fatalf("block %d hash %016x want %016x", i, hash, golden[i])
 				}
+				if res.BytesWritten != uint64(len(res.DirtyLines))*lineSize {
+					t.Fatal("byte count differs from bitmap")
+				}
+
 				lines += int64(len(res.DirtyLines))
 				lastTouches = len(res.DirtyLines)
 				previous := ^uint32(0)
+				var countedLeaves uint64
 				for _, line := range res.DirtyLines {
 					leaf := line * lineSize / 1024
 					if leaf != previous {
 						leaves++
+						countedLeaves++
 						previous = leaf
 					}
+				}
+				if countedLeaves != res.LeavesTouched {
+					t.Fatal("leaf count differs from bitmap")
 				}
 				start = time.Now()
 				root := commit(t, db)
@@ -166,6 +175,7 @@ func TestMatcher(t *testing.T) {
 			}
 			sort.Slice(durations, func(i, j int) bool { return durations[i] < durations[j] })
 			t.Logf("uncoalesced log bytes/block upper bound=%.0f (ABI coalescing reduces headers), dirty 1KiB leaves/block=%.1f, Commit p99 ms=%.3f", 56+float64(lines)*(32+2*lineSize)/float64(blocks), float64(leaves)/float64(blocks), float64(durations[(99*blocks+99)/100-1])/float64(time.Millisecond))
+			t.Logf("bytes_written/block=%.0f, leaves_touched/block=%.1f", float64(lines)*lineSize/float64(blocks), float64(leaves)/float64(blocks))
 			t.Logf("guest ms/block=%.3f, end ms/block=%.3f", timed.guest.Seconds()*1000/float64(blocks), (execution-timed.guest).Seconds()*1000/float64(blocks))
 			t.Logf("single-process M3 diagnostics: %.0f msgs/s execution, %.0f msgs/s including Commit, %.1f dirty tracking units/block, %.3f Commit ms/block", float64(per*blocks)/execution.Seconds(), float64(per*blocks)/(execution+commits).Seconds(), float64(lines)/float64(blocks), commits.Seconds()*1000/float64(blocks))
 		})

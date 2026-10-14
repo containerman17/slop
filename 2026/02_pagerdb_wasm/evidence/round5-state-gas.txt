@@ -1,0 +1,4 @@
+=== RUN   TestStateGasCounts
+--- PASS: TestStateGasCounts (0.72s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	1.005s

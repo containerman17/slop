@@ -1,0 +1,40 @@
+File: 02_pagerdb_wasm.test
+Type: cpu
+Time: 2026-10-15 08:34:41 JST
+Duration: 30.39s, Total samples = 77.02s (253.40%)
+Active filters:
+   tagfocus=stage=commit
+Showing nodes accounting for 10.16s, 13.19% of 77.02s total
+Dropped 54 nodes (cum <= 0.39s)
+Showing top 30 nodes out of 62
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%      9.52s 12.36%  sync.(*WaitGroup).Go.func1
+     0.07s 0.091% 0.091%      7.63s  9.91%  crypto/sha256.Sum256
+         0     0% 0.091%      7.51s  9.75%  github.com/containerman17/pagerdb.parallel.func1
+     0.30s  0.39%  0.48%      6.80s  8.83%  crypto/internal/fips140/sha256.(*Digest).Write
+     0.11s  0.14%  0.62%      6.55s  8.50%  github.com/containerman17/pagerdb.(*DB).hashDirty.func1
+     0.15s  0.19%  0.82%      6.50s  8.44%  crypto/internal/fips140/sha256.block
+     6.35s  8.24%  9.06%      6.35s  8.24%  crypto/internal/fips140/sha256.blockSHA2
+         0     0%  9.06%      2.06s  2.67%  github.com/containerman17/pagerdb.(*DB).Commit
+         0     0%  9.06%      2.06s  2.67%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile
+         0     0%  9.06%      2.06s  2.67%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile.func2
+         0     0%  9.06%      2.06s  2.67%  github.com/containerman17/slop/2026/02_pagerdb_wasm.commit
+         0     0%  9.06%      2.06s  2.67%  runtime/pprof.Do
+         0     0%  9.06%      2.06s  2.67%  testing.tRunner
+     0.01s 0.013%  9.08%      2.01s  2.61%  github.com/containerman17/pagerdb.parallelGroups.func1
+         0     0%  9.08%      2.01s  2.61%  github.com/containerman17/pagerdb.parallelGroups.func2
+     0.19s  0.25%  9.32%         2s  2.60%  github.com/containerman17/pagerdb.(*DB).hashBand
+         0     0%  9.32%         2s  2.60%  github.com/containerman17/pagerdb.(*DB).hashDirty.func2
+         0     0%  9.32%      1.46s  1.90%  runtime.systemstack
+         0     0%  9.32%      1.40s  1.82%  runtime.notewakeup
+     1.40s  1.82% 11.14%      1.40s  1.82%  runtime.pthread_cond_signal
+         0     0% 11.14%      1.40s  1.82%  runtime.semawakeup
+         0     0% 11.14%      1.40s  1.82%  runtime.startm
+         0     0% 11.14%      1.40s  1.82%  runtime.wakep
+     0.35s  0.45% 11.59%      1.37s  1.78%  crypto/internal/fips140/sha256.(*Digest).Sum
+     0.26s  0.34% 11.93%         1s  1.30%  crypto/internal/fips140/sha256.(*Digest).checkSum
+     0.22s  0.29% 12.22%      0.96s  1.25%  github.com/containerman17/pagerdb.(*DB).fillNewBytes.func1
+         0     0% 12.22%      0.96s  1.25%  runtime.ready
+         0     0% 12.22%      0.96s  1.25%  runtime.readyWithTime.goready.func1
+     0.75s  0.97% 13.19%      0.75s  0.97%  runtime.memmove
+         0     0% 13.19%      0.72s  0.93%  hash/crc32.Checksum (inline)

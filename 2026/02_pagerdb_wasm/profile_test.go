@@ -29,8 +29,9 @@ func TestCommitProfile(t *testing.T) {
 		}
 	}
 	if blocks < startBlock+20 {
-		t.Fatal("profile needs 20 blocks")
+		t.Fatal("profile needs at least 20 blocks")
 	}
+	profileBlocks := blocks - startBlock
 	db, h := testHost(t)
 	code, err := os.ReadFile("testdata/matcher.wasm")
 	if err != nil {
@@ -58,7 +59,7 @@ func TestCommitProfile(t *testing.T) {
 	var lines int
 	var before []byte
 	var last Result
-	for i := 0; i < startBlock+20; i++ {
+	for i := 0; i < blocks; i++ {
 		if i == startBlock {
 			if err := pprof.StartCPUProfile(profile); err != nil {
 				t.Fatal(err)
@@ -70,7 +71,7 @@ func TestCommitProfile(t *testing.T) {
 		if _, err := io.ReadFull(f, block); err != nil {
 			t.Fatal(err)
 		}
-		if i == startBlock+19 {
+		if i == blocks-1 {
 			before = bytes.Clone(p.memory)
 		}
 		var result Result
@@ -114,6 +115,6 @@ func TestCommitProfile(t *testing.T) {
 		}
 		buckets[off/(64<<20)]++
 	}
-	t.Logf("20-block M3 diagnostic under background load: mean Commit_ms=%.3f dirty_lines=%.1f", elapsed.Seconds()*1000/20, float64(lines)/20)
+	t.Logf("%d-block M3 diagnostic under background load: mean Commit_ms=%.3f dirty_lines=%.1f", profileBlocks, elapsed.Seconds()*1000/float64(profileBlocks), float64(lines)/float64(profileBlocks))
 	t.Logf("last profiled block: touched_lines=%d changed_lines=%d unchanged_touched_lines=%d changed_bytes=%d line_bytes=%d dirty_lines_by_64MiB=%v", len(last.DirtyLines), changedLines, unchangedTouched, changed, len(last.DirtyLines)*lineSize, buckets)
 }

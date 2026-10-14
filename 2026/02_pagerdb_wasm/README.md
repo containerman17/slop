@@ -54,18 +54,21 @@ The host records old bytes with `DB.Touch`, then sets the bit. ABI writes coales
 consecutive untouched lines into one Touch range, stopping at already dirty lines.
 The bitmap is never touched in PagerDB. Every exit path scans the bitmap in
 address order to produce sorted `DirtyLines`,
-charges per-line gas, and clears the bits before undo or commit. No dirty-line
+counts unique written bytes and touched 1 KiB leaves, charges state gas, and clears the bits before undo or commit. No dirty-line
 sort is needed, and the bitmap contributes only zeros to the root. A crash during
 a call may leave unlogged bitmap bytes; PagerDB recovery can
 detect a root mismatch and require resync, consistent with its crash model.
 
 The host marks before execution and undoes on a status revert, trap or gas
-failure. It does not commit calls. `InstructionGas`, `HostGas`, `DirtyLineGas`,
+failure. It does not commit calls. `InstructionGas`, `HostGas`, `ByteGas`, `LeafGas`,
 `BulkByteGas` and `StackLimit` live in `host.go`. The existing wasm-instrument
 algorithm meters
 blocks and locals (including its historical fixed gas-helper surcharge). The helper
 is inlined before the stack pass, so no gas function call remains. Host imports
-have a fixed charge, and dirty-line gas is charged at call end. Bulk copy/fill
+have a fixed charge. At call end, state gas is `BytesWritten * ByteGas +
+LeavesTouched * LeafGas`: six gas per unique written byte (64 bytes per dirty
+line), plus 2,000 gas per distinct 1 KiB leaf. Both counts are returned, including
+on reverts. Repeated writes do not add state gas. Bulk copy/fill
 also charge `BulkByteGas` per byte through an inline unsigned length check and
 decrement. Each bulk operation calls the injected range barrier once before
 execution. The host touches consecutive unset destination lines. Copy source
@@ -136,7 +139,7 @@ cargo run --locked --release --manifest-path testdata/matcher/Cargo.toml \
 ```
 
 Focused tests cover shared-memory pointer identity, status/trap/gas reverts,
-end-of-call line gas, line-boundary stores, address overflow, stack exhaustion,
+end-of-call byte and leaf gas, line-boundary stores, address overflow, stack exhaustion,
 reserved bitmap writes, bitmap root neutrality, bulk copy/fill gas and bounds,
 overlapping copies, zero length, import/feature rejection, and
 code-cache reuse. Dirty-line correctness is checked against a full byte comparison

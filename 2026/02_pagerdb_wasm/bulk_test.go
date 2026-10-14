@@ -115,7 +115,7 @@ func TestBulkLengthGas(t *testing.T) {
 				return p.Run(context.Background(), Call{Input: bulkInput(fill, 512, 256, n, 0, 0), Gas: gas})
 			}
 			zero, a, b := run(0, 100000), run(1, 100000), run(2, 100000)
-			if zero.Status != 0 || zero.GasLeft-a.GasLeft != BulkByteGas+DirtyLineGas {
+			if zero.Status != 0 || zero.GasLeft-a.GasLeft != BulkByteGas+lineSize*ByteGas {
 				t.Fatal("zero-length gas")
 			}
 			if a.Status != 0 || b.Status != 0 || a.GasLeft-b.GasLeft != BulkByteGas {
@@ -129,7 +129,7 @@ func TestBulkLengthGas(t *testing.T) {
 			before := bytes.Clone(p.memory)
 			r := run(2, used-1)
 			if r.Status != TrapStatus || r.GasLeft != 0 || !bytes.Equal(before, p.memory) || commit(t, db) != root {
-				t.Fatal("final line gas did not revert bulk")
+				t.Fatal("final state gas did not revert bulk")
 			}
 		})
 	}

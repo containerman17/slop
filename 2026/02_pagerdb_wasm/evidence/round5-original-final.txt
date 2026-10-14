@@ -1,0 +1,28 @@
+=== RUN   TestMatcher
+=== RUN   TestMatcher/0
+    matcher_test.go:164: run 0: 100/600 native hashes and roots checked
+    matcher_test.go:164: run 0: 200/600 native hashes and roots checked
+    matcher_test.go:164: run 0: 300/600 native hashes and roots checked
+    matcher_test.go:164: run 0: 400/600 native hashes and roots checked
+    matcher_test.go:164: run 0: 500/600 native hashes and roots checked
+    matcher_test.go:164: run 0: 600/600 native hashes and roots checked
+    matcher_test.go:177: uncoalesced log bytes/block upper bound=23861959 (ABI coalescing reduces headers), dirty 1KiB leaves/block=30675.0, Commit p99 ms=320.137
+    matcher_test.go:178: bytes_written/block=9544761, leaves_touched/block=30675.0
+    matcher_test.go:179: guest ms/block=22.857, end ms/block=0.764
+    matcher_test.go:180: single-process M3 diagnostics: 2116746 msgs/s execution, 1036369 msgs/s including Commit, 149136.9 dirty tracking units/block, 24.624 Commit ms/block
+=== RUN   TestMatcher/1
+    matcher_test.go:164: run 1: 100/600 native hashes and roots checked
+    matcher_test.go:164: run 1: 200/600 native hashes and roots checked
+    matcher_test.go:164: run 1: 300/600 native hashes and roots checked
+    matcher_test.go:164: run 1: 400/600 native hashes and roots checked
+    matcher_test.go:164: run 1: 500/600 native hashes and roots checked
+    matcher_test.go:164: run 1: 600/600 native hashes and roots checked
+    matcher_test.go:177: uncoalesced log bytes/block upper bound=23861959 (ABI coalescing reduces headers), dirty 1KiB leaves/block=30675.0, Commit p99 ms=673.444
+    matcher_test.go:178: bytes_written/block=9544761, leaves_touched/block=30675.0
+    matcher_test.go:179: guest ms/block=22.583, end ms/block=0.762
+    matcher_test.go:180: single-process M3 diagnostics: 2141791 msgs/s execution, 1009690 msgs/s including Commit, 149136.9 dirty tracking units/block, 26.175 Commit ms/block
+--- PASS: TestMatcher (74.03s)
+    --- PASS: TestMatcher/0 (35.14s)
+    --- PASS: TestMatcher/1 (35.61s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	74.539s

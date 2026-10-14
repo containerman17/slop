@@ -1,0 +1,21 @@
+2026-10-15 08:33:06 JST
+ 8:33  up 7 days, 19:53, 1 user, load averages: 1.85 2.71 3.06
+86704     1   8.0  0.1 /usr/libexec/signpost_reporter
+  829     1   6.6  0.2 /Library/Application Support/JAMF/Jamf.app/Contents/MacOS/JamfDaemon.app/Contents/MacOS/JamfDaemon
+98938 98895   5.4  6.8 /Users/ilia/Library/Caches/go-build/d1/d18bb344a18d61f51dfff874e91806735786a9e58999de69cb96b53a30ebe9aa-d/main
+98939 98897   4.5  6.6 /Users/ilia/Library/Caches/go-build/d1/d18bb344a18d61f51dfff874e91806735786a9e58999de69cb96b53a30ebe9aa-d/main
+ 6555     1   2.6  0.0 /usr/libexec/trustd
+98937 98899   2.5  5.2 /Users/ilia/Library/Caches/go-build/d1/d18bb344a18d61f51dfff874e91806735786a9e58999de69cb96b53a30ebe9aa-d/main
+15613  7380   2.5  1.1 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/155.0.8059.40/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
+32024 14188   1.7  0.0 /bin/zsh
+ 7392  7380   1.2  0.3 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/155.0.8059.40/Helpers/Google Chrome Helper.app/Contents/MacOS/Google Chrome Helper
+  627     1   1.0  0.1 /usr/libexec/runningboardd
+  651     1   0.4  0.0 /System/Library/PrivateFrameworks/CoreAnalytics.framework/Support/analyticsd
+32034 57258   0.3  0.0 sleep
+16425     1   0.3  0.1 /Applications/Amphetamine.app/Contents/MacOS/Amphetamine
+  909     1   0.3  0.2 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores
+  585     1   0.3  0.1 /usr/libexec/opendirectoryd
+ 6590     1   0.2  0.1 /usr/libexec/trustd
+  687     1   0.2  0.1 /usr/libexec/syspolicyd
+57258 44079   0.1  0.0 /bin/zsh
+19299     1   0.1  0.1 /usr/libexec/PerfPowerServices

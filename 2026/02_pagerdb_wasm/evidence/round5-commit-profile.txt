@@ -1,0 +1,31 @@
+=== RUN   TestCommitProfile
+    profile_test.go:88: warmup 100/580
+    profile_test.go:88: warmup 200/580
+    profile_test.go:88: warmup 300/580
+    profile_test.go:88: warmup 400/580
+    profile_test.go:88: warmup 500/580
+    profile_test.go:94: block 580 dirty_lines=128298 Commit_ms=16.397
+    profile_test.go:94: block 581 dirty_lines=130820 Commit_ms=15.690
+    profile_test.go:94: block 582 dirty_lines=125781 Commit_ms=19.138
+    profile_test.go:94: block 583 dirty_lines=127077 Commit_ms=16.039
+    profile_test.go:94: block 584 dirty_lines=129163 Commit_ms=15.616
+    profile_test.go:94: block 585 dirty_lines=130581 Commit_ms=12.762
+    profile_test.go:94: block 586 dirty_lines=127776 Commit_ms=11.450
+    profile_test.go:94: block 587 dirty_lines=130448 Commit_ms=11.800
+    profile_test.go:94: block 588 dirty_lines=140065 Commit_ms=13.222
+    profile_test.go:94: block 589 dirty_lines=139846 Commit_ms=12.484
+    profile_test.go:94: block 590 dirty_lines=141721 Commit_ms=12.864
+    profile_test.go:94: block 591 dirty_lines=139903 Commit_ms=12.984
+    profile_test.go:94: block 592 dirty_lines=136189 Commit_ms=11.859
+    profile_test.go:94: block 593 dirty_lines=140854 Commit_ms=11.653
+    profile_test.go:94: block 594 dirty_lines=132125 Commit_ms=11.795
+    profile_test.go:94: block 595 dirty_lines=126471 Commit_ms=10.547
+    profile_test.go:94: block 596 dirty_lines=133185 Commit_ms=10.847
+    profile_test.go:94: block 597 dirty_lines=136790 Commit_ms=10.698
+    profile_test.go:94: block 598 dirty_lines=134425 Commit_ms=11.788
+    profile_test.go:94: block 599 dirty_lines=134758 Commit_ms=11.437
+    profile_test.go:117: 20-block M3 diagnostic under background load: mean Commit_ms=13.053 dirty_lines=133313.8
+    profile_test.go:118: last profiled block: touched_lines=134758 changed_lines=117251 unchanged_touched_lines=17507 changed_bytes=1687676 line_bytes=8624512 dirty_lines_by_64MiB=[80899 26986 7686 7627 9796 1764 0 0 0]
+--- PASS: TestCommitProfile (39.40s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	39.817s

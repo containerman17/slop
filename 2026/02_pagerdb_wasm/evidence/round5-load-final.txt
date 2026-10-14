@@ -1,0 +1,16 @@
+Thu Oct 15 08:37:36 JST 2026
+  PID  %CPU    RSS COMM
+36564 361.1 2950048 /var/folders/l2/p6ylg__j153cmhxzv55fs5_m0000gn/T/go-build3303182985/b001/02_pagerdb_wasm.test
+  829   6.0  18992 /Library/Application Support/JAMF/Jamf.app/Contents/MacOS/JamfDaemon.app/Contents/MacOS/JamfDaemon
+ 6555   3.8   7296 /usr/libexec/trustd
+15613   2.9 100016 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/155.0.8059.40/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
+98937   2.9 409696 /Users/ilia/Library/Caches/go-build/d1/d18bb344a18d61f51dfff874e91806735786a9e58999de69cb96b53a30ebe9aa-d/main
+98938   2.5 109888 /Users/ilia/Library/Caches/go-build/d1/d18bb344a18d61f51dfff874e91806735786a9e58999de69cb96b53a30ebe9aa-d/main
+36788   1.9   2720 /bin/zsh
+98939   1.7 408064 /Users/ilia/Library/Caches/go-build/d1/d18bb344a18d61f51dfff874e91806735786a9e58999de69cb96b53a30ebe9aa-d/main
+ 7392   1.2  41584 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/155.0.8059.40/Helpers/Google Chrome Helper.app/Contents/MacOS/Google Chrome Helper
+  548   1.2   2432 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd
+86704   1.0   9360 /usr/libexec/signpost_reporter
+  909   0.8  31024 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores
+  572   0.6  16528 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds
+  782   0.5  16432 /usr/libexec/searchpartyd

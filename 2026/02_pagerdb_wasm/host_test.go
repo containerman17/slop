@@ -176,7 +176,7 @@ func TestCache(t *testing.T) {
 	}
 }
 
-func TestLineGasRevertsAtCallEnd(t *testing.T) {
+func TestStateGasRevertsAtCallEnd(t *testing.T) {
 	db, h := testHost(t)
 	p := deployCase(t, h, "write")
 	root := commit(t, db)
@@ -190,7 +190,7 @@ func TestLineGasRevertsAtCallEnd(t *testing.T) {
 	db.Undo(mark)
 	got := p.Run(context.Background(), Call{Input: []byte{0}, Gas: used - 1})
 	if got.Status != TrapStatus || got.GasLeft != 0 || len(got.DirtyLines) != 7 {
-		t.Fatalf("line gas result %+v", got)
+		t.Fatalf("state gas result %+v", got)
 	}
 	if !bytes.Equal(initial, p.memory) || commit(t, db) != root {
 		t.Fatal("end-of-call gas failure changed state")

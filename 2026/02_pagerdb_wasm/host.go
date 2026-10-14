@@ -28,7 +28,8 @@ const (
 	InstructionGas        = 1
 	HostGas               = 10
 	BulkByteGas           = 1
-	DirtyLineGas          = 100
+	ByteGas               = 6
+	LeafGas               = 2000
 	StackLimit            = 65536
 	TrapStatus     uint32 = math.MaxUint32
 	lineSize              = 64
@@ -79,11 +80,13 @@ type Call struct {
 	Gas                    uint64
 }
 type Result struct {
-	Status     uint32
-	Output     []byte
-	Logs       [][]byte
-	GasLeft    uint64
-	DirtyLines []uint32
+	Status        uint32
+	Output        []byte
+	Logs          [][]byte
+	GasLeft       uint64
+	DirtyLines    []uint32
+	BytesWritten  uint64
+	LeavesTouched uint64
 }
 
 func New(ctx context.Context, db *pagerdb.DB) (*Host, error) {
@@ -298,6 +301,7 @@ func (p *Program) Run(ctx context.Context, args Call) (res Result) {
 	defer func() {
 		p.host.active = nil
 		// A crash mid-call can leave bitmap bytes on disk; recovery detects the root mismatch and the node resyncs, as with PagerDB power loss.
+		lastLeaf := uint32(math.MaxUint32)
 		bitmap := p.memory[p.limit : p.limit+bitmapBytes]
 		for off := 0; off < len(bitmap); off += 8 {
 			word := binary.LittleEndian.Uint64(bitmap[off:])
@@ -306,12 +310,19 @@ func (p *Program) Run(ctx context.Context, args Call) (res Result) {
 			}
 			binary.LittleEndian.PutUint64(bitmap[off:], 0)
 			for word != 0 {
-				p.result.DirtyLines = append(p.result.DirtyLines, uint32(off*8+bits.TrailingZeros64(word)))
+				line := uint32(off*8 + bits.TrailingZeros64(word))
+				p.result.DirtyLines = append(p.result.DirtyLines, line)
+				leaf := line / (pagerdb.LeafSize / lineSize)
+				if leaf != lastLeaf {
+					p.result.LeavesTouched++
+					lastLeaf = leaf
+				}
 				word &= word - 1
 			}
 		}
 		left := p.gas.Get()
-		cost := uint64(len(p.result.DirtyLines)) * DirtyLineGas
+		p.result.BytesWritten = uint64(len(p.result.DirtyLines)) * lineSize
+		cost := p.result.BytesWritten*ByteGas + p.result.LeavesTouched*LeafGas
 		if left > math.MaxInt64 || left < cost {
 			p.result.Status = TrapStatus
 			p.result.Output = nil

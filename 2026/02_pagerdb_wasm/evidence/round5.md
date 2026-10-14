@@ -38,7 +38,12 @@ but still pays the original instruction and fixed host-import charges. Address
 sums use 64 bits, so 32-bit wrap cannot enter the bitmap. An invalid source,
 destination, or length gas budget cannot partially journal the bulk destination.
 Previous writes in the call are still undone through Mark/Undo on any trap.
-DirtyLineGas remains a charge per distinct 64-byte line at call end, not per range.
+The coordinator added state gas during this round. At call end, `BytesWritten`
+is the number of distinct dirty lines times 64, and `LeavesTouched` is the number
+of distinct 1 KiB PagerDB leaves. The charge is `BytesWritten * 6 +
+LeavesTouched * 2000`, using `ByteGas` and `LeafGas` in host.go. Both counts
+are returned even on reverts. Repeated writes add no state gas. BulkByteGas
+remains a separate CPU charge. The ordered bitmap scan computes both counts.
 Overlapping copies retain Wasm memmove semantics because the actual operation is
 not replaced by a host copy.
 
@@ -47,8 +52,9 @@ not replaced by a host copy.
 Enabling parity-wasm 0.45's `bulk` feature alone failed to compile wasm-instrument
 0.4.0: its stack-height match did not cover `Instruction::Bulk`. The pinned crate
 is copied under `instrument/vendor/wasm-instrument` with its original licenses.
-Only its Cargo bulk feature and one stack-effect match are changed: copy/fill pop
-three operands and other bulk instructions return an error. The gas and stack
+Its functional changes are the Cargo bulk feature and one stack-effect match: copy/fill pop
+three operands and other bulk instructions return an error. One original trailing
+space was also removed. The gas and stack
 algorithms are reused. See the vendored `PATCH.md`. Cargo.lock retains the same
 external dependency versions; the crate now uses this portable in-repo path.
 No Go replace directive was added.
@@ -83,7 +89,7 @@ All pass:
   exhaustion. Invalid bulk destinations add no dirty lines beyond the ABI input.
 - Explicit status and post-write traps restore bytes and root; the next call
   succeeds. Exact gas succeeds with zero left; one less gas reverts at the final
-  dirty-line charge. Increasing length from one to two bytes costs exactly
+  state charge. Increasing length from one to two bytes costs exactly
   BulkByteGas when the dirty-line set is unchanged.
 - Deployment rejects memory.init/data.drop, table.copy and source touch_range,
   alongside the existing WASI clock, float, SIMD and reserved-touch cases.
@@ -95,9 +101,11 @@ Default tests also replay 20 generated blocks twice. Roots are compared between
 runs of the new module, not against an exported old-module root sequence. The
 original native oracle was compared with the external golden file in prior rounds;
 that separate oracle-vs-file comparison was not repeated here. Raw test output:
-`round5-tests.txt`, `round5-vet.txt`, and both `round5-*-host.txt` files.
+`round5-tests.txt`, `round5-vet.txt`, `round5-state-tests.txt`, and both
+`round5-*-final.txt` files. State-gas tests also check repeated writes, byte
+counts, and that two lines in one leaf cost 2000 less than two in different leaves.
 
-## Measurements
+## Initial measurements, before the state-gas scope addition
 
 Every block has 50,000 messages. Controls use anonymous mapped memory, have no
 write barrier or PagerDB Commit, and exclude fixture reads and output hashing.
@@ -146,9 +154,50 @@ lowered module; the new plain runs measure 7.74M / 8.04M. Source: project devlog
 that root-cause measurement. No fresh lowered-control rerun was added here.
 
 Full execution improves substantially. Commit means and tails are worse in these
-runs, so the combined gain is smaller. These runs do not isolate the cause of the
-Commit change or separate background load from changed overlap with the sealer.
-No journal redesign, new CPU profile, or additional storage experiment was done.
+initial runs, so the combined gain is smaller. The follow-up below diagnoses the
+wait path and repeats the full fixtures with the final state-gas implementation.
+
+## Commit tail diagnosis
+
+The last-20-block profile did not capture a slow rotation, so the existing
+TestCommitProfile now profiles all remaining fixture blocks after PROFILE_START.
+The full 600-block trace measured Commit mean 25.233 ms. Slow calls recur near
+blocks 181, 223, 271, 327, 381, 438, 496 and 554 (767.596, 318.529, 166.232,
+389.981, 527.301, 676.349, 747.195 and 2067.258 ms). Across the trace, Commit
+spent 4.06 seconds in DB.rotate -> sync.Cond.Wait, waiting for the sealer backlog
+to fall below two epochs. Commit also spent 1.656 seconds in Msync. Hashing
+accounts for most sampled Commit CPU (hashDirty worker 6.55 seconds cumulative).
+The separately created sealer workers account for 43.70 sampled CPU seconds
+(56.74% of all CPU samples), including 32.71 seconds in sealSection and
+10.98 seconds in disk sorting. This confirms substantial background sealing
+work. These are aggregate profile times, not additions to the benchmark means.
+
+Original dirty lines and leaves are exactly unchanged from round 4: 149136.9
+and 30675.0 per block. Faster guest execution gives the background sealer less
+wall time between rotations, which is consistent with the observed backlog wait.
+The trace establishes the wait mechanism, but does not isolate how much of the
+regression comes from that pacing versus machine memory pressure. During the
+profile, three unrelated Go processes held about 6 GB, physical memory was nearly
+full, and about 5.1 GB was compressed. CPU still had about 48% idle capacity in
+the sampled interval. No unrelated process was stopped. The final replay pair
+below is a repeat under observed shared load, not an idle-machine experiment.
+
+Evidence: round5-all-commit-profile.txt, round5-commit-{cpu,sync,syscall}.txt,
+round5-sealer-cpu.txt,
+round5-load-{before-profile,during-profile,final}.txt. Raw CPU/trace files remain
+at ~/.cache/cx/wasmhost.round5-all-commit.cpu and its .trace suffix. Reproduce
+with PAGERWASM_FIXTURE set to the original fixture and
+PAGERWASM_PROFILE=~/.cache/cx/wasmhost.round5-all-commit.cpu,
+then go test -run '^TestCommitProfile$' -count=1 -v -timeout=20m.
+
+```sh
+go tool pprof -top -cum -nodecount=30 -tagfocus=stage=commit ~/.cache/cx/wasmhost.round5-all-commit.cpu
+go tool trace -pprof=sync ~/.cache/cx/wasmhost.round5-all-commit.cpu.trace > /tmp/round5-sync.pprof
+go tool trace -pprof=syscall ~/.cache/cx/wasmhost.round5-all-commit.cpu.trace > /tmp/round5-syscall.pprof
+go tool pprof -top -cum -nodecount=20 -focus='pagerdb.*Commit' /tmp/round5-sync.pprof
+go tool pprof -top -cum -nodecount=20 -focus='pagerdb.*Commit' /tmp/round5-syscall.pprof
+```
+No PagerDB or per-block journal change was made.
 
 ## Reproduce
 
@@ -176,3 +225,29 @@ The cached generated fixture is the existing seed-1, 600-block fixture from roun
 that path substituted above. Each TestMatcher invocation already runs twice.
 Raw data: `round5-{original,generated}-{controls,host}.txt`. Fixtures, individual
 output hashes, Cargo target artifacts and Go test binaries are not committed.
+
+
+## Final implementation replay
+
+These runs include the final byte and leaf charges. The plain and inline controls
+above remain valid: they do not execute host state-gas finalization.
+
+| Fixture/run | Execution msgs/s | Execution + Commit msgs/s | Commit mean ms | Commit p99 ms | Dirty lines/block |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Original / 1 | 2,116,746 | 1,036,369 | 24.624 | 320.137 | 149,136.9 |
+| Original / 2 | 2,141,791 | 1,009,690 | 26.175 | 673.444 | 149,136.9 |
+| Generated / 1 | 1,041,899 | 551,728 | 42.635 | 553.987 | 243,122.9 |
+| Generated / 2 | 1,070,423 | 569,697 | 41.055 | 384.821 | 243,122.9 |
+
+Original bytes written/block: 9,544,761; leaves touched/block: 30,675.0.
+End work: 0.764 / 0.762 ms/block. Execution: 23.621 / 23.345 ms/block;
+execution + Commit: 48.245 / 49.520 ms/block. Round 4 execution was
+51.490 / 49.141 ms and execution + Commit was 72.809 / 71.342 ms.
+Both 600-block runs pass every output hash, root comparison and returned count.
+The repeated p99 remains high, so the initial tail was not just a one-run outlier.
+
+Generated bytes written/block: 15,559,868; leaves touched/block: 71,734.7.
+End work: 1.162 / 1.329 ms/block. Execution: 47.989 / 46.710 ms/block;
+execution + Commit: 90.624 / 87.765 ms/block. Both 600-block runs pass every
+output hash, root comparison and returned count. There is no generated round 4
+baseline. Final evidence: round5-original-final.txt and round5-generated-final.txt.

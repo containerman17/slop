@@ -1,0 +1,25 @@
+File: 02_pagerdb_wasm.test
+Type: cpu
+Time: 2026-10-15 08:34:41 JST
+Duration: 30.39s, Total samples = 77.02s (253.40%)
+Active filters:
+   focus=sealSection|parallelSeal|sealWorker
+Showing nodes accounting for 30.76s, 39.94% of 77.02s total
+Dropped 89 nodes (cum <= 0.39s)
+Showing top 15 nodes out of 71
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%     43.70s 56.74%  github.com/containerman17/pagerdb.(*DB).parallelSeal.func2
+         0     0%     0%     32.71s 42.47%  github.com/containerman17/pagerdb.(*DB).sealSection
+    21.22s 27.55% 27.55%     32.71s 42.47%  github.com/containerman17/pagerdb.(*DB).sealSection.func2
+         0     0% 27.55%     10.98s 14.26%  github.com/containerman17/pagerdb.diskSortPiecesBuffers
+     0.04s 0.052% 27.60%     10.98s 14.26%  github.com/containerman17/pagerdb.diskSortRuns
+     9.49s 12.32% 39.92%      9.49s 12.32%  syscall.rawsyscalln
+         0     0% 39.92%      9.49s 12.32%  syscall.syscalln
+         0     0% 39.92%      9.29s 12.06%  github.com/containerman17/pagerdb.(*DB).sealSection.func2.4
+         0     0% 39.92%      8.45s 10.97%  github.com/klauspost/compress/zstd.(*Encoder).EncodeAll
+     0.01s 0.013% 39.94%      8.43s 10.95%  github.com/klauspost/compress/zstd.(*Encoder).encodeAll
+         0     0% 39.94%      7.68s  9.97%  syscall.syscall
+         0     0% 39.94%      7.34s  9.53%  internal/poll.ignoringEINTRIO (inline)
+         0     0% 39.94%      6.27s  8.14%  internal/poll.(*FD).Write
+         0     0% 39.94%      6.27s  8.14%  os.(*File).Write
+         0     0% 39.94%      6.27s  8.14%  os.(*File).write (inline)
