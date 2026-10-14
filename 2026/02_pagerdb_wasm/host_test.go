@@ -62,13 +62,13 @@ func TestBarrierAndBitmap(t *testing.T) {
 		t.Fatalf("status %d", got.Status)
 	}
 	var changed []uint32
-	for off := 0; off < len(before); off += pageSize {
-		if !bytes.Equal(before[off:off+pageSize], p.memory[off:off+pageSize]) {
-			changed = append(changed, uint32(off/pageSize))
+	for off := 0; off < len(before); off += leafSize {
+		if !bytes.Equal(before[off:off+leafSize], p.memory[off:off+leafSize]) {
+			changed = append(changed, uint32(off/leafSize))
 		}
 	}
-	if !reflect.DeepEqual(got.DirtyPages, changed) {
-		t.Fatalf("barrier %v memcmp %v", got.DirtyPages, changed)
+	if !reflect.DeepEqual(got.DirtyLeaves, changed) {
+		t.Fatalf("barrier %v memcmp %v", got.DirtyLeaves, changed)
 	}
 	if len(got.Logs) != 1 || len(got.Output) != 8 {
 		t.Fatalf("result %+v", got)
@@ -118,8 +118,8 @@ func TestRevert(t *testing.T) {
 			if got.Status != want {
 				t.Fatalf("status %d want %d", got.Status, want)
 			}
-			if len(got.DirtyPages) != 3 {
-				t.Fatalf("did not reach writes: %v", got.DirtyPages)
+			if len(got.DirtyLeaves) != 5 {
+				t.Fatalf("did not reach writes: %v", got.DirtyLeaves)
 			}
 			if !bytes.Equal(before, p.memory) || db.Root() != beforeRoot {
 				t.Fatal("revert changed bytes or root")
@@ -176,7 +176,7 @@ func TestCache(t *testing.T) {
 	}
 }
 
-func TestPageGasRevertsAtCallEnd(t *testing.T) {
+func TestLeafGasRevertsAtCallEnd(t *testing.T) {
 	db, h := testHost(t)
 	p := deployCase(t, h, "write")
 	root := commit(t, db)
@@ -189,8 +189,8 @@ func TestPageGasRevertsAtCallEnd(t *testing.T) {
 	used := 100000 - first.GasLeft
 	db.Undo(mark)
 	got := p.Run(context.Background(), Call{Input: []byte{0}, Gas: used - 1})
-	if got.Status != TrapStatus || got.GasLeft != 0 || len(got.DirtyPages) != 3 {
-		t.Fatalf("page gas result %+v", got)
+	if got.Status != TrapStatus || got.GasLeft != 0 || len(got.DirtyLeaves) != 5 {
+		t.Fatalf("leaf gas result %+v", got)
 	}
 	if !bytes.Equal(initial, p.memory) || commit(t, db) != root {
 		t.Fatal("end-of-call gas failure changed state")

@@ -26,10 +26,10 @@ import (
 const (
 	InstructionGas        = 1
 	HostGas               = 10
-	DirtyPageGas          = 100
+	DirtyLeafGas          = 100
 	StackLimit            = 65536
 	TrapStatus     uint32 = math.MaxUint32
-	pageSize              = 4096
+	leafSize              = pagerdb.LeafSize
 )
 
 type regionMemory []byte
@@ -76,11 +76,11 @@ type Call struct {
 	Gas                    uint64
 }
 type Result struct {
-	Status     uint32
-	Output     []byte
-	Logs       [][]byte
-	GasLeft    uint64
-	DirtyPages []uint32
+	Status      uint32
+	Output      []byte
+	Logs        [][]byte
+	GasLeft     uint64
+	DirtyLeaves []uint32
 }
 
 func New(ctx context.Context, db *pagerdb.DB) (*Host, error) {
@@ -236,23 +236,23 @@ func (p *Program) read(off, n uint32) []byte {
 	}
 	return p.memory[off:end]
 }
-func (p *Program) touch(page uint32) {
-	if page >= p.limit/pageSize {
+func (p *Program) touch(leaf uint32) {
+	if leaf >= p.limit/leafSize {
 		panic("reserved bitmap store")
 	}
-	off, bit := p.limit+page/8, byte(1<<(page%8))
+	off, bit := p.limit+leaf/8, byte(1<<(leaf%8))
 	if p.memory[off]&bit != 0 {
 		return
 	}
-	p.host.db.Touch(p.Region, int(page)*pageSize, pageSize)
-	p.result.DirtyPages = append(p.result.DirtyPages, page)
+	p.host.db.Touch(p.Region, int(leaf)*leafSize, leafSize)
+	p.result.DirtyLeaves = append(p.result.DirtyLeaves, leaf)
 	p.memory[off] |= bit
 }
 func (p *Program) write(off uint32, b []byte) {
 	dst := p.read(off, uint32(len(b)))
 	if len(b) > 0 {
-		for page := off / pageSize; page <= uint32((uint64(off)+uint64(len(b))-1)/pageSize); page++ {
-			p.touch(page)
+		for leaf := off / leafSize; leaf <= uint32((uint64(off)+uint64(len(b))-1)/leafSize); leaf++ {
+			p.touch(leaf)
 		}
 	}
 	copy(dst, b)
@@ -279,8 +279,8 @@ func (p *Program) Run(ctx context.Context, args Call) (res Result) {
 	defer func() {
 		p.host.active = nil
 		// A crash mid-call can leave bitmap bytes on disk; recovery detects the root mismatch and the node resyncs, as with PagerDB power loss.
-		for _, page := range p.result.DirtyPages {
-			p.memory[p.limit+page/8] &= ^byte(1 << (page % 8))
+		for _, leaf := range p.result.DirtyLeaves {
+			p.memory[p.limit+leaf/8] &= ^byte(1 << (leaf % 8))
 		}
 		if p.result.Status != 0 {
 			p.host.db.Undo(mark)
@@ -289,7 +289,7 @@ func (p *Program) Run(ctx context.Context, args Call) (res Result) {
 			}
 			p.result.Logs = nil
 		}
-		sort.Slice(p.result.DirtyPages, func(i, j int) bool { return p.result.DirtyPages[i] < p.result.DirtyPages[j] })
+		sort.Slice(p.result.DirtyLeaves, func(i, j int) bool { return p.result.DirtyLeaves[i] < p.result.DirtyLeaves[j] })
 		res = p.result
 		p.args = Call{}
 		p.result = Result{}
@@ -310,7 +310,7 @@ func (p *Program) Run(ctx context.Context, args Call) (res Result) {
 		}
 	}
 	left := p.gas.Get()
-	cost := uint64(len(p.result.DirtyPages)) * DirtyPageGas
+	cost := uint64(len(p.result.DirtyLeaves)) * DirtyLeafGas
 	if left > math.MaxInt64 || left < cost {
 		p.result.Status = TrapStatus
 		p.result.Output = nil

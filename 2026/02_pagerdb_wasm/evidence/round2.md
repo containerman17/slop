@@ -75,3 +75,37 @@ Generated tracking bits/block: 34,743.4. Block 599 has 2,667,872 final changed
 bytes versus 187,797,504 logged old bytes and 377,062,176 Touch record bytes.
 Both runs pass all 600 native hashes and match every root. Raw:
 `round2-generated-4k.txt`. Commit times vary materially between repetitions.
+
+## 1 KiB leaves
+
+The host and store rewrite now use fixed 1 KiB units. `DirtyLeaves` reports the
+leaf indices, `touch(leaf)` records 1 KiB, and `DirtyLeafGas=100` is charged per
+leaf at call end. ABI writes use the same bitmap. The maximum 512 MiB guest needs
+exactly 64 KiB of bitmap, so the reserved extent does not grow. Tests now include
+stores crossing 64 B, 1 KiB and 4 KiB boundaries, and a full byte comparison.
+
+| Fixture/run | Execution msgs/s | Execution + Commit msgs/s | Log bytes/block | Dirty leaves/block | Commit mean ms | Commit p99 ms |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Original / 0 | 1,009,596 | 418,169 | 63,804,039 | 30,675.0 | 70.044 | 1,234.086 |
+| Original / 1 | 803,235 | 378,802 | 63,804,039 | 30,675.0 | 69.747 | 1,286.655 |
+
+Both original runs pass all 600 native hashes and match every root. Block 599
+has 1,687,676 final changed bytes, 32,132,096 logged old bytes and 65,268,320 Touch
+record bytes. The latter is 38.7 times the final changes; even old bytes alone
+are 19.0 times. This satisfies the requested greater-than-10 threshold for a
+64-byte trial after completing the 1 KiB measurements. This gate uses the mature
+last block, not a claimed all-block average of final changes.
+
+The inline-gas 4 KiB stage is local commit `656cde6`. Its full default suite and
+`go vet ./...` passed. No commits from this round have been pushed.
+
+| Fixture/run | Execution msgs/s | Execution + Commit msgs/s | Log bytes/block | Dirty leaves/block | Commit mean ms | Commit p99 ms |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Generated / 0 | 378,499 | 207,212 | 149,208,284 | 71,734.7 | 109.198 | 1,170.259 |
+| Generated / 1 | 385,309 | 216,614 | 149,208,284 | 71,734.7 | 101.060 | 653.819 |
+
+Both generated runs pass all 600 native hashes and match every root. Block 599
+has 2,667,872 final changed bytes, 93,529,088 logged old bytes and 189,980,960
+Touch record bytes (71.2 times the final changes; old bytes alone 35.1 times).
+The generated fixture also meets the 64-byte trial gate. Raw 1 KiB results:
+`round2-original-1k.txt`, `round2-generated-1k.txt`.

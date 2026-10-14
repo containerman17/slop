@@ -90,18 +90,18 @@ func TestCommitProfile(t *testing.T) {
 			continue
 		}
 		elapsed += d
-		pages += len(result.DirtyPages)
-		t.Logf("block %d dirty_pages=%d Commit_ms=%.3f", i, len(result.DirtyPages), float64(d)/float64(time.Millisecond))
+		pages += len(result.DirtyLeaves)
+		t.Logf("block %d dirty_leaves=%d Commit_ms=%.3f", i, len(result.DirtyLeaves), float64(d)/float64(time.Millisecond))
 		last = result
 	}
 	trace.Stop()
 	pprof.StopCPUProfile()
 	changed, changedPages, unchangedTouched := 0, 0, 0
 	var buckets [9]int
-	for _, page := range last.DirtyPages {
-		off := int(page) * pageSize
+	for _, page := range last.DirtyLeaves {
+		off := int(page) * leafSize
 		n := 0
-		for j := 0; j < pageSize; j++ {
+		for j := 0; j < leafSize; j++ {
 			if before[off+j] != p.memory[off+j] {
 				n++
 			}
@@ -114,6 +114,6 @@ func TestCommitProfile(t *testing.T) {
 		}
 		buckets[off/(64<<20)]++
 	}
-	t.Logf("20-block M3 diagnostic under background load: mean Commit_ms=%.3f dirty_pages=%.1f", elapsed.Seconds()*1000/20, float64(pages)/20)
-	t.Logf("last profiled block: touched_pages=%d changed_pages=%d unchanged_touched_pages=%d changed_bytes=%d page_bytes=%d dirty_pages_by_64MiB=%v", len(last.DirtyPages), changedPages, unchangedTouched, changed, len(last.DirtyPages)*pageSize, buckets)
+	t.Logf("20-block M3 diagnostic under background load: mean Commit_ms=%.3f dirty_leaves=%.1f", elapsed.Seconds()*1000/20, float64(pages)/20)
+	t.Logf("last profiled block: touched_leaves=%d changed_leaves=%d unchanged_touched_leaves=%d changed_bytes=%d leaf_bytes=%d dirty_leaves_by_64MiB=%v", len(last.DirtyLeaves), changedPages, unchangedTouched, changed, len(last.DirtyLeaves)*leafSize, buckets)
 }

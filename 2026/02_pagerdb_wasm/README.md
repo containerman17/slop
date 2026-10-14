@@ -42,25 +42,25 @@ A source module must declare a maximum of at most 512 MiB. Deployment fixes memo
 at that maximum and reserves one additional 64 KiB page for the bitmap. Guest
 `memory.size` returns the usable size; `memory.grow` returns -1. Every integer
 store checks its complete effective address, including offset and width, before
-writing. Stores that cross a 4 KiB boundary touch both pages. Overflowing addresses
+writing. Stores that cross a 1 KiB boundary touch both leaves. Overflowing addresses
 and stores into reserved space trap. Guest loads of reserved bytes are allowed.
-Host writes also go through page tracking. `DirtyPages` reports pages written,
-including writes that store the same bytes, rather than pages whose final bytes
-changed. It also reports touched pages for reverted calls.
+Host writes also go through leaf tracking. `DirtyLeaves` reports leaves written,
+including writes that store the same bytes, rather than leaves whose final bytes
+changed. It also reports touched leaves for reverted calls.
 
-Each store tests the bitmap inline. Only the first store to a page calls `touch`.
-The host records old bytes with `DB.Touch`, records the page, then sets its bit.
+Each store tests the bitmap inline. Only the first store to a leaf calls `touch`.
+The host records old bytes with `DB.Touch`, records the leaf, then sets its bit.
 The bitmap is never touched in PagerDB. Every exit path clears exactly the
 recorded bits before undo or commit, so the bitmap contributes only zeros to the
 root. A crash during a call may leave unlogged bitmap bytes; PagerDB recovery can
 detect a root mismatch and require resync, consistent with its crash model.
 
 The host marks before execution and undoes on a status revert, trap or gas
-failure. It does not commit calls. `InstructionGas`, `HostGas`, `DirtyPageGas`
+failure. It does not commit calls. `InstructionGas`, `HostGas`, `DirtyLeafGas`
 and `StackLimit` live in `host.go`. The existing wasm-instrument algorithm meters
 blocks and locals (including its historical fixed gas-helper surcharge). The helper
 is inlined before the stack pass, so no gas function call remains. Host imports
-have a fixed charge, and dirty-page gas is charged at call end. Exhaustion at any
+have a fixed charge, and dirty-leaf gas is charged at call end. Exhaustion at any
 of these points reverts. Prices are prototype constants, not calibrated costs.
 
 ## Deployment and build shortcuts
@@ -120,9 +120,9 @@ cargo run --locked --release --manifest-path testdata/matcher/Cargo.toml \
 ```
 
 Focused tests cover shared-memory pointer identity, status/trap/gas reverts,
-end-of-call page gas, page-boundary stores, address overflow, stack exhaustion,
+end-of-call leaf gas, leaf-boundary stores, address overflow, stack exhaustion,
 reserved bitmap writes, bitmap root neutrality, import/feature rejection, and
-code-cache reuse. Dirty-page correctness is checked against a full byte comparison
+code-cache reuse. Dirty-leaf correctness is checked against a full byte comparison
 on the small store fixture. The matcher does not copy its whole memory each block.
 
 For Mac diagnostics, take the shared benchmark lock first and release it afterward:
@@ -138,7 +138,7 @@ The diagnostic controls run the same rebuilt matcher with ordinary anonymous
 memory: plain, helper gas, inline gas, stack only, and each gas mode with stack
 checks. They check every output hash against the native matcher. The block count follows
 the fixture settings above. They do not commit. Comparing metered control execution to host execution
-measures the barrier plus PagerDB Touch, page tracking and end-of-call work, not
+measures the barrier plus PagerDB Touch, leaf tracking and end-of-call work, not
 just the inline bit test. The historical plain wazero baseline used another
 module build; it is context, not an isolated measurement of barrier overhead.
 
