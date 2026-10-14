@@ -109,3 +109,79 @@ has 2,667,872 final changed bytes, 93,529,088 logged old bytes and 189,980,960
 Touch record bytes (71.2 times the final changes; old bytes alone 35.1 times).
 The generated fixture also meets the 64-byte trial gate. Raw 1 KiB results:
 `round2-original-1k.txt`, `round2-generated-1k.txt`.
+
+## 64-byte trial
+
+The 1 KiB stage is local commit `c0427ac`, with passing tests and vet. The trial
+uses fixed 64-byte lines, `DirtyLines`, `DirtyLineGas=100`, and a reserved 1 MiB
+bitmap (16 Wasm pages). Guest usable memory remains capped at 512 MiB. This is a
+constant change, not a runtime option. The larger allocation changes the region
+layout, so roots are compared between two runs of the same stage, not across
+stages. Boundary and revert tests check the whole enlarged bitmap as well.
+
+| Fixture/run | Execution msgs/s | Execution + Commit msgs/s | Log bytes/block | Dirty 1 KiB leaves/block | Dirty lines/block | Commit mean ms | Commit p99 ms |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Original / 0 | 816,600 | 602,897 | 23,861,959 | 30,675.0 | 149,136.9 | 21.703 | 118.482 |
+| Original / 1 | 684,187 | 433,980 | 23,861,959 | 30,675.0 | 149,136.9 | 42.133 | 292.339 |
+
+Both original runs pass all 600 native hashes and match every root. Leaf coverage
+is identical to the 1 KiB stage. Execution alone can be slower because more first
+writes call Touch; execution plus Commit improves in both repetitions. Block 599
+logs 8,624,512 old bytes and 21,561,280 Touch record bytes for 1,687,676 final changed
+bytes (5.1x old-image payload, 12.8x total records). No smaller-unit trial is planned.
+
+| Fixture/run | Execution msgs/s | Execution + Commit msgs/s | Log bytes/block | Dirty 1 KiB leaves/block | Dirty lines/block | Commit mean ms | Commit p99 ms |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Generated / 0 | 413,772 | 324,770 | 38,899,725 | 71,734.7 | 243,122.9 | 33.116 | 120.751 |
+| Generated / 1 | 399,024 | 318,914 | 38,899,725 | 71,734.7 | 243,122.9 | 31.476 | 113.249 |
+
+Both generated runs pass all 600 native hashes and match every root. Leaf coverage
+again matches the 1 KiB stage. Block 599 logs 17,238,720 old bytes and 43,096,800
+Touch record bytes for 2,667,872 final changed bytes (6.5x old payload, 16.2x total).
+Raw 64-byte results: `round2-original-64b.txt`, `round2-generated-64b.txt`.
+
+**Decision: keep 64-byte lines.** Execution plus Commit beats both 1 KiB repetitions
+on each fixture: original 434k to 603k versus 379k to 418k msgs/s; generated 319k
+to 325k versus 207k to 217k. This is not a claim of a stable production rate.
+Original execution alone is sometimes slower. The reduction in Commit cost wins
+on the requested combined measure. The final API reports `DirtyLines`, while the
+diagnostic also reports distinct 1 KiB leaf coverage. Gas is per dirty line;
+its price remains the uncalibrated prototype constant 100.
+
+## Scope, shortcuts and limits
+
+Changed implementation files: `instrument/src/lib.rs` (helper inlining),
+`instrument/src/main.rs` (64-byte barrier and bitmap capacity), `host.go` (line
+Touch, gas, results and fixed bitmap allocation). Diagnostic and correctness
+changes are in `instrument/src/bin/meter-only.rs`, `diagnostic_test.go`,
+`matcher_test.go`, `profile_test.go`, `metering_test.go`, `host_test.go`, and the
+small WAT/Wasm test cases. README and this evidence directory describe the stages.
+No PagerDB change, dependency change, runtime granularity option, cloud run,
+remote push, PR, or new repository was used.
+
+Existing prototype shortcuts remain: Rust subprocess at deploy with source tree
+and Cargo required; per-Host code-hash cache; separate instrumentation passes;
+reserved in-region bitmap cleared on each call; fixed maximum guest memory;
+mutable guest globals restricted to scratch; bulk-memory lowering and a committed
+matcher Wasm artifact; native oracle shares the matcher algorithm. The inliner
+retains the old fixed helper gas surcharge to avoid changing instruction charges.
+The 64-byte stage reserves a fixed 1 MiB even for small guests. It changes region
+layout and dirty-unit gas costs. There is no state migration or reopen API.
+
+No production throughput, isolated unloaded-Mac latency, cross-platform roots,
+crash recovery, fuzzing, or adversarial deployment audit is established here.
+The bitmap crash limitation is unchanged. Final-change amplification is sampled
+at block 599; it is not measured for every block. Logical log bytes are calculated
+from the pinned record format, not measured disk allocation. New CPU/trace profiles
+were unnecessary for the requested controls; previous traces remain historical.
+
+## Final validation
+
+`go vet ./...` and `go test -count=1 -v -timeout=45m ./...` pass on the final code;
+see `round2-final-vet.txt` and `round2-final-tests.txt`. The optional diagnostic
+and profile tests skip by default and were run separately as recorded above.
+All three measured host stages pass two complete 600-block runs on each fixture,
+checking every native output and every replay root. The native oracle was also
+checked directly against all 600 entries of the external original
+`bench/golden.txt`; all match (`round2-golden-check.txt`). No original data or
+original hash list is committed.

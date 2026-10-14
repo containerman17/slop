@@ -106,3 +106,25 @@ PAGERWASM_DIAGNOSTICS=1 PAGERWASM_FIXTURE=~/.cache/cx/wasmhost.synthetic600.bin 
 
 Each full-host command checks 600 native hashes on two fresh databases and
 compares all 600 roots. `evidence/round2.md` records the measured stages.
+
+To cross-check the original-fixture oracle without copying the golden list into
+the repository:
+
+```sh
+python3 - <<'PY'
+import subprocess
+from pathlib import Path
+out = subprocess.check_output([str(Path.home()/'.cargo/bin/cargo'), 'run',
+    '--quiet', '--locked', '--release', '--manifest-path',
+    'testdata/matcher/Cargo.toml', '-p', 'matcher-tools', '--', 'hashes',
+    str(Path.home()/'temp-1m-clob/bench/fixture.bin')])
+expected = (Path.home()/'temp-1m-clob/bench/golden.txt').read_bytes()
+assert len(out.splitlines()) == 600
+assert out.splitlines() == expected.splitlines()
+print('PASS: all 600 original golden hashes match')
+PY
+```
+
+The 4 KiB inline stage is commit `656cde6`; the 1 KiB stage is `c0427ac`.
+The final code keeps 64-byte tracking. No runtime granularity option is needed to
+reproduce the earlier stages: use their local revisions and the commands above.

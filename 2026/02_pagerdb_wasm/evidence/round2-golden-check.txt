@@ -1,0 +1,1 @@
+PASS: all 600 native oracle hashes equal the external original bench/golden.txt. No source hashes copied into this repository.

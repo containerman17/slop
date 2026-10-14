@@ -55,7 +55,7 @@ func TestCommitProfile(t *testing.T) {
 	defer trace.Stop()
 	block := make([]byte, per*40)
 	var elapsed time.Duration
-	var pages int
+	var lines int
 	var before []byte
 	var last Result
 	for i := 0; i < startBlock+20; i++ {
@@ -90,30 +90,30 @@ func TestCommitProfile(t *testing.T) {
 			continue
 		}
 		elapsed += d
-		pages += len(result.DirtyLeaves)
-		t.Logf("block %d dirty_leaves=%d Commit_ms=%.3f", i, len(result.DirtyLeaves), float64(d)/float64(time.Millisecond))
+		lines += len(result.DirtyLines)
+		t.Logf("block %d dirty_lines=%d Commit_ms=%.3f", i, len(result.DirtyLines), float64(d)/float64(time.Millisecond))
 		last = result
 	}
 	trace.Stop()
 	pprof.StopCPUProfile()
-	changed, changedPages, unchangedTouched := 0, 0, 0
+	changed, changedLines, unchangedTouched := 0, 0, 0
 	var buckets [9]int
-	for _, page := range last.DirtyLeaves {
-		off := int(page) * leafSize
+	for _, line := range last.DirtyLines {
+		off := int(line) * lineSize
 		n := 0
-		for j := 0; j < leafSize; j++ {
+		for j := 0; j < lineSize; j++ {
 			if before[off+j] != p.memory[off+j] {
 				n++
 			}
 		}
 		changed += n
 		if n > 0 {
-			changedPages++
+			changedLines++
 		} else {
 			unchangedTouched++
 		}
 		buckets[off/(64<<20)]++
 	}
-	t.Logf("20-block M3 diagnostic under background load: mean Commit_ms=%.3f dirty_leaves=%.1f", elapsed.Seconds()*1000/20, float64(pages)/20)
-	t.Logf("last profiled block: touched_leaves=%d changed_leaves=%d unchanged_touched_leaves=%d changed_bytes=%d leaf_bytes=%d dirty_leaves_by_64MiB=%v", len(last.DirtyLeaves), changedPages, unchangedTouched, changed, len(last.DirtyLeaves)*leafSize, buckets)
+	t.Logf("20-block M3 diagnostic under background load: mean Commit_ms=%.3f dirty_lines=%.1f", elapsed.Seconds()*1000/20, float64(lines)/20)
+	t.Logf("last profiled block: touched_lines=%d changed_lines=%d unchanged_touched_lines=%d changed_bytes=%d line_bytes=%d dirty_lines_by_64MiB=%v", len(last.DirtyLines), changedLines, unchangedTouched, changed, len(last.DirtyLines)*lineSize, buckets)
 }

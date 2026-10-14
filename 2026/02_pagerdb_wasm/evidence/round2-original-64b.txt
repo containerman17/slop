@@ -1,0 +1,26 @@
+=== RUN   TestMatcher
+=== RUN   TestMatcher/0
+    matcher_test.go:157: run 0: 100/600 native hashes and roots checked
+    matcher_test.go:157: run 0: 200/600 native hashes and roots checked
+    matcher_test.go:157: run 0: 300/600 native hashes and roots checked
+    matcher_test.go:157: run 0: 400/600 native hashes and roots checked
+    matcher_test.go:157: run 0: 500/600 native hashes and roots checked
+    matcher_test.go:157: run 0: 600/600 native hashes and roots checked
+    matcher_test.go:167: last block final changed bytes=1687676, Touch log bytes=21561280, logged old bytes=8624512
+    matcher_test.go:170: log bytes/block=23861959 (32-byte header plus old and new bytes per touch, 56-byte Commit record), dirty 1KiB leaves/block=30675.0, Commit p99 ms=118.482
+    matcher_test.go:171: single-process M3 diagnostics: 816600 msgs/s execution, 602897 msgs/s including Commit, 149136.9 dirty tracking units/block, 21.703 Commit ms/block
+=== RUN   TestMatcher/1
+    matcher_test.go:157: run 1: 100/600 native hashes and roots checked
+    matcher_test.go:157: run 1: 200/600 native hashes and roots checked
+    matcher_test.go:157: run 1: 300/600 native hashes and roots checked
+    matcher_test.go:157: run 1: 400/600 native hashes and roots checked
+    matcher_test.go:157: run 1: 500/600 native hashes and roots checked
+    matcher_test.go:157: run 1: 600/600 native hashes and roots checked
+    matcher_test.go:167: last block final changed bytes=1687676, Touch log bytes=21561280, logged old bytes=8624512
+    matcher_test.go:170: log bytes/block=23861959 (32-byte header plus old and new bytes per touch, 56-byte Commit record), dirty 1KiB leaves/block=30675.0, Commit p99 ms=292.339
+    matcher_test.go:171: single-process M3 diagnostics: 684187 msgs/s execution, 433980 msgs/s including Commit, 149136.9 dirty tracking units/block, 42.133 Commit ms/block
+--- PASS: TestMatcher (145.63s)
+    --- PASS: TestMatcher/0 (57.53s)
+    --- PASS: TestMatcher/1 (85.12s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	145.893s

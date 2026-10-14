@@ -62,18 +62,18 @@ func TestBarrierAndBitmap(t *testing.T) {
 		t.Fatalf("status %d", got.Status)
 	}
 	var changed []uint32
-	for off := 0; off < len(before); off += leafSize {
-		if !bytes.Equal(before[off:off+leafSize], p.memory[off:off+leafSize]) {
-			changed = append(changed, uint32(off/leafSize))
+	for off := 0; off < len(before); off += lineSize {
+		if !bytes.Equal(before[off:off+lineSize], p.memory[off:off+lineSize]) {
+			changed = append(changed, uint32(off/lineSize))
 		}
 	}
-	if !reflect.DeepEqual(got.DirtyLeaves, changed) {
-		t.Fatalf("barrier %v memcmp %v", got.DirtyLeaves, changed)
+	if !reflect.DeepEqual(got.DirtyLines, changed) {
+		t.Fatalf("barrier %v memcmp %v", got.DirtyLines, changed)
 	}
 	if len(got.Logs) != 1 || len(got.Output) != 8 {
 		t.Fatalf("result %+v", got)
 	}
-	if !bytes.Equal(p.memory[p.limit:p.limit+65536], make([]byte, 65536)) {
+	if !bytes.Equal(p.memory[p.limit:p.limit+bitmapBytes], make([]byte, bitmapBytes)) {
 		t.Fatal("bitmap not cleared")
 	}
 	root := commit(t, db)
@@ -86,7 +86,7 @@ func TestBarrierAndBitmap(t *testing.T) {
 		t.Fatal(err)
 	}
 	defer other.Close()
-	r, err := other.Alloc(int(p.limit) + 65536)
+	r, err := other.Alloc(int(p.limit) + bitmapBytes)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -118,8 +118,8 @@ func TestRevert(t *testing.T) {
 			if got.Status != want {
 				t.Fatalf("status %d want %d", got.Status, want)
 			}
-			if len(got.DirtyLeaves) != 5 {
-				t.Fatalf("did not reach writes: %v", got.DirtyLeaves)
+			if len(got.DirtyLines) != 7 {
+				t.Fatalf("did not reach writes: %v", got.DirtyLines)
 			}
 			if !bytes.Equal(before, p.memory) || db.Root() != beforeRoot {
 				t.Fatal("revert changed bytes or root")
@@ -176,7 +176,7 @@ func TestCache(t *testing.T) {
 	}
 }
 
-func TestLeafGasRevertsAtCallEnd(t *testing.T) {
+func TestLineGasRevertsAtCallEnd(t *testing.T) {
 	db, h := testHost(t)
 	p := deployCase(t, h, "write")
 	root := commit(t, db)
@@ -189,8 +189,8 @@ func TestLeafGasRevertsAtCallEnd(t *testing.T) {
 	used := 100000 - first.GasLeft
 	db.Undo(mark)
 	got := p.Run(context.Background(), Call{Input: []byte{0}, Gas: used - 1})
-	if got.Status != TrapStatus || got.GasLeft != 0 || len(got.DirtyLeaves) != 5 {
-		t.Fatalf("leaf gas result %+v", got)
+	if got.Status != TrapStatus || got.GasLeft != 0 || len(got.DirtyLines) != 7 {
+		t.Fatalf("line gas result %+v", got)
 	}
 	if !bytes.Equal(initial, p.memory) || commit(t, db) != root {
 		t.Fatal("end-of-call gas failure changed state")

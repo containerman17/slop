@@ -5,24 +5,24 @@ use Instruction::*;
 fn add_section(m: &mut Module, s: Section) {
     m.insert_section(s).unwrap();
 }
-fn leaf_barrier(out: &mut Vec<Instruction>, leaf: u32, bitmap: u32, touch: u32) {
+fn line_barrier(out: &mut Vec<Instruction>, line: u32, bitmap: u32, touch: u32) {
     // The bitmap itself is private instrumentation state. Only the host sets bits.
     out.extend([
         I32Const(bitmap as i32),
-        GetLocal(leaf),
+        GetLocal(line),
         I32Const(3),
         I32ShrU,
         I32Add,
         I32Load8U(0, 0),
         I32Const(1),
-        GetLocal(leaf),
+        GetLocal(line),
         I32Const(7),
         I32And,
         I32Shl,
         I32And,
         I32Eqz,
         If(BlockType::NoResult),
-        GetLocal(leaf),
+        GetLocal(line),
         Call(touch),
         End,
     ]);
@@ -82,8 +82,9 @@ fn instrument(data: &[u8], instruction_cost: u32, stack_limit: u32) -> (Vec<u8>,
         );
         metadata.push_str(&format!("{} {}\n", off, d.value().len()));
     }
-    // One extra Wasm leaf holds up to 16 KiB of bits, outside the guest's usable range.
-    m.memory_section_mut().unwrap().entries_mut()[0] = MemoryType::new(pages + 1, Some(pages + 1));
+    // One bit per 64-byte line at the 512 MiB limit needs 16 Wasm pages.
+    m.memory_section_mut().unwrap().entries_mut()[0] =
+        MemoryType::new(pages + 16, Some(pages + 16));
     // Append touch to imports and shift every reference to a defined function.
     for b in m
         .code_section_mut()
@@ -166,7 +167,7 @@ fn instrument(data: &[u8], instruction_cost: u32, stack_limit: u32) -> (Vec<u8>,
         .enumerate()
     {
         let base = params[idx] + body.locals().iter().map(|l| l.count()).sum::<u32>();
-        let (addr, v32, leaf, last, v64, eff) =
+        let (addr, v32, line, last, v64, eff) =
             (base, base + 1, base + 2, base + 3, base + 4, base + 5);
         body.locals_mut()
             .extend([Local::new(4, ValueType::I32), Local::new(2, ValueType::I64)]);
@@ -199,26 +200,26 @@ fn instrument(data: &[u8], instruction_cost: u32, stack_limit: u32) -> (Vec<u8>,
                     Unreachable,
                     End,
                     GetLocal(eff),
-                    I64Const(10),
+                    I64Const(6),
                     I64ShrU,
                     I32WrapI64,
-                    SetLocal(leaf),
+                    SetLocal(line),
                 ]);
-                leaf_barrier(&mut out, leaf, limit, nimp);
+                line_barrier(&mut out, line, limit, nimp);
                 if width > 1 {
                     out.extend([
                         GetLocal(eff),
                         I64Const(width - 1),
                         I64Add,
-                        I64Const(10),
+                        I64Const(6),
                         I64ShrU,
                         I32WrapI64,
                         TeeLocal(last),
-                        GetLocal(leaf),
+                        GetLocal(line),
                         I32Ne,
                         If(BlockType::NoResult),
                     ]);
-                    leaf_barrier(&mut out, last, limit, nimp);
+                    line_barrier(&mut out, last, limit, nimp);
                     out.push(End);
                 }
                 out.extend([GetLocal(addr), GetLocal(val), op.clone()]);

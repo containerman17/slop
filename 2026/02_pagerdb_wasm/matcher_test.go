@@ -109,7 +109,7 @@ func TestMatcher(t *testing.T) {
 			}
 			block := make([]byte, per*40)
 			var execution, commits time.Duration
-			var pages, leaves int64
+			var lines, leaves int64
 			var lastTouches int
 			durations := make([]time.Duration, 0, blocks)
 			var before []byte
@@ -124,23 +124,19 @@ func TestMatcher(t *testing.T) {
 				res := p.Run(context.Background(), Call{Input: block, BlockNumber: uint64(i), Gas: 1 << 50})
 				execution += time.Since(start)
 				if res.Status != 0 {
-					t.Fatalf("block %d status %d gas left %d pages %d", i, res.Status, res.GasLeft, len(res.DirtyLeaves))
+					t.Fatalf("block %d status %d gas left %d lines %d", i, res.Status, res.GasLeft, len(res.DirtyLines))
 				}
 				if hash := fnv(res.Output); hash != golden[i] {
 					t.Fatalf("block %d hash %016x want %016x", i, hash, golden[i])
 				}
-				pages += int64(len(res.DirtyLeaves))
-				lastTouches = len(res.DirtyLeaves)
-				if leafSize >= 1024 {
-					leaves += int64(len(res.DirtyLeaves) * leafSize / 1024)
-				} else {
-					previous := ^uint32(0)
-					for _, unit := range res.DirtyLeaves {
-						leaf := unit * leafSize / 1024
-						if leaf != previous {
-							leaves++
-							previous = leaf
-						}
+				lines += int64(len(res.DirtyLines))
+				lastTouches = len(res.DirtyLines)
+				previous := ^uint32(0)
+				for _, line := range res.DirtyLines {
+					leaf := line * lineSize / 1024
+					if leaf != previous {
+						leaves++
+						previous = leaf
 					}
 				}
 				start = time.Now()
@@ -164,11 +160,11 @@ func TestMatcher(t *testing.T) {
 						changed++
 					}
 				}
-				t.Logf("last block final changed bytes=%d, Touch log bytes=%d, logged old bytes=%d", changed, lastTouches*(32+2*leafSize), lastTouches*leafSize)
+				t.Logf("last block final changed bytes=%d, Touch log bytes=%d, logged old bytes=%d", changed, lastTouches*(32+2*lineSize), lastTouches*lineSize)
 			}
 			sort.Slice(durations, func(i, j int) bool { return durations[i] < durations[j] })
-			t.Logf("log bytes/block=%.0f (32-byte header plus old and new bytes per touch, 56-byte Commit record), dirty 1KiB leaves/block=%.1f, Commit p99 ms=%.3f", 56+float64(pages)*(32+2*leafSize)/float64(blocks), float64(leaves)/float64(blocks), float64(durations[(99*blocks+99)/100-1])/float64(time.Millisecond))
-			t.Logf("single-process M3 diagnostics: %.0f msgs/s execution, %.0f msgs/s including Commit, %.1f dirty tracking units/block, %.3f Commit ms/block", float64(per*blocks)/execution.Seconds(), float64(per*blocks)/(execution+commits).Seconds(), float64(pages)/float64(blocks), commits.Seconds()*1000/float64(blocks))
+			t.Logf("log bytes/block=%.0f (32-byte header plus old and new bytes per touch, 56-byte Commit record), dirty 1KiB leaves/block=%.1f, Commit p99 ms=%.3f", 56+float64(lines)*(32+2*lineSize)/float64(blocks), float64(leaves)/float64(blocks), float64(durations[(99*blocks+99)/100-1])/float64(time.Millisecond))
+			t.Logf("single-process M3 diagnostics: %.0f msgs/s execution, %.0f msgs/s including Commit, %.1f dirty tracking units/block, %.3f Commit ms/block", float64(per*blocks)/execution.Seconds(), float64(per*blocks)/(execution+commits).Seconds(), float64(lines)/float64(blocks), commits.Seconds()*1000/float64(blocks))
 		})
 	}
 }

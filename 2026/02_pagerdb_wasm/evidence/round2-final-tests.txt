@@ -1,0 +1,62 @@
+=== RUN   TestDiagnostics
+    diagnostic_test.go:23: opt-in diagnostics
+--- SKIP: TestDiagnostics (0.00s)
+=== RUN   TestBarrierAndBitmap
+--- PASS: TestBarrierAndBitmap (1.54s)
+=== RUN   TestRevert
+=== RUN   TestRevert/1
+=== RUN   TestRevert/2
+=== RUN   TestRevert/3
+--- PASS: TestRevert (0.46s)
+    --- PASS: TestRevert/1 (0.16s)
+    --- PASS: TestRevert/2 (0.15s)
+    --- PASS: TestRevert/3 (0.14s)
+=== RUN   TestDeployRejects
+=== RUN   TestDeployRejects/clock
+=== RUN   TestDeployRejects/float
+=== RUN   TestDeployRejects/simd
+=== RUN   TestDeployRejects/bulk
+=== RUN   TestDeployRejects/touch
+--- PASS: TestDeployRejects (0.52s)
+    --- PASS: TestDeployRejects/clock (0.10s)
+    --- PASS: TestDeployRejects/float (0.10s)
+    --- PASS: TestDeployRejects/simd (0.10s)
+    --- PASS: TestDeployRejects/bulk (0.10s)
+    --- PASS: TestDeployRejects/touch (0.09s)
+=== RUN   TestTrapBoundaries
+=== RUN   TestTrapBoundaries/reserved
+=== RUN   TestTrapBoundaries/overflow
+=== RUN   TestTrapBoundaries/stack
+--- PASS: TestTrapBoundaries (0.39s)
+    --- PASS: TestTrapBoundaries/reserved (0.12s)
+    --- PASS: TestTrapBoundaries/overflow (0.13s)
+    --- PASS: TestTrapBoundaries/stack (0.14s)
+=== RUN   TestCache
+--- PASS: TestCache (0.14s)
+=== RUN   TestLineGasRevertsAtCallEnd
+--- PASS: TestLineGasRevertsAtCallEnd (0.13s)
+=== RUN   TestGlobalsAreScratch
+--- PASS: TestGlobalsAreScratch (0.14s)
+=== RUN   TestABI
+--- PASS: TestABI (0.13s)
+=== RUN   TestMatcher
+=== RUN   TestMatcher/0
+    matcher_test.go:166: log bytes/block=33847224 (32-byte header plus old and new bytes per touch, 56-byte Commit record), dirty 1KiB leaves/block=37581.8, Commit p99 ms=42.293
+    matcher_test.go:167: single-process M3 diagnostics: 915295 msgs/s execution, 727475 msgs/s including Commit, 211544.8 dirty tracking units/block, 14.104 Commit ms/block
+=== RUN   TestMatcher/1
+    matcher_test.go:166: log bytes/block=33847224 (32-byte header plus old and new bytes per touch, 56-byte Commit record), dirty 1KiB leaves/block=37581.8, Commit p99 ms=43.191
+    matcher_test.go:167: single-process M3 diagnostics: 988955 msgs/s execution, 778428 msgs/s including Commit, 211544.8 dirty tracking units/block, 13.674 Commit ms/block
+--- PASS: TestMatcher (4.12s)
+    --- PASS: TestMatcher/0 (1.77s)
+    --- PASS: TestMatcher/1 (1.85s)
+=== RUN   TestExternalMemory
+--- PASS: TestExternalMemory (0.04s)
+=== RUN   TestInlineMeterMatchesHelper
+--- PASS: TestInlineMeterMatchesHelper (0.41s)
+=== RUN   TestCommitProfile
+    profile_test.go:20: opt-in CPU profile
+--- SKIP: TestCommitProfile (0.00s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	8.497s
+?   	github.com/containerman17/slop/2026/02_pagerdb_wasm/cmd/fixture	[no test files]
+?   	github.com/containerman17/slop/2026/02_pagerdb_wasm/internal/fixture	[no test files]

@@ -26,10 +26,11 @@ import (
 const (
 	InstructionGas        = 1
 	HostGas               = 10
-	DirtyLeafGas          = 100
+	DirtyLineGas          = 100
 	StackLimit            = 65536
 	TrapStatus     uint32 = math.MaxUint32
-	leafSize              = pagerdb.LeafSize
+	lineSize              = 64
+	bitmapBytes           = 1 << 20
 )
 
 type regionMemory []byte
@@ -76,15 +77,15 @@ type Call struct {
 	Gas                    uint64
 }
 type Result struct {
-	Status      uint32
-	Output      []byte
-	Logs        [][]byte
-	GasLeft     uint64
-	DirtyLeaves []uint32
+	Status     uint32
+	Output     []byte
+	Logs       [][]byte
+	GasLeft    uint64
+	DirtyLines []uint32
 }
 
 func New(ctx context.Context, db *pagerdb.DB) (*Host, error) {
-	h := &Host{db: db, rt: wazero.NewRuntimeWithConfig(ctx, wazero.NewRuntimeConfigCompiler().WithMemoryLimitPages(8193)), cache: make(map[[32]byte]*artifact)}
+	h := &Host{db: db, rt: wazero.NewRuntimeWithConfig(ctx, wazero.NewRuntimeConfigCompiler().WithMemoryLimitPages(8192+bitmapBytes/65536)), cache: make(map[[32]byte]*artifact)}
 	b := h.rt.NewHostModuleBuilder("env")
 	add := func(name string, params, results []api.ValueType, fn func(*Program, []uint64)) {
 		b.NewFunctionBuilder().WithGoFunction(api.GoFunc(func(_ context.Context, s []uint64) {
@@ -191,7 +192,7 @@ func (h *Host) Deploy(ctx context.Context, code []byte) (*Program, error) {
 		return nil, err
 	}
 	mark := h.db.Mark()
-	r, err := h.db.Alloc(int(a.limit) + 65536)
+	r, err := h.db.Alloc(int(a.limit) + bitmapBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -205,7 +206,7 @@ func (h *Host) Deploy(ctx context.Context, code []byte) (*Program, error) {
 			h.db.Touch(r, d[0], d[1])
 		}
 	}
-	ctx = experimental.WithMemoryAllocator(ctx, experimental.MemoryAllocatorFunc(func(_, _ uint64) experimental.LinearMemory { return regionMemory(mem[:int(a.limit)+65536]) }))
+	ctx = experimental.WithMemoryAllocator(ctx, experimental.MemoryAllocatorFunc(func(_, _ uint64) experimental.LinearMemory { return regionMemory(mem[:int(a.limit)+bitmapBytes]) }))
 	m, err := h.rt.InstantiateModule(ctx, a.module, wazero.NewModuleConfig().WithName("").WithStartFunctions())
 	if err != nil {
 		h.db.Undo(mark)
@@ -236,23 +237,23 @@ func (p *Program) read(off, n uint32) []byte {
 	}
 	return p.memory[off:end]
 }
-func (p *Program) touch(leaf uint32) {
-	if leaf >= p.limit/leafSize {
+func (p *Program) touch(line uint32) {
+	if line >= p.limit/lineSize {
 		panic("reserved bitmap store")
 	}
-	off, bit := p.limit+leaf/8, byte(1<<(leaf%8))
+	off, bit := p.limit+line/8, byte(1<<(line%8))
 	if p.memory[off]&bit != 0 {
 		return
 	}
-	p.host.db.Touch(p.Region, int(leaf)*leafSize, leafSize)
-	p.result.DirtyLeaves = append(p.result.DirtyLeaves, leaf)
+	p.host.db.Touch(p.Region, int(line)*lineSize, lineSize)
+	p.result.DirtyLines = append(p.result.DirtyLines, line)
 	p.memory[off] |= bit
 }
 func (p *Program) write(off uint32, b []byte) {
 	dst := p.read(off, uint32(len(b)))
 	if len(b) > 0 {
-		for leaf := off / leafSize; leaf <= uint32((uint64(off)+uint64(len(b))-1)/leafSize); leaf++ {
-			p.touch(leaf)
+		for line := off / lineSize; line <= uint32((uint64(off)+uint64(len(b))-1)/lineSize); line++ {
+			p.touch(line)
 		}
 	}
 	copy(dst, b)
@@ -279,8 +280,8 @@ func (p *Program) Run(ctx context.Context, args Call) (res Result) {
 	defer func() {
 		p.host.active = nil
 		// A crash mid-call can leave bitmap bytes on disk; recovery detects the root mismatch and the node resyncs, as with PagerDB power loss.
-		for _, leaf := range p.result.DirtyLeaves {
-			p.memory[p.limit+leaf/8] &= ^byte(1 << (leaf % 8))
+		for _, line := range p.result.DirtyLines {
+			p.memory[p.limit+line/8] &= ^byte(1 << (line % 8))
 		}
 		if p.result.Status != 0 {
 			p.host.db.Undo(mark)
@@ -289,7 +290,7 @@ func (p *Program) Run(ctx context.Context, args Call) (res Result) {
 			}
 			p.result.Logs = nil
 		}
-		sort.Slice(p.result.DirtyLeaves, func(i, j int) bool { return p.result.DirtyLeaves[i] < p.result.DirtyLeaves[j] })
+		sort.Slice(p.result.DirtyLines, func(i, j int) bool { return p.result.DirtyLines[i] < p.result.DirtyLines[j] })
 		res = p.result
 		p.args = Call{}
 		p.result = Result{}
@@ -310,7 +311,7 @@ func (p *Program) Run(ctx context.Context, args Call) (res Result) {
 		}
 	}
 	left := p.gas.Get()
-	cost := uint64(len(p.result.DirtyLeaves)) * DirtyLeafGas
+	cost := uint64(len(p.result.DirtyLines)) * DirtyLineGas
 	if left > math.MaxInt64 || left < cost {
 		p.result.Status = TrapStatus
 		p.result.Output = nil
