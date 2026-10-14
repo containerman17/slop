@@ -1,0 +1,33 @@
+File: 02_pagerdb_wasm.test
+Type: cpu
+Time: 2026-10-15 01:07:41 JST
+Duration: 51.59s, Total samples = 118.37s (229.43%)
+Showing nodes accounting for 62.48s, 52.78% of 118.37s total
+Dropped 294 nodes (cum <= 0.59s)
+Showing top 25 nodes out of 142
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%     64.08s 54.14%  github.com/containerman17/pagerdb.(*DB).parallelSeal.func2
+         0     0%     0%     40.72s 34.40%  github.com/containerman17/pagerdb.(*DB).sealSection
+    20.62s 17.42% 17.42%     40.72s 34.40%  github.com/containerman17/pagerdb.(*DB).sealSection.func2
+    25.35s 21.42% 38.84%     25.35s 21.42%  syscall.rawsyscalln
+         0     0% 38.84%     25.35s 21.42%  syscall.syscalln
+     0.10s 0.084% 38.92%     23.37s 19.74%  github.com/containerman17/pagerdb.diskSortRuns
+         0     0% 38.92%     23.36s 19.73%  github.com/containerman17/pagerdb.diskSortPiecesBuffers
+         0     0% 38.92%     21.02s 17.76%  syscall.syscall
+         0     0% 38.92%     20.05s 16.94%  internal/poll.ignoringEINTRIO (inline)
+    16.23s 13.71% 52.63%     16.23s 13.71%  runtime._ExternalCode
+         0     0% 52.63%     16.23s 13.71%  runtime._System
+         0     0% 52.63%     15.17s 12.82%  os.(*File).Write
+     0.01s 0.0084% 52.64%     15.17s 12.82%  os.(*File).write (inline)
+         0     0% 52.64%     15.16s 12.81%  internal/poll.(*FD).Write
+         0     0% 52.64%     15.16s 12.81%  syscall.Write (inline)
+         0     0% 52.64%     15.16s 12.81%  syscall.write
+     0.08s 0.068% 52.71%     14.42s 12.18%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestBarrierDiagnostics.func2
+         0     0% 52.71%     14.42s 12.18%  testing.tRunner
+     0.09s 0.076% 52.78%     13.89s 11.73%  bufio.(*Writer).Write
+         0     0% 52.78%     13.54s 11.44%  runtime/pprof.Do
+         0     0% 52.78%     13.02s 11.00%  github.com/containerman17/pagerdb.(*DB).sealSection.func2.4
+         0     0% 52.78%     12.03s 10.16%  github.com/klauspost/compress/zstd.(*Encoder).EncodeAll
+         0     0% 52.78%     11.98s 10.12%  github.com/klauspost/compress/zstd.(*Encoder).encodeAll
+         0     0% 52.78%     10.42s  8.80%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).Run
+         0     0% 52.78%     10.42s  8.80%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestBarrierDiagnostics.func2.8

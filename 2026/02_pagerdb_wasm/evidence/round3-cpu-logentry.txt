@@ -1,0 +1,22 @@
+Total: 118.37s
+ROUTINE ======================== github.com/containerman17/pagerdb.(*DB).logEntry in /Users/ilia/go/pkg/mod/github.com/containerman17/pagerdb@v0.0.0-20261014093015-af2c4c95bb9d/log.go
+     110ms      4.56s (flat, cum)  3.85% of Total
+         .          .    382:func (db *DB) logEntry(r Region, fo, n uint64, b []byte) int64 {
+      10ms      120ms    383:	pos := db.reserve(entryHdr + 2*int64(n))
+      30ms       30ms    384:	e := db.cur.m[pos : pos+entryHdr+2*int64(n)]
+      10ms      450ms    385:	le.PutUint32(e[8:], uint32(n))
+         .          .    386:	le.PutUint32(e[12:], uint32(r))
+         .       40ms    387:	le.PutUint64(e[16:], db.version+1)
+      10ms       80ms    388:	le.PutUint64(e[24:], fo)
+      30ms      3.74s    389:	copy(e[entryHdr:entryHdr+n], db.state[fo:])
+      10ms       10ms    390:	e[0] = 'U'
+         .          .    391:	if b != nil {
+         .          .    392:		copy(db.state[fo:fo+n], b)
+         .          .    393:	}
+         .       80ms    394:	db.markDirty(fo, n)
+      10ms       10ms    395:	db.pending = append(db.pending, pos)
+         .          .    396:	return pos
+         .          .    397:}
+         .          .    398:
+         .          .    399:// put retains the first undo image of an exact range since the last Mark.
+         .          .    400:// Collisions only lose deduplication opportunities. They never skip an undo image.

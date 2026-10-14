@@ -1,0 +1,24 @@
+=== RUN   TestMatcher
+=== RUN   TestMatcher/0
+    matcher_test.go:153: run 0: 100/600 native hashes and roots checked
+    matcher_test.go:153: run 0: 200/600 native hashes and roots checked
+    matcher_test.go:153: run 0: 300/600 native hashes and roots checked
+    matcher_test.go:153: run 0: 400/600 native hashes and roots checked
+    matcher_test.go:153: run 0: 500/600 native hashes and roots checked
+    matcher_test.go:153: run 0: 600/600 native hashes and roots checked
+    matcher_test.go:166: log bytes/block=23861959 (32-byte header plus old and new bytes per touch, 56-byte Commit record), dirty 1KiB leaves/block=30675.0, Commit p99 ms=116.434
+    matcher_test.go:167: single-process M3 diagnostics: 806122 msgs/s execution, 610344 msgs/s including Commit, 149136.9 dirty tracking units/block, 19.896 Commit ms/block
+=== RUN   TestMatcher/1
+    matcher_test.go:153: run 1: 100/600 native hashes and roots checked
+    matcher_test.go:153: run 1: 200/600 native hashes and roots checked
+    matcher_test.go:153: run 1: 300/600 native hashes and roots checked
+    matcher_test.go:153: run 1: 400/600 native hashes and roots checked
+    matcher_test.go:153: run 1: 500/600 native hashes and roots checked
+    matcher_test.go:153: run 1: 600/600 native hashes and roots checked
+    matcher_test.go:166: log bytes/block=23861959 (32-byte header plus old and new bytes per touch, 56-byte Commit record), dirty 1KiB leaves/block=30675.0, Commit p99 ms=115.085
+    matcher_test.go:167: single-process M3 diagnostics: 813770 msgs/s execution, 601742 msgs/s including Commit, 149136.9 dirty tracking units/block, 21.650 Commit ms/block
+--- PASS: TestMatcher (113.11s)
+    --- PASS: TestMatcher/0 (54.56s)
+    --- PASS: TestMatcher/1 (55.65s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	113.273s

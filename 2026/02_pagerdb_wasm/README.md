@@ -154,3 +154,8 @@ tracking. Both original and generated fixtures improved on execution plus Commit
 versus 1 KiB tracking. See [the measured stages](evidence/round2.md) for every row,
 Commit mean and p99, log accounting, correctness checks, and limits. The earlier
 4 KiB figures in the evidence directory describe the previous implementation.
+
+Opt-in `TestBarrierDiagnostics` separates the inline barrier, miss callback and
+PagerDB Touch with unsafe diagnostic controls. Set `PAGERWASM_BARRIER_DIAGNOSTICS=1`
+and use the same fixture and Mac lock rules. See [the barrier diagnosis](evidence/round3.md)
+for control definitions, CPU profiling, stack/heap counts and proposed changes.

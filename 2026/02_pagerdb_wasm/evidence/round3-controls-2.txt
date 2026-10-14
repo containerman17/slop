@@ -1,0 +1,64 @@
+=== RUN   TestBarrierDiagnostics
+=== RUN   TestBarrierDiagnostics/full
+    barrier_diagnostic_test.go:197: layout: shadow stack [0,1048576), static [1048576,1051136), heap [1051136,536870912); data_end=1051112
+    barrier_diagnostic_test.go:272: 100/600 output hashes checked
+    barrier_diagnostic_test.go:272: 200/600 output hashes checked
+    barrier_diagnostic_test.go:272: 300/600 output hashes checked
+    barrier_diagnostic_test.go:272: 400/600 output hashes checked
+    barrier_diagnostic_test.go:272: 500/600 output hashes checked
+    barrier_diagnostic_test.go:272: 600/600 output hashes checked
+    barrier_diagnostic_test.go:277: single-process M3 diagnostic mode=full blocks=600 guest_ms=50.526 input_ms=1.794 end_ms=10.195 scan_ms=0.000 Run_ms=60.721 msgs/s=823436 Commit_ms=21.558
+    barrier_diagnostic_test.go:278: dirty_lines/block=149136.893 stack_lines/block=29.863 nonstack_lines/block=149107.030 guest_touch_calls/block=117937.978 ABI_first_touches/block=31198.915 stack_top=1048576 min_dirty_stack_address=1045440 first/last_stack_lines=25/33
+    barrier_diagnostic_test.go:279: static_lines/block=8.353 heap_lines/block=149098.677 first_stack_misses_in_active_frame=17918 outside_frame=0
+=== RUN   TestBarrierDiagnostics/host
+    barrier_diagnostic_test.go:197: layout: shadow stack [0,1048576), static [1048576,1051136), heap [1051136,536870912); data_end=1051112
+    barrier_diagnostic_test.go:272: 100/600 output hashes checked
+    barrier_diagnostic_test.go:272: 200/600 output hashes checked
+    barrier_diagnostic_test.go:272: 300/600 output hashes checked
+    barrier_diagnostic_test.go:272: 400/600 output hashes checked
+    barrier_diagnostic_test.go:272: 500/600 output hashes checked
+    barrier_diagnostic_test.go:272: 600/600 output hashes checked
+    barrier_diagnostic_test.go:277: single-process M3 diagnostic mode=host blocks=600 guest_ms=33.339 input_ms=0.133 end_ms=9.001 scan_ms=0.000 Run_ms=42.340 msgs/s=1180919 Commit_ms=0.000
+    barrier_diagnostic_test.go:278: dirty_lines/block=149136.893 stack_lines/block=29.863 nonstack_lines/block=149107.030 guest_touch_calls/block=117937.978 ABI_first_touches/block=31198.915 stack_top=1048576 min_dirty_stack_address=1045440 first/last_stack_lines=25/33
+    barrier_diagnostic_test.go:279: static_lines/block=8.353 heap_lines/block=149098.677 first_stack_misses_in_active_frame=0 outside_frame=0
+=== RUN   TestBarrierDiagnostics/empty
+    barrier_diagnostic_test.go:197: layout: shadow stack [0,1048576), static [1048576,1051136), heap [1051136,536870912); data_end=1051112
+    barrier_diagnostic_test.go:272: 100/600 output hashes checked
+    barrier_diagnostic_test.go:272: 200/600 output hashes checked
+    barrier_diagnostic_test.go:272: 300/600 output hashes checked
+    barrier_diagnostic_test.go:272: 400/600 output hashes checked
+    barrier_diagnostic_test.go:272: 500/600 output hashes checked
+    barrier_diagnostic_test.go:272: 600/600 output hashes checked
+    barrier_diagnostic_test.go:277: single-process M3 diagnostic mode=empty blocks=600 guest_ms=33.607 input_ms=0.128 end_ms=0.468 scan_ms=1.108 Run_ms=34.075 msgs/s=1467340 Commit_ms=0.000
+    barrier_diagnostic_test.go:278: dirty_lines/block=149136.893 stack_lines/block=29.863 nonstack_lines/block=149107.030 guest_touch_calls/block=117937.978 ABI_first_touches/block=31198.915 stack_top=1048576 min_dirty_stack_address=1045440 first/last_stack_lines=25/33
+    barrier_diagnostic_test.go:279: static_lines/block=8.353 heap_lines/block=149098.677 first_stack_misses_in_active_frame=0 outside_frame=0
+=== RUN   TestBarrierDiagnostics/stub
+    barrier_diagnostic_test.go:197: layout: shadow stack [0,1048576), static [1048576,1051136), heap [1051136,536870912); data_end=1051112
+    barrier_diagnostic_test.go:272: 100/600 output hashes checked
+    barrier_diagnostic_test.go:272: 200/600 output hashes checked
+    barrier_diagnostic_test.go:272: 300/600 output hashes checked
+    barrier_diagnostic_test.go:272: 400/600 output hashes checked
+    barrier_diagnostic_test.go:272: 500/600 output hashes checked
+    barrier_diagnostic_test.go:272: 600/600 output hashes checked
+    barrier_diagnostic_test.go:277: single-process M3 diagnostic mode=stub blocks=600 guest_ms=26.719 input_ms=0.127 end_ms=0.472 scan_ms=1.114 Run_ms=27.191 msgs/s=1838861 Commit_ms=0.000
+    barrier_diagnostic_test.go:278: dirty_lines/block=149136.893 stack_lines/block=29.863 nonstack_lines/block=149107.030 guest_touch_calls/block=0.000 ABI_first_touches/block=31198.915 stack_top=1048576 min_dirty_stack_address=1045440 first/last_stack_lines=25/33
+    barrier_diagnostic_test.go:279: static_lines/block=8.353 heap_lines/block=149098.677 first_stack_misses_in_active_frame=0 outside_frame=0
+=== RUN   TestBarrierDiagnostics/metered
+    barrier_diagnostic_test.go:197: layout: shadow stack [0,1048576), static [1048576,1051136), heap [1051136,536870912); data_end=1051112
+    barrier_diagnostic_test.go:272: 100/600 output hashes checked
+    barrier_diagnostic_test.go:272: 200/600 output hashes checked
+    barrier_diagnostic_test.go:272: 300/600 output hashes checked
+    barrier_diagnostic_test.go:272: 400/600 output hashes checked
+    barrier_diagnostic_test.go:272: 500/600 output hashes checked
+    barrier_diagnostic_test.go:272: 600/600 output hashes checked
+    barrier_diagnostic_test.go:277: single-process M3 diagnostic mode=metered blocks=600 guest_ms=16.173 input_ms=0.037 end_ms=0.001 scan_ms=0.000 Run_ms=16.174 msgs/s=3091407 Commit_ms=0.000
+    barrier_diagnostic_test.go:278: dirty_lines/block=0.000 stack_lines/block=0.000 nonstack_lines/block=0.000 guest_touch_calls/block=0.000 ABI_first_touches/block=0.000 stack_top=1048576 min_dirty_stack_address=1048576 first/last_stack_lines=0/0
+    barrier_diagnostic_test.go:279: static_lines/block=0.000 heap_lines/block=0.000 first_stack_misses_in_active_frame=0 outside_frame=0
+--- PASS: TestBarrierDiagnostics (138.00s)
+    --- PASS: TestBarrierDiagnostics/full (56.76s)
+    --- PASS: TestBarrierDiagnostics/host (26.84s)
+    --- PASS: TestBarrierDiagnostics/empty (21.71s)
+    --- PASS: TestBarrierDiagnostics/stub (17.59s)
+    --- PASS: TestBarrierDiagnostics/metered (10.24s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	138.432s

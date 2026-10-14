@@ -1,0 +1,45 @@
+File: 02_pagerdb_wasm.test
+Type: cpu
+Time: 2026-10-15 01:07:41 JST
+Duration: 51.59s, Total samples = 118.37s (229.43%)
+Active filters:
+   tagfocus=phase=guest
+Showing nodes accounting for 22.26s, 18.81% of 118.37s total
+Dropped 48 nodes (cum <= 0.59s)
+Showing top 35 nodes out of 41
+      flat  flat%   sum%        cum   cum%
+    16.23s 13.71% 13.71%     16.23s 13.71%  runtime._ExternalCode
+         0     0% 13.71%     16.23s 13.71%  runtime._System
+         0     0% 13.71%      6.03s  5.09%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).Run
+         0     0% 13.71%      6.03s  5.09%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*barrierTimedCall).Call
+         0     0% 13.71%      6.03s  5.09%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*barrierTimedCall).Call.func1
+         0     0% 13.71%      6.03s  5.09%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestBarrierDiagnostics.func2
+         0     0% 13.71%      6.03s  5.09%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestBarrierDiagnostics.func2.8
+         0     0% 13.71%      6.03s  5.09%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).Call
+     0.20s  0.17% 13.88%      6.03s  5.09%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).callWithStack
+         0     0% 13.88%      6.03s  5.09%  runtime/pprof.Do
+         0     0% 13.88%      6.03s  5.09%  testing.tRunner
+     0.02s 0.017% 13.90%      5.77s  4.87%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).callWithStack.func2
+     0.01s 0.0084% 13.91%      5.75s  4.86%  github.com/tetratelabs/wazero/api.GoFunc.Call
+     0.02s 0.017% 13.92%      5.74s  4.85%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestBarrierDiagnostics.func2.2.1
+     0.18s  0.15% 14.07%      5.46s  4.61%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).touch
+     0.03s 0.025% 14.10%      5.34s  4.51%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestBarrierDiagnostics.func2.6
+     0.08s 0.068% 14.17%      4.83s  4.08%  github.com/containerman17/pagerdb.(*DB).Touch
+     0.03s 0.025% 14.19%      4.64s  3.92%  github.com/containerman17/pagerdb.loc.each
+     0.05s 0.042% 14.24%      4.61s  3.89%  github.com/containerman17/pagerdb.(*DB).Touch.func1
+     0.11s 0.093% 14.33%      4.56s  3.85%  github.com/containerman17/pagerdb.(*DB).logEntry
+     3.79s  3.20% 17.53%      3.79s  3.20%  runtime.memmove
+         0     0% 17.53%      1.53s  1.29%  runtime.systemstack
+         0     0% 17.53%      0.90s  0.76%  runtime.notewakeup
+     0.90s  0.76% 18.29%      0.90s  0.76%  runtime.pthread_cond_signal
+         0     0% 18.29%      0.90s  0.76%  runtime.ready
+         0     0% 18.29%      0.90s  0.76%  runtime.semawakeup
+         0     0% 18.29%      0.90s  0.76%  runtime.send.goready.func1
+         0     0% 18.29%      0.90s  0.76%  runtime.startm
+         0     0% 18.29%      0.90s  0.76%  runtime.wakep
+         0     0% 18.29%      0.63s  0.53%  runtime.(*mheap).alloc.func1
+         0     0% 18.29%      0.63s  0.53%  runtime.(*mheap).allocSpan
+     0.61s  0.52% 18.81%      0.61s  0.52%  runtime.madvise
+         0     0% 18.81%      0.61s  0.52%  runtime.sysUsed (inline)
+         0     0% 18.81%      0.61s  0.52%  runtime.sysUsedOS (inline)
+         0     0% 18.81%      0.51s  0.43%  runtime.growslice

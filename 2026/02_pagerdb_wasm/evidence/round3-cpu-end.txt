@@ -1,0 +1,27 @@
+File: 02_pagerdb_wasm.test
+Type: cpu
+Time: 2026-10-15 01:07:41 JST
+Duration: 51.59s, Total samples = 118.37s (229.43%)
+Active filters:
+   tagfocus=phase=run
+Showing nodes accounting for 4.35s, 3.67% of 118.37s total
+Dropped 8 nodes (cum <= 0.59s)
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%      4.39s  3.71%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).Run
+     0.03s 0.025% 0.025%      4.39s  3.71%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).Run.func1
+         0     0% 0.025%      4.39s  3.71%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestBarrierDiagnostics.func2
+         0     0% 0.025%      4.39s  3.71%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestBarrierDiagnostics.func2.8
+         0     0% 0.025%      4.39s  3.71%  runtime/pprof.Do
+         0     0% 0.025%      4.39s  3.71%  testing.tRunner
+         0     0% 0.025%      4.35s  3.67%  sort.Slice
+     0.03s 0.025% 0.051%      4.34s  3.67%  sort.pdqsort_func
+     2.13s  1.80%  1.85%      3.07s  2.59%  sort.partition_func
+     1.07s   0.9%  2.75%      1.08s  0.91%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).Run.func1.1
+     0.32s  0.27%  3.02%      0.56s  0.47%  sort.insertionSort_func
+     0.16s  0.14%  3.16%      0.45s  0.38%  sort.partialInsertionSort_func
+     0.43s  0.36%  3.52%      0.43s  0.36%  internal/reflectlite.Swapper.func6
+     0.02s 0.017%  3.54%      0.17s  0.14%  sort.choosePivot_func
+     0.05s 0.042%  3.58%      0.15s  0.13%  sort.median_func
+     0.07s 0.059%  3.64%      0.10s 0.084%  sort.order2_func (inline)
+         0     0%  3.64%      0.08s 0.068%  sort.medianAdjacent_func (inline)
+     0.04s 0.034%  3.67%      0.06s 0.051%  sort.reverseRange_func

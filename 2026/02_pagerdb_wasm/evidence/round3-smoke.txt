@@ -1,0 +1,24 @@
+=== RUN   TestBarrierDiagnostics
+=== RUN   TestBarrierDiagnostics/metered
+    barrier_diagnostic_test.go:250: single-process M3 diagnostic mode=metered blocks=20 guest_ms=14.981 input_ms=0.035 end_ms=0.002 scan_ms=0.000 Run_ms=14.983 msgs/s=3337139 Commit_ms=0.000
+    barrier_diagnostic_test.go:251: dirty_lines/block=0.000 stack_lines/block=0.000 nonstack_lines/block=0.000 guest_touch_calls/block=0.000 ABI_first_touches/block=0.000 stack_top=1048576 min_dirty_stack_address=1048576 first/last_stack_lines=0/0
+=== RUN   TestBarrierDiagnostics/stub
+    barrier_diagnostic_test.go:250: single-process M3 diagnostic mode=stub blocks=20 guest_ms=23.681 input_ms=0.116 end_ms=0.660 scan_ms=1.287 Run_ms=24.341 msgs/s=2054162 Commit_ms=0.000
+    barrier_diagnostic_test.go:251: dirty_lines/block=211544.800 stack_lines/block=31.450 nonstack_lines/block=211513.350 guest_touch_calls/block=0.000 ABI_first_touches/block=29688.450 stack_top=1048576 min_dirty_stack_address=1045952 first/last_stack_lines=28/32
+=== RUN   TestBarrierDiagnostics/empty
+    barrier_diagnostic_test.go:250: single-process M3 diagnostic mode=empty blocks=20 guest_ms=32.724 input_ms=0.122 end_ms=0.666 scan_ms=1.313 Run_ms=33.389 msgs/s=1497477 Commit_ms=0.000
+    barrier_diagnostic_test.go:251: dirty_lines/block=211544.800 stack_lines/block=31.450 nonstack_lines/block=211513.350 guest_touch_calls/block=181856.350 ABI_first_touches/block=29688.450 stack_top=1048576 min_dirty_stack_address=1045952 first/last_stack_lines=28/32
+=== RUN   TestBarrierDiagnostics/host
+    barrier_diagnostic_test.go:250: single-process M3 diagnostic mode=host blocks=20 guest_ms=34.724 input_ms=0.122 end_ms=11.370 scan_ms=0.000 Run_ms=46.094 msgs/s=1084743 Commit_ms=0.000
+    barrier_diagnostic_test.go:251: dirty_lines/block=211544.800 stack_lines/block=31.450 nonstack_lines/block=211513.350 guest_touch_calls/block=181856.350 ABI_first_touches/block=29688.450 stack_top=1048576 min_dirty_stack_address=1045952 first/last_stack_lines=28/32
+=== RUN   TestBarrierDiagnostics/full
+    barrier_diagnostic_test.go:250: single-process M3 diagnostic mode=full blocks=20 guest_ms=57.987 input_ms=0.637 end_ms=11.405 scan_ms=0.000 Run_ms=69.391 msgs/s=720553 Commit_ms=14.525
+    barrier_diagnostic_test.go:251: dirty_lines/block=211544.800 stack_lines/block=31.450 nonstack_lines/block=211513.350 guest_touch_calls/block=181856.350 ABI_first_touches/block=29688.450 stack_top=1048576 min_dirty_stack_address=1045952 first/last_stack_lines=28/32
+--- PASS: TestBarrierDiagnostics (8.84s)
+    --- PASS: TestBarrierDiagnostics/metered (0.59s)
+    --- PASS: TestBarrierDiagnostics/stub (0.79s)
+    --- PASS: TestBarrierDiagnostics/empty (0.98s)
+    --- PASS: TestBarrierDiagnostics/host (1.20s)
+    --- PASS: TestBarrierDiagnostics/full (2.02s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	8.959s
