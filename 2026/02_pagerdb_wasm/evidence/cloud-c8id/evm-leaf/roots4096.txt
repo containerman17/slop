@@ -1,0 +1,10 @@
+=== RUN   TestEVMSameSeedRoot
+=== RUN   TestEVMSameSeedRoot/sigma_0
+=== RUN   TestEVMSameSeedRoot/sigma_20
+=== RUN   TestEVMSameSeedRoot/sigma_2
+--- PASS: TestEVMSameSeedRoot (0.06s)
+    --- PASS: TestEVMSameSeedRoot/sigma_0 (0.02s)
+    --- PASS: TestEVMSameSeedRoot/sigma_20 (0.02s)
+    --- PASS: TestEVMSameSeedRoot/sigma_2 (0.02s)
+PASS
+ok  	github.com/containerman17/pagerdb	0.062s

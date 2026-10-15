@@ -1,0 +1,9 @@
+2026-10-15 16:49:28 JST
+goos: linux
+goarch: amd64
+pkg: github.com/containerman17/pagerdb
+cpu: Intel(R) Xeon(R) 6975P-C
+BenchmarkEVM/uniform-16         	     200	  26069318 ns/op	 143622784 Go-HeapAlloc-B	  53305344 Go-HeapIdle-B	 145793024 Go-HeapInuse-B	   5136384 Go-HeapReleased-B	1363988480 RSS-B	        38.36 blocks/s	     41214 dirty-leaves/block	   4466208 dirty-leaves/commit-s	      1163 drain-ms	    606324 epoch-B/block	   3472629 live-log-B/block	        19.89 p50-block-ms	         9.155 p50-commit-ms	        10.71 p50-write-ms	        29.65 p99-block-ms	        10.15 p99-commit-ms	        14.99 p99-write-ms	        32.00 retained-versions	         1.000 sealed-epochs	     49382 unique-slots/block	   1917964 writes/s
+PASS
+ok  	github.com/containerman17/pagerdb	5.872s
+2026-10-15 16:49:35 JST
