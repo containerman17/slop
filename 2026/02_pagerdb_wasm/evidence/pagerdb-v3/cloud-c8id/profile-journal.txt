@@ -1,0 +1,32 @@
+Total: 62.92s
+ROUTINE ======================== github.com/containerman17/pagerdb.(*diskWriter).append in /mnt/nvme/pagerdb-diag/disk.go
+         0      3.49s (flat, cum)  5.55% of Total
+         .          .    298:func (d *diskWriter) append(b *block) error {
+         .          .    299:	start := time.Now()
+         .          .    300:	defer func() { d.db.diag[1].Add(time.Since(start).Nanoseconds()) }()
+         .          .    301:	// Header: magic, frame bytes, version, parent version, root, undo bytes,
+         .          .    302:	// flags (1 = rewind), reserved. Footer CRC-32C covers header and undo.
+         .      680ms    303:	record := make([]byte, 88, 88+len(b.undo)+4)
+         .          .    304:	copy(record, "PGJNL003")
+         .          .    305:	le.PutUint64(record[8:], uint64(88+len(b.undo)+4))
+         .          .    306:	le.PutUint64(record[16:], b.version)
+         .          .    307:	le.PutUint64(record[24:], b.parent)
+         .          .    308:	copy(record[32:64], b.root[:])
+         .          .    309:	le.PutUint64(record[64:], uint64(len(b.undo)))
+         .          .    310:	if b.rewind {
+         .          .    311:		le.PutUint64(record[72:], 1)
+         .          .    312:	}
+         .      800ms    313:	record = append(record, b.undo...)
+         .      460ms    314:	record = le.AppendUint32(record, crc32.Checksum(record, crcTable))
+         .          .    315:	if d.journalBytes > 0 && d.journalBytes+int64(len(record)) > d.db.o.EpochBytes {
+         .          .    316:		if err := d.rotate(); err != nil {
+         .          .    317:			return err
+         .          .    318:		}
+         .          .    319:	}
+         .          .    320:	writeStart := time.Now()
+         .      1.55s    321:	n, err := d.journal.Write(record)
+         .          .    322:	d.db.diag[2].Add(time.Since(writeStart).Nanoseconds())
+         .          .    323:	d.db.diag[3].Add(int64(n))
+         .          .    324:	d.journalBytes += int64(n)
+         .          .    325:	if err == nil && n != len(record) {
+         .          .    326:		err = io.ErrShortWrite

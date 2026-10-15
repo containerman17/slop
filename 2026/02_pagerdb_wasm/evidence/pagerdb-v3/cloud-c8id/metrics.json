@@ -1,0 +1,150 @@
+{
+  "original": [
+    {
+      "run": 0.0,
+      "blocks": 600.0,
+      "execution_ms": 24.831506,
+      "commit_return_ms": 7.705352,
+      "wall_s": 19.889197,
+      "wall_msgs_s": 1508357.0,
+      "wall_blocks_s": 30.167131,
+      "hash_ms": 6.92715,
+      "journal_append_ms": 5.608244,
+      "journal_write_ms": 2.550201,
+      "journal_MB_s": 4185.173,
+      "journal_bytes_block": 10673033.387,
+      "checkpoint_ms": 0.0,
+      "checkpoint_count": 0.0,
+      "image_copy_ms": 6.597632,
+      "minor_faults_block": 2253.055,
+      "final_root": "5e72f0ace5c0a4708b21c3a5eda6976cb00c8cb0716639e0a13eb94902b61eef"
+    },
+    {
+      "run": 1.0,
+      "blocks": 600.0,
+      "execution_ms": 24.758521,
+      "commit_return_ms": 7.845495,
+      "wall_s": 19.926945,
+      "wall_msgs_s": 1505499.0,
+      "wall_blocks_s": 30.109984,
+      "hash_ms": 6.93586,
+      "journal_append_ms": 5.695129,
+      "journal_write_ms": 2.554084,
+      "journal_MB_s": 4178.811,
+      "journal_bytes_block": 10673033.387,
+      "checkpoint_ms": 0.0,
+      "checkpoint_count": 0.0,
+      "image_copy_ms": 6.619908,
+      "minor_faults_block": 2876.725,
+      "final_root": "5e72f0ace5c0a4708b21c3a5eda6976cb00c8cb0716639e0a13eb94902b61eef"
+    }
+  ],
+  "synthetic": [
+    {
+      "run": 0.0,
+      "blocks": 600.0,
+      "execution_ms": 43.087963,
+      "commit_return_ms": 20.301739,
+      "wall_s": 38.558577,
+      "wall_msgs_s": 778037.0,
+      "wall_blocks_s": 15.56074,
+      "hash_ms": 13.033669,
+      "journal_append_ms": 9.663808,
+      "journal_write_ms": 4.336692,
+      "journal_MB_s": 4112.29,
+      "journal_bytes_block": 17833737.067,
+      "checkpoint_ms": 0.0,
+      "checkpoint_count": 0.0,
+      "image_copy_ms": 14.877889,
+      "minor_faults_block": 9548.626667,
+      "final_root": "497cfdfffca59a25d5bae448f4f3a253f7518eb3012bf7430b3adc55035aad46"
+    },
+    {
+      "run": 1.0,
+      "blocks": 600.0,
+      "execution_ms": 42.959292,
+      "commit_return_ms": 19.563088,
+      "wall_s": 38.042667,
+      "wall_msgs_s": 788588.0,
+      "wall_blocks_s": 15.771765,
+      "hash_ms": 13.033222,
+      "journal_append_ms": 9.599448,
+      "journal_write_ms": 4.339762,
+      "journal_MB_s": 4109.381,
+      "journal_bytes_block": 17833737.067,
+      "checkpoint_ms": 0.0,
+      "checkpoint_count": 0.0,
+      "image_copy_ms": 14.893407,
+      "minor_faults_block": 8260.048333,
+      "final_root": "497cfdfffca59a25d5bae448f4f3a253f7518eb3012bf7430b3adc55035aad46"
+    }
+  ],
+  "evm": [
+    {
+      "name": "BenchmarkEVM/uniform-16",
+      "blocks": 700,
+      "ns/op": 17556029.0,
+      "dirty-leaves/block": 24939.0,
+      "p50-commit-ms": 7.752,
+      "p50-write-ms": 6.114,
+      "p99-commit-ms": 40.47,
+      "p99-write-ms": 7.331,
+      "writes/s": 2848025.0
+    },
+    {
+      "name": "BenchmarkEVM/uniform-16",
+      "blocks": 700,
+      "ns/op": 15593727.0,
+      "dirty-leaves/block": 24939.0,
+      "p50-commit-ms": 7.653,
+      "p50-write-ms": 5.991,
+      "p99-commit-ms": 23.58,
+      "p99-write-ms": 7.169,
+      "writes/s": 3206418.0
+    },
+    {
+      "name": "BenchmarkEVM/hot_sigma_20000-16",
+      "blocks": 700,
+      "ns/op": 3190151.0,
+      "dirty-leaves/block": 1906.0,
+      "p50-commit-ms": 0.3681,
+      "p50-write-ms": 2.669,
+      "p99-commit-ms": 1.277,
+      "p99-write-ms": 3.523,
+      "writes/s": 15673243.0
+    },
+    {
+      "name": "BenchmarkEVM/hot_sigma_20000-16",
+      "blocks": 700,
+      "ns/op": 3123574.0,
+      "dirty-leaves/block": 1906.0,
+      "p50-commit-ms": 0.3777,
+      "p50-write-ms": 2.621,
+      "p99-commit-ms": 1.228,
+      "p99-write-ms": 3.65,
+      "writes/s": 16007304.0
+    },
+    {
+      "name": "BenchmarkEVM/hot_sigma_2000-16",
+      "blocks": 700,
+      "ns/op": 1542740.0,
+      "dirty-leaves/block": 233.5,
+      "p50-commit-ms": 0.08702,
+      "p50-write-ms": 1.369,
+      "p99-commit-ms": 0.414,
+      "p99-write-ms": 2.102,
+      "writes/s": 32409881.0
+    },
+    {
+      "name": "BenchmarkEVM/hot_sigma_2000-16",
+      "blocks": 700,
+      "ns/op": 1525349.0,
+      "dirty-leaves/block": 233.5,
+      "p50-commit-ms": 0.07524,
+      "p50-write-ms": 1.368,
+      "p99-commit-ms": 0.4303,
+      "p99-write-ms": 2.114,
+      "writes/s": 32779405.0
+    }
+  ]
+}

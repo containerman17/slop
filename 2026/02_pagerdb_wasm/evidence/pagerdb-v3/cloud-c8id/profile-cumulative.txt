@@ -1,0 +1,69 @@
+File: 02_pagerdb_wasm.test
+Build ID: 727003eb44121486bde5481b43f6c226dcaac888
+Type: cpu
+Time: 2026-10-15 18:23:38 JST
+Duration: 20.04s, Total samples = 62.92s (314.00%)
+Showing nodes accounting for 60.07s, 95.47% of 62.92s total
+Dropped 177 nodes (cum <= 0.31s)
+Showing top 60 nodes out of 69
+      flat  flat%   sum%        cum   cum%
+     0.02s 0.032% 0.032%     35.43s 56.31%  github.com/containerman17/pagerdb.newPool.func1
+     0.08s  0.13%  0.16%     28.40s 45.14%  crypto/sha256.Sum256
+     0.08s  0.13%  0.29%        28s 44.50%  crypto/internal/fips140/sha256.(*Digest).Write
+     0.03s 0.048%  0.33%     27.92s 44.37%  crypto/internal/fips140/sha256.block
+    27.89s 44.33% 44.66%     27.89s 44.33%  crypto/internal/fips140/sha256.blockSHANI
+     0.02s 0.032% 44.69%     26.89s 42.74%  github.com/containerman17/pagerdb.(*tree).update.func1
+    13.15s 20.90% 65.59%     13.15s 20.90%  runtime.memmove
+    10.63s 16.89% 82.49%     10.63s 16.89%  runtime._ExternalCode
+         0     0% 82.49%     10.63s 16.89%  runtime._System
+     0.18s  0.29% 82.77%      8.08s 12.84%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestMatcher.func1
+         0     0% 82.77%      8.08s 12.84%  testing.tRunner
+     0.03s 0.048% 82.82%      7.47s 11.87%  github.com/containerman17/pagerdb.(*diskWriter).run
+     0.03s 0.048% 82.87%      6.65s 10.57%  github.com/containerman17/pagerdb.(*DB).snapshot.func1
+         0     0% 82.87%      4.08s  6.48%  runtime.mallocgc
+         0     0% 82.87%      4.05s  6.44%  runtime.mallocgcLarge
+         0     0% 82.87%      4.01s  6.37%  runtime.makeslice
+     4.01s  6.37% 89.24%      4.01s  6.37%  runtime.memclrNoHeapPointers
+     0.01s 0.016% 89.26%      3.98s  6.33%  runtime.memclrNoHeapPointersChunked
+         0     0% 89.26%      3.90s  6.20%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).Run
+         0     0% 89.26%      3.78s  6.01%  github.com/containerman17/pagerdb.(*DB).Commit
+     0.01s 0.016% 89.27%      3.78s  6.01%  github.com/containerman17/pagerdb.(*DB).snapshot
+         0     0% 89.27%      3.49s  5.55%  github.com/containerman17/pagerdb.(*diskWriter).append
+         0     0% 89.27%      3.48s  5.53%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*barrierTimedCall).Call
+         0     0% 89.27%      3.48s  5.53%  runtime/pprof.Do
+         0     0% 89.27%      3.47s  5.51%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*barrierTimedCall).Call.func1
+         0     0% 89.27%      3.47s  5.51%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).Call
+     0.50s  0.79% 90.07%      3.47s  5.51%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).callWithStack
+     0.07s  0.11% 90.18%      2.69s  4.28%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).callWithStack.func2
+     0.03s 0.048% 90.23%      2.60s  4.13%  github.com/tetratelabs/wazero/api.GoFunc.Call
+     0.05s 0.079% 90.31%      2.57s  4.08%  github.com/containerman17/slop/2026/02_pagerdb_wasm.New.func1.1
+     0.06s 0.095% 90.40%      1.82s  2.89%  github.com/containerman17/pagerdb.(*tree).update.func2
+     1.70s  2.70% 93.10%      1.70s  2.70%  internal/runtime/syscall/linux.Syscall6
+         0     0% 93.10%      1.69s  2.69%  internal/poll.ignoringEINTRIO (inline)
+         0     0% 93.10%      1.69s  2.69%  syscall.RawSyscall6
+         0     0% 93.10%      1.69s  2.69%  syscall.Syscall
+     0.02s 0.032% 93.13%      1.62s  2.57%  github.com/containerman17/pagerdb.(*DB).Touch
+     0.07s  0.11% 93.25%      1.61s  2.56%  github.com/containerman17/pagerdb.hashPair
+         0     0% 93.25%      1.55s  2.46%  internal/poll.(*FD).Write
+         0     0% 93.25%      1.55s  2.46%  os.(*File).Write
+         0     0% 93.25%      1.55s  2.46%  os.(*File).write (inline)
+         0     0% 93.25%      1.55s  2.46%  syscall.Write (inline)
+         0     0% 93.25%      1.55s  2.46%  syscall.write
+     0.08s  0.13% 93.37%      1.52s  2.42%  github.com/containerman17/pagerdb.(*DB).touch
+     0.08s  0.13% 93.50%      1.25s  1.99%  crypto/internal/fips140/sha256.(*Digest).Sum
+     0.02s 0.032% 93.53%      1.20s  1.91%  github.com/containerman17/slop/2026/02_pagerdb_wasm.New.func12
+     0.03s 0.048% 93.58%      1.18s  1.88%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).touch
+     0.19s   0.3% 93.88%      1.15s  1.83%  crypto/internal/fips140/sha256.(*Digest).checkSum
+     0.21s  0.33% 94.21%      0.68s  1.08%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).touchRange
+     0.12s  0.19% 94.41%      0.55s  0.87%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).charge
+         0     0% 94.41%      0.53s  0.84%  github.com/containerman17/slop/2026/02_pagerdb_wasm.New.func13
+         0     0% 94.41%      0.52s  0.83%  runtime.systemstack
+         0     0% 94.41%      0.46s  0.73%  hash/crc32.Checksum (inline)
+         0     0% 94.41%      0.46s  0.73%  hash/crc32.Update (inline)
+         0     0% 94.41%      0.46s  0.73%  hash/crc32.archUpdateCastagnoli
+         0     0% 94.41%      0.46s  0.73%  hash/crc32.update
+     0.45s  0.72% 95.12%      0.45s  0.72%  hash/crc32.castagnoliSSE42Triple
+         0     0% 95.12%      0.45s  0.72%  slices.Sort[go.shape.[]uint32,go.shape.uint32] (inline)
+     0.01s 0.016% 95.14%      0.45s  0.72%  slices.pdqsortOrdered[go.shape.uint32]
+     0.21s  0.33% 95.47%      0.42s  0.67%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).Run.func1
+         0     0% 95.47%      0.42s  0.67%  runtime.mcall
