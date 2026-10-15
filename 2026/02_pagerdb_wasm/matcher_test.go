@@ -6,6 +6,7 @@ import (
 	"context"
 	"encoding/binary"
 	"fmt"
+	"github.com/containerman17/pagerdb"
 	"io"
 	"os"
 	"os/exec"
@@ -111,6 +112,18 @@ func TestMatcher(t *testing.T) {
 			}
 			block := make([]byte, per*40)
 			var execution, commits time.Duration
+			var pending uint64
+			accept := func(i int, version uint64) {
+				root, err := db.RootAt(version)
+				if err != nil {
+					t.Fatal(err)
+				}
+				if run == 0 {
+					roots[i] = root
+				} else if root != roots[i] {
+					t.Fatalf("block %d root differs", i)
+				}
+			}
 			var lines, leaves int64
 			var lastTouches int
 			durations := make([]time.Duration, 0, blocks)
@@ -140,7 +153,7 @@ func TestMatcher(t *testing.T) {
 				previous := ^uint32(0)
 				var countedLeaves uint64
 				for _, line := range res.DirtyLines {
-					leaf := line * lineSize / 1024
+					leaf := line * lineSize / pagerdb.LeafSize
 					if leaf != previous {
 						leaves++
 						countedLeaves++
@@ -151,18 +164,27 @@ func TestMatcher(t *testing.T) {
 					t.Fatal("leaf count differs from bitmap")
 				}
 				start = time.Now()
-				root := commit(t, db)
+				version, err := db.Commit()
+				if err != nil {
+					t.Fatal(err)
+				}
 				d := time.Since(start)
 				commits += d
 				durations = append(durations, d)
-				if run == 0 {
-					roots[i] = root
-				} else if root != roots[i] {
-					t.Fatalf("block %d root differs", i)
+				if i > 0 {
+					accept(i-1, pending)
 				}
+				pending = version
 				if (i+1)%100 == 0 {
 					t.Logf("run %d: %d/%d native hashes and roots checked", run, i+1, blocks)
 				}
+			}
+			accept(blocks-1, pending)
+			if err := db.Flush(); err != nil {
+				t.Fatal(err)
+			}
+			if err := db.Verify(); err != nil {
+				t.Fatal(err)
 			}
 			if before != nil {
 				changed := 0
@@ -171,13 +193,13 @@ func TestMatcher(t *testing.T) {
 						changed++
 					}
 				}
-				t.Logf("last block final changed bytes=%d, uncoalesced Touch log bytes upper bound=%d, logged old bytes=%d", changed, lastTouches*(32+2*lineSize), lastTouches*lineSize)
+				t.Logf("last block final changed bytes=%d, uncoalesced Touch log bytes upper bound=%d, logged old bytes=%d", changed, lastTouches*(16+lineSize), lastTouches*lineSize)
 			}
 			sort.Slice(durations, func(i, j int) bool { return durations[i] < durations[j] })
-			t.Logf("uncoalesced log bytes/block upper bound=%.0f (ABI coalescing reduces headers), dirty 1KiB leaves/block=%.1f, Commit p99 ms=%.3f", 56+float64(lines)*(32+2*lineSize)/float64(blocks), float64(leaves)/float64(blocks), float64(durations[(99*blocks+99)/100-1])/float64(time.Millisecond))
+			t.Logf("uncoalesced log bytes/block upper bound=%.0f (ABI coalescing reduces headers), dirty 4KiB leaves/block=%.1f, Commit p99 ms=%.3f", 92+float64(lines)*(16+lineSize)/float64(blocks), float64(leaves)/float64(blocks), float64(durations[(99*blocks+99)/100-1])/float64(time.Millisecond))
 			t.Logf("bytes_written/block=%.0f, leaves_touched/block=%.1f", float64(lines)*lineSize/float64(blocks), float64(leaves)/float64(blocks))
 			t.Logf("guest ms/block=%.3f, end ms/block=%.3f", timed.guest.Seconds()*1000/float64(blocks), (execution-timed.guest).Seconds()*1000/float64(blocks))
-			t.Logf("single-process M3 diagnostics: %.0f msgs/s execution, %.0f msgs/s including Commit, %.1f dirty tracking units/block, %.3f Commit ms/block", float64(per*blocks)/execution.Seconds(), float64(per*blocks)/(execution+commits).Seconds(), float64(lines)/float64(blocks), commits.Seconds()*1000/float64(blocks))
+			t.Logf("correctness-run diagnostics (not a benchmark): %.0f msgs/s execution, %.0f msgs/s including snapshot Commit (excludes final drain), %.1f dirty tracking units/block, %.3f Commit ms/block", float64(per*blocks)/execution.Seconds(), float64(per*blocks)/(execution+commits).Seconds(), float64(lines)/float64(blocks), commits.Seconds()*1000/float64(blocks))
 		})
 	}
 }

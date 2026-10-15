@@ -1,7 +1,5 @@
-github.com/containerman17/pagerdb v0.0.0-20261014093015-af2c4c95bb9d h1:GGpIGBpNlz4bT8aU0hvKV/FVUyudtsLmF/ZtJBT6nPs=
-github.com/containerman17/pagerdb v0.0.0-20261014093015-af2c4c95bb9d/go.mod h1:XzD9Sx7pdVrcpXqd6FC4m6z6GlGNLuC7NEMR5mt0ivk=
-github.com/klauspost/compress v1.18.3 h1:9PJRvfbmTabkOX8moIpXPbMMbYN60bWImDDU7L+/6zw=
-github.com/klauspost/compress v1.18.3/go.mod h1:R0h/fSBs8DE4ENlcrlib3PsXS61voFxhIs2DeRhCvJ4=
+github.com/containerman17/pagerdb v0.0.0-20261015090440-a1d6d0f2efc0 h1:K8zIdeeO0dTLga1eFeh7h7NmbSMA6XLVqZDkVBlU3cs=
+github.com/containerman17/pagerdb v0.0.0-20261015090440-a1d6d0f2efc0/go.mod h1:1tEkh4j0NRx4F1tBUbboyWuXO0t3Ue0ttWuBv8Db+7w=
 github.com/tetratelabs/wazero v1.12.0 h1:DuWcpNu/FzgEXgGBDp8J1Spc+CWOvvtvVyjKlaZopYU=
 github.com/tetratelabs/wazero v1.12.0/go.mod h1:LvKtzl2RqO4gyF27BiXU+nKAjcV8f38U+kP/q2vgxh0=
 golang.org/x/sys v0.49.0 h1:XbzkgYJHdqh/8m2Uu0W/dQv8nktxx4BFHp1M0gROTXA=

@@ -2,7 +2,7 @@
 
 A Go host for integer Wasm with linear memory backed directly by a PagerDB region.
 Wazero v1.12.0 uses `experimental.WithMemoryAllocator`; the guest and `DB.Map` share
-the same bytes. PagerDB is a normal module dependency pinned to `af2c4c9`.
+the same bytes. PagerDB is a normal module dependency pinned to the v3 branch commit in `go.mod`.
 
 ```go
 ctx := context.Background()
@@ -10,10 +10,10 @@ host, err := pagerwasm.New(ctx, db)
 // Check err; close host before db.
 program, err := host.Deploy(ctx, wasmBytes)
 // Check err; commit deployment before calls.
-_, _, err = db.Commit()
+_, err = db.Commit()
 result := program.Run(ctx, pagerwasm.Call{Input: input, Gas: 1 << 40})
 // Status zero means success. Nonzero status has already reverted the call.
-_, _, err = db.Commit()
+_, err = db.Commit()
 ```
 
 One goroutine owns the host, programs and database. Deployment creates a region;
@@ -54,10 +54,10 @@ The host records old bytes with `DB.Touch`, then sets the bit. ABI writes coales
 consecutive untouched lines into one Touch range, stopping at already dirty lines.
 The bitmap is never touched in PagerDB. Every exit path scans the bitmap in
 address order to produce sorted `DirtyLines`,
-counts unique written bytes and touched 1 KiB leaves, charges state gas, and clears the bits before undo or commit. No dirty-line
+counts unique written bytes and touched 4 KiB leaves, charges state gas, and clears the bits before undo or commit. No dirty-line
 sort is needed, and the bitmap contributes only zeros to the root. A crash during
-a call may leave unlogged bitmap bytes; PagerDB recovery can
-detect a root mismatch and require resync, consistent with its crash model.
+a call discards live anonymous memory. PagerDB opens the last complete checkpoint;
+the caller must re-execute later blocks.
 
 The host marks before execution and undoes on a status revert, trap or gas
 failure. It does not commit calls. `InstructionGas`, `HostGas`, `ByteGas`, `LeafGas`,
@@ -67,7 +67,7 @@ blocks and locals (including its historical fixed gas-helper surcharge). The hel
 is inlined before the stack pass, so no gas function call remains. Host imports
 have a fixed charge. At call end, state gas is `BytesWritten * ByteGas +
 LeavesTouched * LeafGas`: six gas per unique written byte (64 bytes per dirty
-line), plus 2,000 gas per distinct 1 KiB leaf. Both counts are returned, including
+line), plus 2,000 gas per distinct 4 KiB leaf. Both counts are returned, including
 on reverts. Repeated writes do not add state gas. Bulk copy/fill
 also charge `BulkByteGas` per byte through an inline unsigned length check and
 decrement. Each bulk operation calls the injected range barrier once before
@@ -197,3 +197,19 @@ The journal estimate removes unchanged lines and lines overlapping input/output
 ranges, while preserving existing Touch boundaries. This is a hypothetical saving,
 not proof that those bytes can be zeroed safely. The test pins the matcher hash
 because its static/heap boundary is specific to this build. See `evidence/round7.md`.
+
+
+## PagerDB v3 branch
+
+PagerDB uses 4 KiB commitment leaves and anonymous state memory. State gas counts
+these 4 KiB leaves; 64-byte first-write tracking is unchanged. Commit returns a
+version after copying dirty leaves. RootAt(version) waits for hashing, and
+CommitWait retains the previous blocking shape. TestMatcher submits each block
+and checks the previous root after executing the next block, then drains the final
+root and journal and independently verifies the state. Its timing logs are
+correctness diagnostics, not a new performance claim.
+
+The old TestCloudDiagnostics source depended on v2 private log fields and its
+sealer. It is removed on this branch; historical evidence and the source at
+b9c17c9 remain available. The anonymous-store diagnostic remains a separate bound.
+PagerDB recovery now returns the last checkpoint, not the most recent commit.
