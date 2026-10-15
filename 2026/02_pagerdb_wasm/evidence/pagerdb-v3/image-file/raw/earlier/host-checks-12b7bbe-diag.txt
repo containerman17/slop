@@ -1,0 +1,3 @@
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	20.763s
+?   	github.com/containerman17/slop/2026/02_pagerdb_wasm/cmd/fixture	[no test files]
+?   	github.com/containerman17/slop/2026/02_pagerdb_wasm/internal/fixture	[no test files]

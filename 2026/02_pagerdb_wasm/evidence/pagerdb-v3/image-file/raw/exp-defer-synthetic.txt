@@ -1,0 +1,30 @@
+=== RUN   TestMatcher
+=== RUN   TestMatcher/0
+    matcher_test.go:244: run 0: 100/600 native hashes and roots checked
+    matcher_test.go:244: run 0: 200/600 native hashes and roots checked
+    matcher_test.go:244: run 0: 300/600 native hashes and roots checked
+    matcher_test.go:244: run 0: 400/600 native hashes and roots checked
+    matcher_test.go:244: run 0: 500/600 native hashes and roots checked
+    matcher_test.go:244: run 0: 600/600 native hashes and roots checked
+    matcher_test.go:276: V3_METRICS run=0 blocks=600 execution_ms=44.971145 commit_return_ms=3.346486 wall_s=29.509474 wall_msgs_s=1016623 wall_blocks_s=20.332453 hash_ms=13.772399 journal_append_ms=13.878393 journal_write_ms=3.647047 journal_MB_s_wall=333.326 journal_bytes_block=16393785.747 apply_batches=1 apply_busy_s=0.003 max_lag_versions=600 max_lag_MB=9817.932 end_lag_versions=600 catchup_ms=7364.1 peak_anon_MiB=2394.0 disk_write_MB_s=144.9 minor_faults_block=895.630000 final_root=497cfdfffca59a25d5bae448f4f3a253f7518eb3012bf7430b3adc55035aad46
+    matcher_test.go:290: uncoalesced log bytes/block upper bound=19449927 (ABI coalescing reduces headers), dirty 4KiB leaves/block=34743.4, Commit p99 ms=4.872
+    matcher_test.go:291: bytes_written/block=15559868, leaves_touched/block=34743.4
+    matcher_test.go:292: guest ms/block=43.571, end ms/block=1.400
+    matcher_test.go:293: correctness-run diagnostics (not a benchmark): 1111824 msgs/s execution, 1034819 msgs/s including snapshot Commit (excludes final drain), 243122.9 dirty tracking units/block, 3.346 Commit ms/block
+=== RUN   TestMatcher/1
+    matcher_test.go:244: run 1: 100/600 native hashes and roots checked
+    matcher_test.go:244: run 1: 200/600 native hashes and roots checked
+    matcher_test.go:244: run 1: 300/600 native hashes and roots checked
+    matcher_test.go:244: run 1: 400/600 native hashes and roots checked
+    matcher_test.go:244: run 1: 500/600 native hashes and roots checked
+    matcher_test.go:244: run 1: 600/600 native hashes and roots checked
+    matcher_test.go:276: V3_METRICS run=1 blocks=600 execution_ms=44.584241 commit_return_ms=3.560411 wall_s=29.409138 wall_msgs_s=1020091 wall_blocks_s=20.401822 hash_ms=13.773239 journal_append_ms=13.813073 journal_write_ms=3.644890 journal_MB_s_wall=334.463 journal_bytes_block=16393785.747 apply_batches=1 apply_busy_s=0.002 max_lag_versions=600 max_lag_MB=9817.932 end_lag_versions=600 catchup_ms=7546.4 peak_anon_MiB=2750.2 disk_write_MB_s=146.7 minor_faults_block=437.396667 final_root=497cfdfffca59a25d5bae448f4f3a253f7518eb3012bf7430b3adc55035aad46
+    matcher_test.go:290: uncoalesced log bytes/block upper bound=19449927 (ABI coalescing reduces headers), dirty 4KiB leaves/block=34743.4, Commit p99 ms=4.874
+    matcher_test.go:291: bytes_written/block=15559868, leaves_touched/block=34743.4
+    matcher_test.go:292: guest ms/block=43.378, end ms/block=1.206
+    matcher_test.go:293: correctness-run diagnostics (not a benchmark): 1121472 msgs/s execution, 1038537 msgs/s including snapshot Commit (excludes final drain), 243122.9 dirty tracking units/block, 3.560 Commit ms/block
+--- PASS: TestMatcher (79.73s)
+    --- PASS: TestMatcher/0 (37.24s)
+    --- PASS: TestMatcher/1 (37.28s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	79.824s
