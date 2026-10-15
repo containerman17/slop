@@ -1,0 +1,16 @@
+# start Fri Oct 16 00:03:47 JST 2026 name=z-half-u-pipe16 cap=12800000000 runs=0:pipe:16:5:30,0:off:0:3:10 extra=
+pswpin 98546460
+pswpout 278736630
+=== RUN   TestSwapEVM
+    swap_bench_test.go:134: SWAPFILL slots=400000000 max_leaves=8388608 seconds=45.6 majflt=4172 pswpin=35 pswpout=310570 mem=map[AnonHugePagesKiB:3989504 AnonymousKiB:4681932 RssKiB:4683632 SwapKiB:46541192 cgroup_memory.current_KiB:12499996 cgroup_memory.max_KiB:12500000 cgroup_memory.swap.current_KiB:46662792]
+    swap_bench_test.go:252: SWAPRESULT {"blocks":30,"gc_cycles":2,"goroutines":16,"heap_sys_MiB":2582,"majflt_per_block":150617.56666666668,"mem":{"AnonHugePagesKiB":3547136,"AnonymousKiB":6546640,"RssKiB":6549040,"SwapKiB":45878692,"cgroup_memory.current_KiB":12499984,"cgroup_memory.max_KiB":12500000,"cgroup_memory.swap.current_KiB":48788644},"mode":"pipe","p50_commit_ms":1270.7112769999999,"p50_wait_ms":0.147974,"p50_write_ms":314.20002600000004,"p99_commit_ms":7982.240508,"p99_wait_ms":1076.513065,"p99_write_ms":1231.10607,"pswpin_per_block":21784.5,"pswpout_per_block":190908.36666666667,"run":0,"sigma_fraction":0,"warmup":5,"writes_per_s":24817}
+    swap_bench_test.go:252: SWAPRESULT {"blocks":10,"gc_cycles":0,"goroutines":0,"heap_sys_MiB":2582,"majflt_per_block":84243.9,"mem":{"AnonHugePagesKiB":3547136,"AnonymousKiB":7505652,"RssKiB":7508232,"SwapKiB":44919828,"cgroup_memory.current_KiB":12499556,"cgroup_memory.max_KiB":12500000,"cgroup_memory.swap.current_KiB":48799712},"mode":"off","p50_commit_ms":5.8010459999999995,"p50_wait_ms":0.000129,"p50_write_ms":2735.594048,"p99_commit_ms":203.407048,"p99_wait_ms":0.00020800000000000001,"p99_write_ms":6424.727137,"pswpin_per_block":51651.4,"pswpout_per_block":110063.1,"run":1,"sigma_fraction":0,"warmup":3,"writes_per_s":12318}
+--- PASS: TestSwapEVM (163.77s)
+PASS
+ok  	github.com/containerman17/pagerdb	164.051s
+# end exit=0 Fri Oct 16 00:06:32 JST 2026
+pswpin 99927265
+pswpout 287045501
+               total        used        free      shared  buff/cache   available
+Mem:           63248        2127       61479           3         193       61120
+Swap:         204798          13      204785

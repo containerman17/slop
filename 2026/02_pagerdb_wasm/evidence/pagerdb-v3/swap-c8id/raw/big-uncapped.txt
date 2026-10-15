@@ -1,0 +1,17 @@
+# start Thu Oct 15 23:59:57 JST 2026 name=big-uncapped cap=none runs=0.01:off:0:500:500,0:off:0:2:5,0:pipe:16:5:20 extra=PAGERDB_SWAP_SLOTS=800000000
+pswpin 96957562
+pswpout 266831954
+=== RUN   TestSwapEVM
+    swap_bench_test.go:134: SWAPFILL slots=800000000 max_leaves=16777216 seconds=54.7 majflt=1585 pswpin=229 pswpout=10610715 mem=map[AnonHugePagesKiB:58290176 AnonymousKiB:59202548 RssKiB:59204800 SwapKiB:42533652 cgroup_memory.current_KiB:63290728 cgroup_memory.swap.current_KiB:42594336]
+    swap_bench_test.go:252: SWAPRESULT {"blocks":500,"gc_cycles":2,"goroutines":0,"heap_sys_MiB":2626,"majflt_per_block":1.114,"mem":{"AnonHugePagesKiB":56688640,"AnonymousKiB":58792068,"RssKiB":58795024,"SwapKiB":44090468,"cgroup_memory.current_KiB":63429208,"cgroup_memory.swap.current_KiB":44188360},"mode":"off","p50_commit_ms":23.634354,"p50_wait_ms":0.000112,"p50_write_ms":4.834327999999999,"p99_commit_ms":24.278603,"p99_wait_ms":0.000155,"p99_write_ms":5.168535,"pswpin_per_block":1.228,"pswpout_per_block":0.01,"run":0,"sigma_fraction":0.01,"warmup":500,"writes_per_s":1714288}
+    swap_bench_test.go:252: SWAPRESULT {"blocks":5,"gc_cycles":0,"goroutines":0,"heap_sys_MiB":2626,"majflt_per_block":44818.8,"mem":{"AnonHugePagesKiB":56217600,"AnonymousKiB":59904292,"RssKiB":59907328,"SwapKiB":43007708,"cgroup_memory.current_KiB":63229000,"cgroup_memory.swap.current_KiB":44659908},"mode":"off","p50_commit_ms":5.6288659999999995,"p50_wait_ms":0.00008,"p50_write_ms":1969.463618,"p99_commit_ms":5.905259,"p99_wait_ms":0.000145,"p99_write_ms":2008.223879,"pswpin_per_block":48944.6,"pswpout_per_block":11172.8,"run":1,"sigma_fraction":0,"warmup":2,"writes_per_s":20200}
+    swap_bench_test.go:252: SWAPRESULT {"blocks":20,"gc_cycles":0,"goroutines":16,"heap_sys_MiB":2626,"majflt_per_block":43286.1,"mem":{"AnonHugePagesKiB":56217600,"AnonymousKiB":63287252,"RssKiB":63290272,"SwapKiB":39630976,"cgroup_memory.current_KiB":63474052,"cgroup_memory.swap.current_KiB":45722556},"mode":"pipe","p50_commit_ms":38.376051000000004,"p50_wait_ms":230.893395,"p50_write_ms":255.07796700000003,"p99_commit_ms":490.951613,"p99_wait_ms":309.278081,"p99_write_ms":323.334365,"pswpin_per_block":47117.95,"pswpout_per_block":11590.55,"run":2,"sigma_fraction":0,"warmup":5,"writes_per_s":150247}
+--- PASS: TestSwapEVM (110.86s)
+PASS
+ok  	github.com/containerman17/pagerdb	110.941s
+# end exit=0 Fri Oct 16 00:01:48 JST 2026
+pswpin 98544431
+pswpout 278225485
+               total        used        free      shared  buff/cache   available
+Mem:           63248        1085       62536           3         164       62162
+Swap:         204798          14      204784

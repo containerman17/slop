@@ -1,0 +1,16 @@
+# start Thu Oct 15 23:53:26 JST 2026 name=f-half-sigwarm-u-pipe64 cap=12800000000 runs=0.01:off:0:0:800,0:pipe:64:5:30 extra=
+pswpin 88756732
+pswpout 239012429
+=== RUN   TestSwapEVM
+    swap_bench_test.go:134: SWAPFILL slots=400000000 max_leaves=8388608 seconds=38.0 majflt=4398 pswpin=2141 pswpout=9769697 mem=map[AnonHugePagesKiB:11433984 AnonymousKiB:12157408 RssKiB:12159484 SwapKiB:39065524 cgroup_memory.current_KiB:12498036 cgroup_memory.max_KiB:12500000 cgroup_memory.swap.current_KiB:39151232]
+    swap_bench_test.go:252: SWAPRESULT {"blocks":800,"gc_cycles":2,"goroutines":0,"heap_sys_MiB":2398,"majflt_per_block":837.96375,"mem":{"AnonHugePagesKiB":6811648,"AnonymousKiB":12191784,"RssKiB":12194540,"SwapKiB":40122456,"cgroup_memory.current_KiB":12499544,"cgroup_memory.max_KiB":12500000,"cgroup_memory.swap.current_KiB":43830492},"mode":"off","p50_commit_ms":17.930291,"p50_wait_ms":0.00011300000000000001,"p50_write_ms":9.970819,"p99_commit_ms":52.110849,"p99_wait_ms":0.000213,"p99_write_ms":819.1084199999999,"pswpin_per_block":1143.4925,"pswpout_per_block":1443.4675,"run":0,"sigma_fraction":0.01,"warmup":0,"writes_per_s":753071}
+    swap_bench_test.go:252: SWAPRESULT {"blocks":30,"gc_cycles":0,"goroutines":64,"heap_sys_MiB":2405,"majflt_per_block":76694.76666666666,"mem":{"AnonHugePagesKiB":6518784,"AnonymousKiB":12344048,"RssKiB":12345276,"SwapKiB":40044952,"cgroup_memory.current_KiB":12499776,"cgroup_memory.max_KiB":12500000,"cgroup_memory.swap.current_KiB":45553124},"mode":"pipe","p50_commit_ms":49.763419000000006,"p50_wait_ms":537.2755040000001,"p50_write_ms":604.349289,"p99_commit_ms":470.695284,"p99_wait_ms":1232.1549810000001,"p99_write_ms":1296.046349,"pswpin_per_block":81316.43333333333,"pswpout_per_block":74277.9,"run":1,"sigma_fraction":0,"warmup":5,"writes_per_s":71192}
+--- PASS: TestSwapEVM (118.77s)
+PASS
+ok  	github.com/containerman17/pagerdb	118.822s
+# end exit=0 Thu Oct 15 23:55:25 JST 2026
+pswpin 92818085
+pswpout 252845879
+               total        used        free      shared  buff/cache   available
+Mem:           63248        1579       61782           3         502       61668
+Swap:         204798           0      204798

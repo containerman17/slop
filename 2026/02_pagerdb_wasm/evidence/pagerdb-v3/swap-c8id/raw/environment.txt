@@ -1,0 +1,48 @@
+Thu Oct 15 22:57:22 JST 2026
+7.0.0-1014-aws
+zswap.enabled=N
+swappiness=60
+page-cluster=3
+thp/enabled=always [madvise] never
+thp/defrag=always defer defer+madvise [madvise] never
+thp/khugepaged/defrag=1
+thp/shmem_enabled=always within_size advise [never] deny force
+defrag
+enabled
+hpage_pmd_size
+hugepages-1024kB
+hugepages-128kB
+hugepages-16kB
+hugepages-2048kB
+hugepages-256kB
+hugepages-32kB
+hugepages-512kB
+hugepages-64kB
+hugepages-8kB
+khugepaged
+shmem_enabled
+shrink_underused
+use_zero_page
+swap_readahead=true
+MemTotal:       64765980 kB
+SwapTotal:      209714172 kB
+Hugepagesize:       2048 kB
+32
+Model name:                              Intel(R) Xeon(R) 6975P-C
+Thread(s) per core:                      2
+Core(s) per socket:                      16
+Socket(s):                               1
+NAME           TYPE      SIZE PRIO
+swap-partition partition 200G   -1
+data fs size 1.6T
+systemd 255 (255.4-1ubuntu8.17)
+go version go1.26.0 linux/amd64
+hugepages-1024kB/enabled=always inherit madvise [never]
+hugepages-128kB/enabled=always inherit madvise [never]
+hugepages-16kB/enabled=always inherit madvise [never]
+hugepages-2048kB/enabled=always [inherit] madvise never
+hugepages-256kB/enabled=always inherit madvise [never]
+hugepages-32kB/enabled=always inherit madvise [never]
+hugepages-512kB/enabled=always inherit madvise [never]
+hugepages-64kB/enabled=always inherit madvise [never]
+hugepages-8kB/enabled=
