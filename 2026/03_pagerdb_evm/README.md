@@ -1,0 +1,108 @@
+# PagerDB EVM adapter, phase 1
+
+Stock libevm StateDB and coreth execute C-Chain transactions over PagerDB v3
+regions. There is no state MPT. The only state commitment is
+`Pages.RootAt(version)` after `CommitBlock`. Ethereum receipt commitments still
+use the receipt trie because replay checks the original receipt hashes.
+
+## Integration choice
+
+This uses the `state.Database` / `state.Trie` interface route. Stock StateDB owns
+transaction journals, snapshots, refunds, access lists, transient storage, logs,
+and self-destruct rules. Coreth's registered hooks retain C-Chain semantics.
+A custom EVM StateDB would duplicate these rules and require more code.
+
+Call `Flush` after **every transaction**, then `CommitBlock` after atomic
+transfers at block end. Flush runs `IntermediateRoot`, sorts the staged account,
+slot and code writes, and writes them through PagerDB `Write`. It does not commit
+a PagerDB version. Sorting makes physical placement independent of Go map
+iteration. Transaction-boundary flushing also removes destroyed storage before
+same-block recreation. An empty storage marker clears old storage on recreation.
+Stock StateDB handles frame reverts before these writes reach PagerDB.
+
+`CommitBlock` returns a version after PagerDB's asynchronous Commit. A fresh
+StateDB is opened each block. The zero hash passed to `state.New` selects current
+state; it is not a state root. Nonzero selectors are rejected. Trie `Hash` returns
+an internal storage-presence marker, never a consensus commitment. No per-account
+root is persisted. Do not call stock `StateDB.Commit`, enable a trie prefetcher,
+or use StateDB copies with this linear replay adapter. Unsupported interfaces
+fail explicitly. This is not yet a general SAE state backend.
+
+The adapter owns an exclusive PagerDB. Region 1 is the account table and region 2
+is the code table. `NewDatabase` opens those regions after checkpoint recovery.
+The caller must resume execution at the recovered PagerDB version; the replay
+command intentionally starts from genesis in a fresh directory.
+
+## Region layout
+
+Integers are little endian unless specified otherwise. Each table begins with
+16 bytes: count (u64), value size (u64). Entries follow immediately. Capacity
+starts at 16, is a power of two, and doubles before an insert exceeds 75% load or
+probe distance 64. Bucket selection uses the low bits of the first eight SHA-256
+bytes, interpreted as little endian. Probing is linear with wraparound. An
+all-zero value is empty. Zero writes delete with backward shifting. Growth
+rehashes in old bucket order and keeps the PagerDB region handle stable.
+
+Storage entries are 64 bytes: raw normalized C-Chain slot key (32) and value
+(32). Coreth normalizes EVM keys before the adapter receives them. Atomic native
+asset storage uses coreth's bypass flag. A contract gets one region on its first
+storage update. Tables do not shrink.
+
+Account entries are 112 bytes: address in the first 20 key bytes, 12 zero key
+bytes, then an 80-byte record. Record offsets are:
+
+- 0..7: nonce (u64).
+- 8..39: uint256 balance, big endian.
+- 40..71: EVM code hash.
+- 72..75: storage region handle (u32), zero if absent.
+- 76: coreth multicoin flag.
+- 77: presence flag, keeps an empty account distinct from an absent account.
+- 78..79: zero padding.
+
+Code-table entries are 36 bytes: code hash (32) and region handle (4). Code bytes
+occupy one immutable region per distinct code hash. Deleted accounts release
+storage regions; code regions remain shared and are not garbage-collected.
+Physical layout, sorting, capacity rules and PagerDB capacity affect the root.
+
+## Replay and verification
+
+Dependencies pin PagerDB's pushed `v3` commit `9eac65770c3d` and coreth/avalanchego
+v1.15.1, with coreth's libevm version. There are no module replacements.
+
+```sh
+go vet ./...
+go test ./...
+go test -race ./...
+go run ./cmd/replay -data "$HOME/temp-1m-clob/blockdump/data/mainnet-C" -to 100000
+go run ./cmd/replay -data "$HOME/temp-1m-clob/blockdump/data/mainnet-C" -to 1000000
+```
+
+The command uses a temporary PagerDB directory and removes it on exit. Use
+`-state /path/outside/the/repository` to keep one. Block data and generated state
+must stay outside this public repository. No dump, keys, or real account IDs are
+included here.
+
+Genesis comes from avalanchego's mainnet configuration. Coreth's four libevm
+registrations, mainnet network upgrade schedule, `SetEthUpgrades`, transaction
+executor, and atomic `EVMStateTransfer` implement the chain rules. Imports and
+exports run after EVM transactions. BLOCKHASH uses the original header chain,
+including the genesis hash. Every block checks gas used, receipt hash, and bloom;
+header state roots are deliberately ignored. The command stops at the first
+execution error or mismatch. It does not revalidate atomic shared-memory proofs
+or consensus signatures in the already accepted local dump.
+
+The command rejects block ranges reaching Berlin (1,640,340). Later precompile
+activation and SAE transition support are not claimed. Tests cover random table
+operations against Go maps, deletion, growth, collision limits, PagerDB undo,
+random StateDB operations and reverts against geth's in-memory MPT, deterministic
+roots under shuffled writes, and checkpoint reopening. The MPT reference exists
+only in tests. `evidence/REPORT.md` records the replay results and limits.
+
+## Phase 2
+
+SAE wiring needs current/settled version selection, recovery mapping, and
+explicit historical-view behavior. RPC views, proofs and iteration need page
+store implementations. Wasm accounts need shared snapshot/revert integration.
+Later forks and precompile activations need replay coverage. Benchmarks need a
+controlled workload, memory and disk accounting, and sustained checkpoint tests.
+Code garbage collection and PagerDB journal reclamation are also deferred.

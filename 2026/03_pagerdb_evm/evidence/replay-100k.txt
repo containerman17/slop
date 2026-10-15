@@ -1,0 +1,11 @@
+verified=10000 txs=9860 elapsed=693ms blocks/s=14427.3
+verified=20000 txs=19840 elapsed=1.379s blocks/s=14507.1
+verified=30000 txs=29610 elapsed=2.136s blocks/s=14043.0
+verified=40000 txs=37136 elapsed=3.138s blocks/s=12746.2
+verified=50000 txs=46732 elapsed=4.552s blocks/s=10984.3
+verified=60000 txs=56218 elapsed=5.836s blocks/s=10281.2
+verified=70000 txs=65434 elapsed=7.582s blocks/s=9231.9
+verified=80000 txs=75024 elapsed=8.899s blocks/s=8990.1
+verified=90000 txs=84507 elapsed=10.178s blocks/s=8843.0
+verified=100000 txs=93870 elapsed=11.377s blocks/s=8789.4
+PASS blocks=100000 txs=93870 gas=11730435622 imports=6178 exports=712 elapsed=11.399s blocks/s=8772.4
