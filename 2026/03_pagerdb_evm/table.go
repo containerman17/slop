@@ -148,3 +148,18 @@ func (t *Table) grow() error {
 	}
 	return nil
 }
+
+// Each visits non-empty entries. The callback must not mutate the table or
+// retain the value slice, which refers directly to the mapped region.
+func (t *Table) Each(fn func([32]byte, []byte) error) error {
+	b := t.data()
+	for off := 16; off < len(b); off += 32 + t.ValueSize {
+		e := b[off : off+32+t.ValueSize]
+		if !zero(e[32:]) {
+			if err := fn([32]byte(e[:32]), e[32:]); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}

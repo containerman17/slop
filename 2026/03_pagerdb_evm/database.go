@@ -4,12 +4,14 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
+	"fmt"
 	"sort"
 
 	"github.com/ava-labs/avalanchego/graft/coreth/plugin/evm/customtypes"
 	"github.com/ava-labs/libevm/common"
 	"github.com/ava-labs/libevm/core/state"
 	"github.com/ava-labs/libevm/core/types"
+	"github.com/ava-labs/libevm/crypto"
 	"github.com/ava-labs/libevm/ethdb"
 	"github.com/ava-labs/libevm/rlp"
 	"github.com/ava-labs/libevm/trie"
@@ -290,3 +292,63 @@ func (t *regionTrie) Commit(bool) (common.Hash, *trienode.NodeSet, error) {
 func (t *regionTrie) GetKey([]byte) []byte                           { panic(unsupported) }
 func (t *regionTrie) NodeIterator([]byte) (trie.NodeIterator, error) { return nil, unsupported }
 func (t *regionTrie) Prove([]byte, ethdb.KeyValueWriter) error       { return unsupported }
+
+// StateRoot rebuilds the Ethereum MPT from persisted tables only. Call after
+// Flush or CommitBlock with no concurrent writes. No trie nodes are persisted.
+func (d *Database) StateRoot() (common.Hash, error) {
+	if len(d.pending)+len(d.slots)+len(d.code)+len(d.resets) != 0 {
+		return common.Hash{}, errors.New("state root requires flushed state")
+	}
+	accounts := make(map[common.Hash][]byte, d.accounts.Len())
+	err := d.accounts.Each(func(k [32]byte, b []byte) error {
+		storage := make(map[common.Hash][]byte)
+		r := pagerdb.Region(binary.LittleEndian.Uint32(b[72:76]))
+		if r != 0 {
+			t := &Table{d.Pages, r, 32}
+			if err := t.Each(func(k [32]byte, v []byte) error {
+				raw, err := rlp.EncodeToBytes(bytes.TrimLeft(v, "\x00"))
+				storage[crypto.Keccak256Hash(k[:])] = raw
+				return err
+			}); err != nil {
+				return err
+			}
+		}
+		root, err := stackRoot(storage)
+		if err != nil {
+			return err
+		}
+		// Verify the referenced code bytes instead of trusting the account hash.
+		codeHash := types.EmptyCodeHash
+		if !bytes.Equal(b[40:72], codeHash[:]) {
+			r := pagerdb.Region(binary.LittleEndian.Uint32(d.codes.Get(common.BytesToHash(b[40:72]))))
+			if r == 0 {
+				return errors.New("state root: missing code")
+			}
+			code, err := d.Pages.Map(r)
+			if err != nil {
+				return err
+			}
+			codeHash = crypto.Keccak256Hash(code)
+			if !bytes.Equal(codeHash[:], b[40:72]) {
+				return errors.New("state root: code hash mismatch")
+			}
+		}
+		raw, err := rlp.EncodeToBytes([]any{binary.LittleEndian.Uint64(b[:8]), new(uint256.Int).SetBytes(b[8:40]).ToBig(), root, codeHash, b[76] != 0})
+		accounts[crypto.Keccak256Hash(k[:20])] = raw
+		return err
+	})
+	if err != nil {
+		return common.Hash{}, fmt.Errorf("rebuild state root: %w", err)
+	}
+	return stackRoot(accounts)
+}
+
+func stackRoot(leaves map[common.Hash][]byte) (common.Hash, error) {
+	t := trie.NewStackTrie(nil)
+	for _, k := range sorted(leaves) {
+		if err := t.Update(k[:], leaves[k]); err != nil {
+			return common.Hash{}, err
+		}
+	}
+	return t.Hash(), nil
+}

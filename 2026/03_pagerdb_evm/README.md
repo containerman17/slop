@@ -1,9 +1,10 @@
 # PagerDB EVM adapter, phase 1
 
 Stock libevm StateDB and coreth execute C-Chain transactions over PagerDB v3
-regions. There is no state MPT. The only state commitment is
+regions. Execution does not maintain a state MPT. The persisted state commitment is
 `Pages.RootAt(version)` after `CommitBlock`. Ethereum receipt commitments still
-use the receipt trie because replay checks the original receipt hashes.
+use the receipt trie because replay checks the original receipt hashes. Replay
+also rebuilds the Ethereum state MPT from persisted tables for verification.
 
 ## Integration choice
 
@@ -75,6 +76,8 @@ go test ./...
 go test -race ./...
 go run ./cmd/replay -data "$HOME/temp-1m-clob/blockdump/data/mainnet-C" -to 100000
 go run ./cmd/replay -data "$HOME/temp-1m-clob/blockdump/data/mainnet-C" -to 1000000
+# optional: also check the state root every 10,000 blocks
+go run ./cmd/replay -data "$HOME/temp-1m-clob/blockdump/data/mainnet-C" -to 100000 -root-every 10000
 ```
 
 The command uses a temporary PagerDB directory and removes it on exit. Use
@@ -87,7 +90,14 @@ registrations, mainnet network upgrade schedule, `SetEthUpgrades`, transaction
 executor, and atomic `EVMStateTransfer` implement the chain rules. Imports and
 exports run after EVM transactions. BLOCKHASH uses the original header chain,
 including the genesis hash. Every block checks gas used, receipt hash, and bloom;
-header state roots are deliberately ignored. The command stops at the first
+the final block also checks the header state root. Use `-root-every N` to
+check every N blocks as well. The final check is always on. It hashes addresses
+and raw stored slot keys with Keccak, RLP-encodes trimmed storage values, and
+encodes all five coreth account fields, including IsMultiCoin. Referenced code
+bytes must hash to the stored code hash. The rebuild reads only PagerDB tables,
+not StateDB caches, and persists no trie nodes. On 2026-10-15 the rebuilt root
+matched the mainnet header root at blocks 100,000 and 1,000,000, and at every
+100,000-block checkpoint in between. The command stops at the first
 execution error or mismatch. It does not revalidate atomic shared-memory proofs
 or consensus signatures in the already accepted local dump.
 
@@ -95,8 +105,9 @@ The command rejects block ranges reaching Berlin (1,640,340). Later precompile
 activation and SAE transition support are not claimed. Tests cover random table
 operations against Go maps, deletion, growth, collision limits, PagerDB undo,
 random StateDB operations and reverts against geth's in-memory MPT, deterministic
-roots under shuffled writes, and checkpoint reopening. The MPT reference exists
-only in tests. `evidence/REPORT.md` records the replay results and limits.
+roots under shuffled writes, and checkpoint reopening. The differential test also
+compares the rebuilt state root with the stock MPT root after every block.
+`evidence/REPORT.md` records the replay results and limits.
 
 ## Phase 2
 

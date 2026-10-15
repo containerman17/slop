@@ -4,9 +4,9 @@ go vet ./...
 PASS
 
 go test ./...
-ok github.com/containerman17/slop/2026/03_pagerdb_evm 1.137s
-?  github.com/containerman17/slop/2026/03_pagerdb_evm/cmd/replay [no test files]
+ok   github.com/containerman17/slop/2026/03_pagerdb_evm 1.183s
+?    github.com/containerman17/slop/2026/03_pagerdb_evm/cmd/replay [no test files]
 
 go test -race ./...
-ok github.com/containerman17/slop/2026/03_pagerdb_evm 4.667s
-?  github.com/containerman17/slop/2026/03_pagerdb_evm/cmd/replay [no test files]
+ok   github.com/containerman17/slop/2026/03_pagerdb_evm 4.712s
+?    github.com/containerman17/slop/2026/03_pagerdb_evm/cmd/replay [no test files]

@@ -109,6 +109,10 @@ func TestStateDifferential(t *testing.T) {
 		if e != nil {
 			t.Fatal(e)
 		}
+		got, err := db.StateRoot()
+		if err != nil || got != root {
+			t.Fatalf("block %d state root: got %s want %s error %v", block, got, root, err)
+		}
 		b, e = state.New(root, b.Database(), nil)
 		if e != nil {
 			t.Fatal(e)
@@ -150,6 +154,10 @@ func TestDeterministicRootAndReopen(t *testing.T) {
 		if _, e = db.CommitBlock(s); e != nil {
 			t.Fatal(e)
 		}
+		mptRoot, e := db.StateRoot()
+		if e != nil {
+			t.Fatal(e)
+		}
 		root := p.Root()
 		if run == 0 {
 			want = root
@@ -179,6 +187,9 @@ func TestDeterministicRootAndReopen(t *testing.T) {
 			if s.GetBalance(a).Uint64() != uint64(i+1) || !bytes.Equal(s.GetCode(a), []byte{0x60, byte(i)}) || s.GetState(a, common.Hash{31: 1}) != (common.Hash{30: 1, 31: byte(i)}) {
 				t.Fatal("reopen lost account")
 			}
+		}
+		if got, err := db.StateRoot(); err != nil || got != mptRoot {
+			t.Fatalf("reopen state root: got %s want %s error %v", got, mptRoot, err)
 		}
 		if p.Root() != root {
 			t.Fatal("reopen changed root")

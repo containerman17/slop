@@ -1,4 +1,4 @@
-// Command replay checks local C-Chain block dumps without using a state MPT.
+// Command replay checks local C-Chain block dumps with a final state MPT comparison.
 package main
 
 import (
@@ -54,7 +54,11 @@ func run() (result error) {
 	data := flag.String("data", "", "local mainnet-C dump directory")
 	dir := flag.String("state", "", "new PagerDB directory (default: temporary)")
 	end := flag.Uint64("to", 100000, "last block")
+	rootEvery := flag.Uint64("root-every", 0, "also rebuild and check state root every N blocks (0: final only)")
 	flag.Parse()
+	if *end == 0 {
+		return fmt.Errorf("-to must be positive")
+	}
 	if *data == "" {
 		return fmt.Errorf("-data is required")
 	}
@@ -214,7 +218,7 @@ func run() (result error) {
 						return fmt.Errorf("block %d tx %d flush: %w", n, i, e)
 					}
 				}
-				// Receipt commitments still use Ethereum's receipt trie. State never does.
+				// Receipt commitments use Ethereum's receipt trie.
 				if used != h.GasUsed {
 					return fmt.Errorf("block %d gas mismatch after tx %d: got %d want %d", n, len(receipts)-1, used, h.GasUsed)
 				}
@@ -244,6 +248,17 @@ func run() (result error) {
 				}
 				if _, e = db.CommitBlock(s); e != nil {
 					return fmt.Errorf("block %d commit: %w", n, e)
+				}
+				if n == *end || (*rootEvery > 0 && n%*rootEvery == 0) {
+					rootStart := time.Now()
+					root, err := db.StateRoot()
+					if err != nil {
+						return fmt.Errorf("block %d state root: %w", n, err)
+					}
+					if root != h.Root {
+						return fmt.Errorf("block %d STATE ROOT MISMATCH: got %s want %s", n, root, h.Root)
+					}
+					fmt.Printf("state-root PASS block=%d root=%s elapsed=%s\n", n, root, time.Since(rootStart).Round(time.Millisecond))
 				}
 				count = n
 				txs += uint64(len(receipts))

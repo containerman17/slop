@@ -1,0 +1,116 @@
+$ go run ./cmd/replay -data "$HOME/temp-1m-clob/blockdump/data/mainnet-C" -to 1000000 -root-every 100000
+verified=10000 txs=9860 elapsed=694ms blocks/s=14418.1
+verified=20000 txs=19840 elapsed=1.376s blocks/s=14529.9
+verified=30000 txs=29610 elapsed=2.135s blocks/s=14053.5
+verified=40000 txs=37136 elapsed=3.135s blocks/s=12761.2
+verified=50000 txs=46732 elapsed=4.558s blocks/s=10969.1
+verified=60000 txs=56218 elapsed=5.868s blocks/s=10224.1
+verified=70000 txs=65434 elapsed=7.608s blocks/s=9201.2
+verified=80000 txs=75024 elapsed=8.924s blocks/s=8964.9
+verified=90000 txs=84507 elapsed=10.216s blocks/s=8810.0
+state-root PASS block=100000 root=0x03c2dc48c55ef04258e22a87fdf43cb92171932a5feff7810ce3633389e9ecdf elapsed=221ms
+verified=100000 txs=93870 elapsed=11.641s blocks/s=8590.6
+verified=110000 txs=104393 elapsed=13.106s blocks/s=8393.2
+verified=120000 txs=113943 elapsed=14.556s blocks/s=8244.1
+verified=130000 txs=123407 elapsed=15.969s blocks/s=8140.8
+verified=140000 txs=133096 elapsed=17.313s blocks/s=8086.4
+verified=150000 txs=142703 elapsed=18.637s blocks/s=8048.7
+verified=160000 txs=152349 elapsed=19.933s blocks/s=8026.9
+verified=170000 txs=161821 elapsed=21.239s blocks/s=8004.1
+verified=180000 txs=171133 elapsed=22.544s blocks/s=7984.4
+verified=190000 txs=180630 elapsed=23.889s blocks/s=7953.5
+state-root PASS block=200000 root=0x7bb1a933556295a0778db25ad64098fa08cffc5f5aeb57c20838e63d0740f900 elapsed=294ms
+verified=200000 txs=190057 elapsed=25.567s blocks/s=7822.7
+verified=210000 txs=199845 elapsed=27.006s blocks/s=7776.0
+verified=220000 txs=210984 elapsed=28.609s blocks/s=7689.8
+verified=230000 txs=222269 elapsed=30.34s blocks/s=7580.7
+verified=240000 txs=233902 elapsed=32.07s blocks/s=7483.5
+verified=250000 txs=244649 elapsed=33.627s blocks/s=7434.4
+verified=260000 txs=255509 elapsed=35.163s blocks/s=7394.1
+verified=270000 txs=265657 elapsed=36.646s blocks/s=7367.9
+verified=280000 txs=276054 elapsed=38.123s blocks/s=7344.6
+verified=290000 txs=286373 elapsed=39.701s blocks/s=7304.5
+state-root PASS block=300000 root=0x53d6900f4d9cbedfc3b1e7f9294e40cfbc8e20c38f6121ec341106c05e8f1967 elapsed=346ms
+verified=300000 txs=296244 elapsed=41.58s blocks/s=7215.0
+verified=310000 txs=306006 elapsed=43.032s blocks/s=7203.9
+verified=320000 txs=315950 elapsed=44.363s blocks/s=7213.3
+verified=330000 txs=326056 elapsed=45.77s blocks/s=7210.0
+verified=340000 txs=337856 elapsed=47.391s blocks/s=7174.4
+verified=350000 txs=347807 elapsed=48.763s blocks/s=7177.5
+verified=360000 txs=358002 elapsed=50.128s blocks/s=7181.6
+verified=370000 txs=368448 elapsed=51.514s blocks/s=7182.5
+verified=380000 txs=378362 elapsed=52.91s blocks/s=7182.1
+verified=390000 txs=392109 elapsed=54.524s blocks/s=7152.8
+state-root PASS block=400000 root=0x9ac651e3cdc5392d9eb440a5c57d3fd3a21c7f3b6e339572d1c1c82db84c083f elapsed=419ms
+verified=400000 txs=402773 elapsed=56.412s blocks/s=7090.6
+verified=410000 txs=412843 elapsed=57.815s blocks/s=7091.6
+verified=420000 txs=424137 elapsed=59.322s blocks/s=7080.0
+verified=430000 txs=435458 elapsed=1m0.953s blocks/s=7054.6
+verified=440000 txs=453912 elapsed=1m3.638s blocks/s=6914.1
+verified=450000 txs=465779 elapsed=1m5.496s blocks/s=6870.6
+verified=460000 txs=478158 elapsed=1m7.443s blocks/s=6820.5
+verified=470000 txs=488125 elapsed=1m9.038s blocks/s=6807.8
+verified=480000 txs=497969 elapsed=1m10.515s blocks/s=6807.1
+verified=490000 txs=507861 elapsed=1m12.041s blocks/s=6801.7
+state-root PASS block=500000 root=0x1d0eb95afa8fc5bceda133fdba3e270266a2418449f45131363b292c0c3eef32 elapsed=466ms
+verified=500000 txs=518231 elapsed=1m13.944s blocks/s=6761.9
+verified=510000 txs=528479 elapsed=1m15.475s blocks/s=6757.2
+verified=520000 txs=539406 elapsed=1m17.091s blocks/s=6745.3
+verified=530000 txs=550216 elapsed=1m18.738s blocks/s=6731.1
+verified=540000 txs=560768 elapsed=1m20.387s blocks/s=6717.5
+verified=550000 txs=571081 elapsed=1m22.053s blocks/s=6703.0
+verified=560000 txs=581294 elapsed=1m23.68s blocks/s=6692.1
+verified=570000 txs=592174 elapsed=1m25.438s blocks/s=6671.5
+verified=580000 txs=602542 elapsed=1m27.114s blocks/s=6657.9
+verified=590000 txs=613209 elapsed=1m28.76s blocks/s=6647.1
+state-root PASS block=600000 root=0x487646ce8b21490ff58c765c8fa5187e259b723a5b2e3720a8c33ad79044db37 elapsed=519ms
+verified=600000 txs=623977 elapsed=1m30.94s blocks/s=6597.8
+verified=610000 txs=635120 elapsed=1m32.748s blocks/s=6577.0
+verified=620000 txs=645999 elapsed=1m34.568s blocks/s=6556.1
+verified=630000 txs=657232 elapsed=1m36.449s blocks/s=6532.0
+verified=640000 txs=667977 elapsed=1m38.32s blocks/s=6509.3
+verified=650000 txs=678382 elapsed=1m40.118s blocks/s=6492.4
+verified=660000 txs=689764 elapsed=1m42.102s blocks/s=6464.2
+verified=670000 txs=700854 elapsed=1m43.948s blocks/s=6445.5
+verified=680000 txs=715144 elapsed=1m46.059s blocks/s=6411.5
+verified=690000 txs=726541 elapsed=1m48.007s blocks/s=6388.5
+state-root PASS block=700000 root=0x0ec05ec8d93e38b60d58ae9f82041aa188140678a792d34c8031e2d98f2da815 elapsed=574ms
+verified=700000 txs=738229 elapsed=1m50.574s blocks/s=6330.6
+verified=710000 txs=748620 elapsed=1m52.494s blocks/s=6311.5
+verified=720000 txs=760993 elapsed=1m54.444s blocks/s=6291.3
+verified=730000 txs=773049 elapsed=1m56.292s blocks/s=6277.3
+verified=740000 txs=783511 elapsed=1m57.973s blocks/s=6272.6
+verified=750000 txs=793701 elapsed=1m59.538s blocks/s=6274.1
+verified=760000 txs=803793 elapsed=2m1.17s blocks/s=6272.2
+verified=770000 txs=813785 elapsed=2m2.76s blocks/s=6272.4
+verified=780000 txs=823861 elapsed=2m4.399s blocks/s=6270.1
+verified=790000 txs=836708 elapsed=2m5.25s blocks/s=6307.4
+state-root PASS block=800000 root=0x6bc0ccdde11f638163738b1bc1743e32c7e64b996ce7ff9c9a8d353b4d8c1750 elapsed=707ms
+verified=800000 txs=848613 elapsed=2m6.98s blocks/s=6300.2
+verified=810000 txs=876484 elapsed=2m11.495s blocks/s=6159.9
+verified=820000 txs=900535 elapsed=2m15.942s blocks/s=6032.0
+verified=830000 txs=914554 elapsed=2m18.719s blocks/s=5983.3
+verified=840000 txs=927136 elapsed=2m21.168s blocks/s=5950.3
+verified=850000 txs=938668 elapsed=2m23.391s blocks/s=5927.8
+verified=860000 txs=950168 elapsed=2m25.54s blocks/s=5909.0
+verified=870000 txs=960281 elapsed=2m27.306s blocks/s=5906.1
+verified=880000 txs=975395 elapsed=2m29.64s blocks/s=5880.8
+verified=890000 txs=994092 elapsed=2m32.52s blocks/s=5835.3
+state-root PASS block=900000 root=0x0a4ad8c4f05b60a16b4ca10114dab208a98c3ed5a8af8967eb5d6322b92c71e6 elapsed=816ms
+verified=900000 txs=1009322 elapsed=2m35.942s blocks/s=5771.4
+verified=910000 txs=1020737 elapsed=2m37.902s blocks/s=5763.1
+verified=920000 txs=1033905 elapsed=2m40.079s blocks/s=5747.2
+verified=930000 txs=1047194 elapsed=2m42.255s blocks/s=5731.7
+verified=940000 txs=1058523 elapsed=2m44.321s blocks/s=5720.5
+verified=950000 txs=1069306 elapsed=2m46.173s blocks/s=5716.9
+verified=960000 txs=1080621 elapsed=2m48.098s blocks/s=5711.0
+verified=970000 txs=1093330 elapsed=2m50.277s blocks/s=5696.6
+verified=980000 txs=1105148 elapsed=2m52.295s blocks/s=5687.9
+verified=990000 txs=1117033 elapsed=2m54.389s blocks/s=5677.0
+state-root PASS block=1000000 root=0xfab4187f8b2a5d239a9d7272a80550a72f576122b75cb82fae871f1e3effd88d elapsed=817ms
+verified=1000000 txs=1128919 elapsed=2m57.442s blocks/s=5635.7
+PASS blocks=1000000 txs=1128919 gas=124101522756 imports=52563 exports=16184 elapsed=2m57.468s blocks/s=5634.8
+real 180.13
+user 211.24
+sys 14.46
+exit=0
