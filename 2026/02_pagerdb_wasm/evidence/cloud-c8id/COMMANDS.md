@@ -6,7 +6,7 @@ Stream archive to `/mnt/nvme/repo` and original fixture directly to
 `/mnt/nvme/original.bin`. Generate synthetic fixture on the instance.
 
 One c8id.8xlarge in us-west-2a, Ubuntu 24.04 AMI `ami-03d70b8354a16a8bc`.
-Launch settings in launch.json. User data: `#!/bin/bash` then `shutdown -h +180`.
+Launch settings are kept outside the repo in the private coordinator cache. User data: `#!/bin/bash` then `shutdown -h +180`.
 Instance shutdown behavior: terminate. Root volume: 40 GiB gp3, delete on termination.
 Owner tag on instance, volume and ENI. Existing SSH /32 rule already matched;
 no security group change. Format `/dev/nvme1n1` as ext4 and mount `/mnt/nvme`.

@@ -1,5 +1,7 @@
 # Wasm host on c8id.8xlarge
 
+Follow-up: [anonymous store bounds, round 2](round2/REPORT.md). The root-only RAM pipeline reaches about 2.02M wall msgs/s without checkpoints; a packed log with per-block fdatasync reaches about 1.87M. The measurements below describe round 1.
+
 2026-10-15 JST. Source `840d09dd9a2650c1a427dfdbb49e1783f8e2d080`, fetched origin/main before launch. The baseline uses unchanged production source. Only an opt-in diagnostic test and evidence are committed; box-local variants are described separately. PagerDB `af2c4c95bb9d`, wazero v1.12.0.
 
 ## Machine and protocol

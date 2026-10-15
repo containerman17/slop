@@ -1,0 +1,12 @@
+=== RUN   TestIdealTreeDiagnostic
+=== RUN   TestIdealTreeDiagnostic/512
+=== RUN   TestIdealTreeDiagnostic/1024
+=== RUN   TestIdealTreeDiagnostic/4096
+--- PASS: TestIdealTreeDiagnostic (0.10s)
+    --- PASS: TestIdealTreeDiagnostic/512 (0.05s)
+    --- PASS: TestIdealTreeDiagnostic/1024 (0.03s)
+    --- PASS: TestIdealTreeDiagnostic/4096 (0.02s)
+=== RUN   TestIdealUndoDiagnostic
+--- PASS: TestIdealUndoDiagnostic (0.00s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	1.115s

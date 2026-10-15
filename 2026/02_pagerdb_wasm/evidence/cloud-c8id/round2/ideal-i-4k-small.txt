@@ -1,0 +1,33 @@
+2026-10-15 15:48:05 JST
+ 15:48:05 up  1:33,  1 user,  load average: 0.93, 1.14, 1.05
+procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu
+ 0  0      0 57745104 202748 6279040    0    0    99 171469 10890    1  3  1 96  0  0  0
+ 0  0      0 57748612 202748 6279044    0    0     0     0  131   66  0  0 100  0  0  0
+ 0  0      0 57749328 202748 6279052    0    0     0     0  126  153  0  0 100  0  0  0
+=== RUN   TestIdealStore
+=== RUN   TestIdealStore/0
+    ideal_store_diagnostic_test.go:576: run=0 blocks=100 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=0 blocks=200 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=0 blocks=300 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=0 blocks=400 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=0 blocks=500 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=0 blocks=600 native hashes checked
+    ideal_store_diagnostic_test.go:593: anonymous mapping: Size:             533504 kB; Rss:              296364 kB; Anonymous:        296364 kB; AnonHugePages:         0 kB; THPeligible:           0; VmFlags: rd wr mr mw me ac sd nh
+    ideal_store_diagnostic_test.go:618: IDEAL run=0 blocks=600 huge=false overlap=false fdatasync=false leaf=4096 packed_log=false root_only=false parallel_snapshot=false execution_ms=23.733891 snapshot_ms=0.000000 wait_ms=0.000000 hash_ms=5.616371 write_ms=45.815511 fdatasync_ms=0.000000 pack_ms=0.000000 commit_ms=51.431881 timed_combined_msgs_s=665196 wall_msgs_s=656531 wall_s=45.694693 minor_faults_block=367.930 dirty_lines_block=149136.893 dirty_leaves_block=16088.407 write_bytes_block=65898113.707 pwrite_calls_block=7356.203 write_MB_s=1438.336 final_root=0cacd989d650fd3a1113fe18d152c96cc3947bdaaf30ebf21f214421e2a548a3
+    ideal_store_diagnostic_test.go:619: verified native outputs, undo/dirty counts, repeated root sequence, rebuilt full-state root, and complete file readback (repeat comparison applies to run 1)
+=== RUN   TestIdealStore/1
+    ideal_store_diagnostic_test.go:576: run=1 blocks=100 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=1 blocks=200 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=1 blocks=300 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=1 blocks=400 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=1 blocks=500 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=1 blocks=600 native hashes checked
+    ideal_store_diagnostic_test.go:593: anonymous mapping: Size:             533504 kB; Rss:              296364 kB; Anonymous:        296364 kB; AnonHugePages:         0 kB; THPeligible:           0; VmFlags: rd wr mr mw me ac sd nh
+    ideal_store_diagnostic_test.go:618: IDEAL run=1 blocks=600 huge=false overlap=false fdatasync=false leaf=4096 packed_log=false root_only=false parallel_snapshot=false execution_ms=23.779961 snapshot_ms=0.000000 wait_ms=0.000000 hash_ms=5.640003 write_ms=45.943933 fdatasync_ms=0.000000 pack_ms=0.000000 commit_ms=51.583936 timed_combined_msgs_s=663448 wall_msgs_s=654717 wall_s=45.821352 minor_faults_block=349.018 dirty_lines_block=149136.893 dirty_leaves_block=16088.407 write_bytes_block=65898113.707 pwrite_calls_block=7356.203 write_MB_s=1434.316 final_root=0cacd989d650fd3a1113fe18d152c96cc3947bdaaf30ebf21f214421e2a548a3
+    ideal_store_diagnostic_test.go:619: verified native outputs, undo/dirty counts, repeated root sequence, rebuilt full-state root, and complete file readback (repeat comparison applies to run 1)
+--- PASS: TestIdealStore (95.66s)
+    --- PASS: TestIdealStore/0 (46.15s)
+    --- PASS: TestIdealStore/1 (46.43s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	95.703s

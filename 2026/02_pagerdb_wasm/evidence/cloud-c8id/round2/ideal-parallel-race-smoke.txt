@@ -1,0 +1,20 @@
+=== RUN   TestIdealStore
+=== RUN   TestIdealStore/0
+    ideal_store_diagnostic_test.go:579: anonymous mapping: Size:             525312 kB; Rss:               59396 kB; Anonymous:         59396 kB; AnonHugePages:     59392 kB; THPeligible:           1; VmFlags: rd wr mr mw me ac sd hg
+    ideal_store_diagnostic_test.go:587: verified packed log replay: 5 roots, 644752556 bytes including initial state
+    ideal_store_diagnostic_test.go:604: IDEAL run=0 blocks=5 huge=true overlap=true fdatasync=true leaf=1024 packed_log=true parallel_snapshot=true execution_ms=196.737020 snapshot_ms=7.848712 wait_ms=9.508882 hash_ms=10.377230 write_ms=20.650155 fdatasync_ms=3.643397 pack_ms=0.913641 commit_ms=35.584423 timed_combined_msgs_s=215219 wall_msgs_s=227952 wall_s=1.096722 minor_faults_block=28454.400 dirty_lines_block=221133.400 dirty_leaves_block=20988.600 write_bytes_block=21576328.800 pwrite_calls_block=2.000 final_root=19100ffbb56303b5716d1917d314ff1f9040d2bc153901f09329a50fbfd466d7
+    ideal_store_diagnostic_test.go:605: verified native outputs, undo/dirty counts, repeated root sequence, rebuilt full-state root, and complete file readback (repeat comparison applies to run 1)
+=== RUN   TestIdealStore/1
+    ideal_store_diagnostic_test.go:579: anonymous mapping: Size:             525312 kB; Rss:               59396 kB; Anonymous:         59396 kB; AnonHugePages:     59392 kB; THPeligible:           1; VmFlags: rd wr mr mw me ac sd hg
+    ideal_store_diagnostic_test.go:587: verified packed log replay: 5 roots, 644752556 bytes including initial state
+    ideal_store_diagnostic_test.go:604: IDEAL run=1 blocks=5 huge=true overlap=true fdatasync=true leaf=1024 packed_log=true parallel_snapshot=true execution_ms=194.922006 snapshot_ms=7.375465 wait_ms=9.661452 hash_ms=10.357684 write_ms=20.908725 fdatasync_ms=3.669531 pack_ms=0.896784 commit_ms=35.832724 timed_combined_msgs_s=216680 wall_msgs_s=229946 wall_s=1.087211 minor_faults_block=26488.200 dirty_lines_block=221133.400 dirty_leaves_block=20988.600 write_bytes_block=21576328.800 pwrite_calls_block=2.000 final_root=19100ffbb56303b5716d1917d314ff1f9040d2bc153901f09329a50fbfd466d7
+    ideal_store_diagnostic_test.go:605: verified native outputs, undo/dirty counts, repeated root sequence, rebuilt full-state root, and complete file readback (repeat comparison applies to run 1)
+--- PASS: TestIdealStore (11.13s)
+    --- PASS: TestIdealStore/0 (3.73s)
+    --- PASS: TestIdealStore/1 (4.27s)
+=== RUN   TestIdealTreeDiagnostic
+--- PASS: TestIdealTreeDiagnostic (0.02s)
+=== RUN   TestIdealUndoDiagnostic
+--- PASS: TestIdealUndoDiagnostic (0.00s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	12.290s

@@ -1,0 +1,21 @@
+2026-10-15 16:23:37 JST
+ 16:23:37 up  2:08,  1 user,  load average: 0.10, 0.22, 0.33
+0304856e1489d1eec3c8ec01a8cf5dd35b53664b7a88269def03dec488af75e0  host.go
+6c9ed683e0966462a6bff4d3ee61cb50162870f92bebd9a23076f90e5aa8d4a0  testdata/matcher.wasm
+aa166f805938e723a33f4e49543bd71f1dd98ed9b5bd510383eeafae7ce03d19  ideal_store_diagnostic_test.go
+1f33ba36de4a17feadbbed9c61160e8c0e78a9f365f660e19d8565001589a28c  ideal_log_diagnostic_test.go
+cb042fbb90f5988ad205e34b4083b6cb45a96a75f8323969dc93d47ef494f923  /mnt/nvme/original.bin
+vm.dirty_background_bytes = 0
+vm.dirty_background_ratio = 10
+vm.dirty_bytes = 0
+vm.dirty_ratio = 20
+vm.dirty_expire_centisecs = 3000
+vm.dirty_writeback_centisecs = 500
+procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu
+ 0  0      0 57717584 211380 6288876    0    0    72 145617 8344    1  2  1 97  0  0  0
+ 0  0      0 57720672 211380 6288876    0    0     0     0   98   78  0  0 100  0  0  0
+ 0  0      0 57724400 211380 6288876    0    0     0     0  154  147  0  0 100  0  0  0
+scheduled_shutdown_JST=2026-10-15T17:15:02.031938+09:00
+scheduled_mode=poweroff
+remaining_ideal_state_temp_files=0

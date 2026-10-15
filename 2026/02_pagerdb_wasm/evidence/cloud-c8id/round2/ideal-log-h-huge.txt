@@ -1,0 +1,35 @@
+2026-10-15 15:29:20 JST
+ 15:29:20 up  1:14,  1 user,  load average: 0.74, 0.93, 0.93
+procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu
+ 0  0      0 57717784 181360 6275532    0    0   124 150092 12441    1  3  1 96  0  0  0
+ 0  0      0 57719800 181360 6275556    0    0     0     0  157   89  0  0 100  0  0  0
+ 0  0      0 57719800 181360 6275556    0    0     0     0   74   63  0  0 100  0  0  0
+=== RUN   TestIdealStore
+=== RUN   TestIdealStore/0
+    ideal_store_diagnostic_test.go:576: run=0 blocks=100 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=0 blocks=200 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=0 blocks=300 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=0 blocks=400 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=0 blocks=500 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=0 blocks=600 native hashes checked
+    ideal_store_diagnostic_test.go:593: anonymous mapping: Size:             525312 kB; Rss:              339972 kB; Anonymous:        339972 kB; AnonHugePages:    339968 kB; THPeligible:           1; VmFlags: rd wr mr mw me ac sd hg
+    ideal_store_diagnostic_test.go:601: verified packed log replay: 600 roots, 19457234572 bytes including initial state
+    ideal_store_diagnostic_test.go:618: IDEAL run=0 blocks=600 huge=true overlap=true fdatasync=false leaf=1024 packed_log=true root_only=false parallel_snapshot=false execution_ms=24.208159 snapshot_ms=3.574009 wait_ms=0.020953 hash_ms=5.365728 write_ms=6.761597 fdatasync_ms=0.000000 pack_ms=0.064128 commit_ms=12.191454 timed_combined_msgs_s=1373641 wall_msgs_s=1730890 wall_s=17.332129 minor_faults_block=834.195 dirty_lines_block=149136.893 dirty_leaves_block=30674.992 write_bytes_block=31533939.433 pwrite_calls_block=1.000 write_MB_s=4663.682 final_root=9d5245f2af3dfc19bfe24cb98a6c4f6cd05c709f279437b411c9da1483fcacb4
+    ideal_store_diagnostic_test.go:619: verified native outputs, undo/dirty counts, repeated root sequence, rebuilt full-state root, and complete file readback (repeat comparison applies to run 1)
+=== RUN   TestIdealStore/1
+    ideal_store_diagnostic_test.go:576: run=1 blocks=100 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=1 blocks=200 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=1 blocks=300 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=1 blocks=400 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=1 blocks=500 native hashes checked
+    ideal_store_diagnostic_test.go:576: run=1 blocks=600 native hashes checked
+    ideal_store_diagnostic_test.go:593: anonymous mapping: Size:             525312 kB; Rss:              339972 kB; Anonymous:        339972 kB; AnonHugePages:    339968 kB; THPeligible:           1; VmFlags: rd wr mr mw me ac sd hg
+    ideal_store_diagnostic_test.go:601: verified packed log replay: 600 roots, 19457234572 bytes including initial state
+    ideal_store_diagnostic_test.go:618: IDEAL run=1 blocks=600 huge=true overlap=true fdatasync=false leaf=1024 packed_log=true root_only=false parallel_snapshot=false execution_ms=24.129112 snapshot_ms=3.601291 wait_ms=0.021511 hash_ms=5.353278 write_ms=6.784497 fdatasync_ms=0.000000 pack_ms=0.065268 commit_ms=12.203042 timed_combined_msgs_s=1376191 wall_msgs_s=1729880 wall_s=17.342244 minor_faults_block=614.552 dirty_lines_block=149136.893 dirty_leaves_block=30674.992 write_bytes_block=31533939.433 pwrite_calls_block=1.000 write_MB_s=4647.941 final_root=9d5245f2af3dfc19bfe24cb98a6c4f6cd05c709f279437b411c9da1483fcacb4
+    ideal_store_diagnostic_test.go:619: verified native outputs, undo/dirty counts, repeated root sequence, rebuilt full-state root, and complete file readback (repeat comparison applies to run 1)
+--- PASS: TestIdealStore (54.59s)
+    --- PASS: TestIdealStore/0 (25.47s)
+    --- PASS: TestIdealStore/1 (26.02s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	54.715s
