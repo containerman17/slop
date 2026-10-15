@@ -1,0 +1,64 @@
+Total: 58.76s
+ROUTINE ======================== github.com/containerman17/pagerdb.(*DB).touch in /mnt/nvme/pagerdb-diag/pagerdb.go
+      80ms      1.29s (flat, cum)  2.20% of Total
+         .          .    220:func (db *DB) touch(off, n uint64) {
+         .          .    221:	if n == 0 {
+         .          .    222:		return
+         .          .    223:	}
+         .          .    224:	needed := len(db.undo) + 16 + int(n)
+         .          .    225:	if needed > cap(db.undo) {
+         .          .    226:		capacity := max(needed, 2*cap(db.undo), db.undoHint)
+         .          .    227:		grown := make([]byte, len(db.undo), capacity)
+         .       40ms    228:		copy(grown, db.undo)
+         .          .    229:		db.undo = grown
+         .          .    230:	}
+      20ms       20ms    231:	db.undo = le.AppendUint64(db.undo, off)
+      50ms      1.07s    232:	db.undo = append(db.undo, db.state[off:off+n]...)
+         .          .    233:	db.undo = le.AppendUint64(db.undo, n)
+      10ms      160ms    234:	db.markDirty(off, n)
+         .          .    235:}
+         .          .    236:func restore(state, records []byte, mark func(uint64, uint64)) {
+         .          .    237:	for end := len(records); end > 0; {
+         .          .    238:		n := int(le.Uint64(records[end-8:]))
+         .          .    239:		start := end - 16 - n
+ROUTINE ======================== github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).touch in /mnt/nvme/repo-diag/host.go
+     140ms      1.18s (flat, cum)  2.01% of Total
+      20ms       20ms    246:func (p *Program) touch(line uint32) {
+      10ms       10ms    247:	if line >= p.limit/lineSize {
+         .          .    248:		panic("reserved bitmap store")
+         .          .    249:	}
+      40ms       40ms    250:	off, bit := p.limit+line/8, byte(1<<(line%8))
+         .          .    251:	if p.memory[off]&bit != 0 {
+         .          .    252:		return
+         .          .    253:	}
+      20ms      1.06s    254:	p.host.db.Touch(p.Region, int(line)*lineSize, lineSize)
+      40ms       40ms    255:	p.memory[off] |= bit
+      10ms       10ms    256:}
+         .          .    257:func (p *Program) touchRange(off, n uint32) {
+         .          .    258:	p.read(off, n)
+         .          .    259:	if n > 0 {
+         .          .    260:		end := uint32((uint64(off)+uint64(n)-1)/lineSize) + 1
+         .          .    261:		for line := off / lineSize; line < end; {
+ROUTINE ======================== github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).touchRange in /mnt/nvme/repo-diag/host.go
+     230ms      640ms (flat, cum)  1.09% of Total
+         .          .    257:func (p *Program) touchRange(off, n uint32) {
+         .          .    258:	p.read(off, n)
+         .          .    259:	if n > 0 {
+         .          .    260:		end := uint32((uint64(off)+uint64(n)-1)/lineSize) + 1
+         .          .    261:		for line := off / lineSize; line < end; {
+      80ms       80ms    262:			if p.memory[p.limit+line/8]&byte(1<<(line%8)) != 0 {
+         .          .    263:				line++
+         .          .    264:				continue
+         .          .    265:			}
+         .          .    266:			start := line
+      90ms       90ms    267:			for line < end && p.memory[p.limit+line/8]&byte(1<<(line%8)) == 0 {
+         .          .    268:				line++
+         .          .    269:			}
+      20ms      430ms    270:			p.host.db.Touch(p.Region, int(start)*lineSize, int(line-start)*lineSize)
+         .          .    271:			for i := start; i < line; i++ {
+      40ms       40ms    272:				p.memory[p.limit+i/8] |= byte(1 << (i % 8))
+         .          .    273:			}
+         .          .    274:		}
+         .          .    275:	}
+         .          .    276:}
+         .          .    277:

@@ -1,0 +1,24 @@
+2026-10-15 19:39:06 JST
+ 19:39:06 up 5 min,  1 user,  load average: 1.13, 0.76, 0.32
+goos: linux
+goarch: amd64
+pkg: github.com/containerman17/pagerdb
+cpu: Intel(R) Xeon(R) 6975P-C
+BenchmarkEVM/uniform-16         	     700	  12685800 ns/op	     24939 dirty-leaves/block	         6.293 p50-commit-ms	         6.310 p50-write-ms	         7.078 p99-commit-ms	         7.328 p99-write-ms	   3941415 writes/s
+BenchmarkEVM/uniform-16         	     700	  12776358 ns/op	     24939 dirty-leaves/block	         6.396 p50-commit-ms	         6.313 p50-write-ms	         7.203 p99-commit-ms	         7.268 p99-write-ms	   3913479 writes/s
+--- BENCH: BenchmarkEVM/uniform-16
+    evm_bench_test.go:122: EVM_ROOTS_CHECKED distribution=uniform blocks=1 final_root=b437c716dadd9b4e728cb957df0e230eb06f97b0ad5cb961ca92e5b2a1b6b144
+    evm_bench_test.go:122: EVM_ROOTS_CHECKED distribution=uniform blocks=700 final_root=8b5e1b6780ab301d1708dcd07839b0dc0284e834fbc9265734d4be8cd1eaebfd
+BenchmarkEVM/hot_sigma_20000-16 	     700	   2925744 ns/op	      1906 dirty-leaves/block	         0.2712 p50-commit-ms	         2.605 p50-write-ms	         0.5057 p99-commit-ms	         3.247 p99-write-ms	  17089675 writes/s
+BenchmarkEVM/hot_sigma_20000-16 	     700	   2932957 ns/op	      1906 dirty-leaves/block	         0.2701 p50-commit-ms	         2.613 p50-write-ms	         0.4967 p99-commit-ms	         3.234 p99-write-ms	  17047643 writes/s
+--- BENCH: BenchmarkEVM/hot_sigma_20000-16
+    evm_bench_test.go:122: EVM_ROOTS_CHECKED distribution=hot_sigma_20000 blocks=1 final_root=5b51a1e22a71eb85e88163401606da31a8c63d19b67e9014e0e1c6ad76bb5272
+    evm_bench_test.go:122: EVM_ROOTS_CHECKED distribution=hot_sigma_20000 blocks=700 final_root=379a5de1e997986346f03c148144b99c732dadb826db2095a3cd16191d0a9426
+BenchmarkEVM/hot_sigma_2000-16  	     700	   1491612 ns/op	       233.5 dirty-leaves/block	         0.05127 p50-commit-ms	         1.391 p50-write-ms	         0.2327 p99-commit-ms	         1.806 p99-write-ms	  33520803 writes/s
+BenchmarkEVM/hot_sigma_2000-16  	     700	   1474817 ns/op	       233.5 dirty-leaves/block	         0.05135 p50-commit-ms	         1.391 p50-write-ms	         0.2161 p99-commit-ms	         1.823 p99-write-ms	  33902522 writes/s
+--- BENCH: BenchmarkEVM/hot_sigma_2000-16
+    evm_bench_test.go:122: EVM_ROOTS_CHECKED distribution=hot_sigma_2000 blocks=1 final_root=e3d271c69267e144c45a2240cae1251983cd507148f666b7892d5ef21369cb14
+    evm_bench_test.go:122: EVM_ROOTS_CHECKED distribution=hot_sigma_2000 blocks=700 final_root=232002915f0a404ffc7f2ff9b8ffb41c12e20b59e28fde5ec7aa67f9c9cddea9
+PASS
+ok  	github.com/containerman17/pagerdb	27.974s
+2026-10-15 19:39:35 JST
