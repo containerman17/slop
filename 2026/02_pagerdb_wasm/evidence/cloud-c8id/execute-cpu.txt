@@ -1,0 +1,70 @@
+File: 02_pagerdb_wasm.test
+Build ID: edd0ad29f84ce9d7b1b5e48cdb350bebb73833e6
+Type: cpu
+Time: 2026-10-15 14:22:12 JST
+Duration: 31.85s, Total samples = 121.13s (380.37%)
+Active filters:
+   tagfocus=stage=execute
+Showing nodes accounting for 20.47s, 16.90% of 121.13s total
+Showing top 60 nodes out of 110
+      flat  flat%   sum%        cum   cum%
+    14.45s 11.93% 11.93%     14.45s 11.93%  runtime._ExternalCode
+         0     0% 11.93%     14.45s 11.93%  runtime._System
+         0     0% 11.93%      5.63s  4.65%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).Run
+         0     0% 11.93%      5.63s  4.65%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile
+         0     0% 11.93%      5.63s  4.65%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile.func1
+         0     0% 11.93%      5.63s  4.65%  runtime/pprof.Do
+         0     0% 11.93%      5.63s  4.65%  testing.tRunner
+         0     0% 11.93%      5.17s  4.27%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).Call
+     0.74s  0.61% 12.54%      5.17s  4.27%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).callWithStack
+     0.05s 0.041% 12.58%      4.04s  3.34%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).callWithStack.func2
+     0.03s 0.025% 12.61%      3.96s  3.27%  github.com/tetratelabs/wazero/api.GoFunc.Call
+     0.04s 0.033% 12.64%      3.93s  3.24%  github.com/containerman17/slop/2026/02_pagerdb_wasm.New.func1.1
+     0.12s 0.099% 12.74%      2.96s  2.44%  github.com/containerman17/pagerdb.(*DB).Touch
+     0.02s 0.017% 12.75%      2.65s  2.19%  github.com/containerman17/slop/2026/02_pagerdb_wasm.New.func12
+     0.17s  0.14% 12.90%      2.63s  2.17%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).touch
+     2.32s  1.92% 14.81%      2.32s  1.92%  runtime.memmove
+     0.10s 0.083% 14.89%      2.11s  1.74%  github.com/containerman17/pagerdb.loc.each
+         0     0% 14.89%      2.01s  1.66%  github.com/containerman17/pagerdb.(*DB).Touch.func1
+     0.19s  0.16% 15.05%      2.01s  1.66%  github.com/containerman17/pagerdb.(*DB).logEntry
+     0.18s  0.15% 15.20%      0.68s  0.56%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).touchRange
+         0     0% 15.20%      0.55s  0.45%  github.com/containerman17/slop/2026/02_pagerdb_wasm.New.func13
+     0.47s  0.39% 15.59%      0.47s  0.39%  internal/sync.(*Mutex).Unlock (inline)
+         0     0% 15.59%      0.47s  0.39%  sync.(*Mutex).Unlock
+     0.22s  0.18% 15.77%      0.46s  0.38%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).Run.func1
+     0.11s 0.091% 15.86%      0.45s  0.37%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).charge
+     0.06s  0.05% 15.91%      0.34s  0.28%  github.com/tetratelabs/wazero/internal/engine/wazevo.hostModuleGoFuncFromOpaque[go.shape.interface { Call }] (inline)
+     0.01s 0.0083% 15.92%      0.27s  0.22%  runtime.assertE2I
+     0.03s 0.025% 15.94%      0.26s  0.21%  github.com/tetratelabs/wazero/internal/wasm.mutableGlobal.Get
+     0.24s   0.2% 16.14%      0.26s  0.21%  internal/sync.(*Mutex).Lock (inline)
+     0.07s 0.058% 16.20%      0.26s  0.21%  runtime.getitab
+         0     0% 16.20%      0.26s  0.21%  sync.(*Mutex).Lock (inline)
+         0     0% 16.20%      0.24s   0.2%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).write
+         0     0% 16.20%      0.24s   0.2%  github.com/containerman17/slop/2026/02_pagerdb_wasm.New.func9
+     0.03s 0.025% 16.22%      0.23s  0.19%  github.com/tetratelabs/wazero/internal/wasm.(*GlobalInstance).Value
+         0     0% 16.22%      0.22s  0.18%  runtime.growslice
+     0.17s  0.14% 16.36%      0.20s  0.17%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*moduleEngine).GetGlobalValue
+     0.15s  0.12% 16.49%      0.19s  0.16%  runtime.(*itabTableType).find
+     0.08s 0.066% 16.55%      0.08s 0.066%  github.com/containerman17/pagerdb.(*DB).markDirty (inline)
+     0.06s  0.05% 16.60%      0.08s 0.066%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*moduleEngine).SetGlobalValue
+         0     0% 16.60%      0.08s 0.066%  github.com/tetratelabs/wazero/internal/wasm.(*GlobalInstance).SetValue (inline)
+         0     0% 16.60%      0.08s 0.066%  github.com/tetratelabs/wazero/internal/wasm.mutableGlobal.Set
+     0.06s  0.05% 16.65%      0.06s  0.05%  runtime.memclrNoHeapPointers
+     0.02s 0.017% 16.67%      0.05s 0.041%  github.com/containerman17/pagerdb.(*DB).reserve
+     0.05s 0.041% 16.71%      0.05s 0.041%  github.com/tetratelabs/wazero/internal/engine/wazevo/wazevoapi.GoFunctionIndexFromExitCode (inline)
+     0.04s 0.033% 16.74%      0.04s 0.033%  encoding/binary.littleEndian.PutUint32 (inline)
+     0.04s 0.033% 16.78%      0.04s 0.033%  encoding/binary.littleEndian.Uint64 (inline)
+     0.04s 0.033% 16.81%      0.04s 0.033%  runtime.add (inline)
+         0     0% 16.81%      0.04s 0.033%  runtime.systemstack
+     0.02s 0.017% 16.82%      0.03s 0.025%  encoding/binary.littleEndian.PutUint64
+         0     0% 16.82%      0.03s 0.025%  github.com/containerman17/pagerdb.(*DB).prefault
+         0     0% 16.82%      0.03s 0.025%  github.com/tetratelabs/wazero/internal/engine/wazevo.goCallStackView (inline)
+     0.03s 0.025% 16.85%      0.03s 0.025%  github.com/tetratelabs/wazero/internal/engine/wazevo/backend/isa/amd64.GoCallStackView (inline)
+         0     0% 16.85%      0.03s 0.025%  runtime.mcall
+     0.01s 0.0083% 16.86%      0.03s 0.025%  runtime.park_m
+     0.02s 0.017% 16.87%      0.02s 0.017%  github.com/tetratelabs/wazero/internal/engine/wazevo/backend/isa/amd64.afterGoFunctionCallEntrypoint
+     0.01s 0.0083% 16.88%      0.02s 0.017%  internal/sync.(*Mutex).lockSlow
+         0     0% 16.88%      0.02s 0.017%  runtime.chansend
+     0.02s 0.017% 16.90%      0.02s 0.017%  runtime.futex
+         0     0% 16.90%      0.02s 0.017%  runtime.futexwakeup
+         0     0% 16.90%      0.02s 0.017%  runtime.goready

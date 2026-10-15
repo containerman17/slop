@@ -1,0 +1,34 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 29K of event 'minor-faults'
+# Total weight : 29849
+# Sort order   : dso_daddr
+#
+# Overhead  Data Object
+# ........  ..................................................................
+#
+    81.56%  state
+     7.81%  anon
+     2.62%  [heap]
+     0.62%  000000000010
+     0.62%  000000000009
+     0.62%  000000000008
+     0.61%  000000000004
+     0.60%  000000000005
+     0.59%  000000000001
+     0.59%  000000000007
+     0.59%  000000000011
+     0.58%  000000000002
+     0.57%  000000000003
+     0.57%  000000000006
+     0.45%  000000000012
+     0.44%  [unknown]
+     0.29%  tree
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

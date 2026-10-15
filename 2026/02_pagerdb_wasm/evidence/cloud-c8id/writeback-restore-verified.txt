@@ -1,0 +1,7 @@
+restored_settings_diff_exit=0
+vm.dirty_background_bytes = 0
+vm.dirty_background_ratio = 10
+vm.dirty_bytes = 0
+vm.dirty_ratio = 20
+vm.dirty_expire_centisecs = 3000
+vm.dirty_writeback_centisecs = 500

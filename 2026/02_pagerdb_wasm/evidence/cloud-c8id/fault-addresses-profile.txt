@@ -1,0 +1,32 @@
+Thu Oct 15 14:44:21 JST 2026
+WORK=/mnt/nvme/tmp/go-build574222518
+=== RUN   TestCloudDiagnostics
+=== RUN   TestCloudDiagnostics/0
+    cloud_diagnostic_test.go:141: run 0: 100/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 0: 200/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 0: 300/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 0: 400/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 0: 500/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 0: 600/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:145: execution_msgs_s=1246042 combined_msgs_s=965564 execution_ms=40.127 commit_ms=11.656 commit_p99_ms=55.464 end_ms=1.076
+    cloud_diagnostic_test.go:146: per_block: dirty_lines=149136.9 dirty_leaves=30675.0 journal_bytes=21345982.7 execution_minor_faults=2306.1 execution_major_faults=2.0
+    cloud_diagnostic_test.go:147: epoch_start=1 epoch_end=12
+=== RUN   TestCloudDiagnostics/1
+    cloud_diagnostic_test.go:141: run 1: 100/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 1: 200/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 1: 300/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 1: 400/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 1: 500/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 1: 600/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:145: execution_msgs_s=1234235 combined_msgs_s=956952 execution_ms=40.511 commit_ms=11.738 commit_p99_ms=57.025 end_ms=1.048
+    cloud_diagnostic_test.go:146: per_block: dirty_lines=149136.9 dirty_leaves=30675.0 journal_bytes=21345982.7 execution_minor_faults=2389.0 execution_major_faults=2.0
+    cloud_diagnostic_test.go:147: epoch_start=1 epoch_end=12
+--- PASS: TestCloudDiagnostics (67.17s)
+    --- PASS: TestCloudDiagnostics/0 (31.90s)
+    --- PASS: TestCloudDiagnostics/1 (32.16s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	67.187s
+[ perf record: Woken up 2 times to write data ]
+[ perf record: Captured and wrote 2.025 MB /mnt/nvme/fault-addresses.data (29849 samples) ]
+fault_address_profile_exit=0
+Thu Oct 15 14:45:29 JST 2026

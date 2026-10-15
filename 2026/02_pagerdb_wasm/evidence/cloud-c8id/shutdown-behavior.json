@@ -1,0 +1,6 @@
+{
+    "InstanceId": "i-07b4df53980beec45",
+    "InstanceInitiatedShutdownBehavior": {
+        "Value": "terminate"
+    }
+}

@@ -1,0 +1,29 @@
+Type: delay
+Active filters:
+   focus=pagerdb[.]\(\*DB\)[.]Touch
+Showing nodes accounting for 2651.37ms, 2.01% of 131936.59ms total
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%  2651.37ms  2.01%  github.com/containerman17/pagerdb.(*DB).Touch
+         0     0%     0%  2651.37ms  2.01%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).Run
+         0     0%     0%  2651.37ms  2.01%  github.com/containerman17/slop/2026/02_pagerdb_wasm.New.func1.1
+         0     0%     0%  2651.37ms  2.01%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile
+         0     0%     0%  2651.37ms  2.01%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile.func1
+         0     0%     0%  2651.37ms  2.01%  github.com/tetratelabs/wazero/api.GoFunc.Call
+         0     0%     0%  2651.37ms  2.01%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).Call
+         0     0%     0%  2651.37ms  2.01%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).callWithStack
+         0     0%     0%  2651.37ms  2.01%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).callWithStack.func2
+         0     0%     0%  2651.37ms  2.01%  runtime/pprof.Do
+ 2651.37ms  2.01%  2.01%  2651.37ms  2.01%  sync.(*Mutex).Lock
+         0     0%  2.01%  2651.37ms  2.01%  testing.tRunner
+         0     0%  2.01%  2542.66ms  1.93%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).touch
+         0     0%  2.01%  2542.66ms  1.93%  github.com/containerman17/slop/2026/02_pagerdb_wasm.New.func12
+         0     0%  2.01%   108.71ms 0.082%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).touchRange
+         0     0%  2.01%   106.91ms 0.081%  github.com/containerman17/slop/2026/02_pagerdb_wasm.New.func13
+         0     0%  2.01%     2.97ms 0.0023%  github.com/containerman17/pagerdb.(*DB).Touch.func1
+         0     0%  2.01%     2.97ms 0.0023%  github.com/containerman17/pagerdb.(*DB).growChunk
+         0     0%  2.01%     2.97ms 0.0023%  github.com/containerman17/pagerdb.(*DB).logEntry
+         0     0%  2.01%     2.97ms 0.0023%  github.com/containerman17/pagerdb.(*DB).prefault
+         0     0%  2.01%     2.97ms 0.0023%  github.com/containerman17/pagerdb.(*DB).reserve
+         0     0%  2.01%     2.97ms 0.0023%  github.com/containerman17/pagerdb.loc.each
+         0     0%  2.01%     1.79ms 0.0014%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).write
+         0     0%  2.01%     1.79ms 0.0014%  github.com/containerman17/slop/2026/02_pagerdb_wasm.New.func9

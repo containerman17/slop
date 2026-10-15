@@ -1,0 +1,17 @@
+Type: delay
+Active filters:
+   focus=pagerdb[.]\(\*DB\)[.]Commit
+Showing nodes accounting for 3.56s, 2.70% of 131.94s total
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%      3.56s  2.70%  github.com/containerman17/pagerdb.(*DB).Commit
+         0     0%     0%      3.56s  2.70%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile
+         0     0%     0%      3.56s  2.70%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile.func2
+         0     0%     0%      3.56s  2.70%  github.com/containerman17/slop/2026/02_pagerdb_wasm.commit
+         0     0%     0%      3.56s  2.70%  runtime/pprof.Do
+         0     0%     0%      3.56s  2.70%  testing.tRunner
+     3.54s  2.68%  2.68%      3.54s  2.68%  sync.(*WaitGroup).Wait
+         0     0%  2.68%      2.93s  2.22%  github.com/containerman17/pagerdb.(*DB).hashDirty
+         0     0%  2.68%      2.61s  1.98%  github.com/containerman17/pagerdb.parallel
+         0     0%  2.68%      0.93s   0.7%  github.com/containerman17/pagerdb.parallelGroups
+         0     0%  2.68%      0.61s  0.47%  github.com/containerman17/pagerdb.(*DB).fillNewBytes
+     0.02s 0.017%  2.70%      0.02s 0.017%  sync.(*Mutex).Lock

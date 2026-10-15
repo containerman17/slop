@@ -1,0 +1,70 @@
+File: 02_pagerdb_wasm.test
+Build ID: edd0ad29f84ce9d7b1b5e48cdb350bebb73833e6
+Type: cpu
+Time: 2026-10-15 14:22:12 JST
+Duration: 31.85s, Total samples = 121.13s (380.37%)
+Active filters:
+   tagfocus=stage=commit
+Showing nodes accounting for 24.16s, 19.95% of 121.13s total
+Showing top 60 nodes out of 115
+      flat  flat%   sum%        cum   cum%
+     0.01s 0.0083% 0.0083%     20.98s 17.32%  sync.(*WaitGroup).Go.func1
+     0.18s  0.15%  0.16%     18.05s 14.90%  crypto/sha256.Sum256
+     0.14s  0.12%  0.27%     16.98s 14.02%  crypto/internal/fips140/sha256.(*Digest).Write
+     0.09s 0.074%  0.35%     16.84s 13.90%  crypto/internal/fips140/sha256.block
+    16.75s 13.83% 14.17%     16.75s 13.83%  crypto/internal/fips140/sha256.blockSHANI
+         0     0% 14.17%     15.65s 12.92%  github.com/containerman17/pagerdb.parallel.func1
+     0.13s  0.11% 14.28%     13.96s 11.52%  github.com/containerman17/pagerdb.(*DB).hashDirty.func1
+     0.02s 0.017% 14.30%      5.29s  4.37%  github.com/containerman17/pagerdb.parallelGroups.func1
+         0     0% 14.30%      5.29s  4.37%  github.com/containerman17/pagerdb.parallelGroups.func2
+     0.01s 0.0083% 14.31%      5.27s  4.35%  github.com/containerman17/pagerdb.(*DB).hashDirty.func2
+     0.28s  0.23% 14.54%      5.26s  4.34%  github.com/containerman17/pagerdb.(*DB).hashBand
+     0.14s  0.12% 14.65%      3.47s  2.86%  crypto/internal/fips140/sha256.(*Digest).Sum
+         0     0% 14.65%      3.29s  2.72%  github.com/containerman17/pagerdb.(*DB).Commit
+         0     0% 14.65%      3.29s  2.72%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile
+         0     0% 14.65%      3.29s  2.72%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile.func2
+         0     0% 14.65%      3.29s  2.72%  github.com/containerman17/slop/2026/02_pagerdb_wasm.commit
+         0     0% 14.65%      3.29s  2.72%  runtime/pprof.Do
+         0     0% 14.65%      3.29s  2.72%  testing.tRunner
+     0.60s   0.5% 15.15%      3.23s  2.67%  crypto/internal/fips140/sha256.(*Digest).checkSum
+     1.82s  1.50% 16.65%      1.82s  1.50%  runtime.memmove
+     0.11s 0.091% 16.74%      1.69s  1.40%  github.com/containerman17/pagerdb.(*DB).fillNewBytes.func1
+         0     0% 16.74%      1.21s     1%  hash/crc32.Checksum (inline)
+         0     0% 16.74%      1.21s     1%  hash/crc32.Update (inline)
+     0.02s 0.017% 16.76%      1.21s     1%  hash/crc32.archUpdateCastagnoli
+         0     0% 16.76%      1.21s     1%  hash/crc32.update
+     1.18s  0.97% 17.73%      1.18s  0.97%  hash/crc32.castagnoliSSE42Triple
+         0     0% 17.73%      1.01s  0.83%  github.com/containerman17/pagerdb.(*DB).fillNewBytes
+     0.50s  0.41% 18.15%      1.01s  0.83%  github.com/containerman17/pagerdb.(*DB).indexPending
+     0.12s 0.099% 18.24%      0.96s  0.79%  github.com/containerman17/pagerdb.(*DB).hashDirty
+         0     0% 18.24%      0.79s  0.65%  slices.Sort[go.shape.[]uint32,go.shape.uint32] (inline)
+     0.05s 0.041% 18.29%      0.79s  0.65%  slices.pdqsortOrdered[go.shape.uint32]
+     0.55s  0.45% 18.74%      0.55s  0.45%  github.com/containerman17/pagerdb.(*DB).nodeAt (inline)
+     0.53s  0.44% 19.18%      0.55s  0.45%  slices.partitionOrdered[go.shape.uint32]
+     0.05s 0.041% 19.22%      0.45s  0.37%  github.com/containerman17/pagerdb.(*DB).index
+     0.30s  0.25% 19.47%      0.30s  0.25%  github.com/containerman17/pagerdb.headTab.swap (inline)
+     0.14s  0.12% 19.58%      0.15s  0.12%  slices.insertionSortOrdered[go.shape.uint32]
+         0     0% 19.58%      0.11s 0.091%  github.com/containerman17/pagerdb.(*DB).rotate
+         0     0% 19.58%      0.11s 0.091%  golang.org/x/sys/unix.Msync
+     0.11s 0.091% 19.67%      0.11s 0.091%  internal/runtime/syscall/linux.Syscall6
+         0     0% 19.67%      0.11s 0.091%  syscall.RawSyscall6
+         0     0% 19.67%      0.11s 0.091%  syscall.Syscall
+     0.06s  0.05% 19.72%      0.06s  0.05%  cmp.Less[go.shape.uint32] (inline)
+     0.06s  0.05% 19.77%      0.06s  0.05%  encoding/binary.littleEndian.Uint32 (inline)
+     0.01s 0.0083% 19.78%      0.06s  0.05%  runtime.makeslice
+         0     0% 19.78%      0.06s  0.05%  runtime.mallocgc
+     0.03s 0.025% 19.81%      0.05s 0.041%  github.com/containerman17/pagerdb.(*seqBuf[go.shape.struct { github.com/containerman17/pagerdb.entry uint32; github.com/containerman17/pagerdb.back uint32; github.com/containerman17/pagerdb.leaf uint32 }]).push (inline)
+     0.02s 0.017% 19.82%      0.05s 0.041%  github.com/containerman17/pagerdb.(*seqBuf[go.shape.struct { github.com/containerman17/pagerdb.ver uint64; github.com/containerman17/pagerdb.loc uint64 }]).push (inline)
+         0     0% 19.82%      0.05s 0.041%  runtime.mallocgcLarge
+     0.05s 0.041% 19.86%      0.05s 0.041%  runtime.memclrNoHeapPointers
+         0     0% 19.86%      0.05s 0.041%  runtime.memclrNoHeapPointersChunked
+     0.01s 0.0083% 19.87%      0.04s 0.033%  crypto/internal/fips140/sha256.New (inline)
+         0     0% 19.87%      0.04s 0.033%  crypto/sha256.New (inline)
+         0     0% 19.87%      0.04s 0.033%  slices.choosePivotOrdered[go.shape.uint32]
+         0     0% 19.87%      0.04s 0.033%  slices.medianOrdered[go.shape.uint32]
+     0.01s 0.0083% 19.88%      0.04s 0.033%  slices.order2Ordered[go.shape.uint32] (inline)
+     0.03s 0.025% 19.90%      0.03s 0.025%  crypto/internal/fips140/sha256.(*Digest).Reset
+     0.02s 0.017% 19.92%      0.03s 0.025%  github.com/containerman17/pagerdb.(*DB).rec (inline)
+         0     0% 19.92%      0.03s 0.025%  runtime.systemstack
+     0.01s 0.0083% 19.93%      0.03s 0.025%  sync.(*WaitGroup).Go.func1.1
+     0.02s 0.017% 19.95%      0.02s 0.017%  crypto/internal/fips140.RecordApproved

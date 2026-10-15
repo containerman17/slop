@@ -1,0 +1,35 @@
+Thu Oct 15 14:37:11 JST 2026
+ 14:37:11 up 22 min,  1 user,  load average: 1.70, 2.20, 1.61
+procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu
+ 0  0      0 58562936 147108 5532376    0    0   340 215716 25449    1  6  1 93  0  0  0
+ 0  0      0 58563940 147108 5532376    0    0     0     0  194  135  0  0 100  0  0  0
+ 0  0      0 58563648 147108 5532380    0    0     0     0  126   98  0  0 100  0  0  0
+=== RUN   TestCloudDiagnostics
+=== RUN   TestCloudDiagnostics/0
+    cloud_diagnostic_test.go:141: run 0: 100/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 0: 200/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 0: 300/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 0: 400/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 0: 500/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 0: 600/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:145: execution_msgs_s=1507374 combined_msgs_s=1147176 execution_ms=33.170 commit_ms=10.415 commit_p99_ms=18.209 end_ms=0.976
+    cloud_diagnostic_test.go:146: per_block: dirty_lines=149136.9 dirty_leaves=30675.0 journal_bytes=21345982.7 execution_minor_faults=1765.9 execution_major_faults=2.0
+    cloud_diagnostic_test.go:147: epoch_start=1 epoch_end=1
+=== RUN   TestCloudDiagnostics/1
+    cloud_diagnostic_test.go:141: run 1: 100/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 1: 200/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 1: 300/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 1: 400/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 1: 500/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:141: run 1: 600/600 native hashes, roots and counts checked
+    cloud_diagnostic_test.go:145: execution_msgs_s=1575512 combined_msgs_s=1187220 execution_ms=31.736 commit_ms=10.379 commit_p99_ms=19.490 end_ms=0.987
+    cloud_diagnostic_test.go:146: per_block: dirty_lines=149136.9 dirty_leaves=30675.0 journal_bytes=21345982.7 execution_minor_faults=1225.8 execution_major_faults=2.0
+    cloud_diagnostic_test.go:147: epoch_start=1 epoch_end=1
+--- PASS: TestCloudDiagnostics (72.00s)
+    --- PASS: TestCloudDiagnostics/0 (37.66s)
+    --- PASS: TestCloudDiagnostics/1 (28.32s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	72.009s
+diagnostic_exit=0
+Thu Oct 15 14:38:25 JST 2026

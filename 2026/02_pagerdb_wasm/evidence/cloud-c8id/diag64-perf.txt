@@ -1,0 +1,18 @@
+# started on Thu Oct 15 14:25:06 2026
+
+
+ Performance counter stats for 'sudo -u ubuntu env PATH=/usr/local/go/bin:/home/ubuntu/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin TMPDIR=/mnt/nvme/tmp GOCACHE=/mnt/nvme/go-cache GOPATH=/mnt/nvme/go CARGO_TARGET_DIR=/mnt/nvme/cargo-target GOMAXPROCS=16 PAGERWASM_CLOUD=1 PAGERWASM_CLOUD_CSV=/mnt/nvme/results/diag64.csv PAGERWASM_FIXTURE=/mnt/nvme/original.bin taskset -c 0-15 go test -run ^TestCloudDiagnostics$ -count=1 -v -timeout=30m .':
+
+      <account>      cycles
+     1953472547525      instructions
+      <account>      branches
+        4199745103      branch-misses
+                 0      cache-misses
+           3089805      page-faults
+           3087082      minor-faults
+              2629      major-faults
+
+      68.603476772 seconds time elapsed
+
+     222.167270000 seconds user
+      33.430762000 seconds sys

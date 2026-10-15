@@ -1,0 +1,9 @@
+Thu Oct 15 14:16:16 JST 2026
+go version go1.26.0 linux/amd64
+rustc 1.99.0 (b940084d7 2026-09-28)
+cargo 1.99.0 (5f94df478 2026-08-27)
+go: downloading github.com/tetratelabs/wazero v1.12.0
+go: downloading github.com/containerman17/pagerdb v0.0.0-20261014093015-af2c4c95bb9d
+go: downloading golang.org/x/sys v0.49.0
+go: downloading github.com/klauspost/compress v1.18.3
+vet_exit=0

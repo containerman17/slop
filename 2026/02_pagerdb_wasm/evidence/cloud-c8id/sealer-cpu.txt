@@ -1,0 +1,51 @@
+File: 02_pagerdb_wasm.test
+Build ID: edd0ad29f84ce9d7b1b5e48cdb350bebb73833e6
+Type: cpu
+Time: 2026-10-15 14:22:12 JST
+Duration: 31.85s, Total samples = 121.13s (380.37%)
+Active filters:
+   focus=sealSection|parallelSeal|sealWorker
+Showing nodes accounting for 52.65s, 43.47% of 121.13s total
+Dropped 168 nodes (cum <= 0.61s)
+Showing top 40 nodes out of 78
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%     66.30s 54.73%  github.com/containerman17/pagerdb.(*DB).parallelSeal.func2
+         0     0%     0%     45.23s 37.34%  github.com/containerman17/pagerdb.(*DB).sealSection
+    12.04s  9.94%  9.94%     45.22s 37.33%  github.com/containerman17/pagerdb.(*DB).sealSection.func2
+     0.01s 0.0083%  9.95%     28.98s 23.92%  github.com/containerman17/pagerdb.(*DB).sealSection.func2.4
+     0.04s 0.033%  9.98%     28.36s 23.41%  github.com/klauspost/compress/zstd.(*Encoder).EncodeAll
+     0.05s 0.041% 10.02%     28.13s 23.22%  github.com/klauspost/compress/zstd.(*Encoder).encodeAll
+         0     0% 10.02%     21.06s 17.39%  github.com/containerman17/pagerdb.diskSortPiecesBuffers
+     0.23s  0.19% 10.21%     21.06s 17.39%  github.com/containerman17/pagerdb.diskSortRuns
+     2.22s  1.83% 12.04%     18.07s 14.92%  github.com/klauspost/compress/zstd.(*blockEnc).encode
+    13.47s 11.12% 23.17%     15.61s 12.89%  github.com/containerman17/pagerdb.(*pieceScan).fill
+         0     0% 23.17%     13.51s 11.15%  github.com/containerman17/pagerdb.(*DB).parallelSeal.func2.1
+     0.01s 0.0083% 23.17%     10.86s  8.97%  github.com/klauspost/compress/huff0.compress
+     6.51s  5.37% 28.55%      9.66s  7.97%  github.com/klauspost/compress/zstd.(*fastEncoder).EncodeNoHist
+         0     0% 28.55%      5.96s  4.92%  github.com/klauspost/compress/huff0.Compress1X
+         0     0% 28.55%         5s  4.13%  github.com/klauspost/compress/huff0.Compress4X
+     1.25s  1.03% 29.58%      4.96s  4.09%  github.com/klauspost/compress/huff0.(*Scratch).buildCTable
+     4.27s  3.53% 33.10%      4.27s  3.53%  internal/runtime/syscall/linux.Syscall6
+         0     0% 33.10%      4.27s  3.53%  syscall.RawSyscall6
+     3.63s  3.00% 36.10%      3.63s  3.00%  runtime.memmove
+     0.33s  0.27% 36.37%      3.37s  2.78%  bufio.(*Writer).Write
+         0     0% 36.37%      3.29s  2.72%  syscall.Syscall
+     2.13s  1.76% 38.13%      3.16s  2.61%  github.com/containerman17/pagerdb.radixPieces
+     0.17s  0.14% 38.27%      3.12s  2.58%  github.com/containerman17/pagerdb.(*DB).parallelSeal
+         0     0% 38.27%      3.12s  2.58%  github.com/containerman17/pagerdb.(*DB).seal
+         0     0% 38.27%      3.12s  2.58%  github.com/containerman17/pagerdb.(*DB).sealer
+     2.34s  1.93% 40.20%      3.02s  2.49%  github.com/klauspost/compress/huff0.(*Scratch).huffSort
+         0     0% 40.20%      2.99s  2.47%  internal/poll.ignoringEINTRIO (inline)
+         0     0% 40.20%      2.78s  2.30%  internal/poll.(*FD).Write
+         0     0% 40.20%      2.78s  2.30%  os.(*File).Write
+         0     0% 40.20%      2.78s  2.30%  os.(*File).write (inline)
+         0     0% 40.20%      2.78s  2.30%  syscall.Write (inline)
+         0     0% 40.20%      2.78s  2.30%  syscall.write
+     0.50s  0.41% 40.62%      2.29s  1.89%  github.com/klauspost/compress/huff0.cTable.write
+     0.37s  0.31% 40.92%      2.25s  1.86%  github.com/containerman17/pagerdb.(*DB).readWindowRange
+     0.55s  0.45% 41.38%      2.20s  1.82%  github.com/klauspost/compress/huff0.(*Scratch).compress1xDo
+     2.08s  1.72% 43.09%      2.08s  1.72%  encoding/binary.littleEndian.Uint64 (inline)
+     0.09s 0.074% 43.17%      2.02s  1.67%  io.ReadFull (inline)
+         0     0% 43.17%      2.01s  1.66%  bufio.(*Writer).Flush
+     0.36s   0.3% 43.47%      1.93s  1.59%  io.ReadAtLeast
+         0     0% 43.47%      1.79s  1.48%  github.com/klauspost/compress/fse.Compress

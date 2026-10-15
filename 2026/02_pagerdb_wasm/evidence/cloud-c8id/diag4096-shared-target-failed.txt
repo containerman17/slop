@@ -1,0 +1,20 @@
+Thu Oct 15 14:31:12 JST 2026
+ 14:31:12 up 16 min,  1 user,  load average: 2.42, 2.17, 1.32
+procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu
+ 0  0      0 58798572 138844 5315604    0    0   465 199253 21756    1  6  1 93  0  0  0
+ 0  0      0 58801380 138844 5315604    0    0     0     0  150   67  0  0 100  0  0  0
+ 0  0      0 58801776 138844 5315604    0    0     0     0   78   59  0  0 100  0  0  0
+=== RUN   TestCloudDiagnostics
+=== RUN   TestCloudDiagnostics/0
+    cloud_diagnostic_test.go:101: block 0 status or native hash differs
+=== RUN   TestCloudDiagnostics/1
+    cloud_diagnostic_test.go:101: block 0 status or native hash differs
+--- FAIL: TestCloudDiagnostics (3.36s)
+    --- FAIL: TestCloudDiagnostics/0 (0.10s)
+    --- FAIL: TestCloudDiagnostics/1 (0.10s)
+FAIL
+FAIL	github.com/containerman17/slop/2026/02_pagerdb_wasm	3.361s
+FAIL
+diagnostic_exit=1
+Thu Oct 15 14:31:18 JST 2026

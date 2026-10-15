@@ -1,0 +1,25 @@
+Thu Oct 15 14:22:55 JST 2026
+ 14:22:55 up 8 min,  1 user,  load average: 1.94, 1.53, 0.72
+procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu
+ 0  0      0 59000636 130748 5127608    0    0   827 201430 19392    1  6  1 93  0  0  0
+ 0  0      0 59003212 130748 5127612    0    0     0     0  244  172  0  0 100  0  0  0
+ 0  0      0 59004944 130748 5127612    0    0     0     0  156   59  0  0 100  0  0  0
+=== RUN   TestMatcher
+=== RUN   TestMatcher/0
+    matcher_test.go:164: run 0: 100/600 native hashes and roots checked
+    matcher_test.go:164: run 0: 200/600 native hashes and roots checked
+    matcher_test.go:164: run 0: 300/600 native hashes and roots checked
+    matcher_test.go:164: run 0: 400/600 native hashes and roots checked
+    matcher_test.go:164: run 0: 500/600 native hashes and roots checked
+    matcher_test.go:164: run 0: 600/600 native hashes and roots checked
+    matcher_test.go:177: uncoalesced log bytes/block upper bound=23861959 (ABI coalescing reduces headers), dirty 1KiB leaves/block=30675.0, Commit p99 ms=54.617
+    matcher_test.go:178: bytes_written/block=9544761, leaves_touched/block=30675.0
+    matcher_test.go:179: guest ms/block=41.622, end ms/block=1.147
+    matcher_test.go:180: single-process M3 diagnostics: 1169059 msgs/s execution, 873611 msgs/s including Commit, 149136.9 dirty tracking units/block, 14.464 Commit ms/block
+--- PASS: TestMatcher (38.37s)
+    --- PASS: TestMatcher/0 (35.22s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	38.383s
+matcher_exit=0
+Thu Oct 15 14:23:35 JST 2026

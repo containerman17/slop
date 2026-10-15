@@ -1,0 +1,41 @@
+File: 02_pagerdb_wasm.test
+Build ID: edd0ad29f84ce9d7b1b5e48cdb350bebb73833e6
+Type: cpu
+Time: 2026-10-15 14:22:12 JST
+Duration: 31.85s, Total samples = 121.13s (380.37%)
+Active filters:
+   focus=logEntry
+   tagfocus=stage=execute
+Showing nodes accounting for 2s, 1.65% of 121.13s total
+Showing top 30 nodes out of 46
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%      2.01s  1.66%  github.com/containerman17/pagerdb.(*DB).Touch
+         0     0%     0%      2.01s  1.66%  github.com/containerman17/pagerdb.(*DB).Touch.func1
+     0.19s  0.16%  0.16%      2.01s  1.66%  github.com/containerman17/pagerdb.(*DB).logEntry
+         0     0%  0.16%      2.01s  1.66%  github.com/containerman17/pagerdb.loc.each
+         0     0%  0.16%      2.01s  1.66%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).Run
+         0     0%  0.16%      2.01s  1.66%  github.com/containerman17/slop/2026/02_pagerdb_wasm.New.func1.1
+         0     0%  0.16%      2.01s  1.66%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile
+         0     0%  0.16%      2.01s  1.66%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile.func1
+         0     0%  0.16%      2.01s  1.66%  github.com/tetratelabs/wazero/api.GoFunc.Call
+         0     0%  0.16%      2.01s  1.66%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).Call
+         0     0%  0.16%      2.01s  1.66%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).callWithStack
+         0     0%  0.16%      2.01s  1.66%  github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).callWithStack.func2
+         0     0%  0.16%      2.01s  1.66%  runtime/pprof.Do
+         0     0%  0.16%      2.01s  1.66%  testing.tRunner
+     1.65s  1.36%  1.52%      1.65s  1.36%  runtime.memmove
+         0     0%  1.52%      1.56s  1.29%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).touch
+         0     0%  1.52%      1.56s  1.29%  github.com/containerman17/slop/2026/02_pagerdb_wasm.New.func12
+         0     0%  1.52%      0.45s  0.37%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).touchRange
+         0     0%  1.52%      0.33s  0.27%  github.com/containerman17/slop/2026/02_pagerdb_wasm.New.func13
+         0     0%  1.52%      0.12s 0.099%  github.com/containerman17/slop/2026/02_pagerdb_wasm.(*Program).write
+         0     0%  1.52%      0.12s 0.099%  github.com/containerman17/slop/2026/02_pagerdb_wasm.New.func9
+     0.08s 0.066%  1.59%      0.08s 0.066%  github.com/containerman17/pagerdb.(*DB).markDirty (inline)
+     0.02s 0.017%  1.60%      0.05s 0.041%  github.com/containerman17/pagerdb.(*DB).reserve
+     0.04s 0.033%  1.63%      0.04s 0.033%  encoding/binary.littleEndian.PutUint32 (inline)
+         0     0%  1.63%      0.03s 0.025%  github.com/containerman17/pagerdb.(*DB).prefault
+         0     0%  1.63%      0.02s 0.017%  runtime.chansend
+     0.02s 0.017%  1.65%      0.02s 0.017%  runtime.futex
+         0     0%  1.65%      0.02s 0.017%  runtime.futexwakeup
+         0     0%  1.65%      0.02s 0.017%  runtime.goready (inline)
+         0     0%  1.65%      0.02s 0.017%  runtime.notewakeup

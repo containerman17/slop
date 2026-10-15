@@ -1,0 +1,46 @@
+Type: delay
+Active filters:
+   focus=pagerdb[.]\(\*DB\)[.]Commit
+Showing nodes accounting for 440.82ms, 1.80% of 24465.52ms total
+Showing top 40 nodes out of 42
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%   440.84ms  1.80%  github.com/containerman17/pagerdb.(*DB).Commit
+         0     0%     0%   440.84ms  1.80%  github.com/containerman17/pagerdb.(*DB).rotate
+         0     0%     0%   440.84ms  1.80%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile
+         0     0%     0%   440.84ms  1.80%  github.com/containerman17/slop/2026/02_pagerdb_wasm.TestCommitProfile.func2
+         0     0%     0%   440.84ms  1.80%  github.com/containerman17/slop/2026/02_pagerdb_wasm.commit
+         0     0%     0%   440.84ms  1.80%  runtime/pprof.Do
+         0     0%     0%   440.84ms  1.80%  testing.tRunner
+  439.78ms  1.80%  1.80%   439.78ms  1.80%  golang.org/x/sys/unix.Msync
+         0     0%  1.80%     0.75ms 0.003%  github.com/containerman17/pagerdb.cloneState
+         0     0%  1.80%     0.68ms 0.0028%  os.ignoringEINTR
+         0     0%  1.80%     0.62ms 0.0025%  os.OpenFile
+         0     0%  1.80%     0.62ms 0.0025%  os.openFileNolog
+         0     0%  1.80%     0.59ms 0.0024%  os.open
+         0     0%  1.80%     0.59ms 0.0024%  os.openFileNolog.func1
+         0     0%  1.80%     0.59ms 0.0024%  syscall.Open
+    0.59ms 0.0024%  1.80%     0.59ms 0.0024%  syscall.openat
+         0     0%  1.80%     0.53ms 0.0022%  os.CreateTemp
+         0     0%  1.80%     0.31ms 0.0013%  github.com/containerman17/pagerdb.(*DB).newChunk
+         0     0%  1.80%     0.16ms 0.00065%  golang.org/x/sys/unix.(*mmapper).Mmap
+         0     0%  1.80%     0.16ms 0.00065%  golang.org/x/sys/unix.Mmap
+    0.16ms 0.00065%  1.80%     0.16ms 0.00065%  golang.org/x/sys/unix.mmap
+         0     0%  1.80%     0.11ms 0.00046%  internal/poll.(*FD).Close
+         0     0%  1.80%     0.11ms 0.00046%  internal/poll.(*FD).decref
+         0     0%  1.80%     0.11ms 0.00046%  internal/poll.(*FD).destroy
+         0     0%  1.80%     0.11ms 0.00046%  internal/poll.(*SysFile).destroy
+         0     0%  1.80%     0.11ms 0.00046%  os.(*File).Close
+         0     0%  1.80%     0.11ms 0.00046%  os.(*file).close
+    0.11ms 0.00046%  1.80%     0.11ms 0.00046%  syscall.Close
+         0     0%  1.80%     0.09ms 0.00035%  os.Remove
+         0     0%  1.80%     0.09ms 0.00035%  os.Remove.func1
+         0     0%  1.80%     0.09ms 0.00035%  syscall.Unlink
+    0.09ms 0.00035%  1.80%     0.09ms 0.00035%  syscall.unlinkat
+         0     0%  1.80%     0.06ms 0.00025%  internal/poll.(*FD).Ftruncate
+         0     0%  1.80%     0.06ms 0.00025%  internal/poll.(*FD).Ftruncate.func1
+         0     0%  1.80%     0.06ms 0.00025%  internal/poll.ignoringEINTR
+         0     0%  1.80%     0.06ms 0.00025%  os.(*File).Truncate
+    0.06ms 0.00025%  1.80%     0.06ms 0.00025%  syscall.Ftruncate
+         0     0%  1.80%     0.03ms 0.00013%  os.newFile
+         0     0%  1.80%     0.03ms 0.00013%  syscall.SetNonblock
+    0.03ms 0.00013%  1.80%     0.03ms 0.00013%  syscall.fcntl

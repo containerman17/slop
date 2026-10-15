@@ -1,0 +1,14 @@
+perf version 7.0.14
+
+ Performance counter stats for 'true':
+
+            890290      cycles
+            704582      instructions
+                54      page-faults
+                54      minor-faults
+                 0      major-faults
+
+       0.011140329 seconds time elapsed
+
+       0.000000000 seconds user
+       0.010443000 seconds sys
