@@ -1,0 +1,5 @@
+go: downloading github.com/tetratelabs/wazero v1.12.0
+go: downloading golang.org/x/sys v0.49.0
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	16.679s
+?   	github.com/containerman17/slop/2026/02_pagerdb_wasm/cmd/fixture	[no test files]
+?   	github.com/containerman17/slop/2026/02_pagerdb_wasm/internal/fixture	[no test files]
