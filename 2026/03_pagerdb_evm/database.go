@@ -56,7 +56,7 @@ func NewDatabase(p *pagerdb.DB) (*Database, error) {
 			if e != nil {
 				return nil, e
 			}
-			if len(b) < 16 || binary.LittleEndian.Uint64(b[8:16]) != uint64(t.ValueSize) || (len(b)-16)%(32+t.ValueSize) != 0 {
+			if len(b) < tableHeader || binary.LittleEndian.Uint64(b[8:16]) != uint64(t.ValueSize) || (len(b)-tableHeader)%(32+t.ValueSize) != 0 {
 				return nil, errors.New("invalid adapter table")
 			}
 			n := t.Capacity()

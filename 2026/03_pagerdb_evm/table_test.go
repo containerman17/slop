@@ -84,7 +84,7 @@ func TestProbeCapAndUndo(t *testing.T) {
 	for n := uint64(0); len(keys) < 66; n++ {
 		var k [32]byte
 		binary.LittleEndian.PutUint64(k[:], n)
-		if home(k[:], 127) == 127 {
+		if Home(&k)&127 == 127 {
 			keys = append(keys, k)
 		}
 	}
@@ -99,7 +99,7 @@ func TestProbeCapAndUndo(t *testing.T) {
 		t.Fatal("probe cap did not grow")
 	}
 	for _, k := range keys {
-		_, ok, d := tab.find(k)
+		_, ok, d := tab.find(tab.data(), &k)
 		if !ok || d > 64 {
 			t.Fatal("probe distance", d)
 		}
@@ -119,5 +119,47 @@ func TestProbeCapAndUndo(t *testing.T) {
 	p.Undo(mark)
 	if tab.Capacity() != 128 || tab.Len() != 0 {
 		t.Fatal("undo failed")
+	}
+}
+
+// Small big-endian keys (slot 0, 1, 2, ...) and random keys must spread without
+// probe-cap growth, and lookups and value updates must not allocate.
+func TestHomeSpreadAndAllocs(t *testing.T) {
+	for _, random := range []bool{false, true} {
+		p := pages(t)
+		tab, e := NewTable(p, 32)
+		if e != nil {
+			t.Fatal(e)
+		}
+		rng := rand.New(rand.NewSource(3))
+		v := make([]byte, 32)
+		v[31] = 1
+		const n = 16000 // about 49% of 2^15: a uniform hash stays far below the probe cap
+		keys := make([][32]byte, n)
+		for i := range keys {
+			if random {
+				rng.Read(keys[i][:])
+			} else {
+				binary.BigEndian.PutUint64(keys[i][24:], uint64(i))
+			}
+			if e = tab.Set(keys[i], v); e != nil {
+				t.Fatal(e)
+			}
+		}
+		if tab.Capacity() != 1<<15 {
+			t.Fatalf("random=%v: capacity %d, want %d", random, tab.Capacity(), 1<<15)
+		}
+		var dst [32]byte
+		allocs := testing.AllocsPerRun(1000, func() {
+			k := keys[rng.Intn(n)]
+			tab.Read(k, dst[:])
+			dst[0]++
+			if e := tab.Set(k, dst[:]); e != nil {
+				t.Fatal(e)
+			}
+		})
+		if allocs != 0 {
+			t.Fatalf("random=%v: %v allocations per Read+Set", random, allocs)
+		}
 	}
 }

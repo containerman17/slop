@@ -2,35 +2,42 @@ package pagerevm
 
 import (
 	"bytes"
-	"crypto/sha256"
 	"encoding/binary"
 	"fmt"
 
 	"github.com/containerman17/pagerdb"
 )
 
+// tableHeader holds count u64 and value size u64, padded to 64 bytes so that
+// 64-byte slot entries and their values stay aligned to PagerDB's 32-byte redo
+// chunks and never straddle a leaf.
+const tableHeader = 64
+
+var le = binary.LittleEndian
+
 // Table stores fixed-size values after raw 32-byte keys. An all-zero value
-// means absent. The region starts with a 16-byte header: count and value size.
-// All integers, including the hash prefix, use little endian.
+// means absent. All integers use little endian.
 type Table struct {
 	DB        *pagerdb.DB
 	Region    pagerdb.Region
 	ValueSize int
 }
 
-func NewTable(db *pagerdb.DB, size int) (*Table, error) {
-	if size < 1 {
-		return nil, fmt.Errorf("invalid value size")
+func NewTable(db *pagerdb.DB, size int) (*Table, error) { return NewTableCap(db, size, 16) }
+
+// NewTableCap creates a table with a power-of-two starting capacity.
+func NewTableCap(db *pagerdb.DB, size, capacity int) (*Table, error) {
+	if size < 1 || capacity < 16 || capacity&(capacity-1) != 0 {
+		return nil, fmt.Errorf("invalid value size or capacity")
 	}
-	r, e := db.Alloc(16 + 16*(32+size))
+	r, e := db.Alloc(tableHeader + capacity*(32+size))
 	if e != nil {
 		return nil, e
 	}
-	t := &Table{db, r, size}
 	var h [16]byte
-	binary.LittleEndian.PutUint64(h[8:], uint64(size))
+	le.PutUint64(h[8:], uint64(size))
 	db.Write(r, 0, h[:])
-	return t, nil
+	return &Table{db, r, size}, nil
 }
 func (t *Table) data() []byte {
 	b, e := t.DB.Map(t.Region)
@@ -39,109 +46,136 @@ func (t *Table) data() []byte {
 	}
 	return b
 }
-func (t *Table) Len() int      { return int(binary.LittleEndian.Uint64(t.data())) }
-func (t *Table) Capacity() int { return (len(t.data()) - 16) / (32 + t.ValueSize) }
-func home(key []byte, mask int) int {
-	h := sha256.Sum256(key)
-	return int(binary.LittleEndian.Uint64(h[:8]) & uint64(mask))
+func (t *Table) Len() int      { return int(le.Uint64(t.data())) }
+func (t *Table) Capacity() int { return (len(t.data()) - tableHeader) / (32 + t.ValueSize) }
+
+// Home is the 64-bit bucket hash of a key; a table uses its low bits. One
+// multiply-xorshift step per key word: Keccak-derived keys are already uniform,
+// and the shifts spread small big-endian keys such as 0, 1, 2 over all buckets.
+// It is not collision resistant; neither were bucket indexes cut from SHA-256.
+func Home(k *[32]byte) uint64 {
+	h := uint64(0x9E3779B97F4A7C15)
+	for i := 0; i < 32; i += 8 {
+		h = (h ^ le.Uint64(k[i:])) * 0xBF58476D1CE4E5B9
+		h ^= h >> 31
+	}
+	h *= 0x94D049BB133111EB
+	return h ^ h>>29
 }
 func zero(b []byte) bool {
-	for _, x := range b {
-		if x != 0 {
-			return false
-		}
+	var x uint64
+	for ; len(b) >= 8; b = b[8:] {
+		x |= le.Uint64(b)
 	}
-	return true
+	for _, c := range b {
+		x |= uint64(c)
+	}
+	return x == 0
 }
-func (t *Table) entry(b []byte, i int) []byte { s := 32 + t.ValueSize; return b[16+i*s : 16+(i+1)*s] }
-func (t *Table) find(k [32]byte) (int, bool, int) {
-	b := t.data()
-	mask := t.Capacity() - 1
-	i := home(k[:], mask)
+func (t *Table) find(b []byte, k *[32]byte) (int, bool, int) {
+	s := 32 + t.ValueSize
+	mask := (len(b)-tableHeader)/s - 1
+	k0, k1, k2, k3 := le.Uint64(k[0:]), le.Uint64(k[8:]), le.Uint64(k[16:]), le.Uint64(k[24:])
+	i := int(Home(k)) & mask
 	for d := 0; d <= mask; d++ {
-		e := t.entry(b, i)
+		e := b[tableHeader+i*s : tableHeader+(i+1)*s]
 		if zero(e[32:]) {
 			return i, false, d
 		}
-		if bytes.Equal(e[:32], k[:]) {
+		if le.Uint64(e[0:]) == k0 && le.Uint64(e[8:]) == k1 && le.Uint64(e[16:]) == k2 && le.Uint64(e[24:]) == k3 {
 			return i, true, d
 		}
 		i = (i + 1) & mask
 	}
 	panic("full table")
 }
-func (t *Table) Get(k [32]byte) []byte {
-	i, ok, _ := t.find(k)
-	if !ok {
-		return make([]byte, t.ValueSize)
+
+// Read copies the value of k into dst, or zeros dst when k is absent.
+func (t *Table) Read(k [32]byte, dst []byte) {
+	b := t.data()
+	if i, ok, _ := t.find(b, &k); ok {
+		off := tableHeader + i*(32+t.ValueSize) + 32
+		copy(dst, b[off:off+t.ValueSize])
+		return
 	}
-	return bytes.Clone(t.entry(t.data(), i)[32:])
+	clear(dst[:t.ValueSize])
 }
-func (t *Table) count(n int) {
-	var b [8]byte
-	binary.LittleEndian.PutUint64(b[:], uint64(n))
-	t.DB.Write(t.Region, 0, b[:])
+func (t *Table) Get(k [32]byte) []byte {
+	v := make([]byte, t.ValueSize)
+	t.Read(k, v)
+	return v
 }
-func (t *Table) write(i int, k [32]byte, v []byte) {
-	b := make([]byte, 32+t.ValueSize)
-	copy(b, k[:])
-	copy(b[32:], v)
-	t.DB.Write(t.Region, 16+i*len(b), b)
+func (t *Table) count(b []byte, n int) {
+	t.DB.Touch(t.Region, 0, 8)
+	le.PutUint64(b, uint64(n))
 }
 func (t *Table) Set(k [32]byte, v []byte) error {
 	if len(v) != t.ValueSize {
 		return fmt.Errorf("value length %d, want %d", len(v), t.ValueSize)
 	}
-	i, found, d := t.find(k)
+	b := t.data()
+	i, found, d := t.find(b, &k)
+	s := 32 + t.ValueSize
 	if zero(v) {
 		if found {
-			t.remove(i)
+			t.remove(b, i)
 		}
 		return nil
 	}
 	if found {
-		t.write(i, k, v)
+		// Only the value changes; an unchanged value dirties nothing.
+		off := tableHeader + i*s + 32
+		if !bytes.Equal(b[off:off+t.ValueSize], v) {
+			t.DB.Touch(t.Region, off, t.ValueSize)
+			copy(b[off:], v)
+		}
 		return nil
 	}
-	for (t.Len()+1)*4 > t.Capacity()*3 || d > 64 {
+	n := t.Len()
+	for (n+1)*4 > t.Capacity()*3 || d > 64 {
 		if e := t.grow(); e != nil {
 			return e
 		}
-		i, _, d = t.find(k)
+		b = t.data()
+		i, _, d = t.find(b, &k)
 	}
-	t.write(i, k, v)
-	t.count(t.Len() + 1)
+	off := tableHeader + i*s
+	t.DB.Touch(t.Region, off, s)
+	copy(b[off:], k[:])
+	copy(b[off+32:], v)
+	t.count(b, n+1)
 	return nil
 }
-func (t *Table) remove(hole int) {
-	b := t.data()
-	mask := t.Capacity() - 1
-	for i := (hole + 1) & mask; !zero(t.entry(b, i)[32:]); i = (i + 1) & mask {
-		e := t.entry(b, i)
-		h := home(e[:32], mask)
+func (t *Table) remove(b []byte, hole int) {
+	s := 32 + t.ValueSize
+	mask := (len(b)-tableHeader)/s - 1
+	entry := func(i int) []byte { return b[tableHeader+i*s : tableHeader+(i+1)*s] }
+	for i := (hole + 1) & mask; !zero(entry(i)[32:]); i = (i + 1) & mask {
+		e := entry(i)
+		h := int(Home((*[32]byte)(e[:32]))) & mask
 		if (i-h)&mask >= (i-hole)&mask {
-			t.DB.Write(t.Region, 16+hole*(32+t.ValueSize), bytes.Clone(e))
+			t.DB.Touch(t.Region, tableHeader+hole*s, s)
+			copy(entry(hole), e)
 			hole = i
 		}
 	}
-	t.DB.Write(t.Region, 16+hole*(32+t.ValueSize), make([]byte, 32+t.ValueSize))
-	t.count(t.Len() - 1)
+	t.DB.Touch(t.Region, tableHeader+hole*s, s)
+	clear(entry(hole))
+	t.count(b, t.Len()-1)
 }
 func (t *Table) grow() error {
 	old := bytes.Clone(t.data())
 	n := t.Capacity() * 2
 	// Rehash in old bucket order. Grow preserves the stable region handle.
-	if e := t.DB.Grow(t.Region, 16+n*(32+t.ValueSize)); e != nil {
+	if e := t.DB.Grow(t.Region, tableHeader+n*(32+t.ValueSize)); e != nil {
 		return e
 	}
-	t.DB.Write(t.Region, 16, make([]byte, n*(32+t.ValueSize)))
-	t.count(0)
-	for off := 16; off < len(old); off += 32 + t.ValueSize {
+	t.DB.Write(t.Region, tableHeader, make([]byte, n*(32+t.ValueSize)))
+	t.count(t.data(), 0)
+	for off := tableHeader; off < len(old); off += 32 + t.ValueSize {
 		e := old[off : off+32+t.ValueSize]
 		if !zero(e[32:]) {
-			var k [32]byte
-			copy(k[:], e[:32])
-			if err := t.Set(k, e[32:]); err != nil {
+			if err := t.Set([32]byte(e[:32]), e[32:]); err != nil {
 				return err
 			}
 		}
@@ -153,7 +187,7 @@ func (t *Table) grow() error {
 // retain the value slice, which refers directly to the mapped region.
 func (t *Table) Each(fn func([32]byte, []byte) error) error {
 	b := t.data()
-	for off := 16; off < len(b); off += 32 + t.ValueSize {
+	for off := tableHeader; off < len(b); off += 32 + t.ValueSize {
 		e := b[off : off+32+t.ValueSize]
 		if !zero(e[32:]) {
 			if err := fn([32]byte(e[:32]), e[32:]); err != nil {

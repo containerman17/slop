@@ -116,7 +116,7 @@ func run() (result error) {
 			return fmt.Errorf("state directory must be empty")
 		}
 	}
-	p, e := pagerdb.Open(*dir, pagerdb.Options{Workers: 4, RetainVersions: 2, CheckpointInterval: 10000})
+	p, e := pagerdb.Open(*dir, pagerdb.Options{Workers: 4, RetainVersions: 2})
 	if e != nil {
 		return e
 	}

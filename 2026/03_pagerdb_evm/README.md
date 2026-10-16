@@ -37,12 +37,21 @@ command intentionally starts from genesis in a fresh directory.
 ## Region layout
 
 Integers are little endian unless specified otherwise. Each table begins with
-16 bytes: count (u64), value size (u64). Entries follow immediately. Capacity
-starts at 16, is a power of two, and doubles before an insert exceeds 75% load or
-probe distance 64. Bucket selection uses the low bits of the first eight SHA-256
-bytes, interpreted as little endian. Probing is linear with wraparound. An
-all-zero value is empty. Zero writes delete with backward shifting. Growth
-rehashes in old bucket order and keeps the PagerDB region handle stable.
+a 64-byte header: count (u64), value size (u64), 48 zero bytes. The padding keeps
+64-byte storage entries and their values aligned to PagerDB's 32-byte redo
+chunks, so an entry never straddles a leaf. Entries follow. Capacity starts at
+16, is a power of two, and doubles before an insert exceeds 75% load or probe
+distance 64. Bucket selection uses the low bits of `Home(key)`: one
+multiply-xorshift step per little-endian key word, then a final multiply and
+shift (see `table.go`). Probing is linear with wraparound. An all-zero value is
+empty. Zero writes delete with backward shifting. A write of the current value
+changes nothing. Growth rehashes in old bucket order and keeps the PagerDB
+region handle stable.
+
+`Home` is not collision resistant. Nor was the earlier SHA-256 bucket index: a
+bucket is a few low bits, so grinding keys into one bucket costs the same with
+either. Known open risk: keys ground into one bucket force the probe-cap
+doubling at low load, which multiplies table memory.
 
 Storage entries are 64 bytes: raw normalized C-Chain slot key (32) and value
 (32). Coreth normalizes EVM keys before the adapter receives them. Atomic native
@@ -67,7 +76,7 @@ Physical layout, sorting, capacity rules and PagerDB capacity affect the root.
 
 ## Replay and verification
 
-Dependencies pin PagerDB's pushed `v3` commit `9eac65770c3d` and coreth/avalanchego
+Dependencies pin PagerDB's pushed `v3` commit `356141dd16ca` and coreth/avalanchego
 v1.15.1, with coreth's libevm version. There are no module replacements.
 
 ```sh
