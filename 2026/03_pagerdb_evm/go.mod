@@ -6,7 +6,7 @@ require (
 	github.com/ava-labs/avalanchego v1.15.1
 	github.com/ava-labs/avalanchego/graft/coreth v1.15.1
 	github.com/ava-labs/libevm v1.13.15-0.20260929143550-dbf7ede95a25
-	github.com/containerman17/pagerdb v0.0.0-20261016074734-356141dd16ca
+	github.com/containerman17/pagerdb v0.0.0-20261016092757-19a22ee5c506
 	github.com/holiman/uint256 v1.2.4
 	github.com/klauspost/compress v1.20.0
 )
