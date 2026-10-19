@@ -1,0 +1,10 @@
+7.0.0-1014-aws
+go version go1.26.0 linux/amd64
+VET_OK
+ok  	github.com/containerman17/pagerdb	1.841s
+ok  	github.com/containerman17/pagerdb	4.309s
+=== RUN   TestCrashRecovery
+    crash_test.go:194: crash iterations: 1000 map[apply:143 applying:143 image-synced:143 manifest-renamed:143 manifest-written:143 rotated:142 timer:143]
+--- PASS: TestCrashRecovery (79.59s)
+PASS
+ok  	github.com/containerman17/pagerdb	79.596s

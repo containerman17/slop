@@ -1,0 +1,18 @@
+7.0.0-1014-aws
+Ubuntu 24.04.5 LTS
+CPU(s):                                  32
+Model name:                              Intel(R) Xeon(R) 6975P-C
+Thread(s) per core:                      2
+Core(s) per socket:                      16
+Socket(s):                               1
+L3 cache:                                480 MiB (1 instance)
+NUMA node(s):                            1
+               total        used        free      shared  buff/cache   available
+Mem:              61           1          57           0           3          60
+200G
+always [madvise] never
+N
+60
+1.6T /dev/nvme1n1p2
+go version go1.26.0 linux/amd64
+rustc 1.99.0 (b940084d7 2026-09-28)

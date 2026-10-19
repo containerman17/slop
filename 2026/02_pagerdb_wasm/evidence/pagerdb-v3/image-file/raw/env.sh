@@ -1,0 +1,1 @@
+export PATH=/usr/local/go/bin:$HOME/.cargo/bin:$PATH TMPDIR=/mnt/nvme/tmp GOMAXPROCS=16 GOCACHE=/mnt/nvme/go-cache GOPATH=/mnt/nvme/go CARGO_TARGET_DIR=/mnt/nvme/cargo-target TZ=Asia/Tokyo GOFLAGS=-mod=mod

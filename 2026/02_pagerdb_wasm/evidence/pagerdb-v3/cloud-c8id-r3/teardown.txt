@@ -1,0 +1,11 @@
+Instance: <instance>
+Launch: 2026-10-15 19:33:52 JST
+Boot scheduled shutdown: 2026-10-15 22:34:08 JST
+Shutdown command: sudo shutdown -h now
+Shutdown requested: 2026-10-15 19:43:31 JST
+AWS observed state: terminated
+Observed at: 2026-10-15 19:44:23 JST
+Verification command: aws --region us-west-2 ec2 describe-instances --instance-ids <instance> --query 'Reservations[0].Instances[0].State.Name' --output text
+Terminate-on-shutdown: verified before runs
+Root volume DeleteOnTermination: true, verified before runs
+No security-group rules added or removed. No other instance accessed or modified.

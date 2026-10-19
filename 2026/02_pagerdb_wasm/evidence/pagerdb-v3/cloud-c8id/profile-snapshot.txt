@@ -1,0 +1,41 @@
+Total: 62.92s
+ROUTINE ======================== github.com/containerman17/pagerdb.(*DB).snapshot in /mnt/nvme/pagerdb-diag/pagerdb.go
+      10ms      3.78s (flat, cum)  6.01% of Total
+         .          .    290:func (db *DB) snapshot() *block {
+         .      450ms    291:	slices.Sort(db.dirty)
+         .          .    292:	ids := db.dirty
+         .          .    293:	db.dirty = nil
+         .          .    294:	size := len(ids) * LeafSize
+         .          .    295:	var data []byte
+         .          .    296:	if old := db.buffers.Get(); old != nil {
+         .          .    297:		data = old.([]byte)
+         .          .    298:	}
+         .          .    299:	if cap(data) < size {
+         .      3.31s    300:		data = make([]byte, size)
+         .          .    301:	} else {
+         .          .    302:		data = data[:size]
+         .          .    303:	}
+         .          .    304:	db.pool.each(len(ids), func(i int) {
+         .          .    305:		off := uint64(ids[i]) * LeafSize
+         .          .    306:		copy(data[i*LeafSize:(i+1)*LeafSize], db.state[off:off+LeafSize])
+         .          .    307:	})
+         .          .    308:	for _, id := range ids {
+      10ms       10ms    309:		db.dirtyBits[id/64] &= ^(uint64(1) << (id % 64))
+         .          .    310:	}
+         .       10ms    311:	return &block{ids: ids, data: data, ready: make(chan struct{}), persisted: make(chan struct{})}
+         .          .    312:}
+         .          .    313:func (db *DB) waitHash() {
+         .          .    314:	if db.latest != nil {
+         .          .    315:		<-db.latest.ready
+         .          .    316:	}
+ROUTINE ======================== github.com/containerman17/pagerdb.(*DB).snapshot.func1 in /mnt/nvme/pagerdb-diag/pagerdb.go
+      30ms      6.65s (flat, cum) 10.57% of Total
+      10ms       10ms    304:	db.pool.each(len(ids), func(i int) {
+         .          .    305:		off := uint64(ids[i]) * LeafSize
+      10ms      6.63s    306:		copy(data[i*LeafSize:(i+1)*LeafSize], db.state[off:off+LeafSize])
+      10ms       10ms    307:	})
+         .          .    308:	for _, id := range ids {
+         .          .    309:		db.dirtyBits[id/64] &= ^(uint64(1) << (id % 64))
+         .          .    310:	}
+         .          .    311:	return &block{ids: ids, data: data, ready: make(chan struct{}), persisted: make(chan struct{})}
+         .          .    312:}

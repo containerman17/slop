@@ -1,0 +1,5 @@
+go: downloading github.com/containerman17/pagerdb v0.0.0-20261015164433-b8ba9eceb6fa
+VET_OK
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	4.505s
+?   	github.com/containerman17/slop/2026/02_pagerdb_wasm/cmd/fixture	[no test files]
+?   	github.com/containerman17/slop/2026/02_pagerdb_wasm/internal/fixture	[no test files]

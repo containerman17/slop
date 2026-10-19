@@ -1,0 +1,29 @@
+Shared benchmark lock acquired; correctness run only.
+=== RUN   TestMatcher
+=== RUN   TestMatcher/0
+    matcher_test.go:179: run 0: 100/600 native hashes and roots checked
+    matcher_test.go:179: run 0: 200/600 native hashes and roots checked
+    matcher_test.go:179: run 0: 300/600 native hashes and roots checked
+    matcher_test.go:179: run 0: 400/600 native hashes and roots checked
+    matcher_test.go:179: run 0: 500/600 native hashes and roots checked
+    matcher_test.go:179: run 0: 600/600 native hashes and roots checked
+    matcher_test.go:199: uncoalesced log bytes/block upper bound=11931043 (ABI coalescing reduces headers), dirty 4KiB leaves/block=16088.4, Commit p99 ms=5.872
+    matcher_test.go:200: bytes_written/block=9544761, leaves_touched/block=16088.4
+    matcher_test.go:201: guest ms/block=18.479, end ms/block=0.589
+    matcher_test.go:202: correctness-run diagnostics (not a benchmark): 2622241 msgs/s execution, 2208191 msgs/s including snapshot Commit (excludes final drain), 149136.9 dirty tracking units/block, 3.575 Commit ms/block
+=== RUN   TestMatcher/1
+    matcher_test.go:179: run 1: 100/600 native hashes and roots checked
+    matcher_test.go:179: run 1: 200/600 native hashes and roots checked
+    matcher_test.go:179: run 1: 300/600 native hashes and roots checked
+    matcher_test.go:179: run 1: 400/600 native hashes and roots checked
+    matcher_test.go:179: run 1: 500/600 native hashes and roots checked
+    matcher_test.go:179: run 1: 600/600 native hashes and roots checked
+    matcher_test.go:199: uncoalesced log bytes/block upper bound=11931043 (ABI coalescing reduces headers), dirty 4KiB leaves/block=16088.4, Commit p99 ms=7.619
+    matcher_test.go:200: bytes_written/block=9544761, leaves_touched/block=16088.4
+    matcher_test.go:201: guest ms/block=18.907, end ms/block=0.703
+    matcher_test.go:202: correctness-run diagnostics (not a benchmark): 2549726 msgs/s execution, 2145898 msgs/s including snapshot Commit (excludes final drain), 149136.9 dirty tracking units/block, 3.690 Commit ms/block
+--- PASS: TestMatcher (33.59s)
+    --- PASS: TestMatcher/0 (14.82s)
+    --- PASS: TestMatcher/1 (15.05s)
+PASS
+ok  	github.com/containerman17/slop/2026/02_pagerdb_wasm	34.105s

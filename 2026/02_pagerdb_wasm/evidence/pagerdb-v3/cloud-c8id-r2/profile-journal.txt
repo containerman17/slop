@@ -1,0 +1,34 @@
+Total: 59.47s
+ROUTINE ======================== github.com/containerman17/pagerdb.(*diskWriter).append in /mnt/nvme/pagerdb-diag/disk.go
+         0      2.78s (flat, cum)  4.67% of Total
+         .          .    301:func (d *diskWriter) append(b *block) error {
+         .          .    302:	start := time.Now()
+         .          .    303:	defer func() { d.db.diag[1].Add(time.Since(start).Nanoseconds()) }()
+         .          .    304:	// Header: magic, frame bytes, version, parent version, root, undo bytes,
+         .          .    305:	// flags (1 = rewind), reserved. Footer CRC-32C covers header and undo.
+         .       20ms    306:	record := slices.Grow(d.record[:0], 88+len(b.undo)+4)[:88]
+         .          .    307:	clear(record)
+         .          .    308:	copy(record, "PGJNL003")
+         .          .    309:	le.PutUint64(record[8:], uint64(88+len(b.undo)+4))
+         .          .    310:	le.PutUint64(record[16:], b.version)
+         .          .    311:	le.PutUint64(record[24:], b.parent)
+         .          .    312:	copy(record[32:64], b.root[:])
+         .          .    313:	le.PutUint64(record[64:], uint64(len(b.undo)))
+         .          .    314:	if b.rewind {
+         .          .    315:		le.PutUint64(record[72:], 1)
+         .          .    316:	}
+         .      770ms    317:	record = append(record, b.undo...)
+         .      560ms    318:	record = le.AppendUint32(record, crc32.Checksum(record, crcTable))
+         .          .    319:	d.record = record
+         .          .    320:	if d.journalBytes > 0 && d.journalBytes+int64(len(record)) > d.db.o.EpochBytes {
+         .          .    321:		if err := d.rotate(); err != nil {
+         .          .    322:			return err
+         .          .    323:		}
+         .          .    324:	}
+         .          .    325:	writeStart := time.Now()
+         .      1.43s    326:	n, err := d.journal.Write(record)
+         .          .    327:	d.db.diag[2].Add(time.Since(writeStart).Nanoseconds())
+         .          .    328:	d.db.diag[3].Add(int64(n))
+         .          .    329:	d.journalBytes += int64(n)
+         .          .    330:	if err == nil && n != len(record) {
+         .          .    331:		err = io.ErrShortWrite

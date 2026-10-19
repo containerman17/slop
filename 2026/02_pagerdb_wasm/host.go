@@ -29,7 +29,7 @@ const (
 	HostGas               = 10
 	BulkByteGas           = 1
 	ByteGas               = 6
-	LeafGas               = 2000
+	LeafGas               = pagerdb.LeafSize * 2000 / 4096
 	StackLimit            = 65536
 	TrapStatus     uint32 = math.MaxUint32
 	lineSize              = 64

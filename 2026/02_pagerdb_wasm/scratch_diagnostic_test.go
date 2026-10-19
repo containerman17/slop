@@ -241,23 +241,22 @@ func TestScratchDiagnostics(t *testing.T) {
 				}
 			}
 		}
-		// A range Touch has one 32-byte record header per 2 MiB segment, plus
-		// its old and final bytes. Keep original Touch boundaries in the scratch estimate.
+		// A range Touch has 16 bytes of framing plus old bytes.
+		// Keep original Touch boundaries in the scratch estimate.
 		var observedLines uint64
 		for _, span := range touches {
 			metrics["touch_calls"]++
 			observedLines += uint64(span.End - span.First)
-			metrics["journal_records"] += uint64((span.End-1)*lineSize/pagerdb.SegSize - span.First*lineSize/pagerdb.SegSize + 1)
+			metrics["journal_records"]++
 			for line := span.First; line < span.End; {
 				if flags[line]&scratchKeep == 0 {
 					line++
 					continue
 				}
-				start := line
 				for line < span.End && flags[line]&scratchKeep != 0 {
 					line++
 				}
-				metrics["retained_records"] += uint64((line-1)*lineSize/pagerdb.SegSize - start*lineSize/pagerdb.SegSize + 1)
+				metrics["retained_records"]++
 			}
 		}
 		if observedLines != metrics["dirty_lines"] || metrics["below_stack_lines"] != 0 {
@@ -266,9 +265,9 @@ func TestScratchDiagnostics(t *testing.T) {
 		if metrics["changed_1_8"]+metrics["changed_9_32"]+metrics["changed_33_64"] != metrics["changed_lines"] {
 			t.Fatal("histogram mismatch")
 		}
-		metrics["journal_bytes"] = 56 + 32*metrics["journal_records"] + 2*lineSize*metrics["dirty_lines"]
-		metrics["retained_journal_bytes"] = 56 + 32*metrics["retained_records"] + 2*lineSize*metrics["retained_lines"]
-		metrics["retained_line_record_upper_bytes"] = 56 + (32+2*lineSize)*metrics["retained_lines"]
+		metrics["journal_bytes"] = 92 + 16*metrics["journal_records"] + lineSize*metrics["dirty_lines"]
+		metrics["retained_journal_bytes"] = 92 + 16*metrics["retained_records"] + lineSize*metrics["retained_lines"]
+		metrics["retained_line_record_upper_bytes"] = 92 + (16+lineSize)*metrics["retained_lines"]
 		metrics["sp_min"] = uint64(minSP)
 		for k, v := range metrics {
 			series[k] = append(series[k], v)

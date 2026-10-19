@@ -1,0 +1,30 @@
+Total: 58.76s
+ROUTINE ======================== github.com/containerman17/pagerdb.(*DB).snapshot in /mnt/nvme/pagerdb-diag/pagerdb.go
+      20ms       20ms (flat, cum) 0.034% of Total
+         .          .    349:func (db *DB) snapshot() *block {
+         .          .    350:	slot := &db.snapshots[db.nextSnapshot]
+         .          .    351:	db.nextSnapshot = (db.nextSnapshot + 1) % len(db.snapshots)
+         .          .    352:	slot.done.Wait()
+         .          .    353:	b := db.acquireBlock()
+         .          .    354:	slot.ids = slot.ids[:0]
+         .          .    355:	for word := db.dirtyStart; word < db.dirtyEnd; word++ {
+         .          .    356:		for pending := db.dirtyBits[word]; pending != 0; pending &= pending - 1 {
+      20ms       20ms    357:			slot.ids = append(slot.ids, uint32(word*64+uint64(bits.TrailingZeros64(pending))))
+         .          .    358:		}
+         .          .    359:		db.dirtyBits[word] = 0
+         .          .    360:	}
+         .          .    361:	db.dirtyStart = uint64(len(db.dirtyBits))
+         .          .    362:	db.dirtyEnd = 0
+Total: 58.76s
+ROUTINE ======================== github.com/containerman17/pagerdb.Open.func2 in /mnt/nvme/pagerdb-diag/pagerdb.go
+      60ms      5.56s (flat, cum)  9.46% of Total
+      10ms       10ms    179:	db.copyLeaf = func(i int) {
+         .          .    180:		slot := db.copying
+      10ms       10ms    181:		off := uint64(slot.ids[i]) * LeafSize
+      30ms      5.53s    182:		copy(slot.data[i*LeafSize:(i+1)*LeafSize], db.state[off:off+LeafSize])
+      10ms       10ms    183:	}
+         .          .    184:	db.disk, err = openDisk(db)
+         .          .    185:	if err != nil {
+         .          .    186:		return nil, err
+         .          .    187:	}
+         .          .    188:	db.baseVersion = db.version

@@ -1,0 +1,5 @@
+/sys/module/zswap/parameters/enabled:Y
+/sys/module/zswap/parameters/shrinker_enabled:Y
+/sys/module/zswap/parameters/max_pool_percent:20
+/sys/module/zswap/parameters/compressor:lzo
+/sys/module/zswap/parameters/accept_threshold_percent:90

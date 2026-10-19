@@ -1,0 +1,22 @@
+goos: linux
+goarch: amd64
+pkg: github.com/containerman17/pagerdb
+cpu: Intel(R) Xeon(R) 6975P-C
+BenchmarkEVM
+BenchmarkEVM/uniform
+BenchmarkEVM/uniform-16         	     700	  13476393 ns/op	       690.9 catchup-ms	     24939 dirty-leaves/block	       226.4 disk-MB/s	       146.0 end-lag-versions	       161.7 journal-MB/s	       437.9 max-lag-MB	       203.0 max-lag-versions	         6.070 p50-commit-ms	         7.013 p50-write-ms	        11.26 p99-commit-ms	         8.807 p99-write-ms	      1114 peak-anon-MiB	   3710317 writes/s
+    evm_bench_test.go:127: EVM_ROOTS_CHECKED distribution=uniform blocks=1 final_root=b437c716dadd9b4e728cb957df0e230eb06f97b0ad5cb961ca92e5b2a1b6b144
+    evm_bench_test.go:127: EVM_ROOTS_CHECKED distribution=uniform blocks=700 final_root=8b5e1b6780ab301d1708dcd07839b0dc0284e834fbc9265734d4be8cd1eaebfd
+BenchmarkEVM/uniform-16         	     700	  13504445 ns/op	       680.2 catchup-ms	     24939 dirty-leaves/block	       225.7 disk-MB/s	       146.0 end-lag-versions	       161.3 journal-MB/s	       433.6 max-lag-MB	       201.0 max-lag-versions	         5.946 p50-commit-ms	         7.145 p50-write-ms	        11.10 p99-commit-ms	         8.789 p99-write-ms	      1115 peak-anon-MiB	   3702633 writes/s
+BenchmarkEVM/hot_sigma_20000
+BenchmarkEVM/hot_sigma_20000-16 	     700	   3974755 ns/op	       160.6 catchup-ms	      1906 dirty-leaves/block	       258.7 disk-MB/s	       127.0 end-lag-versions	       303.7 journal-MB/s	       525.0 max-lag-MB	       436.0 max-lag-versions	         0.3181 p50-commit-ms	         3.583 p50-write-ms	         0.5976 p99-commit-ms	         4.789 p99-write-ms	       755.5 peak-anon-MiB	  12580999 writes/s
+    evm_bench_test.go:127: EVM_ROOTS_CHECKED distribution=hot_sigma_20000 blocks=1 final_root=5b51a1e22a71eb85e88163401606da31a8c63d19b67e9014e0e1c6ad76bb5272
+    evm_bench_test.go:127: EVM_ROOTS_CHECKED distribution=hot_sigma_20000 blocks=700 final_root=379a5de1e997986346f03c148144b99c732dadb826db2095a3cd16191d0a9426
+BenchmarkEVM/hot_sigma_20000-16 	     700	   3903992 ns/op	       146.6 catchup-ms	      1906 dirty-leaves/block	       268.7 disk-MB/s	       114.0 end-lag-versions	       309.2 journal-MB/s	       535.8 max-lag-MB	       445.0 max-lag-versions	         0.3118 p50-commit-ms	         3.513 p50-write-ms	         0.5915 p99-commit-ms	         4.879 p99-write-ms	       755.9 peak-anon-MiB	  12808903 writes/s
+BenchmarkEVM/hot_sigma_2000
+BenchmarkEVM/hot_sigma_2000-16  	     700	   1551623 ns/op	        18.59 catchup-ms	       233.5 dirty-leaves/block	       175.6 disk-MB/s	        76.00 end-lag-versions	       196.9 journal-MB/s	       213.5 max-lag-MB	       700.0 max-lag-versions	         0.05562 p50-commit-ms	         1.421 p50-write-ms	         0.2979 p99-commit-ms	         2.210 p99-write-ms	       790.5 peak-anon-MiB	  32233079 writes/s
+    evm_bench_test.go:127: EVM_ROOTS_CHECKED distribution=hot_sigma_2000 blocks=1 final_root=e3d271c69267e144c45a2240cae1251983cd507148f666b7892d5ef21369cb14
+    evm_bench_test.go:127: EVM_ROOTS_CHECKED distribution=hot_sigma_2000 blocks=700 final_root=232002915f0a404ffc7f2ff9b8ffb41c12e20b59e28fde5ec7aa67f9c9cddea9
+BenchmarkEVM/hot_sigma_2000-16  	     700	   1544975 ns/op	        18.00 catchup-ms	       233.5 dirty-leaves/block	       177.8 disk-MB/s	        71.00 end-lag-versions	       197.8 journal-MB/s	       213.5 max-lag-MB	       700.0 max-lag-versions	         0.05368 p50-commit-ms	         1.418 p50-write-ms	         0.3261 p99-commit-ms	         2.177 p99-write-ms	       791.1 peak-anon-MiB	  32373176 writes/s
+PASS
+ok  	github.com/containerman17/pagerdb	34.825s

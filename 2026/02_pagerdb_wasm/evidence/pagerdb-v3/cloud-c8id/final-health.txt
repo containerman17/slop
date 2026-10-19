@@ -1,0 +1,39 @@
+2026-10-15 18:27:48 JST
+ 18:27:48 up 12 min,  1 user,  load average: 0.08, 0.77, 0.53
+CPU CORE SOCKET
+  0    0      0
+  1    1      0
+  2    2      0
+  3    3      0
+  4    4      0
+  5    5      0
+  6    6      0
+  7    7      0
+  8    8      0
+  9    9      0
+ 10   10      0
+ 11   11      0
+ 12   12      0
+ 13   13      0
+ 14   14      0
+ 15   15      0
+ 16    0      0
+ 17    1      0
+ 18    2      0
+ 19    3      0
+ 20    4      0
+ 21    5      0
+ 22    6      0
+ 23    7      0
+ 24    8      0
+ 25    9      0
+ 26   10      0
+ 27   11      0
+ 28   12      0
+ 29   13      0
+ 30   14      0
+ 31   15      0
+cb042fbb90f5988ad205e34b4083b6cb45a96a75f8323969dc93d47ef494f923  /mnt/nvme/original.bin
+f53e66d3d2a876dbbb00615e82a44ff6f78325c9e517eadff2b62ecabca1f06d  /mnt/nvme/synthetic.bin
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme1n1    1.7T  2.8G  1.7T   1% /mnt/nvme

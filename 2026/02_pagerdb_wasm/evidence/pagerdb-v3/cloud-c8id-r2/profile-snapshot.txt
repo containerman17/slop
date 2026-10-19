@@ -1,0 +1,39 @@
+Total: 59.47s
+ROUTINE ======================== github.com/containerman17/pagerdb.(*DB).snapshot in /mnt/nvme/pagerdb-diag/pagerdb.go
+      10ms      420ms (flat, cum)  0.71% of Total
+         .          .    332:func (db *DB) snapshot() *block {
+         .          .    333:	slot := &db.snapshots[db.nextSnapshot]
+         .          .    334:	db.nextSnapshot = (db.nextSnapshot + 1) % len(db.snapshots)
+         .          .    335:	slot.done.Wait()
+         .          .    336:	b := db.acquireBlock()
+         .      410ms    337:	slices.Sort(db.dirty)
+         .          .    338:	slot.ids, db.dirty = db.dirty, slot.ids[:0]
+         .          .    339:	size := len(slot.ids) * LeafSize
+         .          .    340:	if cap(slot.data) < size {
+         .          .    341:		// Geometric growth avoids reallocating for each small new high-water mark.
+         .          .    342:		capacity := min(len(db.state), max(size, 2*cap(slot.data)))
+         .          .    343:		slot.data = make([]byte, capacity)
+         .          .    344:	}
+         .          .    345:	slot.data = slot.data[:size]
+         .          .    346:	db.copying = slot
+         .          .    347:	db.pool.each(len(slot.ids), db.copyLeaf)
+         .          .    348:	db.copying = nil
+         .          .    349:	for _, id := range slot.ids {
+      10ms       10ms    350:		db.dirtyBits[id/64] &= ^(uint64(1) << (id % 64))
+         .          .    351:	}
+         .          .    352:	b.ids = slot.ids
+         .          .    353:	b.data = slot.data
+         .          .    354:	b.snapshot = slot
+         .          .    355:	slot.done.Add(1)
+Total: 59.47s
+ROUTINE ======================== github.com/containerman17/pagerdb.Open.func2 in /mnt/nvme/pagerdb-diag/pagerdb.go
+      20ms      5.72s (flat, cum)  9.62% of Total
+      20ms       20ms    175:	db.copyLeaf = func(i int) {
+         .          .    176:		slot := db.copying
+         .          .    177:		off := uint64(slot.ids[i]) * LeafSize
+         .      5.70s    178:		copy(slot.data[i*LeafSize:(i+1)*LeafSize], db.state[off:off+LeafSize])
+         .          .    179:	}
+         .          .    180:	db.disk, err = openDisk(db)
+         .          .    181:	if err != nil {
+         .          .    182:		return nil, err
+         .          .    183:	}

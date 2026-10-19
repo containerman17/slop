@@ -1,0 +1,16 @@
+# start Thu Oct 15 23:55:34 JST 2026 name=f-half-thpnever-u-pipe64 cap=12800000000 runs=0:pipe:64:5:30,0:off:0:3:10 extra=
+pswpin 92818085
+pswpout 252845879
+=== RUN   TestSwapEVM
+    swap_bench_test.go:134: SWAPFILL slots=400000000 max_leaves=8388608 seconds=144.0 majflt=2052 pswpin=6789 pswpout=9715332 mem=map[AnonHugePagesKiB:0 AnonymousKiB:12362836 RssKiB:12364832 SwapKiB:38847556 cgroup_memory.current_KiB:12498068 cgroup_memory.max_KiB:12500000 cgroup_memory.swap.current_KiB:38907696]
+    swap_bench_test.go:252: SWAPRESULT {"blocks":30,"gc_cycles":1,"goroutines":64,"heap_sys_MiB":2581,"majflt_per_block":78921.5,"mem":{"AnonHugePagesKiB":0,"AnonymousKiB":12123412,"RssKiB":12124940,"SwapKiB":40288456,"cgroup_memory.current_KiB":12499712,"cgroup_memory.max_KiB":12500000,"cgroup_memory.swap.current_KiB":49932184},"mode":"pipe","p50_commit_ms":43.748833,"p50_wait_ms":551.441873,"p50_write_ms":595.699305,"p99_commit_ms":495.36505600000004,"p99_wait_ms":650.057,"p99_write_ms":705.367351,"pswpin_per_block":82659.2,"pswpout_per_block":82129.73333333334,"run":0,"sigma_fraction":0,"warmup":5,"writes_per_s":72753}
+    swap_bench_test.go:252: SWAPRESULT {"blocks":10,"gc_cycles":0,"goroutines":0,"heap_sys_MiB":2581,"majflt_per_block":78165.4,"mem":{"AnonHugePagesKiB":0,"AnonymousKiB":12161416,"RssKiB":12164432,"SwapKiB":40250544,"cgroup_memory.current_KiB":12498596,"cgroup_memory.max_KiB":12500000,"cgroup_memory.swap.current_KiB":50702116},"mode":"off","p50_commit_ms":5.253751,"p50_wait_ms":0.000124,"p50_write_ms":4298.914485,"p99_commit_ms":6.029303,"p99_wait_ms":0.00019899999999999999,"p99_write_ms":4479.169956,"pswpin_per_block":81227.9,"pswpout_per_block":78925.5,"run":1,"sigma_fraction":0,"warmup":3,"writes_per_s":10496}
+--- PASS: TestSwapEVM (232.18s)
+PASS
+ok  	github.com/containerman17/pagerdb	232.264s
+# end exit=0 Thu Oct 15 23:59:26 JST 2026
+pswpin 96957562
+pswpout 266831954
+               total        used        free      shared  buff/cache   available
+Mem:           63248        1179       62127           3         503       62068
+Swap:         204798           0      204798

@@ -1,0 +1,15 @@
+# start Fri Oct 16 01:52:38 JST 2026 name=swap-half-s1-off cap=12800000000 runs=0.01:off:0:500:500 extra=PAGERDB_DISK=nvme1n1p2
+pswpin 496949
+pswpout 6368466
+=== RUN   TestSwapEVM
+    swap_bench_test.go:134: SWAPFILL slots=400000000 max_leaves=8388608 seconds=41.7 majflt=12425 pswpin=12411 pswpout=4945920 mem=map[AnonHugePagesKiB:5568512 AnonymousKiB:6277740 RssKiB:6508960 SwapKiB:19856584 cgroup_memory.current_KiB:12499768 cgroup_memory.max_KiB:12500000 cgroup_memory.swap.current_KiB:20088224]
+    swap_bench_test.go:264: SWAPRESULT {"blocks":500,"disk_write_MB_per_s":760.3789166874092,"gc_cycles":1,"goroutines":0,"heap_sys_MiB":2690,"journal_MB_per_s":99.2607856116431,"majflt_per_block":39.214,"max_lag_MB":451.722524,"max_lag_versions":171,"mem":{"AnonHugePagesKiB":268288,"AnonymousKiB":3915324,"RssKiB":3918392,"SwapKiB":23693444,"cgroup_memory.current_KiB":12123532,"cgroup_memory.max_KiB":12500000,"cgroup_memory.swap.current_KiB":25994872},"mode":"off","p50_commit_ms":16.212101,"p50_wait_ms":0.00011300000000000001,"p50_write_ms":9.899599,"p99_commit_ms":20.223885,"p99_wait_ms":0.00035,"p99_write_ms":18.111298,"peak_anon_KiB":3915168,"pswpin_per_block":60.152,"pswpout_per_block":0,"run":0,"sigma_fraction":0.01,"warmup":500,"writes_per_s":1853071}
+--- PASS: TestSwapEVM (114.92s)
+PASS
+ok  	github.com/containerman17/pagerdb	115.025s
+# end exit=0 Fri Oct 16 01:54:33 JST 2026
+pswpin 1159921
+pswpout 12934811
+               total        used        free      shared  buff/cache   available
+Mem:           63248        1476       58590           3        3855       61771
+Swap:         204798           0      204798

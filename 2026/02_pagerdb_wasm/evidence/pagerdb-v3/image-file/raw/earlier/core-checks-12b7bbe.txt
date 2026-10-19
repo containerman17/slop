@@ -1,0 +1,11 @@
+7.0.0-1014-aws
+go version go1.26.0 linux/amd64
+go: downloading golang.org/x/sys v0.49.0
+VET_OK
+ok  	github.com/containerman17/pagerdb	2.010s
+go: -race requires cgo; enable cgo by setting CGO_ENABLED=1
+=== RUN   TestCrashRecovery
+    crash_test.go:194: crash iterations: 1000 map[apply:143 applying:143 image-synced:143 manifest-renamed:143 manifest-written:143 rotated:142 timer:143]
+--- PASS: TestCrashRecovery (85.81s)
+PASS
+ok  	github.com/containerman17/pagerdb	85.816s

@@ -46,7 +46,7 @@ func deployCase(t *testing.T, h *Host, name string) *Program {
 }
 func commit(t *testing.T, db *pagerdb.DB) [32]byte {
 	t.Helper()
-	r, _, err := db.Commit()
+	r, _, err := db.CommitWait()
 	if err != nil {
 		t.Fatal(err)
 	}

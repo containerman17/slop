@@ -1,0 +1,22 @@
+goos: linux
+goarch: amd64
+pkg: github.com/containerman17/pagerdb
+cpu: Intel(R) Xeon(R) 6975P-C
+BenchmarkEVM
+BenchmarkEVM/uniform
+BenchmarkEVM/uniform-16         	     700	  12940337 ns/op	     24939 dirty-leaves/block	         6.203 p50-commit-ms	         6.702 p50-write-ms	         7.073 p99-commit-ms	         7.647 p99-write-ms	   3863887 writes/s
+    evm_bench_test.go:122: EVM_ROOTS_CHECKED distribution=uniform blocks=1 final_root=b437c716dadd9b4e728cb957df0e230eb06f97b0ad5cb961ca92e5b2a1b6b144
+    evm_bench_test.go:122: EVM_ROOTS_CHECKED distribution=uniform blocks=700 final_root=8b5e1b6780ab301d1708dcd07839b0dc0284e834fbc9265734d4be8cd1eaebfd
+BenchmarkEVM/uniform-16         	     700	  12927079 ns/op	     24939 dirty-leaves/block	         6.121 p50-commit-ms	         6.695 p50-write-ms	         7.107 p99-commit-ms	         7.660 p99-write-ms	   3867850 writes/s
+BenchmarkEVM/hot_sigma_20000
+BenchmarkEVM/hot_sigma_20000-16 	     700	   2958376 ns/op	      1906 dirty-leaves/block	         0.2745 p50-commit-ms	         2.633 p50-write-ms	         0.4889 p99-commit-ms	         3.287 p99-write-ms	  16901166 writes/s
+    evm_bench_test.go:122: EVM_ROOTS_CHECKED distribution=hot_sigma_20000 blocks=1 final_root=5b51a1e22a71eb85e88163401606da31a8c63d19b67e9014e0e1c6ad76bb5272
+    evm_bench_test.go:122: EVM_ROOTS_CHECKED distribution=hot_sigma_20000 blocks=700 final_root=379a5de1e997986346f03c148144b99c732dadb826db2095a3cd16191d0a9426
+BenchmarkEVM/hot_sigma_20000-16 	     700	   2975105 ns/op	      1906 dirty-leaves/block	         0.2731 p50-commit-ms	         2.659 p50-write-ms	         0.5322 p99-commit-ms	         3.391 p99-write-ms	  16806130 writes/s
+BenchmarkEVM/hot_sigma_2000
+BenchmarkEVM/hot_sigma_2000-16  	     700	   1507951 ns/op	       233.5 dirty-leaves/block	         0.04997 p50-commit-ms	         1.406 p50-write-ms	         0.2398 p99-commit-ms	         1.789 p99-write-ms	  33157588 writes/s
+    evm_bench_test.go:122: EVM_ROOTS_CHECKED distribution=hot_sigma_2000 blocks=1 final_root=e3d271c69267e144c45a2240cae1251983cd507148f666b7892d5ef21369cb14
+    evm_bench_test.go:122: EVM_ROOTS_CHECKED distribution=hot_sigma_2000 blocks=700 final_root=232002915f0a404ffc7f2ff9b8ffb41c12e20b59e28fde5ec7aa67f9c9cddea9
+BenchmarkEVM/hot_sigma_2000-16  	     700	   1505329 ns/op	       233.5 dirty-leaves/block	         0.05002 p50-commit-ms	         1.403 p50-write-ms	         0.2357 p99-commit-ms	         1.842 p99-write-ms	  33215345 writes/s
+PASS
+ok  	github.com/containerman17/pagerdb	28.546s

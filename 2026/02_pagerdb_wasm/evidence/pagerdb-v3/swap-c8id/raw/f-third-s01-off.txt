@@ -1,0 +1,15 @@
+# start Thu Oct 15 23:46:58 JST 2026 name=f-third-s01-off cap=8533333333 runs=0.001:off:0:500:500 extra=
+pswpin 82105827
+pswpout 200934141
+=== RUN   TestSwapEVM
+    swap_bench_test.go:134: SWAPFILL slots=400000000 max_leaves=8388608 seconds=40.5 majflt=3027 pswpin=3773 pswpout=10967903 mem=map[AnonHugePagesKiB:6645760 AnonymousKiB:7363240 RssKiB:7364752 SwapKiB:43859736 cgroup_memory.current_KiB:8331464 cgroup_memory.max_KiB:8333332 cgroup_memory.swap.current_KiB:43969452]
+    swap_bench_test.go:252: SWAPRESULT {"blocks":500,"gc_cycles":2,"goroutines":0,"heap_sys_MiB":1802,"majflt_per_block":5.348,"mem":{"AnonHugePagesKiB":6119424,"AnonymousKiB":8198372,"RssKiB":8200596,"SwapKiB":43877476,"cgroup_memory.current_KiB":8332536,"cgroup_memory.max_KiB":8333332,"cgroup_memory.swap.current_KiB":44495796},"mode":"off","p50_commit_ms":6.321965,"p50_wait_ms":0.000107,"p50_write_ms":4.3704,"p99_commit_ms":7.038239,"p99_wait_ms":0.00019500000000000002,"p99_write_ms":5.186928,"pswpin_per_block":8.656,"pswpout_per_block":29.696,"run":0,"sigma_fraction":0.001,"warmup":500,"writes_per_s":4367275}
+--- PASS: TestSwapEVM (56.74s)
+PASS
+ok  	github.com/containerman17/pagerdb	56.798s
+# end exit=0 Thu Oct 15 23:47:55 JST 2026
+pswpin 82240171
+pswpout 212033629
+               total        used        free      shared  buff/cache   available
+Mem:           63248        1379       62030           3         455       61868
+Swap:         204798           0      204798

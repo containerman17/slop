@@ -1,0 +1,10 @@
+=== RUN   TestMemoryFootprint
+    memory_footprint_test.go:42: MEM state_gib=16 fill_s=16.9 checkpoint_s=2.7
+    memory_footprint_test.go:48: MEM VmHWM:	34075236 kB
+    memory_footprint_test.go:48: MEM VmRSS:	34075236 kB
+    memory_footprint_test.go:48: MEM RssAnon:	17294400 kB
+    memory_footprint_test.go:48: MEM RssFile:	16780836 kB
+    memory_footprint_test.go:48: MEM RssShmem:	       0 kB
+--- PASS: TestMemoryFootprint (20.51s)
+PASS
+ok  	github.com/containerman17/pagerdb	20.521s

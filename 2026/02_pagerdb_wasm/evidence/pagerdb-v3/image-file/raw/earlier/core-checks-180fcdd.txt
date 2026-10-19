@@ -1,0 +1,8 @@
+VET_OK
+ok  	github.com/containerman17/pagerdb	1.847s
+ok  	github.com/containerman17/pagerdb	4.317s
+=== RUN   TestCrashRecovery
+    crash_test.go:194: crash iterations: 1000 map[apply:143 applying:143 image-synced:143 manifest-renamed:143 manifest-written:143 rotated:142 timer:143]
+--- PASS: TestCrashRecovery (80.83s)
+PASS
+ok  	github.com/containerman17/pagerdb	80.838s

@@ -1,0 +1,18 @@
+# start Thu Oct 15 23:13:07 JST 2026 name=half-gmp128 cap=12800000000 runs=0:pipe:64:5:30,0:pipe:128:5:30,0:inline:128:5:30,0:off:0:3:10 extra=GOMAXPROCS=128
+pswpin 31166961
+pswpout 48175767
+=== RUN   TestSwapEVM
+    swap_bench_test.go:134: SWAPFILL slots=400000000 max_leaves=8388608 seconds=39.0 majflt=1965 pswpin=2466 pswpout=9889598 mem=map[AnonHugePagesKiB:10958848 AnonymousKiB:11687720 RssKiB:11689568 SwapKiB:39538672 cgroup_memory.current_KiB:12499656 cgroup_memory.max_KiB:12500000 cgroup_memory.swap.current_KiB:39641488]
+    swap_bench_test.go:252: SWAPRESULT {"blocks":30,"gc_cycles":2,"goroutines":64,"heap_sys_MiB":2591,"majflt_per_block":137880.56666666668,"mem":{"AnonHugePagesKiB":9953280,"AnonymousKiB":12381408,"RssKiB":12382960,"SwapKiB":40050760,"cgroup_memory.current_KiB":12499968,"cgroup_memory.max_KiB":12500000,"cgroup_memory.swap.current_KiB":42382240},"mode":"pipe","p50_commit_ms":4692.077442999999,"p50_wait_ms":3.692199,"p50_write_ms":101.013549,"p99_commit_ms":6055.979626,"p99_wait_ms":20.032248,"p99_write_ms":3416.78732,"pswpin_per_block":183725.96666666667,"pswpout_per_block":130798,"run":0,"sigma_fraction":0,"warmup":5,"writes_per_s":9271}
+    swap_bench_test.go:252: SWAPRESULT {"blocks":30,"gc_cycles":1,"goroutines":128,"heap_sys_MiB":2584,"majflt_per_block":121719.86666666667,"mem":{"AnonHugePagesKiB":9857024,"AnonymousKiB":12330232,"RssKiB":12331460,"SwapKiB":40044628,"cgroup_memory.current_KiB":12499892,"cgroup_memory.max_KiB":12500000,"cgroup_memory.swap.current_KiB":42537272},"mode":"pipe","p50_commit_ms":3780.139425,"p50_wait_ms":17.946614999999998,"p50_write_ms":209.658255,"p99_commit_ms":4821.491800000001,"p99_wait_ms":434.846901,"p99_write_ms":2580.589374,"pswpin_per_block":142827.8,"pswpout_per_block":101777.93333333333,"run":1,"sigma_fraction":0,"warmup":5,"writes_per_s":11251}
+    swap_bench_test.go:252: SWAPRESULT {"blocks":30,"gc_cycles":1,"goroutines":128,"heap_sys_MiB":2583,"majflt_per_block":109423.26666666666,"mem":{"AnonHugePagesKiB":9803776,"AnonymousKiB":12153028,"RssKiB":12155552,"SwapKiB":39732980,"cgroup_memory.current_KiB":12287972,"cgroup_memory.max_KiB":12500000,"cgroup_memory.swap.current_KiB":42100368},"mode":"inline","p50_commit_ms":2608.205227,"p50_wait_ms":345.602223,"p50_write_ms":374.244635,"p99_commit_ms":4273.750792999999,"p99_wait_ms":1266.506601,"p99_write_ms":3192.522727,"pswpin_per_block":126560.43333333333,"pswpout_per_block":99149.5,"run":2,"sigma_fraction":0,"warmup":5,"writes_per_s":15571}
+    swap_bench_test.go:252: SWAPRESULT {"blocks":10,"gc_cycles":0,"goroutines":0,"heap_sys_MiB":2583,"majflt_per_block":76362.7,"mem":{"AnonHugePagesKiB":9803776,"AnonymousKiB":12377916,"RssKiB":12380108,"SwapKiB":39508168,"cgroup_memory.current_KiB":12499884,"cgroup_memory.max_KiB":12500000,"cgroup_memory.swap.current_KiB":42100784},"mode":"off","p50_commit_ms":16.462144000000002,"p50_wait_ms":0.00014000000000000001,"p50_write_ms":4059.7813499999997,"p99_commit_ms":95.354004,"p99_wait_ms":0.00020800000000000001,"p99_write_ms":4416.286171000001,"pswpin_per_block":84311.2,"pswpout_per_block":81308.9,"run":3,"sigma_fraction":0,"warmup":3,"writes_per_s":10453}
+--- PASS: TestSwapEVM (507.70s)
+PASS
+ok  	github.com/containerman17/pagerdb	507.761s
+# end exit=0 Thu Oct 15 23:21:35 JST 2026
+pswpin 48220115
+pswpout 70639624
+               total        used        free      shared  buff/cache   available
+Mem:           63248        1331       62029           3         505       61916
+Swap:         204798           0      204798
