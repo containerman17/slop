@@ -25,7 +25,7 @@ func pages(t *testing.T) *pagerdb.DB {
 func TestTableRandom(t *testing.T) {
 	for _, size := range []int{32, 80} {
 		p := pages(t)
-		tab, e := NewTable(p, size)
+		tab, e := NewTableCap(p, size, 17)
 		if e != nil {
 			t.Fatal(e)
 		}
@@ -70,21 +70,16 @@ func TestTableRandom(t *testing.T) {
 }
 func TestProbeCapAndUndo(t *testing.T) {
 	p := pages(t)
-	tab, e := NewTable(p, 32)
+	tab, e := NewTableCap(p, 32, 129)
 	if e != nil {
 		t.Fatal(e)
-	}
-	for tab.Capacity() < 128 {
-		if e = tab.grow(); e != nil {
-			t.Fatal(e)
-		}
 	}
 	mark := p.Mark()
 	var keys [][32]byte
 	for n := uint64(0); len(keys) < 66; n++ {
 		var k [32]byte
 		binary.LittleEndian.PutUint64(k[:], n)
-		if Home(&k)&127 == 127 {
+		if home(&k, 129) == 128 {
 			keys = append(keys, k)
 		}
 	}
@@ -95,7 +90,7 @@ func TestProbeCapAndUndo(t *testing.T) {
 			t.Fatal(e)
 		}
 	}
-	if tab.Capacity() <= 128 {
+	if tab.Capacity() <= 129 {
 		t.Fatal("probe cap did not grow")
 	}
 	for _, k := range keys {
@@ -117,7 +112,7 @@ func TestProbeCapAndUndo(t *testing.T) {
 		}
 	}
 	p.Undo(mark)
-	if tab.Capacity() != 128 || tab.Len() != 0 {
+	if tab.Capacity() != 129 || tab.Len() != 0 {
 		t.Fatal("undo failed")
 	}
 }
@@ -127,14 +122,14 @@ func TestProbeCapAndUndo(t *testing.T) {
 func TestHomeSpreadAndAllocs(t *testing.T) {
 	for _, random := range []bool{false, true} {
 		p := pages(t)
-		tab, e := NewTable(p, 32)
+		tab, e := NewTableCap(p, 32, 32769)
 		if e != nil {
 			t.Fatal(e)
 		}
 		rng := rand.New(rand.NewSource(3))
 		v := make([]byte, 32)
 		v[31] = 1
-		const n = 16000 // about 49% of 2^15: a uniform hash stays far below the probe cap
+		const n = 16000 // about 49% of 32769: a uniform hash stays far below the probe cap
 		keys := make([][32]byte, n)
 		for i := range keys {
 			if random {
@@ -146,8 +141,8 @@ func TestHomeSpreadAndAllocs(t *testing.T) {
 				t.Fatal(e)
 			}
 		}
-		if tab.Capacity() != 1<<15 {
-			t.Fatalf("random=%v: capacity %d, want %d", random, tab.Capacity(), 1<<15)
+		if tab.Capacity() != 32769 {
+			t.Fatalf("random=%v: capacity %d, want %d", random, tab.Capacity(), 32769)
 		}
 		var dst [32]byte
 		allocs := testing.AllocsPerRun(1000, func() {
@@ -161,5 +156,73 @@ func TestHomeSpreadAndAllocs(t *testing.T) {
 		if allocs != 0 {
 			t.Fatalf("random=%v: %v allocations per Read+Set", random, allocs)
 		}
+	}
+}
+
+func TestTableWrapDelete(t *testing.T) {
+	p := pages(t)
+	tab, err := NewTableCap(p, 32, 17)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var keys [][32]byte
+	// The cluster crosses bucket zero and contains entries with different homes.
+	for _, bucket := range []int{15, 16, 15, 0, 16, 1, 15} {
+		for n := uint64(len(keys) * 10000); ; n++ {
+			var k [32]byte
+			binary.LittleEndian.PutUint64(k[:], n)
+			if home(&k, 17) == bucket {
+				keys = append(keys, k)
+				break
+			}
+		}
+	}
+	var value [32]byte
+	value[0] = 1
+	for _, k := range keys {
+		if err := tab.Set(k, value[:]); err != nil {
+			t.Fatal(err)
+		}
+	}
+	for i, k := range keys {
+		if err := tab.Set(k, make([]byte, 32)); err != nil {
+			t.Fatal(err)
+		}
+		for j, remaining := range keys {
+			if zero(tab.Get(remaining)) != (j <= i) {
+				t.Fatalf("delete %d lost key %d", i, j)
+			}
+		}
+	}
+}
+
+func TestTableGrowth(t *testing.T) {
+	p := pages(t)
+	tab, err := NewTableCap(p, 32, 17)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for n := uint64(0); n < 13; n++ {
+		var k, v [32]byte
+		binary.LittleEndian.PutUint64(k[:], n)
+		v[0] = 1
+		if err := tab.Set(k, v[:]); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if tab.Capacity() != 26 {
+		t.Fatalf("capacity %d, want 26", tab.Capacity())
+	}
+}
+
+func TestRejectOldTableLayout(t *testing.T) {
+	p := pages(t)
+	db, err := NewDatabase(p)
+	if err != nil {
+		t.Fatal(err)
+	}
+	p.Write(db.accounts.Region, 16, make([]byte, 8))
+	if _, err := NewDatabase(p); err == nil {
+		t.Fatal("accepted old bucket layout")
 	}
 }

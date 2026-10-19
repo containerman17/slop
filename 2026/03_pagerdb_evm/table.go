@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
+	"math/bits"
 
 	"github.com/containerman17/pagerdb"
 )
@@ -12,6 +13,9 @@ import (
 // 64-byte slot entries and their values stay aligned to PagerDB's 32-byte redo
 // chunks and never straddle a leaf.
 const tableHeader = 64
+
+// tableFormat identifies the fastrange layout; zero was the low-bit layout.
+const tableFormat = 1
 
 var le = binary.LittleEndian
 
@@ -25,17 +29,18 @@ type Table struct {
 
 func NewTable(db *pagerdb.DB, size int) (*Table, error) { return NewTableCap(db, size, 16) }
 
-// NewTableCap creates a table with a power-of-two starting capacity.
+// NewTableCap creates a table with any starting capacity of at least 16.
 func NewTableCap(db *pagerdb.DB, size, capacity int) (*Table, error) {
-	if size < 1 || capacity < 16 || capacity&(capacity-1) != 0 {
+	if size < 1 || capacity < 16 {
 		return nil, fmt.Errorf("invalid value size or capacity")
 	}
 	r, e := db.Alloc(tableHeader + capacity*(32+size))
 	if e != nil {
 		return nil, e
 	}
-	var h [16]byte
+	var h [24]byte
 	le.PutUint64(h[8:], uint64(size))
+	le.PutUint64(h[16:], tableFormat)
 	db.Write(r, 0, h[:])
 	return &Table{db, r, size}, nil
 }
@@ -49,7 +54,7 @@ func (t *Table) data() []byte {
 func (t *Table) Len() int      { return int(le.Uint64(t.data())) }
 func (t *Table) Capacity() int { return (len(t.data()) - tableHeader) / (32 + t.ValueSize) }
 
-// Home is the 64-bit bucket hash of a key; a table uses its low bits. One
+// Home is the 64-bit bucket hash of a key; a table maps it with fastrange. One
 // multiply-xorshift step per key word: Keccak-derived keys are already uniform,
 // and the shifts spread small big-endian keys such as 0, 1, 2 over all buckets.
 // It is not collision resistant; neither were bucket indexes cut from SHA-256.
@@ -62,6 +67,27 @@ func Home(k *[32]byte) uint64 {
 	h *= 0x94D049BB133111EB
 	return h ^ h>>29
 }
+func home(k *[32]byte, capacity int) int {
+	hi, _ := bits.Mul64(Home(k), uint64(capacity))
+	return int(hi)
+}
+
+func next(i, capacity int) int {
+	i++
+	if i == capacity {
+		i = 0
+	}
+	return i
+}
+
+func distance(from, to, capacity int) int {
+	d := to - from
+	if d < 0 {
+		d += capacity
+	}
+	return d
+}
+
 func zero(b []byte) bool {
 	var x uint64
 	for ; len(b) >= 8; b = b[8:] {
@@ -74,10 +100,10 @@ func zero(b []byte) bool {
 }
 func (t *Table) find(b []byte, k *[32]byte) (int, bool, int) {
 	s := 32 + t.ValueSize
-	mask := (len(b)-tableHeader)/s - 1
+	capacity := (len(b) - tableHeader) / s
 	k0, k1, k2, k3 := le.Uint64(k[0:]), le.Uint64(k[8:]), le.Uint64(k[16:]), le.Uint64(k[24:])
-	i := int(Home(k)) & mask
-	for d := 0; d <= mask; d++ {
+	i := home(k, capacity)
+	for d := 0; d < capacity; d++ {
 		e := b[tableHeader+i*s : tableHeader+(i+1)*s]
 		if zero(e[32:]) {
 			return i, false, d
@@ -85,7 +111,7 @@ func (t *Table) find(b []byte, k *[32]byte) (int, bool, int) {
 		if le.Uint64(e[0:]) == k0 && le.Uint64(e[8:]) == k1 && le.Uint64(e[16:]) == k2 && le.Uint64(e[24:]) == k3 {
 			return i, true, d
 		}
-		i = (i + 1) & mask
+		i = next(i, capacity)
 	}
 	panic("full table")
 }
@@ -148,12 +174,12 @@ func (t *Table) Set(k [32]byte, v []byte) error {
 }
 func (t *Table) remove(b []byte, hole int) {
 	s := 32 + t.ValueSize
-	mask := (len(b)-tableHeader)/s - 1
+	capacity := (len(b) - tableHeader) / s
 	entry := func(i int) []byte { return b[tableHeader+i*s : tableHeader+(i+1)*s] }
-	for i := (hole + 1) & mask; !zero(entry(i)[32:]); i = (i + 1) & mask {
+	for i := next(hole, capacity); !zero(entry(i)[32:]); i = next(i, capacity) {
 		e := entry(i)
-		h := int(Home((*[32]byte)(e[:32]))) & mask
-		if (i-h)&mask >= (i-hole)&mask {
+		h := home((*[32]byte)(e[:32]), capacity)
+		if distance(h, i, capacity) >= distance(hole, i, capacity) {
 			t.DB.Touch(t.Region, tableHeader+hole*s, s)
 			copy(entry(hole), e)
 			hole = i
@@ -165,7 +191,7 @@ func (t *Table) remove(b []byte, hole int) {
 }
 func (t *Table) grow() error {
 	old := bytes.Clone(t.data())
-	n := t.Capacity() * 2
+	n := t.Capacity() + (t.Capacity()+1)/2
 	// Rehash in old bucket order. Grow preserves the stable region handle.
 	if e := t.DB.Grow(t.Region, tableHeader+n*(32+t.ValueSize)); e != nil {
 		return e

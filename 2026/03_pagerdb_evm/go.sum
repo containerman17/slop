@@ -96,6 +96,8 @@ github.com/containerman17/pagerdb v0.0.0-20261016074734-356141dd16ca h1:d9x7KayM
 github.com/containerman17/pagerdb v0.0.0-20261016074734-356141dd16ca/go.mod h1:1tEkh4j0NRx4F1tBUbboyWuXO0t3Ue0ttWuBv8Db+7w=
 github.com/containerman17/pagerdb v0.0.0-20261016092757-19a22ee5c506 h1:FYZB61PnWFFgPqQFC2BmHMPTHQ5KKMYZtTtUTxmVNzA=
 github.com/containerman17/pagerdb v0.0.0-20261016092757-19a22ee5c506/go.mod h1:1tEkh4j0NRx4F1tBUbboyWuXO0t3Ue0ttWuBv8Db+7w=
+github.com/containerman17/pagerdb v0.0.0-20261019044914-a6cfe58d61bf h1:tZ+T1bmF8doRGps7tLU+L3wUJjNEmB7iY5ea5wx16bs=
+github.com/containerman17/pagerdb v0.0.0-20261019044914-a6cfe58d61bf/go.mod h1:1tEkh4j0NRx4F1tBUbboyWuXO0t3Ue0ttWuBv8Db+7w=
 github.com/coreos/etcd v3.3.10+incompatible/go.mod h1:uF7uidLiAD3TWHmW31ZFd/JWoc32PjwdhPthX9715RE=
 github.com/coreos/go-etcd v2.0.0+incompatible/go.mod h1:Jez6KQU2B/sWsbdaef3ED8NzMklzPG4d5KIOhIy30Tk=
 github.com/coreos/go-semver v0.2.0/go.mod h1:nnelYz7RCh+5ahJtPPxZlU+153eP4D4r3EedlOD2RNk=
