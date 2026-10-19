@@ -115,7 +115,7 @@ func TestBulkLengthGas(t *testing.T) {
 				return p.Run(context.Background(), Call{Input: bulkInput(fill, 512, 256, n, 0, 0), Gas: gas})
 			}
 			zero, a, b := run(0, 100000), run(1, 100000), run(2, 100000)
-			if zero.Status != 0 || zero.GasLeft-a.GasLeft != BulkByteGas+lineSize*ByteGas {
+			if zero.Status != 0 || zero.GasLeft-a.GasLeft != BulkByteGas+(a.BytesWritten-zero.BytesWritten)*ByteGas+(a.LeavesTouched-zero.LeavesTouched)*LeafGas {
 				t.Fatal("zero-length gas")
 			}
 			if a.Status != 0 || b.Status != 0 || a.GasLeft-b.GasLeft != BulkByteGas {

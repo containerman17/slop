@@ -79,4 +79,4 @@ Host checks retain every native output hash, dirty-byte/leaf count, every repeat
 
 Launch: 2026-10-15 19:33:52 JST. Boot shutdown deadline: 22:34:08 JST. Terminate-on-shutdown and root-volume deletion were verified. No SSH rule change was needed, and no other instance was touched. Private launch and connection settings remain outside the repository. See teardown.txt for shutdown and AWS termination proof.
 
-Shutdown was requested at **2026-10-15 19:43:31 JST**. AWS independently confirmed instance `i-0682ca2a879c3a301` **terminated at 19:44:23 JST**. Launch-to-verification was 0.1753 hours. At the prior recorded rate of $1.7741/hour, estimated compute cost is **$0.31**, excluding EBS, public IPv4 and tax. This is an estimate, not a billing quote.
+Shutdown was requested at **2026-10-15 19:43:31 JST**. AWS independently confirmed instance `<instance>` **terminated at 19:44:23 JST**. Launch-to-verification was 0.1753 hours. At the prior recorded rate of $1.7741/hour, estimated compute cost is **$0.31**, excluding EBS, public IPv4 and tax. This is an estimate, not a billing quote.

@@ -2,7 +2,7 @@
 
 A Go host for integer Wasm with linear memory backed directly by a PagerDB region.
 Wazero v1.12.0 uses `experimental.WithMemoryAllocator`; the guest and `DB.Map` share
-the same bytes. PagerDB is a normal module dependency pinned to the v3 branch commit in `go.mod`.
+the same bytes. PagerDB is a normal module dependency pinned to the v3 commit in `go.mod`.
 
 ```go
 ctx := context.Background()
@@ -54,7 +54,7 @@ The host records old bytes with `DB.Touch`, then sets the bit. ABI writes coales
 consecutive untouched lines into one Touch range, stopping at already dirty lines.
 The bitmap is never touched in PagerDB. Every exit path scans the bitmap in
 address order to produce sorted `DirtyLines`,
-counts unique written bytes and touched 4 KiB leaves, charges state gas, and clears the bits before undo or commit. No dirty-line
+counts unique written bytes and touched 1 KiB leaves, charges state gas, and clears the bits before undo or commit. No dirty-line
 sort is needed, and the bitmap contributes only zeros to the root. A crash during
 a call discards live anonymous memory. PagerDB opens the last complete checkpoint;
 the caller must re-execute later blocks.
@@ -67,7 +67,8 @@ blocks and locals (including its historical fixed gas-helper surcharge). The hel
 is inlined before the stack pass, so no gas function call remains. Host imports
 have a fixed charge. At call end, state gas is `BytesWritten * ByteGas +
 LeavesTouched * LeafGas`: six gas per unique written byte (64 bytes per dirty
-line), plus 2,000 gas per distinct 4 KiB leaf. Both counts are returned, including
+line), plus 500 gas per distinct 1 KiB leaf. `ByteGas = 6` and
+`LeafGas = pagerdb.LeafSize * 2000 / 4096` (250 at 512 B, 2,000 at 4 KiB). Both counts are returned, including
 on reverts. Repeated writes do not add state gas. Bulk copy/fill
 also charge `BulkByteGas` per byte through an inline unsigned length check and
 decrement. Each bulk operation calls the injected range barrier once before

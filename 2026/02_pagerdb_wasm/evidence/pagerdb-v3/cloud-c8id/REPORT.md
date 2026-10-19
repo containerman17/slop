@@ -57,6 +57,6 @@ Raw outputs: original.txt, synthetic.txt, evm.txt, profile-run.txt. Host vet/ful
 
 Launch was 18:15:06 JST, with boot shutdown scheduled for 21:15:24 JST. Terminate-on-shutdown and root-volume deletion were verified. No security-group change was needed. Final shutdown and independently observed termination are recorded in teardown.txt.
 
-Shutdown was requested with `sudo shutdown -h now` at **18:28:27 JST**. AWS independently reported **terminated at 18:29:03 JST** for instance `i-09703e61aa4924682`. The launch-to-verification interval is 0.2325 hours. At the prior run's recorded rate of $1.7741/hour, estimated compute cost is **$0.41**; this is not a billing quote and excludes EBS, public IPv4 and tax. See [teardown.txt](teardown.txt).
+Shutdown was requested with `sudo shutdown -h now` at **18:28:27 JST**. AWS independently reported **terminated at 18:29:03 JST** for instance `<instance>`. The launch-to-verification interval is 0.2325 hours. At the prior run's recorded rate of $1.7741/hour, estimated compute cost is **$0.41**; this is not a billing quote and excludes EBS, public IPv4 and tax. See [teardown.txt](teardown.txt).
 
 The original fixture SHA-256 on the box matched the original local file: `cb042fbb90f5988ad205e34b4083b6cb45a96a75f8323969dc93d47ef494f923`. Both pristine archives passed vet and full tests. The instrumented core passed vet and race tests, and the instrumented host passed vet and full tests. No instance or temporary fixture remains on the terminated box.

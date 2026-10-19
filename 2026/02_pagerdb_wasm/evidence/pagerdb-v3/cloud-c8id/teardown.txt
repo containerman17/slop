@@ -1,11 +1,11 @@
-Instance: i-09703e61aa4924682
+Instance: <instance>
 Launch: 2026-10-15 18:15:06 JST
 Boot scheduled shutdown: 2026-10-15 21:15:24 JST
 Shutdown command: sudo shutdown -h now
 Shutdown requested: 2026-10-15 18:28:27 JST
 AWS observed state: terminated
 Observed at: 2026-10-15 18:29:03 JST
-Verification command: aws --region us-west-2 ec2 describe-instances --instance-ids i-09703e61aa4924682 --query 'Reservations[0].Instances[0].State.Name' --output text
+Verification command: aws --region us-west-2 ec2 describe-instances --instance-ids <instance> --query 'Reservations[0].Instances[0].State.Name' --output text
 Terminate-on-shutdown: verified before runs
 Root volume DeleteOnTermination: true, verified before runs
 No security-group rules added or removed. No other instance accessed or modified.
