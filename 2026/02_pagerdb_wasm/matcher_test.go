@@ -196,7 +196,7 @@ func TestMatcher(t *testing.T) {
 				t.Logf("last block final changed bytes=%d, uncoalesced Touch log bytes upper bound=%d, logged old bytes=%d", changed, lastTouches*(16+lineSize), lastTouches*lineSize)
 			}
 			sort.Slice(durations, func(i, j int) bool { return durations[i] < durations[j] })
-			t.Logf("uncoalesced log bytes/block upper bound=%.0f (ABI coalescing reduces headers), dirty 4KiB leaves/block=%.1f, Commit p99 ms=%.3f", 92+float64(lines)*(16+lineSize)/float64(blocks), float64(leaves)/float64(blocks), float64(durations[(99*blocks+99)/100-1])/float64(time.Millisecond))
+			t.Logf("uncoalesced log bytes/block upper bound=%.0f (ABI coalescing reduces headers), dirty %d-byte leaves/block=%.1f, Commit p99 ms=%.3f", 92+float64(lines)*(16+lineSize)/float64(blocks), pagerdb.LeafSize, float64(leaves)/float64(blocks), float64(durations[(99*blocks+99)/100-1])/float64(time.Millisecond))
 			t.Logf("bytes_written/block=%.0f, leaves_touched/block=%.1f", float64(lines)*lineSize/float64(blocks), float64(leaves)/float64(blocks))
 			t.Logf("guest ms/block=%.3f, end ms/block=%.3f", timed.guest.Seconds()*1000/float64(blocks), (execution-timed.guest).Seconds()*1000/float64(blocks))
 			t.Logf("correctness-run diagnostics (not a benchmark): %.0f msgs/s execution, %.0f msgs/s including snapshot Commit (excludes final drain), %.1f dirty tracking units/block, %.3f Commit ms/block", float64(per*blocks)/execution.Seconds(), float64(per*blocks)/(execution+commits).Seconds(), float64(lines)/float64(blocks), commits.Seconds()*1000/float64(blocks))
