@@ -14,8 +14,11 @@ import (
 // chunks and never straddle a leaf.
 const tableHeader = 64
 
-// tableFormat identifies the fastrange layout; zero was the low-bit layout.
-const tableFormat = 1
+// tableFormat identifies Robin Hood probing; older layouts cannot use its cutoff.
+const tableFormat = 2
+
+const maxLoad = 85
+const maxProbe = 64
 
 var le = binary.LittleEndian
 
@@ -111,6 +114,9 @@ func (t *Table) find(b []byte, k *[32]byte) (int, bool, int) {
 		if le.Uint64(e[0:]) == k0 && le.Uint64(e[8:]) == k1 && le.Uint64(e[16:]) == k2 && le.Uint64(e[24:]) == k3 {
 			return i, true, d
 		}
+		if distance(home((*[32]byte)(e[:32]), capacity), i, capacity) < d {
+			return i, false, d
+		}
 		i = next(i, capacity)
 	}
 	panic("full table")
@@ -158,37 +164,86 @@ func (t *Table) Set(k [32]byte, v []byte) error {
 		return nil
 	}
 	n := t.Len()
-	for (n+1)*4 > t.Capacity()*3 || d > 64 {
+	for (n+1)*100 > t.Capacity()*maxLoad || !t.canInsert(b, i, d) {
 		if e := t.grow(); e != nil {
 			return e
 		}
 		b = t.data()
 		i, _, d = t.find(b, &k)
 	}
-	off := tableHeader + i*s
-	t.DB.Touch(t.Region, off, s)
-	copy(b[off:], k[:])
-	copy(b[off+32:], v)
+	t.insert(b, k, v, i, d)
 	t.count(b, n+1)
 	return nil
 }
+
+// Check the complete displacement chain before changing any entry. If the cap
+// requires growth, every old key must still be present when grow rehashes it.
+func (t *Table) canInsert(b []byte, i, d int) bool {
+	s := 32 + t.ValueSize
+	capacity := (len(b) - tableHeader) / s
+	for ; d <= maxProbe; d++ {
+		e := b[tableHeader+i*s : tableHeader+(i+1)*s]
+		if zero(e[32:]) {
+			return true
+		}
+		if resident := distance(home((*[32]byte)(e[:32]), capacity), i, capacity); resident < d {
+			d = resident
+		}
+		i = next(i, capacity)
+	}
+	return false
+}
+
+func (t *Table) insert(b []byte, k [32]byte, v []byte, i, d int) {
+	s := 32 + t.ValueSize
+	capacity := (len(b) - tableHeader) / s
+	// All adapter records fit on the stack. Table also supports larger values.
+	var scratch [112]byte
+	entry := scratch[:]
+	if s > len(entry) {
+		entry = make([]byte, s)
+	}
+	entry = entry[:s]
+	copy(entry, k[:])
+	copy(entry[32:], v)
+	for {
+		off := tableHeader + i*s
+		e := b[off : off+s]
+		if zero(e[32:]) {
+			t.DB.Touch(t.Region, off, s)
+			copy(e, entry)
+			return
+		}
+		if resident := distance(home((*[32]byte)(e[:32]), capacity), i, capacity); resident < d {
+			t.DB.Touch(t.Region, off, s)
+			for j := range entry {
+				entry[j], e[j] = e[j], entry[j]
+			}
+			d = resident
+		}
+		i = next(i, capacity)
+		d++
+	}
+}
+
 func (t *Table) remove(b []byte, hole int) {
 	s := 32 + t.ValueSize
 	capacity := (len(b) - tableHeader) / s
 	entry := func(i int) []byte { return b[tableHeader+i*s : tableHeader+(i+1)*s] }
-	for i := next(hole, capacity); !zero(entry(i)[32:]); i = next(i, capacity) {
+	for i := next(hole, capacity); ; i = next(i, capacity) {
 		e := entry(i)
-		h := home((*[32]byte)(e[:32]), capacity)
-		if distance(h, i, capacity) >= distance(hole, i, capacity) {
-			t.DB.Touch(t.Region, tableHeader+hole*s, s)
-			copy(entry(hole), e)
-			hole = i
+		if zero(e[32:]) || home((*[32]byte)(e[:32]), capacity) == i {
+			break
 		}
+		t.DB.Touch(t.Region, tableHeader+hole*s, s)
+		copy(entry(hole), e)
+		hole = i
 	}
 	t.DB.Touch(t.Region, tableHeader+hole*s, s)
 	clear(entry(hole))
 	t.count(b, t.Len()-1)
 }
+
 func (t *Table) grow() error {
 	old := bytes.Clone(t.data())
 	n := t.Capacity() + (t.Capacity()+1)/2

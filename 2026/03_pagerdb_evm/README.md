@@ -37,24 +37,83 @@ command intentionally starts from genesis in a fresh directory.
 ## Region layout
 
 Integers are little endian unless specified otherwise. Each table begins with
-a 64-byte header: count (u64), value size (u64), layout version (u64, currently 1),
-40 zero bytes. Version 0 tables used low-bit bucket selection and cannot be
-reopened by this adapter; replay them into a fresh database. The padding keeps
+a 64-byte header: count (u64), value size (u64), layout version (u64, currently 2),
+40 zero bytes. Versions 0 and 1 used different bucket or probing rules and cannot
+be reopened by this adapter; replay them into a fresh database. The padding keeps
 64-byte storage entries and their values aligned to PagerDB's 32-byte redo
 chunks, so an entry never straddles a leaf. Entries follow. Capacity starts at
 16, accepts any integer capacity, and grows by 1.5x (rounded up) before an
-insert exceeds 75% load or probe distance 64. Bucket selection uses fastrange,
+insert exceeds 85% load or probe distance 64. Bucket selection uses fastrange,
 `(Home(key) * capacity) >> 64`, with a 128-bit product. `Home` uses one
 multiply-xorshift step per little-endian key word, then a final multiply and
-shift (see `table.go`). Probing is linear with wraparound. An all-zero value is
-empty. Zero writes delete with backward shifting. A write of the current value
-changes nothing. Growth rehashes in old bucket order and keeps the PagerDB
-region handle stable.
+shift (see `table.go`). Robin Hood probing walks adjacent buckets with wraparound. An incoming entry
+displaces a resident whose distance from its home is shorter. Distances are
+computed from keys, with no stored metadata. Lookup stops at an empty bucket or
+a resident whose distance is shorter than the lookup distance. Insertion checks
+the full displacement chain before changing entries, so probe-cap growth cannot
+lose a displaced key. An all-zero value is empty. Zero writes delete by shifting
+following entries back until an empty bucket or an entry at its home. A write of
+the current value changes nothing. Growth rehashes in old bucket order and keeps
+the PagerDB region handle stable.
 
 `Home` is not collision resistant. Nor was the earlier SHA-256 bucket index: a
 bucket is a bounded hash result, so grinding keys into one bucket costs the same with
 either. Known open risk: keys ground into one bucket force the probe-cap
 growth at low load, which multiplies table memory.
+
+On 2026-10-19, 50M-key fills on macOS measured these table costs. Probe
+statistics are distances from the home bucket (zero at home), not bucket visits.
+Both key sets use the existing home-sorted fill order through `Table.Set`.
+The trace and mixed-operation tests exercise unsorted writes and deletion.
+
+- 75% load: 85.33 B/slot; random max/mean 26/1.500739, consecutive max/mean
+  14/1.165011; zero growth events in both fills.
+- 85% load: 75.29 B/slot; random max/mean 44/2.834748, consecutive max/mean
+  19/1.855585; zero growth events in both fills.
+- 90% load: 71.11 B/slot; random max/mean 62/4.500481, consecutive max/mean
+  24/2.625291; zero growth events in both fills.
+
+The selected limit is 85%. At 90%, the random fill leaves only two buckets of
+headroom below the cap of 64. `Home` is unchanged: histograms of 1M consecutive
+big-endian keys under two prefixes pass, and the 50M array keys above are
+`keccak256(0) + i` with big-endian addition. A dense 5M random fill at 85% uses
+75.29 B/slot, with maximum distance 39, mean 2.840990 and zero growth events.
+
+The 1.5x growth ladder still matters. Its first capacities that hold 5M and 50M
+slots remain 6,961,464 and 79,295,427, so table cost at those preallocated
+capacities remains 89.11 and 101.50 B/slot. Measured max/mean distances are
+20/1.278733 and 17/0.853617, with zero fill growth events. Raising the limit does not shrink a
+table. At 500M, the first sufficient ladder capacity falls from 903,224,480 to
+602,149,653 entries: an estimated 115.61 to 77.08 table B/slot. A table
+preallocated directly for 85% would instead use about 75.29 B/slot. The 500M
+figures assume no additional probe-cap growth; they are capacity estimates,
+not a full fill or RSS measurement. Table bytes
+exclude PagerDB hashes, undo history, snapshots and runtime memory, so comparison
+with an arena MPT's total memory still needs a full-scale RSS run. Mac timings
+are diagnostic only.
+
+The 600-block Matcher trace peaks at 4,242,421 live slots before ending at
+3,446,600. With 5,000,000 initial entries, 85% permits the peak without growth
+(84.85% peak load). Final table cost falls from the old 193.90 to 92.85 B/live
+slot. The maximum distance over scans at every block boundary is 38; the final
+maximum is 17 and mean is 1.109491. There are zero growth events. The final load
+is only 68.93% because the trace deletes slots after its peak; tables do not
+shrink. The old run started with 6,961,464 entries and grew to 10,442,196 on the
+probe cap at block 162, with 3,843,172 live slots (55.2% load). Its
+block-boundary maximum was 51; after growth its final max/mean was 19/0.245906.
+
+For the same 4.25M peak-live budget, the 75% trace candidate uses 5,666,667
+entries and ends at 105.22 B/slot (block-boundary maximum 23, final max/mean
+14/0.776963). The 90% candidate uses 4,722,223 entries and ends at 87.69 B/slot
+(block-boundary maximum 63, final max/mean 20/1.352461). Both have zero growth
+events. The 90% trace result reinforces the 85% choice: it leaves just one bucket
+below the probe cap.
+
+With 16,777,216 virtual 1 KiB leaves and 5,000,000 initial entries, the new
+PagerDB trace roots are:
+
+- Block 150: `0x97b222ba4fb900965a3fbea8b9f4f9867bdb08c7c524401712224ebeb6643997`.
+- Block 600: `0x2627914a99906bced7ecc9c285ddb610f2ee19fa3a4a0c5adccf1f731c636d7e`.
 
 Storage entries are 64 bytes: raw normalized C-Chain slot key (32) and value
 (32). Coreth normalizes EVM keys before the adapter receives them. Atomic native
@@ -114,8 +173,9 @@ execution error or mismatch. It does not revalidate atomic shared-memory proofs
 or consensus signatures in the already accepted local dump.
 
 The command rejects block ranges reaching Berlin (1,640,340). Later precompile
-activation and SAE transition support are not claimed. Tests cover random table
-operations against Go maps, deletion, growth, collision limits, PagerDB undo,
+activation and SAE transition support are not claimed. Tests cover three million mixed table
+operations against Go maps, high-load churn, reachability from every key's home,
+consecutive keys, deletion, growth, collision limits, PagerDB undo,
 random StateDB operations and reverts against geth's in-memory MPT, deterministic
 roots under shuffled writes, and checkpoint reopening. The differential test also
 compares the rebuilt state root with the stock MPT root after every block.
