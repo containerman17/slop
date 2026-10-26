@@ -1,0 +1,32 @@
+{
+  "stateUpgrades": [
+    {
+      "blockTimestamp": 1679072400,
+      "accounts": {
+        "0x04b9da42306b023f3572e106b11d82aad9d32ebb": {
+          "storage": {
+            "0x0000000000000000000000000000000000000000000000000000000000000007": "0x000000000000000000000000000000000000000000cecb8f27f4200f3a000000",
+            "0x000000000000000000000000000000000000000000000000000000000000000b": "0x00000000000000000000000000000000000000000069e10de76676d080000000"
+          }
+        }
+      }
+    }
+  ],
+  "precompileUpgrades": [
+    {
+      "feeManagerConfig": {
+        "adminAddresses": [
+          "0x79a1a35d07044a3d856197756b82319e7f97ba25"
+        ],
+        "blockTimestamp": 1662134400
+      }
+    },
+    {
+      "warpConfig": {
+        "blockTimestamp": 1741068000,
+        "quorumNumerator": 67,
+        "requirePrimaryNetworkSigners": true
+      }
+    }
+  ]
+}

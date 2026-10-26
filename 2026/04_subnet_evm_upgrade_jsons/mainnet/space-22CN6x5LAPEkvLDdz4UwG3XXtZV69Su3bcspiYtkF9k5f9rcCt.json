@@ -1,0 +1,19 @@
+{
+  "precompileUpgrades": [
+    {
+      "warpConfig": {
+        "blockTimestamp": 1752754655,
+        "disable": true,
+        "quorumNumerator": 0,
+        "requirePrimaryNetworkSigners": false
+      }
+    },
+    {
+      "warpConfig": {
+        "blockTimestamp": 1752754656,
+        "quorumNumerator": 67,
+        "requirePrimaryNetworkSigners": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "precompileUpgrades": [
+    {
+      "contractDeployerAllowListConfig": {
+        "blockTimestamp": 1767789000,
+        "disable": true
+      }
+    },
+    {
+      "warpConfig": {
+        "blockTimestamp": 1778234585,
+        "quorumNumerator": 67,
+        "requirePrimaryNetworkSigners": true
+      }
+    }
+  ]
+}
