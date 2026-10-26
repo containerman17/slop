@@ -1,0 +1,57 @@
+{
+  "networkUpgradeOverrides": {
+    "etnaTimestamp": 1732586400
+  },
+  "stateUpgrades": [
+    {
+      "blockTimestamp": 1691416800,
+      "accounts": {
+        "0x4e59b44847b379578588920ca78fbf26c0b4956c": {
+          "code": "0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe03601600081602082378035828234f58015156039578182fd5b8082525050506014600cf3"
+        }
+      }
+    }
+  ],
+  "precompileUpgrades": [
+    {
+      "contractNativeMinterConfig": {
+        "adminAddresses": [
+          "0x83e234a3a01f594da7ac3a95b44ed38990cf79f7",
+          "0x9c4654f9b86c621e84bc7925d9f3ab5821f73bec",
+          "0xe684f59167b6afd37f1a0998cfe80133a352a60a",
+          "0xb7cea3709c26644e0f17792941a39e9b76a6ff4b",
+          "0x6d97ac4591f04e0aa03c6050cbc75678404a163c"
+        ],
+        "blockTimestamp": 1692615600
+      }
+    },
+    {
+      "contractDeployerAllowListConfig": {
+        "blockTimestamp": 1694516400,
+        "disable": true
+      }
+    },
+    {
+      "warpConfig": {
+        "blockTimestamp": 1729807200,
+        "quorumNumerator": 67,
+        "requirePrimaryNetworkSigners": false
+      }
+    },
+    {
+      "warpConfig": {
+        "blockTimestamp": 1743778800,
+        "disable": true,
+        "quorumNumerator": 0,
+        "requirePrimaryNetworkSigners": false
+      }
+    },
+    {
+      "warpConfig": {
+        "blockTimestamp": 1743778804,
+        "quorumNumerator": 67,
+        "requirePrimaryNetworkSigners": true
+      }
+    }
+  ]
+}

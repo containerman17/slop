@@ -1,0 +1,15 @@
+{
+  "networkUpgradeOverrides": {
+    "etnaTimestamp": 1761292800
+  },
+  "precompileUpgrades": [
+    {
+      "feeManagerConfig": {
+        "adminAddresses": [
+          "0x3cca3799458aa95d1934768d5c51139ca8dff1f4"
+        ],
+        "blockTimestamp": 1735916400
+      }
+    }
+  ]
+}

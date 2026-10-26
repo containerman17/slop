@@ -1,0 +1,44 @@
+{
+  "precompileUpgrades": [
+    {
+      "feeManagerConfig": {
+        "adminAddresses": [
+          "0x813738ec93e15da3c333d834bde68036cfaab110",
+          "0x42e4baa2c0b140be35684824fff7204159c588b9"
+        ],
+        "blockTimestamp": 1661266800
+      }
+    },
+    {
+      "rewardManagerConfig": {
+        "blockTimestamp": 1672945200,
+        "initialRewardConfig": {
+          "allowFeeRecipients": false,
+          "rewardAddress": "0xb2f0b64b6aad197151d7bcca515e135c65039e12"
+        }
+      }
+    },
+    {
+      "warpConfig": {
+        "blockTimestamp": 1727298000,
+        "quorumNumerator": 67,
+        "requirePrimaryNetworkSigners": false
+      }
+    },
+    {
+      "warpConfig": {
+        "blockTimestamp": 1757007000,
+        "disable": true,
+        "quorumNumerator": 0,
+        "requirePrimaryNetworkSigners": false
+      }
+    },
+    {
+      "warpConfig": {
+        "blockTimestamp": 1757007001,
+        "quorumNumerator": 67,
+        "requirePrimaryNetworkSigners": true
+      }
+    }
+  ]
+}

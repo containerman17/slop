@@ -1,25 +1,30 @@
 {
+  "networkUpgradeOverrides": {
+    "heliconTimestamp": 1790100120
+  },
   "precompileUpgrades": [
     {
       "contractNativeMinterConfig": {
-        "blockTimestamp": 1692702000,
         "adminAddresses": [
-          "0x1cD22E79976Cb97FB65CCbadA316EBd46881Fa12",
-          "0xBCa66eAf37B4C08B49D41e682E701e153F17E1D6",
-          "0x172FFFc69ED471B7fF2465aE97504985F7071593"
+          "0x1cd22e79976cb97fb65ccbada316ebd46881fa12",
+          "0xbca66eaf37b4c08b49d41e682e701e153f17e1d6",
+          "0x172fffc69ed471b7ff2465ae97504985f7071593"
         ],
-        "enabledAddresses": ["0x277280e8337E64a3A8E8b795D4E8E5e00BF6e203"]
+        "enabledAddresses": [
+          "0x277280e8337e64a3a8e8b795d4e8e5e00bf6e203"
+        ],
+        "blockTimestamp": 1692702000
       }
     },
     {
       "txAllowListConfig": {
-        "blockTimestamp": 1698760800,
         "adminAddresses": [
-          "0x277280e8337E64a3A8E8b795D4E8E5e00BF6e203",
-          "0xBCa66eAf37B4C08B49D41e682E701e153F17E1D6",
-          "0x172FFFc69ED471B7fF2465aE97504985F7071593",
-          "0x070a6FB7DB4e0E3Ebb41A6D09383119feC5f7CEb"
-        ]
+          "0x277280e8337e64a3a8e8b795d4e8e5e00bf6e203",
+          "0xbca66eaf37b4c08b49d41e682e701e153f17e1d6",
+          "0x172fffc69ed471b7ff2465ae97504985f7071593",
+          "0x070a6fb7db4e0e3ebb41a6d09383119fec5f7ceb"
+        ],
+        "blockTimestamp": 1698760800
       }
     },
     {
@@ -37,13 +42,16 @@
     {
       "warpConfig": {
         "blockTimestamp": 1729807200,
-        "quorumNumerator": 67
+        "quorumNumerator": 67,
+        "requirePrimaryNetworkSigners": false
       }
     },
     {
       "warpConfig": {
         "blockTimestamp": 1744124400,
-        "disable": true
+        "disable": true,
+        "quorumNumerator": 0,
+        "requirePrimaryNetworkSigners": false
       }
     },
     {

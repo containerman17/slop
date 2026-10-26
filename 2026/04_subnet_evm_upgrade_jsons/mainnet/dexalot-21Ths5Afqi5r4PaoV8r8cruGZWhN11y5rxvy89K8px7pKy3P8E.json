@@ -1,23 +1,30 @@
 {
+  "networkUpgradeOverrides": {
+    "heliconTimestamp": 1790100120
+  },
   "precompileUpgrades": [
     {
       "rewardManagerConfig": {
         "blockTimestamp": 1674496800,
         "initialRewardConfig": {
-          "rewardAddress": "0xB2F0b64B6AaD197151d7BcCa515E135C65039E12"
+          "allowFeeRecipients": false,
+          "rewardAddress": "0xb2f0b64b6aad197151d7bcca515e135c65039e12"
         }
       }
     },
     {
       "warpConfig": {
         "blockTimestamp": 1727989200,
-        "quorumNumerator": 67
+        "quorumNumerator": 67,
+        "requirePrimaryNetworkSigners": false
       }
     },
     {
       "warpConfig": {
         "blockTimestamp": 1757516400,
-        "disable": true
+        "disable": true,
+        "quorumNumerator": 0,
+        "requirePrimaryNetworkSigners": false
       }
     },
     {
