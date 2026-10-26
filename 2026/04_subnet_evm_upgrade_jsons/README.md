@@ -25,10 +25,10 @@ means the file is `result.upgrades` written verbatim.
 | mainnet | innovo | `vFHT9J4F6PhqCTMmqkKKUKW3yfsjd6tNvhmcK4MkFa3Pmnnqe` | 10036 | yes | held | MATCH |
 | mainnet | lamina1 | `UhReZTXT8Cqsjat9ghRtCe5kBQPQexQB5zG5Fvf3egrdYfyoJ` | 10849 | no | held, from the lamina1-integration README (2025-02) | NO-RPC (405) |
 | mainnet | numbers | `2PDRxzc6jMbZSTLb3sufkVszgQc2jtDnYZGtDTAAfom1CTwPsE` | 10507 | no | held | MATCH (mainnetrpc.num.network) |
-| mainnet | numine | `2c1BN4N9qEhNmW4yCpeLK24SfjFQLyS1Z7FtgRDaYxZWFUUKxf` | unknown | no | held | NO-RPC (405) |
+| mainnet | numine | `2c1BN4N9qEhNmW4yCpeLK24SfjFQLyS1Z7FtgRDaYxZWFUUKxf` | 8021 | no | held | NO-RPC (405); matches the config our epochdb archive node synced to tip with |
 | mainnet | pandasea | `2gYSmRb7tjS4wb5FHFx8NBhwQgARWEdr8MGVC7v8UWJJFkEpTj` | 7776 | no | held | MATCH (rpc-mainnet-pandasea-rl.cogitus.io) |
 | mainnet | playa3ull | `k2SFEZ2MZr9UGXiycnA1DdaLqZTKDaHK7WUXVLhJk5F9DD8r1` | 3011 | yes | held | MATCH |
-| mainnet | space | `22CN6x5LAPEkvLDdz4UwG3XXtZV69Su3bcspiYtkF9k5f9rcCt` | 8227 | no | held | NO-RPC (405) |
+| mainnet | space | `22CN6x5LAPEkvLDdz4UwG3XXtZV69Su3bcspiYtkF9k5f9rcCt` | 8227 | no | held | NO-RPC (405); matches the config our epochdb archive node synced to tip with |
 | mainnet | step | `2jRZvKtXY5nyWTqRwFh1KMHGrCRxJoULu4r2CsayWRnjdDGbV1` | 1234 | no | held | NO-RPC (rpc.step.network does not answer) |
 | mainnet | straitsx | `EJ4DyXHe4ydhsLLMiDPsHtoq5RDqgyao6Lwb9znKhs59q4NQx` | 5566 | yes | held | MATCH |
 | mainnet | titan | `24gRTyzFmXUPebVwzQHuwU6RFeKHHDxRftRVaSAe7MHRXWxZ4S` | 84358 | yes | held | MATCH |
