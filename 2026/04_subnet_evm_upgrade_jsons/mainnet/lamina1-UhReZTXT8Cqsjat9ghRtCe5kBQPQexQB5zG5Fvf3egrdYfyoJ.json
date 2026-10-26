@@ -1,0 +1,16 @@
+{
+  "precompileUpgrades": [
+    {
+      "rewardManagerConfig": {
+        "adminAddresses": ["0x444B4a012a240Bc0B898E91c70152CAeE8BE26FB"],
+        "blockTimestamp": 1721779200
+      }
+    },
+    {
+      "contractNativeMinterConfig": {
+        "blockTimestamp": 1730984400,
+        "adminAddresses": ["0xD95b19ef90eE8862C47415d21E1E8BA0D6Ce359f"]
+      }
+    }
+  ]
+}
