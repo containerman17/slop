@@ -46,7 +46,7 @@ height 303,871 (2026-10-27 15:13 JST), 161 of 167 active chains.
 | AIBTRUSTMainnet | `2FUHgWJcZ4j8FrEi1DsdGyq6vMWQXeQGbZLuzcU6sFAazvnrYd` | 80000 | [file](mainnet/aibtrust-2FUHgWJcZ4j8FrEi1DsdGyq6vMWQXeQGbZLuzcU6sFAazvnrYd.json) | live config equals file (Glacier proxy) |
 | beam | `2tmrrBo1Lgt1mzzvPSFt73kkQKFas5d1AP88tv9cicwoFp8BSn` | 4337 | [file](mainnet/beam-2tmrrBo1Lgt1mzzvPSFt73kkQKFas5d1AP88tv9cicwoFp8BSn.json) | live config equals file (public RPC `subnets.avax.network`) |
 | dexalotevm | `21Ths5Afqi5r4PaoV8r8cruGZWhN11y5rxvy89K8px7pKy3P8E` | 432204 | [file](mainnet/dexalot-21Ths5Afqi5r4PaoV8r8cruGZWhN11y5rxvy89K8px7pKy3P8E.json) | live config equals file (public RPC `subnets.avax.network`) |
-| DFK Chain | `q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi` | ? | [file](mainnet/dfk-q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi.json) (not verified) | held file, no RPC answers; equal to live config on 2026-08-06 |
+| DFK Chain | `q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi` | 53935 | [file](mainnet/dfk-q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi.json) (not verified) | held file, no RPC answers; equal to live config on 2026-08-06 |
 | gunz | `2M47TxWHGnhNtq6pM5zPXdATBtuqubxn5EPFgFmEawCQr9WFML` | 43419 | [file](mainnet/gunz-2M47TxWHGnhNtq6pM5zPXdATBtuqubxn5EPFgFmEawCQr9WFML.json) | live config equals file (public RPC `subnets.avax.network`) |
 | Hashfire | `2vcBHFK7jiv74dyYeUCUiCsKy2jbWx6xEQzNfQPiLmYidBaDfX` | 7272 | [file](mainnet/hashfire-2vcBHFK7jiv74dyYeUCUiCsKy2jbWx6xEQzNfQPiLmYidBaDfX.json) | live config equals file (public RPC `subnets.avax.network`) |
 | InnovoMarketsMainnet | `vFHT9J4F6PhqCTMmqkKKUKW3yfsjd6tNvhmcK4MkFa3Pmnnqe` | 10036 | [file](mainnet/innovo-vFHT9J4F6PhqCTMmqkKKUKW3yfsjd6tNvhmcK4MkFa3Pmnnqe.json) | live config equals file (public RPC `subnets.avax.network`) |
@@ -56,7 +56,7 @@ height 303,871 (2026-10-27 15:13 JST), 161 of 167 active chains.
 | NUMINEMainnet | `2c1BN4N9qEhNmW4yCpeLK24SfjFQLyS1Z7FtgRDaYxZWFUUKxf` | 8021 | [file](mainnet/numine-2c1BN4N9qEhNmW4yCpeLK24SfjFQLyS1Z7FtgRDaYxZWFUUKxf.json) | live config equals file (our archive node at tip) |
 | PandaSea | `2gYSmRb7tjS4wb5FHFx8NBhwQgARWEdr8MGVC7v8UWJJFkEpTj` | 7776 | [file](mainnet/pandasea-2gYSmRb7tjS4wb5FHFx8NBhwQgARWEdr8MGVC7v8UWJJFkEpTj.json) | live config equals file (public RPC `rpc-mainnet-pandasea-rl.cogitus.io`) |
 | PLAYA3ULL | `k2SFEZ2MZr9UGXiycnA1DdaLqZTKDaHK7WUXVLhJk5F9DD8r1` | 3011 | [file](mainnet/playa3ull-k2SFEZ2MZr9UGXiycnA1DdaLqZTKDaHK7WUXVLhJk5F9DD8r1.json) | live config equals file (public RPC `subnets.avax.network`) |
-| StepNetwork | `2jRZvKtXY5nyWTqRwFh1KMHGrCRxJoULu4r2CsayWRnjdDGbV1` | ? | [file](mainnet/step-2jRZvKtXY5nyWTqRwFh1KMHGrCRxJoULu4r2CsayWRnjdDGbV1.json) (not verified) | held file, no RPC answers; a stock node synced to tip with it (2026-09) |
+| StepNetwork | `2jRZvKtXY5nyWTqRwFh1KMHGrCRxJoULu4r2CsayWRnjdDGbV1` | 1234 | [file](mainnet/step-2jRZvKtXY5nyWTqRwFh1KMHGrCRxJoULu4r2CsayWRnjdDGbV1.json) (not verified) | held file, no RPC answers; a stock node synced to tip with it (2026-09) |
 | StraitsX | `EJ4DyXHe4ydhsLLMiDPsHtoq5RDqgyao6Lwb9znKhs59q4NQx` | 5566 | [file](mainnet/straitsx-EJ4DyXHe4ydhsLLMiDPsHtoq5RDqgyao6Lwb9znKhs59q4NQx.json) | live config equals file (public RPC `subnets.avax.network`) |
 | TITANL | `24gRTyzFmXUPebVwzQHuwU6RFeKHHDxRftRVaSAe7MHRXWxZ4S` | 84358 | [file](mainnet/titan-24gRTyzFmXUPebVwzQHuwU6RFeKHHDxRftRVaSAe7MHRXWxZ4S.json) | live config equals file (public RPC `subnets.avax.network`) |
 | UPTN | `2tsFdSeemtqK9vaPgjPrcwvKFKPw1T6PHufaZ26tKbAFSkXPTE` | 6119 | [file](mainnet/uptn-2tsFdSeemtqK9vaPgjPrcwvKFKPw1T6PHufaZ26tKbAFSkXPTE.json) | live config equals file (Glacier proxy) |
@@ -66,7 +66,7 @@ height 303,871 (2026-10-27 15:13 JST), 161 of 167 active chains.
 | BnryMainnet | `J3MYb3rDARLmB7FrRybinyjKqVTqmerbCr9bAXDatrSaHiLxQ` | 836 | empty, no file needed | live config is `{}` (public RPC `rpc-binaryholdings.cogitus.io`) |
 | ChamonixNetwork | `v8FsmtYmWSE3dozTVr9oQaHDP9uTrrNYm4nREouba9fmjKJEJ` | 74400 | empty, no file needed | live config is `{}` (Glacier proxy) |
 | Datagram Chain | `RWfhP7moxu627ysqgaj4GoD3PZbdcJpAX56t6kHyuafSJGsNb` | 968 | empty, no file needed | live config is `{}` (our archive node at tip) |
-| DComm | `2QJ6d1ue6UyXNXrMdGnELFc2AjMdMqs8YbX3sT3k4Nin2RcWSm` | ? | empty, no file needed | no RPC; a stock node synced to tip without a file (2026-09) |
+| DComm | `2QJ6d1ue6UyXNXrMdGnELFc2AjMdMqs8YbX3sT3k4Nin2RcWSm` | 326663 | empty, no file needed | no RPC; a stock node synced to tip without a file (2026-09) |
 | DEP Chain | `2WhgNQDsAmetGvuzYEn1sWR5tuANaAd2cCu5fpCi7bTfcWP3s9` | 79952 | empty, no file needed | live config is `{}` (our archive node at tip) |
 | DinariFinancialNetwork | `C5GXnNHNEfDxUydtjZ5B5J6XspdAZJGLsX3u4wxCXZgE3N4Gq` | 202110 | empty, no file needed | live config is `{}` (public RPC `subnets.avax.network`) |
 | DOS Chain | `2ewKoUrSjnviEgGmeTiELHBmNjxVTVczBPowST471rYUZvA9bk` | 7979 | empty, no file needed | live config is `{}` (our archive node at tip) |
@@ -78,8 +78,8 @@ height 303,871 (2026-10-27 15:13 JST), 161 of 167 active chains.
 | Frqtal | `2jQuqy3RpCmVQHZCdpz9SJD92yP5VL4GgKBGeGJPYJxm9vkNNH` | 62786 | empty, no file needed | live config is `{}` (public RPC `rpc.frqtal.org`) |
 | goldensilenthawk | `2HvYVUizFgTaRAxGCJdKdZVdNgRRXoUGXuuJhZUPmeywNjBjvp` | 70467 | empty, no file needed | live config is `{}` (Glacier proxy) |
 | goldleader | `2PDZJhEoUr5944QGTDpztZvCDiWHa3iGbXenTmpqq3xQcqiW3A` | 39158 | empty, no file needed | live config is `{}` (Glacier proxy) |
-| HanChain | `2uG4mYNKeovqcq93znwnGBs6FiucrTYj7NiLFKasayThwVY4LJ` | ? | empty, no file needed | no RPC; a stock node synced to tip without a file (2026-09) |
-| HanChain | `5ZcL3SHkihFtDi4iDXuRsMu3UskEe4A6uvaaTjgWVFpVQrJWj` | ? | empty, no file needed | no RPC; a stock node synced to tip without a file (2026-09) |
+| HanChain | `2uG4mYNKeovqcq93znwnGBs6FiucrTYj7NiLFKasayThwVY4LJ` | 16888 | empty, no file needed | no RPC; a stock node synced to tip without a file (2026-09) |
+| HanChain | `5ZcL3SHkihFtDi4iDXuRsMu3UskEe4A6uvaaTjgWVFpVQrJWj` | 726578 | empty, no file needed | no RPC; a stock node synced to tip without a file (2026-09) |
 | HanChain | `9AT9wo2BYhB3xjFHnPjW9R8pyNcGqcgNRjuhrHWUvF9wiLXU8` | 726579 | empty, no file needed | live config is `{}` (validator node) |
 | Henesys | `2LFmzhHDKxkreihEtPanVmofuFn63bsh8twnRXEbDhBtCJxURB` | 68414 | empty, no file needed | live config is `{}` (public RPC `henesys-rpc.msu.io`) |
 | kite | `3USaEfTcoUhHxpKXvpAG916UKCUEyjrtkg2hBArBG3JyDP7my` | 2366 | empty, no file needed | live config is `{}` (public RPC `rpc.gokite.ai`) |
@@ -103,17 +103,17 @@ height 303,871 (2026-10-27 15:13 JST), 161 of 167 active chains.
 | vlxL1 | `zNXAbLSpaqfn3PTLi6ztbeomNtj4wsa7tBxSPyvXYEKstrtsR` | 90000 | empty, no file needed | live config is `{}` (our archive node at tip) |
 | VYOChain | `2Ge2BkkjNupU2WwJ3SEbaoQGWhTb9HBK34RXqPbSTSzhnrqcJk` | 1771 | empty, no file needed | live config is `{}` (our archive node at tip) |
 | Watr | `EypLFUSzC2wdbFJovYS3Af1E7ch1DJf7KxKoGR5QFPErxQkG1` | 192 | empty, no file needed | live config is `{}` (our archive node at tip) |
-| Athera | `LEJHppkiGCMMrTyH8y6CGSuWaB6g3ZN6TVqJ9WUrTwwUNiz6N` | ? | no result | no RPC answers |
-| blerifymain | `2aVPq3NSjjf8fqQE68myUM3AiTQLM9hBHg1XkBwByfTWma3BHv` | ? | no result | no RPC answers |
-| Blockticity | `2pV5K35V1ohNSYhRU3z1Bud2oZys9bak7QYcmvbVvnieh4FJXc` | ? | no result | no RPC answers |
-| CodeNekt | `ZG7cT4B1u3y7piZ9CzfejnTKnNAoehcifbJWUwBqgyD3RuEqK` | ? | no result | no RPC answers |
-| DOS Chain | `22v7AG7h6qaVxd4bLvAsSsg2LZ4RCn5iVYgFn7a2Fj1LCuYwjv` | ? | no result | no RPC answers |
-| Frqtal | `2FJM6WqyDGX2PZYipnatYXuXsNcKLio5fJMkEaGgpP4kHDTPw2` | ? | no result | no RPC answers |
-| Lynq 01 | `BXLoBWScGdbWcFozx2PDv9hEcH3fXNvNmX3GAc25gbbRxs7nc` | ? | no result | no RPC answers |
-| OVI | `2o7i6nc6Y4QWndwH6VRnDL18f4pMr3iKqrBiF5fuSmjKAUr4dg` | ? | no result | no RPC answers |
-| ParadeA | `q41H38p3LxuGfz1ZLBvN7rSzDx8deQdmpLDY4HU7K2SYiK7oe` | ? | no result | no RPC answers |
-| settlement | `2grpF11sCe1QT7PDVgRtc5uq3JQrL6tthennwZG6sMxJ3TrSLP` | ? | no result | no RPC answers |
-| STLINK | `2HR9yTVXBwxJjmejn9yt1UQnrBpQVQRpxUQe6YUtEaWh9yqnPN` | ? | no result | no RPC answers |
+| Athera | `LEJHppkiGCMMrTyH8y6CGSuWaB6g3ZN6TVqJ9WUrTwwUNiz6N` | 1517 | no result | no RPC answers |
+| blerifymain | `2aVPq3NSjjf8fqQE68myUM3AiTQLM9hBHg1XkBwByfTWma3BHv` | 42902 | no result | no RPC answers |
+| Blockticity | `2pV5K35V1ohNSYhRU3z1Bud2oZys9bak7QYcmvbVvnieh4FJXc` | 28530 | no result | no RPC answers |
+| CodeNekt | `ZG7cT4B1u3y7piZ9CzfejnTKnNAoehcifbJWUwBqgyD3RuEqK` | 235235 | no result | no RPC answers |
+| DOS Chain | `22v7AG7h6qaVxd4bLvAsSsg2LZ4RCn5iVYgFn7a2Fj1LCuYwjv` | 7979 | no result | no RPC answers |
+| Frqtal | `2FJM6WqyDGX2PZYipnatYXuXsNcKLio5fJMkEaGgpP4kHDTPw2` | 62786 | no result | no RPC answers |
+| Lynq 01 | `BXLoBWScGdbWcFozx2PDv9hEcH3fXNvNmX3GAc25gbbRxs7nc` | 93134 | no result | no RPC answers |
+| OVI | `2o7i6nc6Y4QWndwH6VRnDL18f4pMr3iKqrBiF5fuSmjKAUr4dg` | 91820 | no result | no RPC answers |
+| ParadeA | `q41H38p3LxuGfz1ZLBvN7rSzDx8deQdmpLDY4HU7K2SYiK7oe` | 43113778 | no result | no RPC answers |
+| settlement | `2grpF11sCe1QT7PDVgRtc5uq3JQrL6tthennwZG6sMxJ3TrSLP` | 43117 | no result | no RPC answers |
+| STLINK | `2HR9yTVXBwxJjmejn9yt1UQnrBpQVQRpxUQe6YUtEaWh9yqnPN` | 35299 | no result | no RPC answers |
 
 ## Fuji
 
@@ -289,7 +289,7 @@ These chains had a file but have no active validator at the snapshot. The files 
 
 | name | blockchainID | EVM chain ID | upgrade.json | how it was verified |
 |---|---|---|---|---|
-| lamina1 | `UhReZTXT8Cqsjat9ghRtCe5kBQPQexQB5zG5Fvf3egrdYfyoJ` | ? | [file](mainnet/lamina1-UhReZTXT8Cqsjat9ghRtCe5kBQPQexQB5zG5Fvf3egrdYfyoJ.json) (not verified) | held file, no RPC answers; from the lamina1-integration README (2025-02) |
+| lamina1 | `UhReZTXT8Cqsjat9ghRtCe5kBQPQexQB5zG5Fvf3egrdYfyoJ` | 10849 | [file](mainnet/lamina1-UhReZTXT8Cqsjat9ghRtCe5kBQPQexQB5zG5Fvf3egrdYfyoJ.json) (not verified) | held file, no RPC answers; from the lamina1-integration README (2025-02) |
 | Space | `22CN6x5LAPEkvLDdz4UwG3XXtZV69Su3bcspiYtkF9k5f9rcCt` | 8227 | [file](mainnet/space-22CN6x5LAPEkvLDdz4UwG3XXtZV69Su3bcspiYtkF9k5f9rcCt.json) | live config equals file (our archive node at tip) |
 
 ## Notes
