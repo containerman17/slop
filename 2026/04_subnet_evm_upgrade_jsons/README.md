@@ -2,14 +2,13 @@
 
 ## Mainnet
 
-71 chains: 17 need a file, 43 empty (no file needed), 11 no result.
+70 chains: 16 need a file, 43 empty (no file needed), 11 no result.
 
 | name | blockchainID | EVM chain ID | upgrade.json | how it was verified |
 |---|---|---|---|---|
 | AIBTRUSTMainnet | `2FUHgWJcZ4j8FrEi1DsdGyq6vMWQXeQGbZLuzcU6sFAazvnrYd` | 80000 | [file](mainnet/aibtrust-2FUHgWJcZ4j8FrEi1DsdGyq6vMWQXeQGbZLuzcU6sFAazvnrYd.json) | live config equals file (Glacier proxy) |
 | beam | `2tmrrBo1Lgt1mzzvPSFt73kkQKFas5d1AP88tv9cicwoFp8BSn` | 4337 | [file](mainnet/beam-2tmrrBo1Lgt1mzzvPSFt73kkQKFas5d1AP88tv9cicwoFp8BSn.json) | live config equals file (public RPC `subnets.avax.network`) |
 | dexalotevm | `21Ths5Afqi5r4PaoV8r8cruGZWhN11y5rxvy89K8px7pKy3P8E` | 432204 | [file](mainnet/dexalot-21Ths5Afqi5r4PaoV8r8cruGZWhN11y5rxvy89K8px7pKy3P8E.json) | live config equals file (public RPC `subnets.avax.network`) |
-| DFK Chain | `q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi` | 53935 | [file](mainnet/dfk-q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi.json) (not verified) | held file, no RPC answers; equal to live config on 2026-08-06 |
 | gunz | `2M47TxWHGnhNtq6pM5zPXdATBtuqubxn5EPFgFmEawCQr9WFML` | 43419 | [file](mainnet/gunz-2M47TxWHGnhNtq6pM5zPXdATBtuqubxn5EPFgFmEawCQr9WFML.json) | live config equals file (public RPC `subnets.avax.network`) |
 | Hashfire | `2vcBHFK7jiv74dyYeUCUiCsKy2jbWx6xEQzNfQPiLmYidBaDfX` | 7272 | [file](mainnet/hashfire-2vcBHFK7jiv74dyYeUCUiCsKy2jbWx6xEQzNfQPiLmYidBaDfX.json) | live config equals file (public RPC `subnets.avax.network`) |
 | InnovoMarketsMainnet | `vFHT9J4F6PhqCTMmqkKKUKW3yfsjd6tNvhmcK4MkFa3Pmnnqe` | 10036 | [file](mainnet/innovo-vFHT9J4F6PhqCTMmqkKKUKW3yfsjd6tNvhmcK4MkFa3Pmnnqe.json) | live config equals file (public RPC `subnets.avax.network`) |
@@ -246,12 +245,13 @@
 | trustechledger | `2SndTptHdH3TKvoABAa5HKyb3AiqEnprc6nnwxj7PHq7muPgNq` | 173427 | no result | no RPC answers |
 | VJTTD | `23f5WZwsP5d2iUtontakgEuhecxVzs9t9uQeNEKtuXHiFWmnFh` | 58882 | no result | no RPC answers |
 
-## Files for chains that are not active now
+## Files for chains that are not live
 
-These chains had a file but have no active validator at the snapshot. The files stay here in case the chains restart.
+These chains have a file but are not live: they have no active validator at the snapshot, or they are deprecated. The files stay here for archival.
 
 | name | blockchainID | EVM chain ID | upgrade.json | how it was verified |
 |---|---|---|---|---|
+| DFK Chain | `q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi` | 53935 | [file](mainnet/dfk-q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi.json) (not verified) | held file, no RPC answers; equal to live config on 2026-08-06; **deprecated, kept for archival only, no future support** |
 | lamina1 | `UhReZTXT8Cqsjat9ghRtCe5kBQPQexQB5zG5Fvf3egrdYfyoJ` | 10849 | [file](mainnet/lamina1-UhReZTXT8Cqsjat9ghRtCe5kBQPQexQB5zG5Fvf3egrdYfyoJ.json) (not verified) | held file, no RPC answers; from the lamina1-integration README (2025-02) |
 | Space | `22CN6x5LAPEkvLDdz4UwG3XXtZV69Su3bcspiYtkF9k5f9rcCt` | 8227 | [file](mainnet/space-22CN6x5LAPEkvLDdz4UwG3XXtZV69Su3bcspiYtkF9k5f9rcCt.json) | live config equals file (our archive node at tip) |
 
