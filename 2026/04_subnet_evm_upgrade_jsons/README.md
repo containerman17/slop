@@ -39,11 +39,19 @@ means the file is `result.upgrades` written verbatim.
 | mainnet | straitsx | `EJ4DyXHe4ydhsLLMiDPsHtoq5RDqgyao6Lwb9znKhs59q4NQx` | 5566 | yes | held | MATCH |
 | mainnet | titan | `24gRTyzFmXUPebVwzQHuwU6RFeKHHDxRftRVaSAe7MHRXWxZ4S` | 84358 | yes | held | MATCH |
 | mainnet | uptn | `2tsFdSeemtqK9vaPgjPrcwvKFKPw1T6PHufaZ26tKbAFSkXPTE` | 6119 | yes | held | MATCH |
+| fuji | apertum | `V8YHL6yZV62tx2MdLi98wjAY2Qn6sP7zdiEKX5bvxj515vhK7` | 89898 | no | live | MATCH |
 | fuji | beam | `y97omoP2cSyEVfdSztQHXD9EnfnVP9YKjZwAxhUfGbLAPYT9t` | 13337 | yes | live | MATCH |
 | fuji | dexalot | `XuEPnCE59rtutASDPCDeYw8geQaGWwteWjkDXYLWvssfuirde` | 432201 | no | live | MATCH |
 | fuji | dispatch | `2D8RG4UpSXbPbvPCAWppNJyqTG2i2CAXSkTgmTBBvs7GKNZjsY` | 779672 | no | live | MATCH |
 | fuji | echo | `98qnjenm7MBd8G2cPZoRvZrgJC33JGSAAKghsQ6eojbLCeRNp` | 173750 | yes | live | MATCH |
 | fuji | egmtester | `Buqpg8qoENGbZEC1LY1ngkHYgS5ftZ8M22QCf3e7DWbc3yRDM` | 55197 | yes | live | MATCH |
+| fuji | fscfive | `zYh1CWZEBF8bt8qW3Stg2t8WnqXjKyHwTo3S92swbvDp8SFvr` | 888888 | no | live (validator node) | MATCH |
+| fuji | gunz | `ryk9vkvNuKtewME2PeCgybo9sdWXGmCkBrrx4VPuZPdVdAak8` | 49321 | no | live | MATCH |
+| fuji | intainmarkets | `2ALtzRYgRpRWnTgjdrMArkMvU6RTpcjs7VWmupqYaPrHDrHLSd` | 101122 | no | live (validator node) | MATCH |
+| fuji | numine | `26XPa2jA4T31hKmaUGJt3g32xwsbaUfvcnMx1m18dWmrgxV2Mw` | 8022 | yes | live (validator node) | MATCH |
+| fuji | providenceone | `2c244m6Vhz9RmMzKUuHQzytBmkdkoi92M5S742cGmjpx6voeLk` | 23030323 | no | live (validator node) | MATCH |
+| fuji | prvl1 | `VDSkkiU59Sg9wkMuRgifpP95KS2DbUNRNzvA4qDL9v6hHTXqo` | 7888 | no | live (validator node) | MATCH, head block 2025-12-16 |
+| fuji | rizenet | `gs51JsazmyXrsFHL9dWUu1wPT9wgFt8BhLBFBLzNHkTkL4weS` | 79123 | no | live (validator node) | MATCH |
 | fuji | tixchain | `rbPy3vFTgtGccWouLkCXqgDTxyEHEpam2kA24fZUmjgKMNcXX` | 723107 | yes | live | MATCH |
 | fuji | tkintl-alpha-csl-ava-staging | `2Huy194qfidjYSAXrVGzwa8HMEXtKSxB55ja5yjfQGYbc4XqZS` | 131076 | no | live | MATCH |
 | fuji | uptn | `2Pk23ZAG5gkQ4DobkRsmwW3NaCwR46zxsDv5EY2GViGL6ow18a` | 6118 | yes | live | MATCH |
@@ -53,7 +61,8 @@ Stale held files: beam and dexalot mainnet held files lacked
 everything else was equal.
 
 PandaSea's file uses `txBlockListConfig`, a precompile that exists only in
-PandaSea's subnet-evm fork. Stock subnet-evm rejects this file.
+PandaSea's subnet-evm fork. Stock subnet-evm rejects this file. The same holds
+for Fuji fscfive (`nettingConfig`, `privacyConfig`, `qedisIdentityConfig`).
 
 ## No file needed
 
@@ -84,32 +93,8 @@ TixChain (`Bb5XKrQoBT6ypFmFUppAqfSmKCqcqYwjGCn3hHS6gibRTjiDj`),
 tomatochain (`2PXzkiiy7zhXsPBDkhW2kwMvjeHk8kDXKbv5A6G3SjroMVxfkT`),
 Turing Chain (`p3eNXxT7Myp9jLrRZvj4rzTHDQMvQVJsYLknWhcXgqSU3Dwdi`).
 
-Fuji: aurorapay-dvp-dev (`2my13nX2M4yMHDoHdtnAiRBEAPFFuckp3Af31sr6mexEevU18P`),
-coloured-lavender-blackbird (`2g7668m91DYSLFBpCAjxrbLtFUALp2Jcn4HGbetKSkC3JE5oyD`),
-Dinari Paper Network (`2Yz62sy7E1ptSw45s8wYz46XtGKofsoPqnsPEqW9oUkERD2LC`),
-dt1026t1td (`2Hg3rGpM5qbD3WoRCp748qHpra6cVjZEp7dy6uMG2JFAuBcE1D`),
-etotest (`2br9miLmzsiyfeSeAYi7hShb7nwV3PzFXPaZJ2uESft6hMfjjq`),
-impressed-harlequin-shark (`2QU8aavp4LRMzaRSGDYKSHfzNyF8QrGHYEFZLrNUD13bdqYd3L`),
-iris-testnet (`269JyvJZP33Lq9BA8DiNJCmqde5RgtUrpzEq2PbvLPPNv1zjKq`),
-jelly (`27i5Wk1SRtfh6p1aLBNaCTenr9ELfahZDAzsaoKebz3CgAAJzZ`),
-LifeAI testnet v1 (`hasgwAhYjddyh8u7TQ6B5V6yFgfz78YvyiWDpd2JAvpJwFfq9`),
-lifeai-test (`28L5yUmRk3mxJ2hNyRt2G3hQGiR7ZnhdFRsXpmzgojKBm9nVV9`),
-LTmax (`2EVX5Bd71LRNVUgvyuvh3dcrU2atPwKJFTkBJmqs3mJqevqsiF`),
-MixA Testnet (`2SbpzYaSco9CztrNxfG84xXr1YKGXiRh5DaBZAGAV5bfrgszeU`),
-modex (`2tCocn4cmdz6ZNAUhasixpQWko9F9oRrcfvDeUZCPkkgRCUzS5`),
-mon (`2SbdFFeBVfR8iyYTq5dzMmUVtfEsZmW23yF1XmB1yK7QFdrNa`),
-monthly-gold-poc (`hXKXRCmdaG3xW2Vevr7RjcvEmmc6bm7ERbbfR9Um2PFAkDxnv`),
-northasset (`xjZvDBY8zo2FpkSzobPjTLL8HZyE6h1M2vrDbFMytn2wNkNkY`),
-ozeki (`4Ws8L2pxS4Ya7n8S43sE5ypoptDAQJWQuxjFahLaZfBtm5tnP`),
-QR0203Q2TS (`fvPsEin7WcCXpGRUdwSY3WunLVuSgUE31ipXbHF3r3zat4gbq`),
-QR0213Q1TS (`22GJNfCB39E2n4pnCd2X98CmxKXTYyubmPVRWsFQWXTM1mVAeF`),
-rm-gasless-relayer-test (`2VBTFzU4zQ1ZsRrnXDPpnNkwHYYmkgun64rV6zXhQk3hcWXP24`),
-senior-purple-gopher (`wfapNnyaAnWpPESnzRtVA6PinAnZLWqSVZLKd4y3hCG8Sn5wj`),
-Soshi (`2sDUH9VzjQJdALDUCQcnYxC7hfW5awJC3mZNN4ySFG52Lq4GCa`),
-sushi-tempura (`2bQaaqGG5DZvJMBWnRe9VC5sFCz2QY5GntGzCuHrr2oqcEwnHq`),
-swift-amber-heron (`2NkpPCyY6iQexE1NzJsc6s6Yf8L9T2KLoVXAiEnswwdN4V9soq`),
-Titan L1 Testnet (`Hb3EduWUYuKWvENKL6NYqjZFYRMXriBfhaSojT7dSn7SjQZzU`),
-Watr (`2ZZiR6T2sJjebQguABb53rRpzme8zfK4R9zt5vMM8MX1oUm3g`).
+Fuji: 41 chains, listed with the RPC that answered in
+[`fuji-active-chains-2026-10-27.txt`](fuji-active-chains-2026-10-27.txt) (rows marked `EMPTY`).
 
 ## Could not check
 
@@ -131,8 +116,19 @@ These chains have no public RPC that answers `eth_getChainConfig`:
   ParadeA (`GRPDgKqXDuxEy129BHrLW1aw9kv51stHBkgTA3cKik3pnaenV`,
   `V5PeDXYsRb8g33R8qivUZJV59Ybwx44b3nfqFKdRw5e9WQrRV`),
   mjms (`4s6dn5ToLrL9VQGwiuwrGjW2CgiRSvJRiU6zQcPJnjeT9jVWj`).
-- Fuji, listed by Glacier, no file and no answer (HTTP 405):
-  bored-red-manatee (`gCZXKpKLTqdek4eZbaxTUVbeFXGWys81Z76fmrTjwMF43nA6N`, 20744).
+- Fuji: 104 of the 161 active Subnet-EVM chains, rows marked `UNKNOWN` in
+  [`fuji-active-chains-2026-10-27.txt`](fuji-active-chains-2026-10-27.txt).
+  19 of them are AvaCloud chains whose Glacier RPC returns `Forbidden`, among them
+  the Fuji twins of mainnet chains that need a file (aibtrust, mugen, innovo).
+  Others are known projects with dead testnet RPCs (pandasea, dfk, numbers
+  `captevm`, stlink, bnry) and many throwaway test chains.
 
-Chains outside the Glacier list (for example other P-chain L1s with no public
-RPC) are not covered unless they appear in the table.
+## Which chains are covered
+
+Mainnet: the 65 L1s with active validators in a P-chain census of 2026-09-13
+(height 25,494,732), all Subnet-EVM. Fuji: the 161 Subnet-EVM chains whose subnet
+had an active validator at P-chain height 303,871 (2026-10-27 15:13 JST), found
+with `platform.getAllValidatorsAt` and checked with `platform.getCurrentValidators`
+(an L1 validator counts only with a positive balance). Fuji bored-red-manatee
+(`gCZXKpKLTqdek4eZbaxTUVbeFXGWys81Z76fmrTjwMF43nA6N`) has no validator with a
+balance, so it is not active.

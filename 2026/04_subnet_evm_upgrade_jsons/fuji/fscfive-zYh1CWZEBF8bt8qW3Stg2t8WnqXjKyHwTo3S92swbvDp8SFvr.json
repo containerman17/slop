@@ -1,0 +1,219 @@
+{
+  "precompileUpgrades": [
+    {
+      "warpConfig": {
+        "blockTimestamp": 1709251200,
+        "quorumNumerator": 67,
+        "requirePrimaryNetworkSigners": false
+      }
+    },
+    {
+      "nettingConfig": {
+        "blockTimestamp": 1775459399,
+        "disable": true,
+        "maxPartnersPerWindow": 1000,
+        "maxObligationsPerWindow": 10000,
+        "defaultWindowDuration": 3600
+      }
+    },
+    {
+      "nettingConfig": {
+        "adminAddresses": [
+          "0xd06d98f345b0dd3e21f04ca9fd5e27f6835e03fd"
+        ],
+        "blockTimestamp": 1775459459,
+        "maxPartnersPerWindow": 1000,
+        "maxObligationsPerWindow": 10000,
+        "defaultWindowDuration": 3600,
+        "bilateralTracking": true,
+        "minSettlementThreshold": 100000000000,
+        "maxCarryForwardWindows": 3,
+        "governanceAddresses": [
+          "0xd06d98f345b0dd3e21f04ca9fd5e27f6835e03fd"
+        ]
+      }
+    },
+    {
+      "privacyConfig": {
+        "blockTimestamp": 1775556019,
+        "keyThreshold": 3,
+        "keyShares": 4,
+        "governanceAddresses": [
+          "0x8db97c7cece249c2b98bdc0226cc4c2a57bf52fc",
+          "0xd06d98f345b0dd3e21f04ca9fd5e27f6835e03fd"
+        ],
+        "shareholderAddresses": [
+          "0x8db97c7cece249c2b98bdc0226cc4c2a57bf52fc",
+          "0x9632a79656af553f58738b0fb750320158495942",
+          "0x55ee05df718f1a5c1441e76190eb1a19ee2c9430",
+          "0x4cf2ed3665f6bfa95ce6a11cfdb7a2ef5fc1c7e4"
+        ]
+      }
+    },
+    {
+      "nettingConfig": {
+        "blockTimestamp": 1781080663,
+        "disable": true,
+        "maxPartnersPerWindow": 1000,
+        "maxObligationsPerWindow": 10000,
+        "defaultWindowDuration": 3600
+      }
+    },
+    {
+      "privacyConfig": {
+        "blockTimestamp": 1781080673,
+        "disable": true
+      }
+    },
+    {
+      "nettingConfig": {
+        "adminAddresses": [
+          "0xd06d98f345b0dd3e21f04ca9fd5e27f6835e03fd"
+        ],
+        "blockTimestamp": 1781080723,
+        "maxPartnersPerWindow": 1000,
+        "maxObligationsPerWindow": 10000,
+        "defaultWindowDuration": 3600,
+        "bilateralTracking": true,
+        "minSettlementThreshold": 100000000000,
+        "maxCarryForwardWindows": 3,
+        "privacyEnabled": true,
+        "governanceAddresses": [
+          "0xd06d98f345b0dd3e21f04ca9fd5e27f6835e03fd"
+        ]
+      }
+    },
+    {
+      "privacyConfig": {
+        "blockTimestamp": 1781080733,
+        "keyThreshold": 3,
+        "keyShares": 4,
+        "governanceAddresses": [
+          "0x8db97c7cece249c2b98bdc0226cc4c2a57bf52fc",
+          "0xd06d98f345b0dd3e21f04ca9fd5e27f6835e03fd"
+        ],
+        "shareholderAddresses": [
+          "0x8db97c7cece249c2b98bdc0226cc4c2a57bf52fc",
+          "0x9632a79656af553f58738b0fb750320158495942",
+          "0x55ee05df718f1a5c1441e76190eb1a19ee2c9430",
+          "0x4cf2ed3665f6bfa95ce6a11cfdb7a2ef5fc1c7e4"
+        ],
+        "clientKeyCustodyTimestamp": 1781080733
+      }
+    },
+    {
+      "qedisIdentityConfig": {
+        "blockTimestamp": 1782719262,
+        "governance": [
+          "0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC"
+        ],
+        "units": [
+          "app.ctoken",
+          "app.dvp",
+          "app.policy",
+          "stealth"
+        ],
+        "allowExperimentalBackends": true
+      }
+    },
+    {
+      "qedisIdentityConfig": {
+        "blockTimestamp": 1782795603,
+        "disable": true
+      }
+    },
+    {
+      "qedisIdentityConfig": {
+        "blockTimestamp": 1782795663,
+        "governance": [
+          "0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC"
+        ],
+        "units": [
+          "app.ctoken.usd",
+          "app.ctoken.kes",
+          "app.ctoken.ngn",
+          "app.ctoken.aed",
+          "app.ctoken.inr",
+          "app.ctoken.gbp",
+          "app.ctoken.php",
+          "app.ctoken.sgd",
+          "app.ctoken.idr",
+          "app.ctoken.pkr",
+          "app.ctoken.bdt",
+          "app.ctoken.egp",
+          "app.dvp",
+          "app.policy",
+          "stealth"
+        ],
+        "allowExperimentalBackends": true
+      }
+    },
+    {
+      "qedisIdentityConfig": {
+        "blockTimestamp": 1782878092,
+        "disable": true
+      }
+    },
+    {
+      "qedisIdentityConfig": {
+        "blockTimestamp": 1782878152,
+        "governance": [
+          "0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC"
+        ],
+        "units": [
+          "app.ctoken.usd",
+          "app.ctoken.kes",
+          "app.ctoken.ngn",
+          "app.ctoken.aed",
+          "app.ctoken.inr",
+          "app.ctoken.gbp",
+          "app.ctoken.php",
+          "app.ctoken.sgd",
+          "app.ctoken.idr",
+          "app.ctoken.pkr",
+          "app.ctoken.bdt",
+          "app.ctoken.egp",
+          "app.dvp",
+          "app.policy",
+          "app.issuer",
+          "stealth"
+        ],
+        "allowExperimentalBackends": true
+      }
+    },
+    {
+      "qedisIdentityConfig": {
+        "blockTimestamp": 1782883494,
+        "disable": true
+      }
+    },
+    {
+      "qedisIdentityConfig": {
+        "blockTimestamp": 1782883554,
+        "governance": [
+          "0xd06d98F345B0DD3E21F04CA9FD5e27f6835E03Fd"
+        ],
+        "governanceReset": true,
+        "units": [
+          "app.ctoken.usd",
+          "app.ctoken.kes",
+          "app.ctoken.ngn",
+          "app.ctoken.aed",
+          "app.ctoken.inr",
+          "app.ctoken.gbp",
+          "app.ctoken.php",
+          "app.ctoken.sgd",
+          "app.ctoken.idr",
+          "app.ctoken.pkr",
+          "app.ctoken.bdt",
+          "app.ctoken.egp",
+          "app.dvp",
+          "app.policy",
+          "app.issuer",
+          "stealth"
+        ],
+        "allowExperimentalBackends": true
+      }
+    }
+  ]
+}

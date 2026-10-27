@@ -1,0 +1,424 @@
+{
+  "precompileUpgrades": [
+    {
+      "contractDeployerAllowListConfig": {
+        "enabledAddresses": [
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038"
+        ],
+        "blockTimestamp": 1712566800
+      }
+    },
+    {
+      "contractDeployerAllowListConfig": {
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038"
+        ],
+        "blockTimestamp": 1712664000,
+        "disable": true
+      }
+    },
+    {
+      "contractDeployerAllowListConfig": {
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038"
+        ],
+        "blockTimestamp": 1712674800
+      }
+    },
+    {
+      "contractDeployerAllowListConfig": {
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038",
+          "0x7762e797858bd1ff33a1df0f54034db210ea44bd"
+        ],
+        "blockTimestamp": 1712847600,
+        "disable": true
+      }
+    },
+    {
+      "contractDeployerAllowListConfig": {
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038",
+          "0x7762e797858bd1ff33a1df0f54034db210ea44bd"
+        ],
+        "blockTimestamp": 1712908800
+      }
+    },
+    {
+      "contractDeployerAllowListConfig": {
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038",
+          "0x7762e797858bd1ff33a1df0f54034db210ea44bd"
+        ],
+        "blockTimestamp": 1712928000,
+        "disable": true
+      }
+    },
+    {
+      "contractDeployerAllowListConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038",
+          "0x7762e797858bd1ff33a1df0f54034db210ea44bd"
+        ],
+        "blockTimestamp": 1712932500
+      }
+    },
+    {
+      "contractDeployerAllowListConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038",
+          "0x7762e797858bd1ff33a1df0f54034db210ea44bd"
+        ],
+        "blockTimestamp": 1712991000,
+        "disable": true
+      }
+    },
+    {
+      "contractDeployerAllowListConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038",
+          "0x7762e797858bd1ff33a1df0f54034db210ea44bd"
+        ],
+        "blockTimestamp": 1714129200
+      }
+    },
+    {
+      "contractDeployerAllowListConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038",
+          "0x7762e797858bd1ff33a1df0f54034db210ea44bd"
+        ],
+        "blockTimestamp": 1714754400,
+        "disable": true
+      }
+    },
+    {
+      "contractDeployerAllowListConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038",
+          "0x7762e797858bd1ff33a1df0f54034db210ea44bd"
+        ],
+        "blockTimestamp": 1714754401
+      }
+    },
+    {
+      "contractDeployerAllowListConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038",
+          "0x7762e797858bd1ff33a1df0f54034db210ea44bd"
+        ],
+        "blockTimestamp": 1714992000,
+        "disable": true
+      }
+    },
+    {
+      "feeManagerConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038",
+          "0x7762e797858bd1ff33a1df0f54034db210ea44bd"
+        ],
+        "blockTimestamp": 1714999200
+      }
+    },
+    {
+      "feeManagerConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038",
+          "0x7762e797858bd1ff33a1df0f54034db210ea44bd"
+        ],
+        "blockTimestamp": 1715068200,
+        "disable": true
+      }
+    },
+    {
+      "feeManagerConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038",
+          "0x7762e797858bd1ff33a1df0f54034db210ea44bd"
+        ],
+        "blockTimestamp": 1715148000,
+        "initialFeeConfig": {
+          "gasLimit": 50000000,
+          "targetBlockRate": 1,
+          "minBaseFee": 1000000000,
+          "targetGas": 100000000,
+          "baseFeeChangeDenominator": 48,
+          "minBlockGasCost": 0,
+          "maxBlockGasCost": 10000000,
+          "blockGasCostStep": 500000
+        }
+      }
+    },
+    {
+      "feeManagerConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038",
+          "0x7762e797858bd1ff33a1df0f54034db210ea44bd"
+        ],
+        "blockTimestamp": 1715666400,
+        "disable": true,
+        "initialFeeConfig": {
+          "gasLimit": 50000000,
+          "targetBlockRate": 1,
+          "minBaseFee": 1000000000,
+          "targetGas": 100000000,
+          "baseFeeChangeDenominator": 48,
+          "minBlockGasCost": 0,
+          "maxBlockGasCost": 10000000,
+          "blockGasCostStep": 500000
+        }
+      }
+    },
+    {
+      "contractDeployerAllowListConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "enabledAddresses": [
+          "0xcfa3a7637547094ff06246817a35b8333c315196",
+          "0x4c8d290a1b368ac4728d83a9e8321fc3af2b39b1",
+          "0x7a0d94f55792c434d74a40883c6ed8545e406d12",
+          "0x0000000000ffe8b47b3e2130213b802212439497",
+          "0x63b81972320b5b8d1c1fc90e29f145380b5b9bd4",
+          "0xbfd53904e0a0c02efb7e76aad7ffb1f476320038",
+          "0x7762e797858bd1ff33a1df0f54034db210ea44bd"
+        ],
+        "blockTimestamp": 1715666401
+      }
+    },
+    {
+      "feeManagerConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "blockTimestamp": 1715666410,
+        "initialFeeConfig": {
+          "gasLimit": 50000000,
+          "targetBlockRate": 1,
+          "minBaseFee": 1000000000,
+          "targetGas": 100000000,
+          "baseFeeChangeDenominator": 48,
+          "minBlockGasCost": 0,
+          "maxBlockGasCost": 10000000,
+          "blockGasCostStep": 500000
+        }
+      }
+    },
+    {
+      "feeManagerConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "blockTimestamp": 1723636800,
+        "disable": true,
+        "initialFeeConfig": {
+          "gasLimit": 50000000,
+          "targetBlockRate": 1,
+          "minBaseFee": 1000000000,
+          "targetGas": 100000000,
+          "baseFeeChangeDenominator": 48,
+          "minBlockGasCost": 0,
+          "maxBlockGasCost": 10000000,
+          "blockGasCostStep": 500000
+        }
+      }
+    },
+    {
+      "feeManagerConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "blockTimestamp": 1723636810,
+        "initialFeeConfig": {
+          "gasLimit": 100000000,
+          "targetBlockRate": 1,
+          "minBaseFee": 1000000000,
+          "targetGas": 100000000,
+          "baseFeeChangeDenominator": 48,
+          "minBlockGasCost": 0,
+          "maxBlockGasCost": 10000000,
+          "blockGasCostStep": 500000
+        }
+      }
+    },
+    {
+      "rewardManagerConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "blockTimestamp": 1725454800,
+        "initialRewardConfig": {
+          "allowFeeRecipients": true,
+          "rewardAddress": "0x0000000000000000000000000000000000000000"
+        }
+      }
+    },
+    {
+      "feeManagerConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "blockTimestamp": 1725890400,
+        "disable": true,
+        "initialFeeConfig": {
+          "gasLimit": 100000000,
+          "targetBlockRate": 1,
+          "minBaseFee": 1000000000,
+          "targetGas": 100000000,
+          "baseFeeChangeDenominator": 48,
+          "minBlockGasCost": 0,
+          "maxBlockGasCost": 10000000,
+          "blockGasCostStep": 500000
+        }
+      }
+    },
+    {
+      "feeManagerConfig": {
+        "adminAddresses": [
+          "0x431d67518608bd3f6c082f1ab52158467670a8a5",
+          "0xe3b7a434fb8c763a812f44ec43911c23a0768976"
+        ],
+        "blockTimestamp": 1725890401,
+        "initialFeeConfig": {
+          "gasLimit": 500000000,
+          "targetBlockRate": 1,
+          "minBaseFee": 1000000000,
+          "targetGas": 100000000,
+          "baseFeeChangeDenominator": 48,
+          "minBlockGasCost": 0,
+          "maxBlockGasCost": 10000000,
+          "blockGasCostStep": 500000
+        }
+      }
+    },
+    {
+      "warpConfig": {
+        "blockTimestamp": 1729857600,
+        "quorumNumerator": 67,
+        "requirePrimaryNetworkSigners": false
+      }
+    }
+  ]
+}
