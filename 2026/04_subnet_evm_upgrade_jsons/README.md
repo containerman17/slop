@@ -65,16 +65,16 @@
 | vlxL1 | `zNXAbLSpaqfn3PTLi6ztbeomNtj4wsa7tBxSPyvXYEKstrtsR` | 90000 | 2/2 | empty, no file needed | live config is `{}` (our archive node at tip) |
 | VYOChain | `2Ge2BkkjNupU2WwJ3SEbaoQGWhTb9HBK34RXqPbSTSzhnrqcJk` | 1771 | 3/3 | empty, no file needed | live config is `{}` (our archive node at tip) |
 | Watr | `EypLFUSzC2wdbFJovYS3Af1E7ch1DJf7KxKoGR5QFPErxQkG1` | 192 | 1/2 | empty, no file needed | live config is `{}` (our archive node at tip) |
-| Athera | `LEJHppkiGCMMrTyH8y6CGSuWaB6g3ZN6TVqJ9WUrTwwUNiz6N` | 1517 | 0/1 | no result | no RPC answers |
-| blerifymain | `2aVPq3NSjjf8fqQE68myUM3AiTQLM9hBHg1XkBwByfTWma3BHv` | 42902 | 5/5 | no result | no RPC answers |
-| CodeNekt | `ZG7cT4B1u3y7piZ9CzfejnTKnNAoehcifbJWUwBqgyD3RuEqK` | 235235 | 2/8 | no result | no RPC answers |
-| DOS Chain | `22v7AG7h6qaVxd4bLvAsSsg2LZ4RCn5iVYgFn7a2Fj1LCuYwjv` | 7979 | 1/1 | no result | no RPC answers |
-| Frqtal | `2FJM6WqyDGX2PZYipnatYXuXsNcKLio5fJMkEaGgpP4kHDTPw2` | 62786 | 0/3 | no result | no RPC answers |
-| Lynq 01 | `BXLoBWScGdbWcFozx2PDv9hEcH3fXNvNmX3GAc25gbbRxs7nc` | 93134 | 5/5 | no result | no RPC answers |
-| OVI | `2o7i6nc6Y4QWndwH6VRnDL18f4pMr3iKqrBiF5fuSmjKAUr4dg` | 91820 | 0/1 | no result | no RPC answers |
-| ParadeA | `q41H38p3LxuGfz1ZLBvN7rSzDx8deQdmpLDY4HU7K2SYiK7oe` | 43113778 | 0/1 | no result | no RPC answers |
-| settlement | `2grpF11sCe1QT7PDVgRtc5uq3JQrL6tthennwZG6sMxJ3TrSLP` | 43117 | 5/5 | no result | no RPC answers |
-| STLINK | `2HR9yTVXBwxJjmejn9yt1UQnrBpQVQRpxUQe6YUtEaWh9yqnPN` | 35299 | 5/5 | no result | no RPC answers; **AvaCloud client, file requested, waiting for their answer** |
+| Athera | `LEJHppkiGCMMrTyH8y6CGSuWaB6g3ZN6TVqJ9WUrTwwUNiz6N` | 1517 | 0/1 | no result | no RPC answers; **stock node sync failed: no validator reachable** |
+| blerifymain | `2aVPq3NSjjf8fqQE68myUM3AiTQLM9hBHg1XkBwByfTWma3BHv` | 42902 | 5/5 | no result | no RPC answers; **stock node sync failed: validators connect but answer no block requests** |
+| CodeNekt | `ZG7cT4B1u3y7piZ9CzfejnTKnNAoehcifbJWUwBqgyD3RuEqK` | 235235 | 2/8 | no result | no RPC answers; **stock node sync failed: only 2 of 8 validators reachable, IPv6 only** |
+| DOS Chain | `22v7AG7h6qaVxd4bLvAsSsg2LZ4RCn5iVYgFn7a2Fj1LCuYwjv` | 7979 | 1/1 | no result | no RPC answers; **stock node sync failed: its only validator does not serve this chain** |
+| Frqtal | `2FJM6WqyDGX2PZYipnatYXuXsNcKLio5fJMkEaGgpP4kHDTPw2` | 62786 | 0/3 | no result | no RPC answers; **stock node sync failed: no validator reachable** |
+| Lynq 01 | `BXLoBWScGdbWcFozx2PDv9hEcH3fXNvNmX3GAc25gbbRxs7nc` | 93134 | 5/5 | no result | no RPC answers; **stock node sync failed: validators advertise private IPs** |
+| OVI | `2o7i6nc6Y4QWndwH6VRnDL18f4pMr3iKqrBiF5fuSmjKAUr4dg` | 91820 | 0/1 | no result | no RPC answers; **stock node sync failed: no validator reachable** |
+| ParadeA | `q41H38p3LxuGfz1ZLBvN7rSzDx8deQdmpLDY4HU7K2SYiK7oe` | 43113778 | 0/1 | no result | no RPC answers; **stock node sync failed: no validator reachable** |
+| settlement | `2grpF11sCe1QT7PDVgRtc5uq3JQrL6tthennwZG6sMxJ3TrSLP` | 43117 | 5/5 | no result | no RPC answers; **stock node sync failed: validators advertise private IPs** |
+| STLINK | `2HR9yTVXBwxJjmejn9yt1UQnrBpQVQRpxUQe6YUtEaWh9yqnPN` | 35299 | 5/5 | no result | no RPC answers; **needs a file: stock v1.15.2 refuses to start the chain without one (unsupported fork ordering, Etna after Granite); AvaCloud client, file requested, waiting for their answer** |
 
 ## Fuji
 
@@ -308,7 +308,13 @@ height 303,871 (2026-10-27 15:13 JST), 161 of 167 active chains.
   for Fuji fscfive (`nettingConfig`, `privacyConfig`, `qedisIdentityConfig`).
 - Mainnet STLINK has no result, but its genesis has the same year-9999 Etna as
   AIBTRUST and MUGEN, and both of those need an Etna override. STLINK probably
-  needs a file too. It is an AvaCloud client; we asked for the file.
+  needs a file too. A stock avalanchego v1.15.2 node refuses to start the
+  chain without one (`unsupported fork ordering`: Etna after Granite). It is an
+  AvaCloud client; we asked for the file.
+- For the other mainnet chains with no result, a stock v1.15.2 node with no
+  file tried to sync them over P2P on 2026-10-28. None fetched a block: the
+  validators were unreachable, advertised private IPs, or did not answer
+  requests from a non-validator.
 - An answer proves only activations whose time is already past. A future
   activation that is in the validators' file but not in the answering node's
   file does not show yet.
