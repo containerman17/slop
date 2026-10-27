@@ -1,42 +1,5 @@
 # subnet-evm upgrade.json files for live Avalanche L1s
 
-These are the subnet-evm `upgrade.json` files a node must run today for the
-mainnet and Fuji L1s. A node reads the file from
-`<chain-config-dir>/<blockchainID>/upgrade.json`; the file name here is
-`<network>/<name>-<blockchainID>.json`, so copy it to that path. A node without
-the file it needs fails at the first activation block with `invalid merkle root`.
-
-## How each chain was checked
-
-All checks ran on 2026-10-27 JST. For each chain we called `eth_getChainConfig`
-and read `result.upgrades`. This is the parsed `UpgradeConfig`, the same object
-`upgrade.json` unmarshals into, so a non-empty value written verbatim is the
-file. An answering node that follows the chain tip has the same state root as
-the validators, so its config is correct for every activation up to now.
-
-The `upgrade.json` column has three values:
-
-- **file**: the chain needs this file. The live config equals it.
-- **empty, no file needed**: the live config is `{}`. Do not write an empty
-  `{}` file; no file is the correct setup.
-- **no result**: no RPC answers, so we do not know.
-
-Where the answer came from:
-
-- **public RPC**: the chain's own RPC (`subnets.avax.network` is AvaCloud).
-- **Glacier proxy**: `https://glacier-api.avax.network/v1/ext/bc/<blockchainID>/rpc`,
-  which forwards to a node that Ava Labs runs.
-- **validator node**: the RPC port of a validator of the chain.
-- **Builder Hub managed node**: `https://managed-nodes.avax.network/ext/bc/<blockchainID>/rpc`.
-- **our archive node at tip**: our own node that follows the chain.
-
-Which chains: every Subnet-EVM chain whose subnet has an active validator,
-found with `platform.getAllValidatorsAt` and checked with
-`platform.getCurrentValidators` (an L1 validator counts only with a positive
-balance). Mainnet: P-chain height 25,758,109 (2026-10-27 23:05 JST), 71 of 74
-active chains (Relation, Consequence and Matter run another VM). Fuji: P-chain
-height 303,871 (2026-10-27 15:13 JST), 161 of 167 active chains.
-
 ## Mainnet
 
 71 chains: 17 need a file, 43 empty (no file needed), 11 no result.
@@ -291,6 +254,45 @@ These chains had a file but have no active validator at the snapshot. The files 
 |---|---|---|---|---|
 | lamina1 | `UhReZTXT8Cqsjat9ghRtCe5kBQPQexQB5zG5Fvf3egrdYfyoJ` | 10849 | [file](mainnet/lamina1-UhReZTXT8Cqsjat9ghRtCe5kBQPQexQB5zG5Fvf3egrdYfyoJ.json) (not verified) | held file, no RPC answers; from the lamina1-integration README (2025-02) |
 | Space | `22CN6x5LAPEkvLDdz4UwG3XXtZV69Su3bcspiYtkF9k5f9rcCt` | 8227 | [file](mainnet/space-22CN6x5LAPEkvLDdz4UwG3XXtZV69Su3bcspiYtkF9k5f9rcCt.json) | live config equals file (our archive node at tip) |
+
+## About these files
+
+These are the subnet-evm `upgrade.json` files a node must run today for the
+mainnet and Fuji L1s. A node reads the file from
+`<chain-config-dir>/<blockchainID>/upgrade.json`; the file name here is
+`<network>/<name>-<blockchainID>.json`, so copy it to that path. A node without
+the file it needs fails at the first activation block with `invalid merkle root`.
+
+## How each chain was checked
+
+All checks ran on 2026-10-27 JST. For each chain we called `eth_getChainConfig`
+and read `result.upgrades`. This is the parsed `UpgradeConfig`, the same object
+`upgrade.json` unmarshals into, so a non-empty value written verbatim is the
+file. An answering node that follows the chain tip has the same state root as
+the validators, so its config is correct for every activation up to now.
+
+The `upgrade.json` column has three values:
+
+- **file**: the chain needs this file. The live config equals it.
+- **empty, no file needed**: the live config is `{}`. Do not write an empty
+  `{}` file; no file is the correct setup.
+- **no result**: no RPC answers, so we do not know.
+
+Where the answer came from:
+
+- **public RPC**: the chain's own RPC (`subnets.avax.network` is AvaCloud).
+- **Glacier proxy**: `https://glacier-api.avax.network/v1/ext/bc/<blockchainID>/rpc`,
+  which forwards to a node that Ava Labs runs.
+- **validator node**: the RPC port of a validator of the chain.
+- **Builder Hub managed node**: `https://managed-nodes.avax.network/ext/bc/<blockchainID>/rpc`.
+- **our archive node at tip**: our own node that follows the chain.
+
+Which chains: every Subnet-EVM chain whose subnet has an active validator,
+found with `platform.getAllValidatorsAt` and checked with
+`platform.getCurrentValidators` (an L1 validator counts only with a positive
+balance). Mainnet: P-chain height 25,758,109 (2026-10-27 23:05 JST), 71 of 74
+active chains (Relation, Consequence and Matter run another VM). Fuji: P-chain
+height 303,871 (2026-10-27 15:13 JST), 161 of 167 active chains.
 
 ## Notes
 
