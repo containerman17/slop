@@ -2,7 +2,7 @@
 
 ## Mainnet
 
-70 chains: 16 need a file, 43 empty (no file needed), 11 no result.
+69 chains: 16 need a file, 43 empty (no file needed), 10 no result.
 
 | name | blockchainID | EVM chain ID | upgrade.json | how it was verified |
 |---|---|---|---|---|
@@ -67,7 +67,6 @@
 | Watr | `EypLFUSzC2wdbFJovYS3Af1E7ch1DJf7KxKoGR5QFPErxQkG1` | 192 | empty, no file needed | live config is `{}` (our archive node at tip) |
 | Athera | `LEJHppkiGCMMrTyH8y6CGSuWaB6g3ZN6TVqJ9WUrTwwUNiz6N` | 1517 | no result | no RPC answers |
 | blerifymain | `2aVPq3NSjjf8fqQE68myUM3AiTQLM9hBHg1XkBwByfTWma3BHv` | 42902 | no result | no RPC answers |
-| Blockticity | `2pV5K35V1ohNSYhRU3z1Bud2oZys9bak7QYcmvbVvnieh4FJXc` | 28530 | no result | no RPC answers |
 | CodeNekt | `ZG7cT4B1u3y7piZ9CzfejnTKnNAoehcifbJWUwBqgyD3RuEqK` | 235235 | no result | no RPC answers |
 | DOS Chain | `22v7AG7h6qaVxd4bLvAsSsg2LZ4RCn5iVYgFn7a2Fj1LCuYwjv` | 7979 | no result | no RPC answers |
 | Frqtal | `2FJM6WqyDGX2PZYipnatYXuXsNcKLio5fJMkEaGgpP4kHDTPw2` | 62786 | no result | no RPC answers |
@@ -75,7 +74,7 @@
 | OVI | `2o7i6nc6Y4QWndwH6VRnDL18f4pMr3iKqrBiF5fuSmjKAUr4dg` | 91820 | no result | no RPC answers |
 | ParadeA | `q41H38p3LxuGfz1ZLBvN7rSzDx8deQdmpLDY4HU7K2SYiK7oe` | 43113778 | no result | no RPC answers |
 | settlement | `2grpF11sCe1QT7PDVgRtc5uq3JQrL6tthennwZG6sMxJ3TrSLP` | 43117 | no result | no RPC answers |
-| STLINK | `2HR9yTVXBwxJjmejn9yt1UQnrBpQVQRpxUQe6YUtEaWh9yqnPN` | 35299 | no result | no RPC answers |
+| STLINK | `2HR9yTVXBwxJjmejn9yt1UQnrBpQVQRpxUQe6YUtEaWh9yqnPN` | 35299 | no result | no RPC answers; **AvaCloud client, file requested, waiting for their answer** |
 
 ## Fuji
 
@@ -245,15 +244,16 @@
 | trustechledger | `2SndTptHdH3TKvoABAa5HKyb3AiqEnprc6nnwxj7PHq7muPgNq` | 173427 | no result | no RPC answers |
 | VJTTD | `23f5WZwsP5d2iUtontakgEuhecxVzs9t9uQeNEKtuXHiFWmnFh` | 58882 | no result | no RPC answers |
 
-## Files for chains that are not live
+## Chains that are not live
 
-These chains have a file but are not live: they have no active validator at the snapshot, or they are deprecated. The files stay here for archival.
+These chains are not live: they have no active validator at the snapshot, or the project is deprecated. Their files stay here for archival.
 
 | name | blockchainID | EVM chain ID | upgrade.json | how it was verified |
 |---|---|---|---|---|
-| DFK Chain | `q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi` | 53935 | [file](mainnet/dfk-q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi.json) (not verified) | held file, no RPC answers; equal to live config on 2026-08-06; **deprecated, kept for archival only, no future support** |
+| DFK Chain | `q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi` | 53935 | [file](mainnet/dfk-q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi.json) (not verified) | held file, no RPC answers; equal to live config on 2026-08-06; **deprecated (moved to C-Chain), kept for archival only, no future support** |
 | lamina1 | `UhReZTXT8Cqsjat9ghRtCe5kBQPQexQB5zG5Fvf3egrdYfyoJ` | 10849 | [file](mainnet/lamina1-UhReZTXT8Cqsjat9ghRtCe5kBQPQexQB5zG5Fvf3egrdYfyoJ.json) (not verified) | held file, no RPC answers; from the lamina1-integration README (2025-02) |
 | Space | `22CN6x5LAPEkvLDdz4UwG3XXtZV69Su3bcspiYtkF9k5f9rcCt` | 8227 | [file](mainnet/space-22CN6x5LAPEkvLDdz4UwG3XXtZV69Su3bcspiYtkF9k5f9rcCt.json) | live config equals file (our archive node at tip) |
+| Blockticity | `2pV5K35V1ohNSYhRU3z1Bud2oZys9bak7QYcmvbVvnieh4FJXc` | 28530 | no result | no RPC answers; **cancelled project (moved to C-Chain), no future support** |
 
 ## About these files
 
@@ -301,7 +301,7 @@ height 303,871 (2026-10-27 15:13 JST), 161 of 167 active chains.
   for Fuji fscfive (`nettingConfig`, `privacyConfig`, `qedisIdentityConfig`).
 - Mainnet STLINK has no result, but its genesis has the same year-9999 Etna as
   AIBTRUST and MUGEN, and both of those need an Etna override. STLINK probably
-  needs a file too.
+  needs a file too. It is an AvaCloud client; we asked for the file.
 - An answer proves only activations whose time is already past. A future
   activation that is in the validators' file but not in the answering node's
   file does not show yet.
