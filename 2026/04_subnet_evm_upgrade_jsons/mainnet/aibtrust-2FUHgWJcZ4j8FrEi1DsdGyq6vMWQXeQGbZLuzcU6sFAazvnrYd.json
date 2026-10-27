@@ -1,0 +1,22 @@
+{
+  "networkUpgradeOverrides": {
+    "etnaTimestamp": 1763398800
+  },
+  "precompileUpgrades": [
+    {
+      "warpConfig": {
+        "blockTimestamp": 1753988573,
+        "disable": true,
+        "quorumNumerator": 0,
+        "requirePrimaryNetworkSigners": false
+      }
+    },
+    {
+      "warpConfig": {
+        "blockTimestamp": 1753988574,
+        "quorumNumerator": 67,
+        "requirePrimaryNetworkSigners": true
+      }
+    }
+  ]
+}

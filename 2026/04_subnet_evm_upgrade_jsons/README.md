@@ -10,20 +10,26 @@ against a running chain, call `eth_getChainConfig` on its RPC and compare
 the file it needs fails at the first activation block with `invalid merkle root`.
 
 Live checks ran on 2026-10-27 JST. RPC URLs come from
-`https://glacier-api.avax.network/v1/chains?network=mainnet` (field `rpcUrl`).
+`https://glacier-api.avax.network/v1/chains?network=mainnet` (field `rpcUrl`),
+from Glacier's RPC proxy `https://glacier-api.avax.network/v1/ext/bc/<blockchainID>/rpc`
+(it answers from Ava Labs' own node, so its `upgrades` are that node's
+`upgrade.json`), or from project and validator RPCs.
 The comparison ignores address case and zero-value fields that the RPC adds.
 "held" means the file came from our own node deployments or backups; "live"
 means the file is `result.upgrades` written verbatim.
 
 | network | name | blockchainID | evmChainId | stateUpgrades | source | live check |
 |---|---|---|---|---|---|---|
+| mainnet | aibtrust | `2FUHgWJcZ4j8FrEi1DsdGyq6vMWQXeQGbZLuzcU6sFAazvnrYd` | 80000 | no | live (Glacier proxy) | MATCH |
 | mainnet | beam | `2tmrrBo1Lgt1mzzvPSFt73kkQKFas5d1AP88tv9cicwoFp8BSn` | 4337 | no | live | held file was STALE, replaced by live |
 | mainnet | dexalot | `21Ths5Afqi5r4PaoV8r8cruGZWhN11y5rxvy89K8px7pKy3P8E` | 432204 | no | live | held file was STALE, replaced by live |
 | mainnet | dfk | `q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi` | 53935 | yes | live 2026-08-06 | NO-RPC now (405) |
 | mainnet | gunz | `2M47TxWHGnhNtq6pM5zPXdATBtuqubxn5EPFgFmEawCQr9WFML` | 43419 | no | live | MATCH |
 | mainnet | hashfire | `2vcBHFK7jiv74dyYeUCUiCsKy2jbWx6xEQzNfQPiLmYidBaDfX` | 7272 | no | held | MATCH |
 | mainnet | innovo | `vFHT9J4F6PhqCTMmqkKKUKW3yfsjd6tNvhmcK4MkFa3Pmnnqe` | 10036 | yes | held | MATCH |
+| mainnet | intainmarkets | `m4xWma3wWpxHAAKWyDXX6oqvzKUkqCXnTJTwKmTkReJpcEuS6` | 151122 | yes | live (Glacier proxy) | MATCH |
 | mainnet | lamina1 | `UhReZTXT8Cqsjat9ghRtCe5kBQPQexQB5zG5Fvf3egrdYfyoJ` | 10849 | no | held, from the lamina1-integration README (2025-02) | NO-RPC (405) |
+| mainnet | mugen | `2GiVhBPR19ZaHYQivmheYv8RkEBjfdu7AyDvSocbWWjR4gz1qf` | 29111 | yes | live (Glacier proxy) | MATCH |
 | mainnet | numbers | `2PDRxzc6jMbZSTLb3sufkVszgQc2jtDnYZGtDTAAfom1CTwPsE` | 10507 | no | held | MATCH (mainnetrpc.num.network) |
 | mainnet | numine | `2c1BN4N9qEhNmW4yCpeLK24SfjFQLyS1Z7FtgRDaYxZWFUUKxf` | 8021 | no | held | NO-RPC (405); matches the config our epochdb archive node synced to tip with |
 | mainnet | pandasea | `2gYSmRb7tjS4wb5FHFx8NBhwQgARWEdr8MGVC7v8UWJJFkEpTj` | 7776 | no | held | MATCH (rpc-mainnet-pandasea-rl.cogitus.io) |
@@ -55,12 +61,20 @@ PandaSea's subnet-evm fork. Stock subnet-evm rejects this file.
 `upgrade.json` (an empty `{}` file is not the same as no file, so do not write one).
 
 Mainnet: Blaze (`2SfshBPqRJexmqdWBY2xYSTq2Rp2dDisuax7nQB6GyNqPjSWWY`),
+BnryMainnet (`J3MYb3rDARLmB7FrRybinyjKqVTqmerbCr9bAXDatrSaHiLxQ`),
+ChamonixNetwork (`v8FsmtYmWSE3dozTVr9oQaHDP9uTrrNYm4nREouba9fmjKJEJ`),
 Dinari Financial Network (`C5GXnNHNEfDxUydtjZ5B5J6XspdAZJGLsX3u4wxCXZgE3N4Gq`),
 Elysium (`3jVp8Ee4CarD5Sua3qDPwNGNRCEetSSGToWcwzwkKeHbbChcL`),
 even (`2YnwDMW9shSuV6nuYpAhm3DE2KvYJP2GFDvUde6XG8jE5gxvpL`),
 FIFA Blockchain (`SUDoK9P89PCcguskyof41fZexw7U3zubDP2DZpGf3HbFWwJ4E`),
+fortitudemadeira (`2C1D31mrPpAaSkseb3iywafDvH5drvMJVKh1xZv3tmYWrbMkEf`),
+Frqtal (`2jQuqy3RpCmVQHZCdpz9SJD92yP5VL4GgKBGeGJPYJxm9vkNNH`),
+goldensilenthawk (`2HvYVUizFgTaRAxGCJdKdZVdNgRRXoUGXuuJhZUPmeywNjBjvp`),
+goldleader (`2PDZJhEoUr5944QGTDpztZvCDiWHa3iGbXenTmpqq3xQcqiW3A`),
 Henesys (`2LFmzhHDKxkreihEtPanVmofuFn63bsh8twnRXEbDhBtCJxURB`),
+kite (`3USaEfTcoUhHxpKXvpAG916UKCUEyjrtkg2hBArBG3JyDP7my`),
 Loyal (`2rpeyPqn1Th7WsebmecpHgQEvFHWq3vzrcRi9vKgMc32rTjUKX`),
+MakaChain (`2TfGh1pyDoumsDgTxDmWoseRD7GGRwrpX19HLsQdeCRqwK9BqZ`),
 north-investments (`289ecuoAnBmyZupLLN9DZWxCAFau8TSUh9YkkGwBYCAxxfByJw`),
 Orange (`AowVWzuCAyLrTPSLHHaHeMJSdxRhhWbvmEuXncPnKv1hT5wf4`),
 QR1020Q1MP (`w79fSBBwXNtbhaTVxurSTt8x1ipcDPrtKS6ZcEX5p8DmyLNKk`),
@@ -102,9 +116,23 @@ Watr (`2ZZiR6T2sJjebQguABb53rRpzme8zfK4R9zt5vMM8MX1oUm3g`).
 These chains have no public RPC that answers `eth_getChainConfig`:
 
 - Held file, not verified: dfk, lamina1, numine, space, step (see table).
-- Listed by Glacier, no file and no answer (HTTP 405): Blockticity mainnet
+- Mainnet, no file and no answering RPC: Blockticity
   (`2pV5K35V1ohNSYhRU3z1Bud2oZys9bak7QYcmvbVvnieh4FJXc`, 28530),
-  bored-red-manatee Fuji (`gCZXKpKLTqdek4eZbaxTUVbeFXGWys81Z76fmrTjwMF43nA6N`, 20744).
+  STLINK (`2HR9yTVXBwxJjmejn9yt1UQnrBpQVQRpxUQe6YUtEaWh9yqnPN`, 35299; its
+  genesis has the same year-9999 Etna as aibtrust and mugen, so it probably
+  needs an Etna override too), Athera (`LEJHppkiGCMMrTyH8y6CGSuWaB6g3ZN6TVqJ9WUrTwwUNiz6N`),
+  CodeNekt (`ZG7cT4B1u3y7piZ9CzfejnTKnNAoehcifbJWUwBqgyD3RuEqK`),
+  DOS Chain (`22v7AG7h6qaVxd4bLvAsSsg2LZ4RCn5iVYgFn7a2Fj1LCuYwjv`),
+  Frqtal (`2FJM6WqyDGX2PZYipnatYXuXsNcKLio5fJMkEaGgpP4kHDTPw2`),
+  Lynq 01 (`BXLoBWScGdbWcFozx2PDv9hEcH3fXNvNmX3GAc25gbbRxs7nc`, private),
+  blerifymain (`2aVPq3NSjjf8fqQE68myUM3AiTQLM9hBHg1XkBwByfTWma3BHv`),
+  ParadeA (`q41H38p3LxuGfz1ZLBvN7rSzDx8deQdmpLDY4HU7K2SYiK7oe`).
+- Mainnet, registered but with no validator that has a positive balance (halted):
+  ParadeA (`GRPDgKqXDuxEy129BHrLW1aw9kv51stHBkgTA3cKik3pnaenV`,
+  `V5PeDXYsRb8g33R8qivUZJV59Ybwx44b3nfqFKdRw5e9WQrRV`),
+  mjms (`4s6dn5ToLrL9VQGwiuwrGjW2CgiRSvJRiU6zQcPJnjeT9jVWj`).
+- Fuji, listed by Glacier, no file and no answer (HTTP 405):
+  bored-red-manatee (`gCZXKpKLTqdek4eZbaxTUVbeFXGWys81Z76fmrTjwMF43nA6N`, 20744).
 
 Chains outside the Glacier list (for example other P-chain L1s with no public
 RPC) are not covered unless they appear in the table.
