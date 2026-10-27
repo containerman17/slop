@@ -1,18 +1,22 @@
 # Active Fuji Subnet-EVM chains, P-chain height 303871 (2026-10-27 15:13 JST), from platform.getAllValidatorsAt + getCurrentValidators (L1 validators with positive balance).
 # name | blockchainID | evmChainId | result | where the answer came from
-Alpine Summit | E6r9QDbjyMyxkEoRJd3EZZyauHH8bnop1hEubWRHWSgZy3C9A | evm 566839 | EMPTY | src managed-nodes: https://managed-nodes.avax.network/ext/bc/E6r9QDbjyMyxkEoRJd3EZZyauHH8bnop1hEubWRHWSgZy3C9A/rpc
+Akave Community | 56g16Hr1SHQRzdM8JLm3GKYv7APVHY8T2TyeZLvDVzCaTRS7W | evm 21213 | EMPTY | src fuji-discovery validator NodeID-4vuXkGWWWHv4FMVwyKUmGx9h28nmyqPKP: validator node
+Alpine Summit | E6r9QDbjyMyxkEoRJd3EZZyauHH8bnop1hEubWRHWSgZy3C9A | evm 566839 | EMPTY | src https://managed-nodes.avax.network/ext/bc/E6r9QDbjyMyxkEoRJd3EZZyauHH8bnop1hEubWRHWSgZy3C9A/rpc
 aurorapaydvpdev | 2my13nX2M4yMHDoHdtnAiRBEAPFFuckp3Af31sr6mexEevU18P | evm 39357 | EMPTY | src https://subnets.avax.network/aurorapay/testnet/rpc
+Aurum | 2JrFCfysXwtrNfCbNQjHtiwaNvNvU9co8oLdNUtUBue7yvGZu1 | evm 531 | EMPTY | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/2JrFCfysXwtrNfCbNQjHtiwaNvNvU9co8oLdNUtUBue7yvGZu1/rpc
 colouredlavenderblackbird | 2g7668m91DYSLFBpCAjxrbLtFUALp2Jcn4HGbetKSkC3JE5oyD | evm 66850 | EMPTY | src https://subnets.avax.network/colouredla/testnet/rpc
 criminalsalmontiger | Hb3EduWUYuKWvENKL6NYqjZFYRMXriBfhaSojT7dSn7SjQZzU | evm 85011 | EMPTY | src https://subnets.avax.network/criminalsa/testnet/rpc
-Crystal Meadow | NXwA8hHPhbkmGbRFsVBXxP4xBZxXnR9gNA3eaFd7SNS3CJ5A8 | evm 348408 | EMPTY | src managed-nodes: https://managed-nodes.avax.network/ext/bc/NXwA8hHPhbkmGbRFsVBXxP4xBZxXnR9gNA3eaFd7SNS3CJ5A8/rpc
-cyberia | 2uzoh7wVAuvyLKfTJ1bcZi4KCMRtogxXbK7Q7QGA1128QsnTYM | evm 181811 | EMPTY | src managed-nodes: https://managed-nodes.avax.network/ext/bc/2uzoh7wVAuvyLKfTJ1bcZi4KCMRtogxXbK7Q7QGA1128QsnTYM/rpc
-cyberia | yLf57F9pL13HbAf7fkKv6vGSkHs4C54jNLD6VgLJu5qKZfgpE | evm 764881 | EMPTY | src managed-nodes: https://managed-nodes.avax.network/ext/bc/yLf57F9pL13HbAf7fkKv6vGSkHs4C54jNLD6VgLJu5qKZfgpE/rpc
+Crystal Meadow | NXwA8hHPhbkmGbRFsVBXxP4xBZxXnR9gNA3eaFd7SNS3CJ5A8 | evm 348408 | EMPTY | src https://managed-nodes.avax.network/ext/bc/NXwA8hHPhbkmGbRFsVBXxP4xBZxXnR9gNA3eaFd7SNS3CJ5A8/rpc
+cyberia | 2uzoh7wVAuvyLKfTJ1bcZi4KCMRtogxXbK7Q7QGA1128QsnTYM | evm 181811 | EMPTY | src https://managed-nodes.avax.network/ext/bc/2uzoh7wVAuvyLKfTJ1bcZi4KCMRtogxXbK7Q7QGA1128QsnTYM/rpc
+cyberia | yLf57F9pL13HbAf7fkKv6vGSkHs4C54jNLD6VgLJu5qKZfgpE | evm 764881 | EMPTY | src https://managed-nodes.avax.network/ext/bc/yLf57F9pL13HbAf7fkKv6vGSkHs4C54jNLD6VgLJu5qKZfgpE/rpc
 DEP Chain Testnet | Bp4P5VcMyD2gVbBYEUeGtuShfdNHz9KX4bc1rTAuk9bYyTWEW | evm 20867 | EMPTY | src validator NodeID-HyeCKyu9TSmdeADhTsNPF9dLYxncF2cAn: validator node
 DinariPaperNetwork | 2Yz62sy7E1ptSw45s8wYz46XtGKofsoPqnsPEqW9oUkERD2LC | evm 179205 | EMPTY | src https://subnets.avax.network/dfnpaper/testnet/rpc
 DOS Testnet | JASJZyVTWR7aviy4eY5yE8AVfdXtH33c1AinvzhLcVBARhcm9 | evm 3939 | EMPTY | src chainlist DOS Testnet: https://test.doschain.com
+enigmathames | UquKUwzetdduda7ej7swjo1uwRL3QcX8xb9bnRdYfbJCs2WEC | evm 66583 | EMPTY | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/UquKUwzetdduda7ej7swjo1uwRL3QcX8xb9bnRdYfbJCs2WEC/rpc
 etotest | 2br9miLmzsiyfeSeAYi7hShb7nwV3PzFXPaZJ2uESft6hMfjjq | evm 2230 | EMPTY | src https://l1.avax.network/etotest/testnet/rpc
-Frozen Pine | JynEK91ofr4JYJY1DrEp2e53ihEigLT2LTUyMcgTDPaZwBAz9 | evm 332789 | EMPTY | src managed-nodes: https://managed-nodes.avax.network/ext/bc/JynEK91ofr4JYJY1DrEp2e53ihEigLT2LTUyMcgTDPaZwBAz9/rpc
-ICMTest | 2qHPRc4pKDDhBByYFxzxfTqYV5Z9QszfLPGBvyqmE2JD5rMwy5 | evm 444567 | EMPTY | src managed-nodes: https://managed-nodes.avax.network/ext/bc/2qHPRc4pKDDhBByYFxzxfTqYV5Z9QszfLPGBvyqmE2JD5rMwy5/rpc
+Frozen Pine | JynEK91ofr4JYJY1DrEp2e53ihEigLT2LTUyMcgTDPaZwBAz9 | evm 332789 | EMPTY | src https://managed-nodes.avax.network/ext/bc/JynEK91ofr4JYJY1DrEp2e53ihEigLT2LTUyMcgTDPaZwBAz9/rpc
+goldleader | yJDDTFz737xMofDqtMHTgV41EnuFvN49GjkLfqAp1qPbf134s | evm 73865 | EMPTY | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/yJDDTFz737xMofDqtMHTgV41EnuFvN49GjkLfqAp1qPbf134s/rpc
+ICMTest | 2qHPRc4pKDDhBByYFxzxfTqYV5Z9QszfLPGBvyqmE2JD5rMwy5 | evm 444567 | EMPTY | src https://managed-nodes.avax.network/ext/bc/2qHPRc4pKDDhBByYFxzxfTqYV5Z9QszfLPGBvyqmE2JD5rMwy5/rpc
 impressedharlequinshark | 2QU8aavp4LRMzaRSGDYKSHfzNyF8QrGHYEFZLrNUD13bdqYd3L | evm 17070 | EMPTY | src https://subnets.avax.network/impressedh/testnet/rpc
 iristestnet | 269JyvJZP33Lq9BA8DiNJCmqde5RgtUrpzEq2PbvLPPNv1zjKq | evm 11632 | EMPTY | src https://subnets.avax.network/iristest/testnet/rpc
 jelly | 27i5Wk1SRtfh6p1aLBNaCTenr9ELfahZDAzsaoKebz3CgAAJzZ | evm 99062 | EMPTY | src https://subnets.avax.network/jelly/testnet/rpc
@@ -20,7 +24,7 @@ kiteaitestnet | nQ9iPT7ZQQx1qwBTs68EGiU8cu1GHMMjzvYktmA3oRs4esg3V | evm 2368 | E
 lifeaitest | 28L5yUmRk3mxJ2hNyRt2G3hQGiR7ZnhdFRsXpmzgojKBm9nVV9 | evm 94909 | EMPTY | src https://subnets.avax.network/lifeaitest/testnet/rpc
 LifeAItestnetv | hasgwAhYjddyh8u7TQ6B5V6yFgfz78YvyiWDpd2JAvpJwFfq9 | evm 99991 | EMPTY | src https://subnets.avax.network/lifev1/testnet/rpc
 LTmax | 2EVX5Bd71LRNVUgvyuvh3dcrU2atPwKJFTkBJmqs3mJqevqsiF | evm 37558 | EMPTY | src https://subnets.avax.network/ltmax/testnet/rpc
-Lumen Shore | 2nHTmoRqXRFrJR3dUkJGeCsb1EXGa48jsHKZsEFizvBrCLs26K | evm 512250 | EMPTY | src managed-nodes: https://managed-nodes.avax.network/ext/bc/2nHTmoRqXRFrJR3dUkJGeCsb1EXGa48jsHKZsEFizvBrCLs26K/rpc
+Lumen Shore | 2nHTmoRqXRFrJR3dUkJGeCsb1EXGa48jsHKZsEFizvBrCLs26K | evm 512250 | EMPTY | src https://managed-nodes.avax.network/ext/bc/2nHTmoRqXRFrJR3dUkJGeCsb1EXGa48jsHKZsEFizvBrCLs26K/rpc
 MixATestnet | 2SbpzYaSco9CztrNxfG84xXr1YKGXiRh5DaBZAGAV5bfrgszeU | evm 27777 | EMPTY | src https://subnets.avax.network/testmixa/testnet/rpc
 modex | 2tCocn4cmdz6ZNAUhasixpQWko9F9oRrcfvDeUZCPkkgRCUzS5 | evm 52118 | EMPTY | src https://subnets.avax.network/modex/testnet/rpc
 mon | 2SbdFFeBVfR8iyYTq5dzMmUVtfEsZmW23yF1XmB1yK7QFdrNa | evm 77242 | EMPTY | src https://subnets.avax.network/mon/testnet/rpc
@@ -28,19 +32,28 @@ monthlygoldpoc | hXKXRCmdaG3xW2Vevr7RjcvEmmc6bm7ERbbfR9Um2PFAkDxnv | evm 56357 |
 Natural Zipper Chain | 2poMrZuvkGiZh7n1cs11zqXJ8QdZATtJHdKaTqQQ43gYhUXGb1 | evm 74157 | EMPTY | src validator NodeID-Mt6rE9BeQN6zE4YQFpufV9VtYR9YYYCW4: validator node
 northasset | xjZvDBY8zo2FpkSzobPjTLL8HZyE6h1M2vrDbFMytn2wNkNkY | evm 88188 | EMPTY | src https://subnets.avax.network/northasset/testnet/rpc
 ozeki | 4Ws8L2pxS4Ya7n8S43sE5ypoptDAQJWQuxjFahLaZfBtm5tnP | evm 4127 | EMPTY | src https://subnets.avax.network/ozeki/testnet/rpc
-Prism Fjord | 2iw1nGgCktKQLAnJXwB7TtseyQRkmHgYPNZ1aBz7UTGHCn3MMU | evm 641562 | EMPTY | src managed-nodes: https://managed-nodes.avax.network/ext/bc/2iw1nGgCktKQLAnJXwB7TtseyQRkmHgYPNZ1aBz7UTGHCn3MMU/rpc
+Prism Fjord | 2iw1nGgCktKQLAnJXwB7TtseyQRkmHgYPNZ1aBz7UTGHCn3MMU | evm 641562 | EMPTY | src https://managed-nodes.avax.network/ext/bc/2iw1nGgCktKQLAnJXwB7TtseyQRkmHgYPNZ1aBz7UTGHCn3MMU/rpc
+QRQTP | 2buASsMqVt5LevMeRYKgpV1xViYewcd2q3v9PY6ATqAKUv59AY | evm 20491 | EMPTY | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/2buASsMqVt5LevMeRYKgpV1xViYewcd2q3v9PY6ATqAKUv59AY/rpc
+QRQTP | L29t2oSvEeP8pSubZehCwySGXY6MSGDVo61FD5mYHkbhBEf7w | evm 39411 | EMPTY | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/L29t2oSvEeP8pSubZehCwySGXY6MSGDVo61FD5mYHkbhBEf7w/rpc
+QRQTP | L8eapB4NDYH6SLNPEnuiE5tG1pzYen6B4ckvphZqUHmVrKXBz | evm 34384 | EMPTY | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/L8eapB4NDYH6SLNPEnuiE5tG1pzYen6B4ckvphZqUHmVrKXBz/rpc
 QRQTS | 22GJNfCB39E2n4pnCd2X98CmxKXTYyubmPVRWsFQWXTM1mVAeF | evm 49925 | EMPTY | src https://subnets.avax.network/qr0213q1ts/testnet/rpc
 QRQTS | fvPsEin7WcCXpGRUdwSY3WunLVuSgUE31ipXbHF3r3zat4gbq | evm 39447 | EMPTY | src https://subnets.avax.network/qr0203q2ts/testnet/rpc
 rmgaslessrelayertest | 2VBTFzU4zQ1ZsRrnXDPpnNkwHYYmkgun64rV6zXhQk3hcWXP24 | evm 52860 | EMPTY | src https://l1.avax.network/secretaqua/testnet/rpc
+rwachainfuji | vbvFXBFDHMdWBC2Gvei7eZMDwt5zrMXSni7VY7gw8NCQhe7Ah | evm 191919 | EMPTY | src fuji-discovery validator NodeID-9aKNAfcpsnfqgpp3ptd39V5PXs2fLsWpW: validator node
 Safe Laxative Chain | 2sCakkCUJoKfqoS37fMmMiZvVn7ftrJgus9gW9SpD1X8fPem2q | evm 26173 | EMPTY | src validator NodeID-PTEhrdQJ9iqx5paHwgWB1TUVP1jSLUnp6: validator node
+SecondTEST | 2HJ95937F5yY8BAMiSLsPGitc9rEDEupMsYd5VWt4R19jkSrhQ | evm 76932 | EMPTY | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/2HJ95937F5yY8BAMiSLsPGitc9rEDEupMsYd5VWt4R19jkSrhQ/rpc
 seniorpurplegopher | wfapNnyaAnWpPESnzRtVA6PinAnZLWqSVZLKd4y3hCG8Sn5wj | evm 44955 | EMPTY | src https://subnets.avax.network/seniorgphr/testnet/rpc
-Smart coin | 2EzF8hyLVBbww1Tv4LAdCwKwZH8UbZvFtv1Y4A3zNTsmKvmeXr | evm 330208 | EMPTY | src managed-nodes: https://managed-nodes.avax.network/ext/bc/2EzF8hyLVBbww1Tv4LAdCwKwZH8UbZvFtv1Y4A3zNTsmKvmeXr/rpc
-Smart coin | 2W18EUujfJ85YGEFSGf76VnvrDWVYjMKHw9yPvih4AFuwv48NV | evm 105401 | EMPTY | src managed-nodes: https://managed-nodes.avax.network/ext/bc/2W18EUujfJ85YGEFSGf76VnvrDWVYjMKHw9yPvih4AFuwv48NV/rpc
+silverserenehawk | epQVP6gEab4TZeFr72qCRmTav2so8WZvnUFUV1KugWf4vrnSe | evm 25151 | EMPTY | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/epQVP6gEab4TZeFr72qCRmTav2so8WZvnUFUV1KugWf4vrnSe/rpc
+Smart coin | 2EzF8hyLVBbww1Tv4LAdCwKwZH8UbZvFtv1Y4A3zNTsmKvmeXr | evm 330208 | EMPTY | src https://managed-nodes.avax.network/ext/bc/2EzF8hyLVBbww1Tv4LAdCwKwZH8UbZvFtv1Y4A3zNTsmKvmeXr/rpc
+Smart coin | 2W18EUujfJ85YGEFSGf76VnvrDWVYjMKHw9yPvih4AFuwv48NV | evm 105401 | EMPTY | src https://managed-nodes.avax.network/ext/bc/2W18EUujfJ85YGEFSGf76VnvrDWVYjMKHw9yPvih4AFuwv48NV/rpc
 Soshi | 2sDUH9VzjQJdALDUCQcnYxC7hfW5awJC3mZNN4ySFG52Lq4GCa | evm 80952 | EMPTY | src https://subnets.avax.network/tsoshi/testnet/rpc
 sushitempura | 2bQaaqGG5DZvJMBWnRe9VC5sFCz2QY5GntGzCuHrr2oqcEwnHq | evm 23903 | EMPTY | src https://subnets.avax.network/washoku/testnet/rpc
 swiftamberheron | 2NkpPCyY6iQexE1NzJsc6s6Yf8L9T2KLoVXAiEnswwdN4V9soq | evm 23815 | EMPTY | src https://l1.avax.network/swiftamber/testnet/rpc
+TastyPurpleMole | 2cfykT2vjWMfBVtqrQiQAg2D7mahaB3KWEhoNX3wHBDgTuy1xk | evm 28019 | EMPTY | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/2cfykT2vjWMfBVtqrQiQAg2D7mahaB3KWEhoNX3wHBDgTuy1xk/rpc
 watrTestnet | 2ZZiR6T2sJjebQguABb53rRpzme8zfK4R9zt5vMM8MX1oUm3g | evm 92870 | EMPTY | src https://glacier-api.avax.network/v1/ext/bc/92870/rpc
-WTTTP | 21rMdJMMgpBdV2Hu3ovJVK87K8mh8WvddK7y4ZqXsyRamaYVXH | evm 21557 | EMPTY | src glacier-proxy: https://glacier-api.avax.network/v1/ext/bc/21557/rpc
+WTTTP | 21rMdJMMgpBdV2Hu3ovJVK87K8mh8WvddK7y4ZqXsyRamaYVXH | evm 21557 | EMPTY | src https://glacier-api.avax.network/v1/ext/bc/21557/rpc
+YENTRIA | Loe3eUnTTLKh52roR6NPcrowaddXXWqxPooTP9yxwkaTWSA5d | evm 49012 | EMPTY | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/Loe3eUnTTLKh52roR6NPcrowaddXXWqxPooTP9yxwkaTWSA5d/rpc
+AIBTRUSTTestnet | S85PT12J9jAvUS5VuZoTSWZx6wVDU2rNmtQWws3oUutzxpKnv | evm 79903 | FILE | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/S85PT12J9jAvUS5VuZoTSWZx6wVDU2rNmtQWws3oUutzxpKnv/rpc
 ApertumTestnet | V8YHL6yZV62tx2MdLi98wjAY2Qn6sP7zdiEKX5bvxj515vhK7 | evm 89898 | FILE | src https://rpc-testnet.apertum.io/ext/bc/V8YHL6yZV62tx2MdLi98wjAY2Qn6sP7zdiEKX5bvxj515vhK7/rpc
 beam | y97omoP2cSyEVfdSztQHXD9EnfnVP9YKjZwAxhUfGbLAPYT9t | evm 13337 | FILE | src https://subnets.avax.network/beam/testnet/rpc
 dispatch | 2D8RG4UpSXbPbvPCAWppNJyqTG2i2CAXSkTgmTBBvs7GKNZjsY | evm 779672 | FILE | src https://subnets.avax.network/dispatch/testnet/rpc
@@ -48,116 +61,103 @@ echo | 98qnjenm7MBd8G2cPZoRvZrgJC33JGSAAKghsQ6eojbLCeRNp | evm 173750 | FILE | s
 EGMTester | Buqpg8qoENGbZEC1LY1ngkHYgS5ftZ8M22QCf3e7DWbc3yRDM | evm 55197 | FILE | src https://subnets.avax.network/egmtester/testnet/rpc
 fscfive | zYh1CWZEBF8bt8qW3Stg2t8WnqXjKyHwTo3S92swbvDp8SFvr | evm 888888 | FILE | src validator NodeID-4AWhqbR4kygidRGy7xMy7vmFNNWCBgqRK: validator node
 gunzillaevm | ryk9vkvNuKtewME2PeCgybo9sdWXGmCkBrrx4VPuZPdVdAak8 | evm 49321 | FILE | src chainlist GUNZ Testnet: https://rpc.gunz.dev/ext/bc/ryk9vkvNuKtewME2PeCgybo9sdWXGmCkBrrx4VPuZPdVdAak8/rpc
+InnovoMarketsTestnet | 2nLc1UT7yUqzVcZeKcBzZVpH1kmkedY3LRinX8nAkypxRtwAaF | evm 54414 | FILE | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/2nLc1UT7yUqzVcZeKcBzZVpH1kmkedY3LRinX8nAkypxRtwAaF/rpc
 IntainMarketsTest | 2ALtzRYgRpRWnTgjdrMArkMvU6RTpcjs7VWmupqYaPrHDrHLSd | evm 101122 | FILE | src validator NodeID-CRVEYUqnqNvCSBnWGQ8c1Fmg2qHZe581E: validator node
+JONO122 | 2XvEdm5FGHcFWAp6bGookz8BB9uo4mcVyfGf1LALogYkvMfYXd | evm 5668 | FILE | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/2XvEdm5FGHcFWAp6bGookz8BB9uo4mcVyfGf1LALogYkvMfYXd/rpc
+jono13 | 2es7oPnyjrMCNseCbi2429dbQaCAkp5DhTfERr4gGEKmMEcuko | evm 595581 | FILE | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/2es7oPnyjrMCNseCbi2429dbQaCAkp5DhTfERr4gGEKmMEcuko/rpc
+jono14 | wUMSB5vY7VdocbaHUi8SG5DSDcdv14Yt824p12m9Lqv5a551F | evm 807424 | FILE | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/wUMSB5vY7VdocbaHUi8SG5DSDcdv14Yt824p12m9Lqv5a551F/rpc
+jonostage | 5jXGo1pToYqbY6SU3c6SCzzSLA18MXiMxNhWQSxdoJ1xtvooV | evm 847799 | FILE | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/5jXGo1pToYqbY6SU3c6SCzzSLA18MXiMxNhWQSxdoJ1xtvooV/rpc
+liquidfitest | 2VqFWVQdfEysKCUKHpAKJjsaVd8VcYXCiZC2bbEHpKDQWTen3C | evm 989898 | FILE | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/2VqFWVQdfEysKCUKHpAKJjsaVd8VcYXCiZC2bbEHpKDQWTen3C/rpc
 main | XuEPnCE59rtutASDPCDeYw8geQaGWwteWjkDXYLWvssfuirde | evm 432201 | FILE | src https://subnets.avax.network/dexalot/testnet/rpc
+MTPDev | 2qAgn5cGvNsDnUkfW5ctG5KFy3DfPhyQuEJ4KtzkkxSSfaCick | evm 95784 | FILE | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/2qAgn5cGvNsDnUkfW5ctG5KFy3DfPhyQuEJ4KtzkkxSSfaCick/rpc
+MUGENTestnet | YY8TTyP4tePUPf2TLkBZcR5hW4vYNMmNAshivAdaC9wTBJpzk | evm 30406 | FILE | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/YY8TTyP4tePUPf2TLkBZcR5hW4vYNMmNAshivAdaC9wTBJpzk/rpc
 numine | 26XPa2jA4T31hKmaUGJt3g32xwsbaUfvcnMx1m18dWmrgxV2Mw | evm 8022 | FILE | src validator NodeID-HxsoBTopetpxv5zhaqUHL5GVGLCy6QTnS: validator node
 ProvidenceOne | 2c244m6Vhz9RmMzKUuHQzytBmkdkoi92M5S742cGmjpx6voeLk | evm 23030323 | FILE | src validator NodeID-EnYhXqxqk5oeGjMZC3DLM4kvacNqQa3KB: validator node
 PrvL1 | VDSkkiU59Sg9wkMuRgifpP95KS2DbUNRNzvA4qDL9v6hHTXqo | evm 7888 | FILE | src validator NodeID-M49PnvTGzw1r2gJ4yyZzJYNvc8PLKrWFq: validator node
 RizenetTestnet | gs51JsazmyXrsFHL9dWUu1wPT9wgFt8BhLBFBLzNHkTkL4weS | evm 79123 | FILE | src validator NodeID-Eh5mnfkPVoSvtqyGDM8YwiDEspctXi2Gs: validator node
+STLINKTIS | 2uooowuGgTW1MceKH8ijPE941TueBk25j4LAbVfTkhhWMUEQeD | evm 57922 | FILE | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/2uooowuGgTW1MceKH8ijPE941TueBk25j4LAbVfTkhhWMUEQeD/rpc
+TESTNetFirstTEST | 2JQpYaTf3HoxfZA2h8aHEpTYFPJFpmW5KNwH8uMiUvadWAEMTH | evm 7158 | FILE | src glacier-proxy-blockchainID: https://glacier-api.avax.network/v1/ext/bc/2JQpYaTf3HoxfZA2h8aHEpTYFPJFpmW5KNwH8uMiUvadWAEMTH/rpc
 TixChain | rbPy3vFTgtGccWouLkCXqgDTxyEHEpam2kA24fZUmjgKMNcXX | evm 723107 | FILE | src https://subnets.avax.network/tixchain/testnet/rpc
 tkintlalphacslavastaging | 2Huy194qfidjYSAXrVGzwa8HMEXtKSxB55ja5yjfQGYbc4XqZS | evm 131076 | FILE | src https://subnets.avax.network/tkavast1/testnet/rpc
 UPTNTEST | 2Pk23ZAG5gkQ4DobkRsmwW3NaCwR46zxsDv5EY2GViGL6ow18a | evm 6118 | FILE | src https://glacier-api.avax.network/v1/ext/bc/6118/rpc
-(no name) | 2aRm3B4kAGK49yrrrmSdeK5q69fzpKMmAsXFdzFSN9yDZPvMFk | evm 21200 | UNKNOWN | vals 5 | tried 4 urls
-02CardPlayTestChain | 4AvstMu2f8w7WM3LuUdjH5H1KiCQThVtaTJXEF1Mjn51zRan2 | evm 20261017 | UNKNOWN | vals 1 | tried 7 urls
-ABP testnet | HXvA5VJJ4tXjkSC3Va6yWiEtYGHETL21MKZjNEw3BFgMJrjqV | evm 528 | UNKNOWN | vals 1 | tried 9 urls
-ageFuji | 2TgG548qi5GSyPvnCT7vN6tUK3QowAGnXMHHyzbviaGuKzow8J | evm 777011 | UNKNOWN | vals 1 | tried 5 urls
-agentl1 | 25RZxbbr4RZh1xzxCKpmX6SzM77XWKhx65rfuHYBJKfJth4GYs | evm 990777 | UNKNOWN | vals 1 | tried 6 urls
-AIBTRUSTTestnet | S85PT12J9jAvUS5VuZoTSWZx6wVDU2rNmtQWws3oUutzxpKnv | evm 79903 | UNKNOWN | vals 2 | tried 12 urls
-Akave Community | 56g16Hr1SHQRzdM8JLm3GKYv7APVHY8T2TyeZLvDVzCaTRS7W | evm 21213 | UNKNOWN | vals 5 | tried 14 urls
-arcadeunion | 2qK8zvR4L1FN4J2hVSKJaFT8FfrHdGpYVAoqfsV6BXTETFKBfd | evm 242424 | UNKNOWN | vals 1 | tried 8 urls
-Aurum | 2JrFCfysXwtrNfCbNQjHtiwaNvNvU9co8oLdNUtUBue7yvGZu1 | evm 531 | UNKNOWN | vals 2 | tried 6 urls
-Avalanche Corner | 8EvhgfepL6sftuvzCsVVDK7EsBPmSf4CckZ1GeKvUUV3tuM4w | evm 82087 | UNKNOWN | vals 2 | tried 9 urls
-Avalanche fuji chain | 25m4h9wLZpJm2uMFWyBRmvVvEQpStB5mEL3byu4wn7U72dUyuY | evm 57738 | UNKNOWN | vals 1 | tried 9 urls
-benzonet | 21iisL1nkpM2AauUadAz7p1gK3waRBZLEJme3LU3gsWpaxy792 | evm 68420 | UNKNOWN | vals 1 | tried 5 urls
-Blerify | 2ruoantX5nFehfW2aWZnQnkfH8fW9j9bdJPvArTWsZiAFEd9kP | evm 42900 | UNKNOWN | vals 1 | tried 6 urls
-BnryTestnet | tJGE3Wrw2aCiR8AyEEWVCKhYHKcW4oWCU9N1tbXWjTisDDskK | evm 835 | UNKNOWN | vals 2 | tried 12 urls
-Brown Combat Chain | 2gS2ukbNXLNzCWgvT9dtRWdkfrN6QCAgvTVCfBWhvKCfKCraVy | evm 23142 | UNKNOWN | vals 1 | tried 9 urls
-Cairn | igU3qLmDNE4ZYYeSCeZXyJywx6vkDqgcarzkHKzFqoAZ4NKGf | evm 161464 | UNKNOWN | vals 1 | tried 6 urls
-captevm | 2oo5UvYgFQikM7KBsMXFQE3RQv3xAFFc8JY2GEBNBF1tp4JaeZ | evm 10508 | UNKNOWN | vals 1 | tried 7 urls
-chainjffgfmcibifi | pn3NgCwUvyQMHwGQCVLHjzDdGgQZ7pVaDNTFDULTB6RMD1uTv | evm 519336152 | UNKNOWN | vals 1 | tried 8 urls
-chkfuji | RkJGt3ZenMaUz64EP1cUZeisftYMb9WaJdvYw54xfvkUccgke | evm 191919 | UNKNOWN | vals 1 | tried 6 urls
-cyberia | Lm8HNjKAQ7ujA7XDphehkqbnu8wKjfzxpF1THX3HLyzoJhfv7 | evm 49407 | UNKNOWN | vals 1 | tried 6 urls
-datagram | VhdtacxdFewFKCnCJkyavYWeohf1DjgaQnQAg7H6LKoaCbyp8 | evm 131 | UNKNOWN | vals 1 | tried 7 urls
-DComm | Tap4NfbT2LWhhww4YUrnsLyv6wSbVHhd9YQeJVQqiazpomaVW | evm 32666 | UNKNOWN | vals 2 | tried 7 urls
-Dep | 2fJ7mnC2fENmNfaicf74QKwUYTjQNP7yprbz7L9SPn9YV6Nbr5 | evm 80796 | UNKNOWN | vals 4 | tried 5 urls
-DFK Chain | 32sexHqc3tBQsik8h7WP5F2ruL5svqhX5opeTgXCRVX8HpbKF | evm 335 | UNKNOWN | vals 1 | tried 9 urls
-drama | 51nKdczJVk32pejdpUmKqJzBzeg23BtZxE5jiKdbWVCuUmnAL | evm 710521 | UNKNOWN | vals 1 | tried 6 urls
-DropLinked Attestation | 2WU6TwdaXZ3cHs1ytAG7Ju1KXWeb9f9Zr2LHKXSEGpkR2pJLcc | evm 692544 | UNKNOWN | vals 1 | tried 10 urls
-dtttd | 2RoxFcaNymDKQDfhU6Mr8oy8CVG1vTK3eeh6sjVjShDp4s6XDR | evm 87293 | UNKNOWN | vals 1 | tried 5 urls
-dtttd | 57jCJkgQy4CHRyXwWRwtM8AguSxPNBjfp3fxJLm1yDZC1SFcU | evm 48296 | UNKNOWN | vals 1 | tried 5 urls
-dtttd | MyABYoR3xRXGsDFQAK7QracpKE1tBZyQVnsbo9Sg9c4Vq7HpJ | evm 83303 | UNKNOWN | vals 2 | tried 5 urls
-enigmathames | UquKUwzetdduda7ej7swjo1uwRL3QcX8xb9bnRdYfbJCs2WEC | evm 66583 | UNKNOWN | vals 2 | tried 8 urls
-FrqtalTestnet | 2919i9HeqHMJHoH9rbBY2xxATrPMzcAFhHtAzS9WVA7g1PtTfa | evm 21817 | UNKNOWN | vals 2 | tried 9 urls
-FrqtalTestnet | cUj9F1iJ7AXPcGb3RqsmXScgT4wNSiDiU75PpG4TRVLm4ksQt | evm 21817 | UNKNOWN | vals 1 | tried 9 urls
-fsevm baseline | RjVeiJ1mzJYdxEkWN7WekDvQ8XSwMJb5f6KfPSmeAB1CgL73Q | evm 72026 | UNKNOWN | vals 5 | tried 9 urls
-fsevm tuned | vkxKXnvH2mC21qqG1wop3itnJ2BpqFdnNWY7S7JPJTSWqrwku | evm 72027 | UNKNOWN | vals 5 | tried 7 urls
-Gleaming Haze Chain | kDVqNTYF1WNV1NTxRr95p9Mu3zHptKkwW5RN6pau6VzNcZwhE | evm 75968 | UNKNOWN | vals 1 | tried 10 urls
-goldleader | yJDDTFz737xMofDqtMHTgV41EnuFvN49GjkLfqAp1qPbf134s | evm 73865 | UNKNOWN | vals 2 | tried 6 urls
-InnovoMarketsTestnet | 2nLc1UT7yUqzVcZeKcBzZVpH1kmkedY3LRinX8nAkypxRtwAaF | evm 54414 | UNKNOWN | vals 2 | tried 11 urls
-JONO122 | 2XvEdm5FGHcFWAp6bGookz8BB9uo4mcVyfGf1LALogYkvMfYXd | evm 5668 | UNKNOWN | vals 2 | tried 7 urls
-jono13 | 18QZDAMAUv9kaJog52wohkEny2aUYHkxZJtTFCzTjiCLKvPLM | evm 595581 | UNKNOWN | vals 2 | tried 7 urls
-jono13 | 2es7oPnyjrMCNseCbi2429dbQaCAkp5DhTfERr4gGEKmMEcuko | evm 595581 | UNKNOWN | vals 2 | tried 7 urls
-jono14 | wUMSB5vY7VdocbaHUi8SG5DSDcdv14Yt824p12m9Lqv5a551F | evm 807424 | UNKNOWN | vals 2 | tried 7 urls
-jonostage | 5jXGo1pToYqbY6SU3c6SCzzSLA18MXiMxNhWQSxdoJ1xtvooV | evm 847799 | UNKNOWN | vals 8 | tried 7 urls
-kl1malakit | 7QjKdSJDN7MKMReG2rLwECfrdzBayVorzzHhoTNLNr6J7XYEU | evm 3008 | UNKNOWN | vals 3 | tried 5 urls
-liquidfitest | 2VqFWVQdfEysKCUKHpAKJjsaVd8VcYXCiZC2bbEHpKDQWTen3C | evm 989898 | UNKNOWN | vals 2 | tried 8 urls
-MakaChain | rruErbEb336prxBuKRH9TdA4R4f35Ac5Vaw7he2h3Nd2gnHjd | evm 777177 | UNKNOWN | vals 2 | tried 7 urls
-mirotst | 2cS9EU7CV4UGWtDLusi2mYMH8BCDpNuq3Aaa6rnwJrczXkqCvS | evm 44451 | UNKNOWN | vals 3 | tried 5 urls
-mirotst | 2k377KNNmF728HNAanMJcdst36PCbX2WdARBDyyB74Z8PWPGDJ | evm 22880 | UNKNOWN | vals 2 | tried 5 urls
-MTPDev | 2qAgn5cGvNsDnUkfW5ctG5KFy3DfPhyQuEJ4KtzkkxSSfaCick | evm 95784 | UNKNOWN | vals 2 | tried 6 urls
-MUGENTestnet | YY8TTyP4tePUPf2TLkBZcR5hW4vYNMmNAshivAdaC9wTBJpzk | evm 30406 | UNKNOWN | vals 2 | tried 11 urls
-myl1 | 2bU2988XvYbG4z85k39QxhDNomHWREnTKzYWLViU1RMCeSwEea | evm 99999 | UNKNOWN | vals 1 | tried 7 urls
-NEXORATWO | FyUfzvhv4bVgLzWVqWAjVWfPetLrW1zJrz76bBx2iGekDGaCD | evm 20260917 | UNKNOWN | vals 1 | tried 5 urls
-NofiTestnet | 2oWGZSj5rHmUrPTBdw9TNY74eVxge9GwisXvQQjw5bKDQKCRpq | evm 880024 | UNKNOWN | vals 1 | tried 10 urls
-Nyxor L1 | 2SrgwcLrpgt2kLrqhTr6fMaPFd1kN467ai3eaK4HcFyBq1YbaY | evm 98421 | UNKNOWN | vals 1 | tried 7 urls
-ONEWORDCHAIN | VJqh73j1HpyFDVgHdj1VoDrsZKYcoXgL43sVjp8uyAT3GM1Uw | evm 27515 | UNKNOWN | vals 1 | tried 7 urls
-PandaSea | nWZ4nNB1i9bT2tYUdEFP5P6S9nLGx289QaWezJge7vPLP9nd4 | evm 7770 | UNKNOWN | vals 2 | tried 9 urls
-peridotdev | 214vC6YULpdhfkvEHSDwVHFMTbDdYRUpvVkqXeuuEmhUxGZLpp | evm 43214001 | UNKNOWN | vals 1 | tried 5 urls
-pltok | dA8bad9zaEg9Ei7Wi6rDortg9NvvGTwtNiDhZfDGkfMhkGhVJ | evm 7708 | UNKNOWN | vals 3 | tried 5 urls
-Private Wei Chain | E8SqdSRuTJ4hfs57ypBQZfCNnR4cozMwBriF9Xbey56wFYspH | evm 87537 | UNKNOWN | vals 5 | tried 14 urls
-provena | 2dmUcoiPtijDDCX3UpxEHYukdMPX6gKYcdh2TmPPg5WFDyagp8 | evm 61778 | UNKNOWN | vals 1 | tried 6 urls
-QRQTD | 2p9Pft81x75dYLJd3DgKHtUzKQ7aSt4eTq3YvfjsidFXbm4bJr | evm 82793 | UNKNOWN | vals 6 | tried 5 urls
-QRQTP | 2buASsMqVt5LevMeRYKgpV1xViYewcd2q3v9PY6ATqAKUv59AY | evm 20491 | UNKNOWN | vals 2 | tried 6 urls
-QRQTP | L29t2oSvEeP8pSubZehCwySGXY6MSGDVo61FD5mYHkbhBEf7w | evm 39411 | UNKNOWN | vals 2 | tried 6 urls
-QRQTP | L8eapB4NDYH6SLNPEnuiE5tG1pzYen6B4ckvphZqUHmVrKXBz | evm 34384 | UNKNOWN | vals 2 | tried 6 urls
-Radiant Crest | ZVX8x57XKXg95mMFS6KvQJ2EdBMdbGoFWmY1FJoJzJ6J1qUJG | evm 257942 | UNKNOWN | vals 1 | tried 9 urls
-RealTestnet | F9iT4dEEByJ4hCn76XtgEqu3UwEEL1PA25ZCkWSn6TMR1div9 | evm 117711 | UNKNOWN | vals 3 | tried 12 urls
-REXChain | 25xqA8rtWLkmZL38Xap4uszE4CikMFC8JgtmRykQjAJLx1psQS | evm 12392 | UNKNOWN | vals 1 | tried 5 urls
-rjtts | CiZqkCQqJEb49HLdfN3hWz6zAjE3CFHgJ6nRvJvYEjvnEyALC | evm 95104 | UNKNOWN | vals 2 | tried 5 urls
-rndnet | TEXRUQF3PY9hUU4XWkhvnWuvp8wk3m9V6dKwnSoLJXodWhR9H | evm 528 | UNKNOWN | vals 1 | tried 5 urls
-rt | 23cXDQmGBtouf7Qg4TYsU96GfuDmWD2Sthnao4UTwkk63g1Gnu | evm 220377823 | UNKNOWN | vals 1 | tried 5 urls
-rt | 27B4DDddLgjon3EingqoU26BHQMaiQmvPcHJpQkkWu3NuHLfRY | evm 34737338 | UNKNOWN | vals 1 | tried 5 urls
-rt | 29CPRVay4xcTemyy3NkkTrWNczmYkfWY4cehDPmgzGWmyPs8Rx | evm 543842380 | UNKNOWN | vals 1 | tried 5 urls
-rt | 2v7JP8NpTbqGnTpAoPSq62qDxL1FNgVL3GVMTsQwCDC3U3WwaF | evm 609198036 | UNKNOWN | vals 1 | tried 5 urls
-rt | b4e7inkrixcbGnKp4vhW3ZnGoq7cknKMkTbvsbnpUWybtECgu | evm 916147609 | UNKNOWN | vals 1 | tried 5 urls
-rt | FczvNe327rcVrke1A7rWZkSWked2HtYueSLSLqXpmKQoTRNGj | evm 282277365 | UNKNOWN | vals 1 | tried 5 urls
-rt | niof7r1V4ngwtb3pv6NQQa22YWHvj2xbDegYKnB436Zkim1v2 | evm 232476375 | UNKNOWN | vals 1 | tried 5 urls
-rt | wntJSwUuG5WMTr8BPQPrCQ5ZTddrhHvKtQ6QzQAVENc2gdhdz | evm 474736591 | UNKNOWN | vals 1 | tried 5 urls
-rt22084738 | 2v7HJe6sncd1s3YMf4iXADgkiuXFRkECfcaALZ218yjETox2hV | evm 122088022 | UNKNOWN | vals 1 | tried 5 urls
-rt67191856 | AKRm1keRuNUH9jTuLVPs1eCzF2gErqKCiZhGoPdN5ULMF1iWH | evm 367195873 | UNKNOWN | vals 1 | tried 5 urls
-rt84268796 | F1JEDkbrXrmnHnFik6QCQf8vi9o4eA14mXJ2HcNTy3TWK1vWj | evm 584271642 | UNKNOWN | vals 1 | tried 5 urls
-rt87395063 | 2oWuJ3dJs4HshcUwqC4L7S8kJdoP74e67ydue3tqJS6Y1h3Uwk | evm 987396836 | UNKNOWN | vals 1 | tried 5 urls
-rwa | 2V5qotZnbwJRZ1mtb7pBCcid3DTaJors7on95CxdUSnxfdAFHF | evm 727001 | UNKNOWN | vals 1 | tried 5 urls
-rwachainfuji | vbvFXBFDHMdWBC2Gvei7eZMDwt5zrMXSni7VY7gw8NCQhe7Ah | evm 191919 | UNKNOWN | vals 1 | tried 9 urls
-secondaryharlequincheetah | orMPCSAXmDY5nNqrKgJQku5EPbTSMGQNDvBL8S8Uu1CLg7vtp | evm 4995 | UNKNOWN | vals 2 | tried 9 urls
-SecondTEST | 2HJ95937F5yY8BAMiSLsPGitc9rEDEupMsYd5VWt4R19jkSrhQ | evm 76932 | UNKNOWN | vals 2 | tried 7 urls
-SentinelL1 | 2PqooUD2u82cQVbEHUfSnK5GTnRfUg17d8RUuccc97y27NkZhd | evm 99999 | UNKNOWN | vals 1 | tried 6 urls
-Signal  | 2F1SfodznZumMGnFTDTBnFC5uupPy5HHVzypedYAuDNQ6reXaZ | evm 89841 | UNKNOWN | vals 1 | tried 5 urls
-silverserenehawk | epQVP6gEab4TZeFr72qCRmTav2so8WZvnUFUV1KugWf4vrnSe | evm 25151 | UNKNOWN | vals 2 | tried 9 urls
-Skarn | 2Ja9YVJwsbXH52EHHTzGMYj4fvgMWftG7SRBxU1pz3JwzqSULo | evm 7527 | UNKNOWN | vals 11 | tried 8 urls
-Skarn | hWsS2QVncdzzb3LMYRfMUpgBN5PtYzUHT4zDVg1JUVd1eLbzF | evm 7527 | UNKNOWN | vals 4 | tried 5 urls
-SKY | SDxMzdWdPTwdypG6mnXSz4tp7vcqKFc2vEe85YnRP1sAwhHen | evm 29358 | UNKNOWN | vals 1 | tried 6 urls
-SL1023Q1TS | rR57kqYaiciEKHPPU43io745cNEc8fuw3XiJtYNtH5vQEmZiN | evm 94970 | UNKNOWN | vals 1 | tried 5 urls
-SLQTS | 2vZ2uEeN4s3W4yyWbidpxeqcVDBCg42noCVYsWEGranW2STWeX | evm 4991 | UNKNOWN | vals 1 | tried 5 urls
-STLINKTIS | 2uooowuGgTW1MceKH8ijPE941TueBk25j4LAbVfTkhhWMUEQeD | evm 57922 | UNKNOWN | vals 2 | tried 7 urls
-Sundial Testnet | 2a4hDpqsD2vhLq8DGDf6HeZnKD4wX8Kx9oyPmfCehmf9A662Z9 | evm 113311 | UNKNOWN | vals 1 | tried 11 urls
-Tassat Testnet 01 | 2kp8PruHBv8AyDo2n2M9nVrGBJpyFGxxHwBetYJFCBQtuiKY49 | evm 49733 | UNKNOWN | vals 5 | tried 14 urls
-TastyPurpleMole | 2cfykT2vjWMfBVtqrQiQAg2D7mahaB3KWEhoNX3wHBDgTuy1xk | evm 28019 | UNKNOWN | vals 2 | tried 8 urls
-TESTNetFirstTEST | 2JQpYaTf3HoxfZA2h8aHEpTYFPJFpmW5KNwH8uMiUvadWAEMTH | evm 7158 | UNKNOWN | vals 2 | tried 8 urls
-tFrqtal | 2jUuRq6ZXqHvZdS8HrF25BvA5Cevu2NUYCdFPNBVizUdW9B8gS | evm 21817 | UNKNOWN | vals 1 | tried 5 urls
-tFrqtal | XtQ2kYTutd4NCKQnvmiGFayALopRXJ4KjzN1uu1VALiLmfww3 | evm 21817 | UNKNOWN | vals 1 | tried 5 urls
-TradeDar Regulatory Chain STG | 2bMykTrjmqzmL5o8tYyjpRkYQB83r2ncFQGF3MkLNwMSQaahsn | evm 54858 | UNKNOWN | vals 1 | tried 10 urls
-Troubled Homely Splinter Chain | 64q4cp3bCBpFzNyYoJ3SnTiFnMM4HtkqGvqX6ZC6FRJBa7bEa | evm 21211 | UNKNOWN | vals 5 | tried 13 urls
-trustechledger | 2SndTptHdH3TKvoABAa5HKyb3AiqEnprc6nnwxj7PHq7muPgNq | evm 173427 | UNKNOWN | vals 6 | tried 13 urls
-VJTTD | 23f5WZwsP5d2iUtontakgEuhecxVzs9t9uQeNEKtuXHiFWmnFh | evm 58882 | UNKNOWN | vals 1 | tried 5 urls
-YENTRIA | Loe3eUnTTLKh52roR6NPcrowaddXXWqxPooTP9yxwkaTWSA5d | evm 49012 | UNKNOWN | vals 2 | tried 7 urls
+(no name) | 2aRm3B4kAGK49yrrrmSdeK5q69fzpKMmAsXFdzFSN9yDZPvMFk | evm 21200 | UNKNOWN | vals 5 | tried 5 urls
+02CardPlayTestChain | 4AvstMu2f8w7WM3LuUdjH5H1KiCQThVtaTJXEF1Mjn51zRan2 | evm 20261017 | UNKNOWN | vals 1 | tried 9 urls
+ABP testnet | HXvA5VJJ4tXjkSC3Va6yWiEtYGHETL21MKZjNEw3BFgMJrjqV | evm 528 | UNKNOWN | vals 1 | tried 12 urls
+ageFuji | 2TgG548qi5GSyPvnCT7vN6tUK3QowAGnXMHHyzbviaGuKzow8J | evm 777011 | UNKNOWN | vals 1 | tried 8 urls
+agentl1 | 25RZxbbr4RZh1xzxCKpmX6SzM77XWKhx65rfuHYBJKfJth4GYs | evm 990777 | UNKNOWN | vals 1 | tried 10 urls
+arcadeunion | 2qK8zvR4L1FN4J2hVSKJaFT8FfrHdGpYVAoqfsV6BXTETFKBfd | evm 242424 | UNKNOWN | vals 1 | tried 11 urls
+Avalanche Corner | 8EvhgfepL6sftuvzCsVVDK7EsBPmSf4CckZ1GeKvUUV3tuM4w | evm 82087 | UNKNOWN | vals 2 | tried 14 urls
+Avalanche fuji chain | 25m4h9wLZpJm2uMFWyBRmvVvEQpStB5mEL3byu4wn7U72dUyuY | evm 57738 | UNKNOWN | vals 1 | tried 10 urls
+benzonet | 21iisL1nkpM2AauUadAz7p1gK3waRBZLEJme3LU3gsWpaxy792 | evm 68420 | UNKNOWN | vals 1 | tried 6 urls
+Blerify | 2ruoantX5nFehfW2aWZnQnkfH8fW9j9bdJPvArTWsZiAFEd9kP | evm 42900 | UNKNOWN | vals 1 | tried 8 urls
+BnryTestnet | tJGE3Wrw2aCiR8AyEEWVCKhYHKcW4oWCU9N1tbXWjTisDDskK | evm 835 | UNKNOWN | vals 2 | tried 15 urls
+Brown Combat Chain | 2gS2ukbNXLNzCWgvT9dtRWdkfrN6QCAgvTVCfBWhvKCfKCraVy | evm 23142 | UNKNOWN | vals 1 | tried 12 urls
+Cairn | igU3qLmDNE4ZYYeSCeZXyJywx6vkDqgcarzkHKzFqoAZ4NKGf | evm 161464 | UNKNOWN | vals 1 | tried 8 urls
+captevm | 2oo5UvYgFQikM7KBsMXFQE3RQv3xAFFc8JY2GEBNBF1tp4JaeZ | evm 10508 | UNKNOWN | vals 1 | tried 8 urls
+chainjffgfmcibifi | pn3NgCwUvyQMHwGQCVLHjzDdGgQZ7pVaDNTFDULTB6RMD1uTv | evm 519336152 | UNKNOWN | vals 1 | tried 10 urls
+chkfuji | RkJGt3ZenMaUz64EP1cUZeisftYMb9WaJdvYw54xfvkUccgke | evm 191919 | UNKNOWN | vals 1 | tried 7 urls
+cyberia | Lm8HNjKAQ7ujA7XDphehkqbnu8wKjfzxpF1THX3HLyzoJhfv7 | evm 49407 | UNKNOWN | vals 1 | tried 8 urls
+datagram | VhdtacxdFewFKCnCJkyavYWeohf1DjgaQnQAg7H6LKoaCbyp8 | evm 131 | UNKNOWN | vals 1 | tried 8 urls
+DComm | Tap4NfbT2LWhhww4YUrnsLyv6wSbVHhd9YQeJVQqiazpomaVW | evm 32666 | UNKNOWN | vals 2 | tried 10 urls
+Dep | 2fJ7mnC2fENmNfaicf74QKwUYTjQNP7yprbz7L9SPn9YV6Nbr5 | evm 80796 | UNKNOWN | vals 4 | tried 6 urls
+DFK Chain | 32sexHqc3tBQsik8h7WP5F2ruL5svqhX5opeTgXCRVX8HpbKF | evm 335 | UNKNOWN | vals 1 | tried 10 urls
+drama | 51nKdczJVk32pejdpUmKqJzBzeg23BtZxE5jiKdbWVCuUmnAL | evm 710521 | UNKNOWN | vals 1 | tried 8 urls
+DropLinked Attestation | 2WU6TwdaXZ3cHs1ytAG7Ju1KXWeb9f9Zr2LHKXSEGpkR2pJLcc | evm 692544 | UNKNOWN | vals 1 | tried 12 urls
+dtttd | 2RoxFcaNymDKQDfhU6Mr8oy8CVG1vTK3eeh6sjVjShDp4s6XDR | evm 87293 | UNKNOWN | vals 1 | tried 6 urls
+dtttd | 57jCJkgQy4CHRyXwWRwtM8AguSxPNBjfp3fxJLm1yDZC1SFcU | evm 48296 | UNKNOWN | vals 1 | tried 6 urls
+dtttd | MyABYoR3xRXGsDFQAK7QracpKE1tBZyQVnsbo9Sg9c4Vq7HpJ | evm 83303 | UNKNOWN | vals 2 | tried 6 urls
+FrqtalTestnet | 2919i9HeqHMJHoH9rbBY2xxATrPMzcAFhHtAzS9WVA7g1PtTfa | evm 21817 | UNKNOWN | vals 2 | tried 10 urls
+FrqtalTestnet | cUj9F1iJ7AXPcGb3RqsmXScgT4wNSiDiU75PpG4TRVLm4ksQt | evm 21817 | UNKNOWN | vals 1 | tried 10 urls
+fsevm baseline | RjVeiJ1mzJYdxEkWN7WekDvQ8XSwMJb5f6KfPSmeAB1CgL73Q | evm 72026 | UNKNOWN | vals 5 | tried 15 urls
+fsevm tuned | vkxKXnvH2mC21qqG1wop3itnJ2BpqFdnNWY7S7JPJTSWqrwku | evm 72027 | UNKNOWN | vals 5 | tried 13 urls
+Gleaming Haze Chain | kDVqNTYF1WNV1NTxRr95p9Mu3zHptKkwW5RN6pau6VzNcZwhE | evm 75968 | UNKNOWN | vals 1 | tried 13 urls
+jono13 | 18QZDAMAUv9kaJog52wohkEny2aUYHkxZJtTFCzTjiCLKvPLM | evm 595581 | UNKNOWN | vals 2 | tried 12 urls
+kl1malakit | 7QjKdSJDN7MKMReG2rLwECfrdzBayVorzzHhoTNLNr6J7XYEU | evm 3008 | UNKNOWN | vals 3 | tried 6 urls
+MakaChain | rruErbEb336prxBuKRH9TdA4R4f35Ac5Vaw7he2h3Nd2gnHjd | evm 777177 | UNKNOWN | vals 2 | tried 10 urls
+mirotst | 2cS9EU7CV4UGWtDLusi2mYMH8BCDpNuq3Aaa6rnwJrczXkqCvS | evm 44451 | UNKNOWN | vals 3 | tried 8 urls
+mirotst | 2k377KNNmF728HNAanMJcdst36PCbX2WdARBDyyB74Z8PWPGDJ | evm 22880 | UNKNOWN | vals 2 | tried 6 urls
+myl1 | 2bU2988XvYbG4z85k39QxhDNomHWREnTKzYWLViU1RMCeSwEea | evm 99999 | UNKNOWN | vals 1 | tried 9 urls
+NEXORATWO | FyUfzvhv4bVgLzWVqWAjVWfPetLrW1zJrz76bBx2iGekDGaCD | evm 20260917 | UNKNOWN | vals 1 | tried 6 urls
+NofiTestnet | 2oWGZSj5rHmUrPTBdw9TNY74eVxge9GwisXvQQjw5bKDQKCRpq | evm 880024 | UNKNOWN | vals 1 | tried 13 urls
+Nyxor L1 | 2SrgwcLrpgt2kLrqhTr6fMaPFd1kN467ai3eaK4HcFyBq1YbaY | evm 98421 | UNKNOWN | vals 1 | tried 8 urls
+ONEWORDCHAIN | VJqh73j1HpyFDVgHdj1VoDrsZKYcoXgL43sVjp8uyAT3GM1Uw | evm 27515 | UNKNOWN | vals 1 | tried 8 urls
+PandaSea | nWZ4nNB1i9bT2tYUdEFP5P6S9nLGx289QaWezJge7vPLP9nd4 | evm 7770 | UNKNOWN | vals 2 | tried 12 urls
+peridotdev | 214vC6YULpdhfkvEHSDwVHFMTbDdYRUpvVkqXeuuEmhUxGZLpp | evm 43214001 | UNKNOWN | vals 1 | tried 6 urls
+pltok | dA8bad9zaEg9Ei7Wi6rDortg9NvvGTwtNiDhZfDGkfMhkGhVJ | evm 7708 | UNKNOWN | vals 3 | tried 11 urls
+Private Wei Chain | E8SqdSRuTJ4hfs57ypBQZfCNnR4cozMwBriF9Xbey56wFYspH | evm 87537 | UNKNOWN | vals 5 | tried 25 urls
+provena | 2dmUcoiPtijDDCX3UpxEHYukdMPX6gKYcdh2TmPPg5WFDyagp8 | evm 61778 | UNKNOWN | vals 1 | tried 8 urls
+QRQTD | 2p9Pft81x75dYLJd3DgKHtUzKQ7aSt4eTq3YvfjsidFXbm4bJr | evm 82793 | UNKNOWN | vals 6 | tried 6 urls
+Radiant Crest | ZVX8x57XKXg95mMFS6KvQJ2EdBMdbGoFWmY1FJoJzJ6J1qUJG | evm 257942 | UNKNOWN | vals 1 | tried 10 urls
+RealTestnet | F9iT4dEEByJ4hCn76XtgEqu3UwEEL1PA25ZCkWSn6TMR1div9 | evm 117711 | UNKNOWN | vals 3 | tried 16 urls
+REXChain | 25xqA8rtWLkmZL38Xap4uszE4CikMFC8JgtmRykQjAJLx1psQS | evm 12392 | UNKNOWN | vals 1 | tried 6 urls
+rjtts | CiZqkCQqJEb49HLdfN3hWz6zAjE3CFHgJ6nRvJvYEjvnEyALC | evm 95104 | UNKNOWN | vals 2 | tried 8 urls
+rndnet | TEXRUQF3PY9hUU4XWkhvnWuvp8wk3m9V6dKwnSoLJXodWhR9H | evm 528 | UNKNOWN | vals 1 | tried 6 urls
+rt | 23cXDQmGBtouf7Qg4TYsU96GfuDmWD2Sthnao4UTwkk63g1Gnu | evm 220377823 | UNKNOWN | vals 1 | tried 6 urls
+rt | 27B4DDddLgjon3EingqoU26BHQMaiQmvPcHJpQkkWu3NuHLfRY | evm 34737338 | UNKNOWN | vals 1 | tried 6 urls
+rt | 29CPRVay4xcTemyy3NkkTrWNczmYkfWY4cehDPmgzGWmyPs8Rx | evm 543842380 | UNKNOWN | vals 1 | tried 6 urls
+rt | 2v7JP8NpTbqGnTpAoPSq62qDxL1FNgVL3GVMTsQwCDC3U3WwaF | evm 609198036 | UNKNOWN | vals 1 | tried 6 urls
+rt | b4e7inkrixcbGnKp4vhW3ZnGoq7cknKMkTbvsbnpUWybtECgu | evm 916147609 | UNKNOWN | vals 1 | tried 6 urls
+rt | FczvNe327rcVrke1A7rWZkSWked2HtYueSLSLqXpmKQoTRNGj | evm 282277365 | UNKNOWN | vals 1 | tried 6 urls
+rt | niof7r1V4ngwtb3pv6NQQa22YWHvj2xbDegYKnB436Zkim1v2 | evm 232476375 | UNKNOWN | vals 1 | tried 6 urls
+rt | wntJSwUuG5WMTr8BPQPrCQ5ZTddrhHvKtQ6QzQAVENc2gdhdz | evm 474736591 | UNKNOWN | vals 1 | tried 6 urls
+rt22084738 | 2v7HJe6sncd1s3YMf4iXADgkiuXFRkECfcaALZ218yjETox2hV | evm 122088022 | UNKNOWN | vals 1 | tried 7 urls
+rt67191856 | AKRm1keRuNUH9jTuLVPs1eCzF2gErqKCiZhGoPdN5ULMF1iWH | evm 367195873 | UNKNOWN | vals 1 | tried 6 urls
+rt84268796 | F1JEDkbrXrmnHnFik6QCQf8vi9o4eA14mXJ2HcNTy3TWK1vWj | evm 584271642 | UNKNOWN | vals 1 | tried 6 urls
+rt87395063 | 2oWuJ3dJs4HshcUwqC4L7S8kJdoP74e67ydue3tqJS6Y1h3Uwk | evm 987396836 | UNKNOWN | vals 1 | tried 6 urls
+rwa | 2V5qotZnbwJRZ1mtb7pBCcid3DTaJors7on95CxdUSnxfdAFHF | evm 727001 | UNKNOWN | vals 1 | tried 6 urls
+secondaryharlequincheetah | orMPCSAXmDY5nNqrKgJQku5EPbTSMGQNDvBL8S8Uu1CLg7vtp | evm 4995 | UNKNOWN | vals 2 | tried 12 urls
+SentinelL1 | 2PqooUD2u82cQVbEHUfSnK5GTnRfUg17d8RUuccc97y27NkZhd | evm 99999 | UNKNOWN | vals 1 | tried 7 urls
+Signal  | 2F1SfodznZumMGnFTDTBnFC5uupPy5HHVzypedYAuDNQ6reXaZ | evm 89841 | UNKNOWN | vals 1 | tried 6 urls
+Skarn | 2Ja9YVJwsbXH52EHHTzGMYj4fvgMWftG7SRBxU1pz3JwzqSULo | evm 7527 | UNKNOWN | vals 11 | tried 29 urls
+Skarn | hWsS2QVncdzzb3LMYRfMUpgBN5PtYzUHT4zDVg1JUVd1eLbzF | evm 7527 | UNKNOWN | vals 4 | tried 8 urls
+SKY | SDxMzdWdPTwdypG6mnXSz4tp7vcqKFc2vEe85YnRP1sAwhHen | evm 29358 | UNKNOWN | vals 1 | tried 8 urls
+SL1023Q1TS | rR57kqYaiciEKHPPU43io745cNEc8fuw3XiJtYNtH5vQEmZiN | evm 94970 | UNKNOWN | vals 1 | tried 7 urls
+SLQTS | 2vZ2uEeN4s3W4yyWbidpxeqcVDBCg42noCVYsWEGranW2STWeX | evm 4991 | UNKNOWN | vals 1 | tried 6 urls
+Sundial Testnet | 2a4hDpqsD2vhLq8DGDf6HeZnKD4wX8Kx9oyPmfCehmf9A662Z9 | evm 113311 | UNKNOWN | vals 1 | tried 12 urls
+Tassat Testnet 01 | 2kp8PruHBv8AyDo2n2M9nVrGBJpyFGxxHwBetYJFCBQtuiKY49 | evm 49733 | UNKNOWN | vals 5 | tried 25 urls
+tFrqtal | 2jUuRq6ZXqHvZdS8HrF25BvA5Cevu2NUYCdFPNBVizUdW9B8gS | evm 21817 | UNKNOWN | vals 1 | tried 7 urls
+tFrqtal | XtQ2kYTutd4NCKQnvmiGFayALopRXJ4KjzN1uu1VALiLmfww3 | evm 21817 | UNKNOWN | vals 1 | tried 7 urls
+TradeDar Regulatory Chain STG | 2bMykTrjmqzmL5o8tYyjpRkYQB83r2ncFQGF3MkLNwMSQaahsn | evm 54858 | UNKNOWN | vals 1 | tried 12 urls
+Troubled Homely Splinter Chain | 64q4cp3bCBpFzNyYoJ3SnTiFnMM4HtkqGvqX6ZC6FRJBa7bEa | evm 21211 | UNKNOWN | vals 5 | tried 14 urls
+trustechledger | 2SndTptHdH3TKvoABAa5HKyb3AiqEnprc6nnwxj7PHq7muPgNq | evm 173427 | UNKNOWN | vals 6 | tried 21 urls
+VJTTD | 23f5WZwsP5d2iUtontakgEuhecxVzs9t9uQeNEKtuXHiFWmnFh | evm 58882 | UNKNOWN | vals 1 | tried 6 urls

@@ -39,6 +39,7 @@ means the file is `result.upgrades` written verbatim.
 | mainnet | straitsx | `EJ4DyXHe4ydhsLLMiDPsHtoq5RDqgyao6Lwb9znKhs59q4NQx` | 5566 | yes | held | MATCH |
 | mainnet | titan | `24gRTyzFmXUPebVwzQHuwU6RFeKHHDxRftRVaSAe7MHRXWxZ4S` | 84358 | yes | held | MATCH |
 | mainnet | uptn | `2tsFdSeemtqK9vaPgjPrcwvKFKPw1T6PHufaZ26tKbAFSkXPTE` | 6119 | yes | held | MATCH |
+| fuji | aibtrust | `S85PT12J9jAvUS5VuZoTSWZx6wVDU2rNmtQWws3oUutzxpKnv` | 79903 | no | live (Glacier proxy) | MATCH |
 | fuji | apertum | `V8YHL6yZV62tx2MdLi98wjAY2Qn6sP7zdiEKX5bvxj515vhK7` | 89898 | no | live | MATCH |
 | fuji | beam | `y97omoP2cSyEVfdSztQHXD9EnfnVP9YKjZwAxhUfGbLAPYT9t` | 13337 | yes | live | MATCH |
 | fuji | dexalot | `XuEPnCE59rtutASDPCDeYw8geQaGWwteWjkDXYLWvssfuirde` | 432201 | no | live | MATCH |
@@ -47,11 +48,21 @@ means the file is `result.upgrades` written verbatim.
 | fuji | egmtester | `Buqpg8qoENGbZEC1LY1ngkHYgS5ftZ8M22QCf3e7DWbc3yRDM` | 55197 | yes | live | MATCH |
 | fuji | fscfive | `zYh1CWZEBF8bt8qW3Stg2t8WnqXjKyHwTo3S92swbvDp8SFvr` | 888888 | no | live (validator node) | MATCH |
 | fuji | gunz | `ryk9vkvNuKtewME2PeCgybo9sdWXGmCkBrrx4VPuZPdVdAak8` | 49321 | no | live | MATCH |
+| fuji | innovo | `2nLc1UT7yUqzVcZeKcBzZVpH1kmkedY3LRinX8nAkypxRtwAaF` | 54414 | yes | live (Glacier proxy) | MATCH |
 | fuji | intainmarkets | `2ALtzRYgRpRWnTgjdrMArkMvU6RTpcjs7VWmupqYaPrHDrHLSd` | 101122 | no | live (validator node) | MATCH |
+| fuji | jono122 | `2XvEdm5FGHcFWAp6bGookz8BB9uo4mcVyfGf1LALogYkvMfYXd` | 5668 | yes | live (Glacier proxy) | MATCH |
+| fuji | jono13 | `2es7oPnyjrMCNseCbi2429dbQaCAkp5DhTfERr4gGEKmMEcuko` | 595581 | yes | live (Glacier proxy) | MATCH |
+| fuji | jono14 | `wUMSB5vY7VdocbaHUi8SG5DSDcdv14Yt824p12m9Lqv5a551F` | 807424 | yes | live (Glacier proxy) | MATCH |
+| fuji | jonostage | `5jXGo1pToYqbY6SU3c6SCzzSLA18MXiMxNhWQSxdoJ1xtvooV` | 847799 | yes | live (Glacier proxy) | MATCH |
+| fuji | liquidfitest | `2VqFWVQdfEysKCUKHpAKJjsaVd8VcYXCiZC2bbEHpKDQWTen3C` | 989898 | no | live (Glacier proxy) | MATCH |
+| fuji | mtpdev | `2qAgn5cGvNsDnUkfW5ctG5KFy3DfPhyQuEJ4KtzkkxSSfaCick` | 95784 | no | live (Glacier proxy) | MATCH |
+| fuji | mugen | `YY8TTyP4tePUPf2TLkBZcR5hW4vYNMmNAshivAdaC9wTBJpzk` | 30406 | yes | live (Glacier proxy) | MATCH |
 | fuji | numine | `26XPa2jA4T31hKmaUGJt3g32xwsbaUfvcnMx1m18dWmrgxV2Mw` | 8022 | yes | live (validator node) | MATCH |
 | fuji | providenceone | `2c244m6Vhz9RmMzKUuHQzytBmkdkoi92M5S742cGmjpx6voeLk` | 23030323 | no | live (validator node) | MATCH |
 | fuji | prvl1 | `VDSkkiU59Sg9wkMuRgifpP95KS2DbUNRNzvA4qDL9v6hHTXqo` | 7888 | no | live (validator node) | MATCH, head block 2025-12-16 |
 | fuji | rizenet | `gs51JsazmyXrsFHL9dWUu1wPT9wgFt8BhLBFBLzNHkTkL4weS` | 79123 | no | live (validator node) | MATCH |
+| fuji | stlink | `2uooowuGgTW1MceKH8ijPE941TueBk25j4LAbVfTkhhWMUEQeD` | 57922 | yes | live (Glacier proxy) | MATCH |
+| fuji | testnetfirsttest | `2JQpYaTf3HoxfZA2h8aHEpTYFPJFpmW5KNwH8uMiUvadWAEMTH` | 7158 | yes | live (Glacier proxy) | MATCH |
 | fuji | tixchain | `rbPy3vFTgtGccWouLkCXqgDTxyEHEpam2kA24fZUmjgKMNcXX` | 723107 | yes | live | MATCH |
 | fuji | tkintl-alpha-csl-ava-staging | `2Huy194qfidjYSAXrVGzwa8HMEXtKSxB55ja5yjfQGYbc4XqZS` | 131076 | no | live | MATCH |
 | fuji | uptn | `2Pk23ZAG5gkQ4DobkRsmwW3NaCwR46zxsDv5EY2GViGL6ow18a` | 6118 | yes | live | MATCH |
@@ -93,7 +104,7 @@ TixChain (`Bb5XKrQoBT6ypFmFUppAqfSmKCqcqYwjGCn3hHS6gibRTjiDj`),
 tomatochain (`2PXzkiiy7zhXsPBDkhW2kwMvjeHk8kDXKbv5A6G3SjroMVxfkT`),
 Turing Chain (`p3eNXxT7Myp9jLrRZvj4rzTHDQMvQVJsYLknWhcXgqSU3Dwdi`).
 
-Fuji: 41 chains, listed with the RPC that answered in
+Fuji: 53 chains, listed with the RPC that answered in
 [`fuji-active-chains-2026-10-27.txt`](fuji-active-chains-2026-10-27.txt) (rows marked `EMPTY`).
 
 ## Could not check
@@ -116,12 +127,11 @@ These chains have no public RPC that answers `eth_getChainConfig`:
   ParadeA (`GRPDgKqXDuxEy129BHrLW1aw9kv51stHBkgTA3cKik3pnaenV`,
   `V5PeDXYsRb8g33R8qivUZJV59Ybwx44b3nfqFKdRw5e9WQrRV`),
   mjms (`4s6dn5ToLrL9VQGwiuwrGjW2CgiRSvJRiU6zQcPJnjeT9jVWj`).
-- Fuji: 104 of the 161 active Subnet-EVM chains, rows marked `UNKNOWN` in
+- Fuji: 81 of the 161 active Subnet-EVM chains, rows marked `UNKNOWN` in
   [`fuji-active-chains-2026-10-27.txt`](fuji-active-chains-2026-10-27.txt).
-  19 of them are AvaCloud chains whose Glacier RPC returns `Forbidden`, among them
-  the Fuji twins of mainnet chains that need a file (aibtrust, mugen, innovo).
-  Others are known projects with dead testnet RPCs (pandasea, dfk, numbers
-  `captevm`, stlink, bnry) and many throwaway test chains.
+  Glacier does not index them and no validator HTTP port answers. Known
+  projects among them: pandasea, dfk, numbers `captevm`, skarn, tassat, bnry;
+  most of the rest are throwaway test chains.
 
 ## Which chains are covered
 

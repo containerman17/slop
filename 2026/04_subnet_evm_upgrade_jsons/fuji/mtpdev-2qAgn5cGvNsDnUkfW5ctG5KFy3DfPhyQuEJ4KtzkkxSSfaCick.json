@@ -1,0 +1,10 @@
+{
+  "precompileUpgrades": [
+    {
+      "txAllowListConfig": {
+        "blockTimestamp": 1758153600,
+        "disable": true
+      }
+    }
+  ]
+}
