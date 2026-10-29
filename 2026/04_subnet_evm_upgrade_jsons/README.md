@@ -71,7 +71,7 @@
 | CodeNekt | `ZG7cT4B1u3y7piZ9CzfejnTKnNAoehcifbJWUwBqgyD3RuEqK` | 235235 | 2/8 | no result | no RPC answers; **stock node sync failed: only 2 of 8 validators reachable, IPv6 only** |
 | DOS Chain | `22v7AG7h6qaVxd4bLvAsSsg2LZ4RCn5iVYgFn7a2Fj1LCuYwjv` | 7979 | 1/1 | no result | no RPC answers; **stock node sync failed: its only validator does not serve this chain** |
 | Frqtal | `2FJM6WqyDGX2PZYipnatYXuXsNcKLio5fJMkEaGgpP4kHDTPw2` | 62786 | 0/3 | no result | no RPC answers; **stock node sync failed: no validator reachable** |
-| Lynq 01 | `BXLoBWScGdbWcFozx2PDv9hEcH3fXNvNmX3GAc25gbbRxs7nc` | 93134 | 5/5 | no result | no RPC answers; **stock node sync failed: validators advertise private IPs** |
+| Lynq 01 | `BXLoBWScGdbWcFozx2PDv9hEcH3fXNvNmX3GAc25gbbRxs7nc` | 93134 | 5/5 | no result | no RPC answers; **private L1; file requested through private channels; it will not be public** |
 | OVI | `2o7i6nc6Y4QWndwH6VRnDL18f4pMr3iKqrBiF5fuSmjKAUr4dg` | 91820 | 0/1 | no result | no RPC answers; **stock node sync failed: no validator reachable** |
 | ParadeA | `q41H38p3LxuGfz1ZLBvN7rSzDx8deQdmpLDY4HU7K2SYiK7oe` | 43113778 | 0/1 | no result | no RPC answers; **stock node sync failed: no validator reachable** |
 | settlement | `2grpF11sCe1QT7PDVgRtc5uq3JQrL6tthennwZG6sMxJ3TrSLP` | 43117 | 5/5 | no result | no RPC answers; **file requested through private channels; it will not be public** |
@@ -254,7 +254,7 @@ Mainnet: 9 live chains have no result.
 | blerifymain | `2aVPq3NSjjf8fqQE68myUM3AiTQLM9hBHg1XkBwByfTWma3BHv` | 5/5 |
 | CodeNekt | `ZG7cT4B1u3y7piZ9CzfejnTKnNAoehcifbJWUwBqgyD3RuEqK` | 2/8 |
 | DOS Chain | `22v7AG7h6qaVxd4bLvAsSsg2LZ4RCn5iVYgFn7a2Fj1LCuYwjv` | 1/1 |
-| Lynq 01 | `BXLoBWScGdbWcFozx2PDv9hEcH3fXNvNmX3GAc25gbbRxs7nc` | 5/5 |
+| Lynq 01 (file requested through private channels, will not be public) | `BXLoBWScGdbWcFozx2PDv9hEcH3fXNvNmX3GAc25gbbRxs7nc` | 5/5 |
 | settlement (file requested through private channels, will not be public) | `2grpF11sCe1QT7PDVgRtc5uq3JQrL6tthennwZG6sMxJ3TrSLP` | 5/5 |
 
 **Potentially dead** (4): no validator is connected to the mainnet nodes we checked from.
