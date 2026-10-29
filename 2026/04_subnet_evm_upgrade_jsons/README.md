@@ -2,7 +2,7 @@
 
 ## Mainnet
 
-69 chains: 16 need a file, 43 empty (no file needed), 10 no result.
+69 chains: 17 need a file, 43 empty (no file needed), 9 no result.
 
 | name | blockchainID | EVM chain ID | validators online | upgrade.json | how it was verified |
 |---|---|---|---|---|---|
@@ -19,6 +19,7 @@
 | PandaSea | `2gYSmRb7tjS4wb5FHFx8NBhwQgARWEdr8MGVC7v8UWJJFkEpTj` | 7776 | 5/5 | [file](mainnet/pandasea-2gYSmRb7tjS4wb5FHFx8NBhwQgARWEdr8MGVC7v8UWJJFkEpTj.json) | live config equals file (public RPC `rpc-mainnet-pandasea-rl.cogitus.io`) |
 | PLAYA3ULL | `k2SFEZ2MZr9UGXiycnA1DdaLqZTKDaHK7WUXVLhJk5F9DD8r1` | 3011 | 5/5 | [file](mainnet/playa3ull-k2SFEZ2MZr9UGXiycnA1DdaLqZTKDaHK7WUXVLhJk5F9DD8r1.json) | live config equals file (public RPC `subnets.avax.network`) |
 | StepNetwork | `2jRZvKtXY5nyWTqRwFh1KMHGrCRxJoULu4r2CsayWRnjdDGbV1` | 1234 | 0/1 | [file](mainnet/step-2jRZvKtXY5nyWTqRwFh1KMHGrCRxJoULu4r2CsayWRnjdDGbV1.json) (not verified) | held file, no RPC answers; a stock node synced to tip with it (2026-09) |
+| STLINK | `2HR9yTVXBwxJjmejn9yt1UQnrBpQVQRpxUQe6YUtEaWh9yqnPN` | 35299 | 5/5 | file held privately, not published | AvaCloud private network: we have the file from AvaCloud (rebuilt from their config files), it is not published here and not checked against the chain; stock v1.15.2 refuses to start the chain without a file |
 | StraitsX | `EJ4DyXHe4ydhsLLMiDPsHtoq5RDqgyao6Lwb9znKhs59q4NQx` | 5566 | 10/10 | [file](mainnet/straitsx-EJ4DyXHe4ydhsLLMiDPsHtoq5RDqgyao6Lwb9znKhs59q4NQx.json) | live config equals file (public RPC `subnets.avax.network`) |
 | TITANL | `24gRTyzFmXUPebVwzQHuwU6RFeKHHDxRftRVaSAe7MHRXWxZ4S` | 84358 | 5/5 | [file](mainnet/titan-24gRTyzFmXUPebVwzQHuwU6RFeKHHDxRftRVaSAe7MHRXWxZ4S.json) | live config equals file (public RPC `subnets.avax.network`) |
 | UPTN | `2tsFdSeemtqK9vaPgjPrcwvKFKPw1T6PHufaZ26tKbAFSkXPTE` | 6119 | 5/5 | [file](mainnet/uptn-2tsFdSeemtqK9vaPgjPrcwvKFKPw1T6PHufaZ26tKbAFSkXPTE.json) | live config equals file (Glacier proxy) |
@@ -74,11 +75,10 @@
 | OVI | `2o7i6nc6Y4QWndwH6VRnDL18f4pMr3iKqrBiF5fuSmjKAUr4dg` | 91820 | 0/1 | no result | no RPC answers; **stock node sync failed: no validator reachable** |
 | ParadeA | `q41H38p3LxuGfz1ZLBvN7rSzDx8deQdmpLDY4HU7K2SYiK7oe` | 43113778 | 0/1 | no result | no RPC answers; **stock node sync failed: no validator reachable** |
 | settlement | `2grpF11sCe1QT7PDVgRtc5uq3JQrL6tthennwZG6sMxJ3TrSLP` | 43117 | 5/5 | no result | no RPC answers; **stock node sync failed: validators advertise private IPs** |
-| STLINK | `2HR9yTVXBwxJjmejn9yt1UQnrBpQVQRpxUQe6YUtEaWh9yqnPN` | 35299 | 5/5 | no result | no RPC answers; **needs a file: stock v1.15.2 refuses to start the chain without one (unsupported fork ordering, Etna after Granite); AvaCloud client, file requested, waiting for their answer** |
 
 ## Fuji
 
-161 chains: 27 need a file, 53 empty (no file needed), 81 no result.
+160 chains: 27 need a file, 53 empty (no file needed), 80 no result.
 
 | name | blockchainID | EVM chain ID | upgrade.json | how it was verified |
 |---|---|---|---|---|
@@ -182,7 +182,6 @@
 | datagram | `VhdtacxdFewFKCnCJkyavYWeohf1DjgaQnQAg7H6LKoaCbyp8` | 131 | no result | no RPC answers |
 | DComm | `Tap4NfbT2LWhhww4YUrnsLyv6wSbVHhd9YQeJVQqiazpomaVW` | 32666 | no result | no RPC answers |
 | Dep | `2fJ7mnC2fENmNfaicf74QKwUYTjQNP7yprbz7L9SPn9YV6Nbr5` | 80796 | no result | no RPC answers |
-| DFK Chain | `32sexHqc3tBQsik8h7WP5F2ruL5svqhX5opeTgXCRVX8HpbKF` | 335 | no result | no RPC answers |
 | drama | `51nKdczJVk32pejdpUmKqJzBzeg23BtZxE5jiKdbWVCuUmnAL` | 710521 | no result | no RPC answers |
 | DropLinked Attestation | `2WU6TwdaXZ3cHs1ytAG7Ju1KXWeb9f9Zr2LHKXSEGpkR2pJLcc` | 692544 | no result | no RPC answers |
 | dtttd | `2RoxFcaNymDKQDfhU6Mr8oy8CVG1vTK3eeh6sjVjShDp4s6XDR` | 87293 | no result | no RPC answers |
@@ -244,6 +243,31 @@
 | trustechledger | `2SndTptHdH3TKvoABAa5HKyb3AiqEnprc6nnwxj7PHq7muPgNq` | 173427 | no result | no RPC answers |
 | VJTTD | `23f5WZwsP5d2iUtontakgEuhecxVzs9t9uQeNEKtuXHiFWmnFh` | 58882 | no result | no RPC answers |
 
+## Chains without a file
+
+Mainnet: 9 live chains have no result.
+
+**Validators online** (5): at least one validator is connected to the mainnet nodes we checked from. These chains run, but their validators do not serve blocks or RPC to us; only the operator can give the file.
+
+| name | blockchainID | validators online |
+|---|---|---|
+| blerifymain | `2aVPq3NSjjf8fqQE68myUM3AiTQLM9hBHg1XkBwByfTWma3BHv` | 5/5 |
+| CodeNekt | `ZG7cT4B1u3y7piZ9CzfejnTKnNAoehcifbJWUwBqgyD3RuEqK` | 2/8 |
+| DOS Chain | `22v7AG7h6qaVxd4bLvAsSsg2LZ4RCn5iVYgFn7a2Fj1LCuYwjv` | 1/1 |
+| Lynq 01 | `BXLoBWScGdbWcFozx2PDv9hEcH3fXNvNmX3GAc25gbbRxs7nc` | 5/5 |
+| settlement | `2grpF11sCe1QT7PDVgRtc5uq3JQrL6tthennwZG6sMxJ3TrSLP` | 5/5 |
+
+**Potentially dead** (4): no validator is connected to the mainnet nodes we checked from.
+
+| name | blockchainID | validators online |
+|---|---|---|
+| Athera | `LEJHppkiGCMMrTyH8y6CGSuWaB6g3ZN6TVqJ9WUrTwwUNiz6N` | 0/1 |
+| Frqtal | `2FJM6WqyDGX2PZYipnatYXuXsNcKLio5fJMkEaGgpP4kHDTPw2` | 0/3 |
+| OVI | `2o7i6nc6Y4QWndwH6VRnDL18f4pMr3iKqrBiF5fuSmjKAUr4dg` | 0/1 |
+| ParadeA | `q41H38p3LxuGfz1ZLBvN7rSzDx8deQdmpLDY4HU7K2SYiK7oe` | 0/1 |
+
+Fuji: 80 live chains have no result (see the Fuji table). We have no Fuji validator, and public data does not show whether Fuji L1 validators are online, so these are not split.
+
 ## Chains that are not live
 
 These chains are not live: they have no active validator at the snapshot, or the project is deprecated. Their files stay here for archival.
@@ -254,6 +278,7 @@ These chains are not live: they have no active validator at the snapshot, or the
 | lamina1 | `UhReZTXT8Cqsjat9ghRtCe5kBQPQexQB5zG5Fvf3egrdYfyoJ` | 10849 | 0/0 | [file](mainnet/lamina1-UhReZTXT8Cqsjat9ghRtCe5kBQPQexQB5zG5Fvf3egrdYfyoJ.json) (not verified) | held file, no RPC answers; from the lamina1-integration README (2025-02) |
 | Space | `22CN6x5LAPEkvLDdz4UwG3XXtZV69Su3bcspiYtkF9k5f9rcCt` | 8227 | 0/0 | [file](mainnet/space-22CN6x5LAPEkvLDdz4UwG3XXtZV69Su3bcspiYtkF9k5f9rcCt.json) | live config equals file (our archive node at tip) |
 | Blockticity | `2pV5K35V1ohNSYhRU3z1Bud2oZys9bak7QYcmvbVvnieh4FJXc` | 28530 | 0/2 | no result | no RPC answers; **cancelled project (moved to C-Chain), no future support** |
+| DFK Chain (Fuji) | `32sexHqc3tBQsik8h7WP5F2ruL5svqhX5opeTgXCRVX8HpbKF` | 335 | n/a (Fuji) | no result | no RPC answers; **deprecated (DFK testnet), no future support** |
 
 ## About these files
 
@@ -306,12 +331,11 @@ height 303,871 (2026-10-27 15:13 JST), 161 of 167 active chains.
 - PandaSea's file uses `txBlockListConfig`, a precompile that exists only in
   PandaSea's subnet-evm fork. Stock subnet-evm rejects this file. The same holds
   for Fuji fscfive (`nettingConfig`, `privacyConfig`, `qedisIdentityConfig`).
-- Mainnet STLINK has no result, but its genesis has the same year-9999 Etna as
-  AIBTRUST and MUGEN, and both of those need an Etna override. STLINK probably
-  needs a file too. A stock avalanchego v1.15.2 node refuses to start the
-  chain without one (`unsupported fork ordering`: Etna after Granite). It is an
-  AvaCloud client; we asked for the file.
-- For the other mainnet chains with no result, a stock v1.15.2 node with no
+- Mainnet STLINK is an AvaCloud private network. Its genesis has the same
+  year-9999 Etna as AIBTRUST and MUGEN, and a stock avalanchego v1.15.2 node
+  refuses to start the chain without a file (`unsupported fork ordering`: Etna
+  after Granite). AvaCloud gave us its file; it is not published here.
+- For the mainnet chains with no result, a stock v1.15.2 node with no
   file tried to sync them over P2P on 2026-10-28. None fetched a block: the
   validators were unreachable, advertised private IPs, or did not answer
   requests from a non-validator.
