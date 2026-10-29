@@ -74,7 +74,7 @@
 | Lynq 01 | `BXLoBWScGdbWcFozx2PDv9hEcH3fXNvNmX3GAc25gbbRxs7nc` | 93134 | 5/5 | no result | no RPC answers; **stock node sync failed: validators advertise private IPs** |
 | OVI | `2o7i6nc6Y4QWndwH6VRnDL18f4pMr3iKqrBiF5fuSmjKAUr4dg` | 91820 | 0/1 | no result | no RPC answers; **stock node sync failed: no validator reachable** |
 | ParadeA | `q41H38p3LxuGfz1ZLBvN7rSzDx8deQdmpLDY4HU7K2SYiK7oe` | 43113778 | 0/1 | no result | no RPC answers; **stock node sync failed: no validator reachable** |
-| settlement | `2grpF11sCe1QT7PDVgRtc5uq3JQrL6tthennwZG6sMxJ3TrSLP` | 43117 | 5/5 | no result | no RPC answers; **stock node sync failed: validators advertise private IPs** |
+| settlement | `2grpF11sCe1QT7PDVgRtc5uq3JQrL6tthennwZG6sMxJ3TrSLP` | 43117 | 5/5 | no result | no RPC answers; **special case: we are aware and are coordinating with the team; stock node sync failed: validators advertise private IPs** |
 
 ## Fuji
 
@@ -255,7 +255,7 @@ Mainnet: 9 live chains have no result.
 | CodeNekt | `ZG7cT4B1u3y7piZ9CzfejnTKnNAoehcifbJWUwBqgyD3RuEqK` | 2/8 |
 | DOS Chain | `22v7AG7h6qaVxd4bLvAsSsg2LZ4RCn5iVYgFn7a2Fj1LCuYwjv` | 1/1 |
 | Lynq 01 | `BXLoBWScGdbWcFozx2PDv9hEcH3fXNvNmX3GAc25gbbRxs7nc` | 5/5 |
-| settlement | `2grpF11sCe1QT7PDVgRtc5uq3JQrL6tthennwZG6sMxJ3TrSLP` | 5/5 |
+| settlement (special case, coordinating with the team) | `2grpF11sCe1QT7PDVgRtc5uq3JQrL6tthennwZG6sMxJ3TrSLP` | 5/5 |
 
 **Potentially dead** (4): no validator is connected to the mainnet nodes we checked from.
 
